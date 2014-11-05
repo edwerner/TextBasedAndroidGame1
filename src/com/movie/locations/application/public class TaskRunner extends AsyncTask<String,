@@ -1,0 +1,64 @@
+	public class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
+
+			private String resp;
+			private ProgressDialog dialog;
+			private MovieLocationsImpl datasource;
+			private ArrayList<FilmLocation> filmLocationList;
+			
+			@Override
+			protected String doInBackground(String... params) {
+				publishProgress("Sleeping..."); // Calls onProgressUpdate()
+				try {
+
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("ERROR STACK TRACE");
+					resp = e.getMessage();
+				}
+				return resp;
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+			 */
+			@Override
+			protected void onPostExecute(String result) {
+				// execution of result of Long time consuming operation
+				if (dialog != null) {
+					dialog.dismiss();
+				}
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see android.os.AsyncTask#onPreExecute()
+			 */
+			@Override
+			protected void onPreExecute() {
+				// Things to be done before execution of long running operation. For
+				// example showing ProgessDialog
+
+				dialog = new ProgressDialog(context);
+				dialog.setTitle("Restoring...");
+				dialog.setMessage("Re-downloading level data.");
+				dialog.setCancelable(false);
+				dialog.setIndeterminate(true);
+				dialog.show();
+			}
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
+			 */
+			@Override
+			protected void onProgressUpdate(String... text) {
+				// finalResult.setText(text[0]);
+				// Things to be done while execution of long running operation is in
+				// progress. For example updating ProgessDialog
+			}
+		}
+	}

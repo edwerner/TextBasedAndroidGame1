@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.movie.locations.NewsActivity$SettingsFragment" >
+
+    <TextView
+        android:id="@+id/notificationText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/checkboxNotifications1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onCheckboxClicked"
+        android:checked="false"
+        android:text="Mobile" />
+
+    <CheckBox
+        android:id="@+id/emailNotifications1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onCheckboxClicked"
+        android:checked="false"
+        android:text="Email" />
+
+    <TextView
+        android:id="@+id/updateUserPreferencesButtonText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Notification Preferences"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/updateUserPreferencesButton1"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/star"
+        android:text="Update" />
+
+    <TextView
+        android:id="@+id/settingsTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete All User Data"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/deleteAllUserData1"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/star"
+        android:text="Delete" />
+
+</LinearLayout>

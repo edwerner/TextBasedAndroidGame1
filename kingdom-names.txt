@@ -1,0 +1,217 @@
+Kingdom Of Rhelaven
+
+Kingdom Of Cerrald
+
+Kingdom Of Arerin
+
+Kingdom Of Channor
+
+Kingdom Of Yeadda
+
+Kingdom Of Gwedrild
+
+Kingdom Of Qardori
+
+Kingdom Of Agrohap
+
+Kingdom Of Edaleswen
+
+Kingdom Of Asaren
+
+Kingdom Of Adwilacia
+
+Kingdom Of Hilaa
+
+Kingdom Of Cadaoweth
+
+Kingdom Of Dwomard
+
+Kingdom Of Haelilith
+
+Kingdom Of Asteijan
+
+Kingdom Of Areasa
+
+Kingdom Of Droaw
+
+Kingdom Of Ererille
+
+Kingdom Of Crelima
+
+Kingdom Of Kedalinwan
+
+Kingdom Of Ibendaria
+
+Kingdom Of Grohawyth
+
+Kingdom Of Abelicia
+
+Kingdom Of Hailan
+
+Kingdom Of Brirerwen
+
+Kingdom Of Doend
+
+Kingdom Of Weran
+
+Kingdom Of Cann
+
+Kingdom Of Kedalinwan
+
+
+Standard D&D XP table from level 1 to 50, listing the minimum XP required to attain that level.
+------------------------------------------------------------------------------------------------
+Level	Min. XP
+1	0
+2	1000
+3	3000
+4	6000
+5	10000
+6	15000
+7	15000
+8	28000
+9	36000
+10	45000
+11	55000
+12	66000
+13	78000
+14	91000
+15	105000
+16	120000
+17	136000
+18	153000
+19	171000
+20	190000
+21	210000
+22	231000
+23	253000
+24	276000
+25	300000
+26	325000
+27	351000
+28	378000
+29	406000
+30	435000
+31	465000
+32	496000
+33	528000
+34	561000
+35	595000
+36	630000
+37	666000
+38	703000
+39	741000
+40	780000
+41	820000
+42	861000
+43	903000
+44	946000
+45	990000
+46	1035000
+47	1081000
+48	1128000
+49	1176000
+50	1225000
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+Table 6-13: Alternative Experience Point Progression
+Character Level	 XP	 Class Skill Max Ranks	 Cross-Class Skill Max Ranks	 Feats	 Ability Score Increases
+1st	 0	 4	 2	 1st	 -
+2nd	 1,000	 5	 2-1/2	 -	 -
+3rd	 3,000	 6	 3	 2nd	 -
+4th	 6,000	 7	 3-1/2	 -	 1st
+5th	 10,000	 8	 4	 -	 -
+6th	 16,000	 9	 4-1/2	 3rd	 -
+7th	 24,000	 10	 5	 -	 -
+8th	 36,000	 11	 5-1/2	 -	 2nd
+9th	 52,000	 12	 6	 4th	 -
+10th	 76,000	 13	 6-1/2	 -	 -
+11th	 110,000	 14	 7	 -	 -
+12th	 160,000	 15	 7-1/2	 5th	 3rd
+13th	 220,000	 16	 8	 -	 -
+14th	 320,000	 17	 8-1/2	 -	 -
+15th	 440,000	 18	 9	 6th	 -
+16th	 640,000	 19	 9-1/2	 -	 4th
+17th	 890,000	 20	 10	 -	 -
+18th	 1,300,000	 21	 10-1/2	 7th	 -
+19th	 1,800,000	 22	 11	 -	 -
+20th	 2,600,000	 23	 11-1/2	 -	 5th
+
+------------------------------------------------------------------------------------------------
+
+
+This is the core rulebook chart provided by the Player's Handbook.
+
+Character
+
+Level
+
+Experience
+
+Needed
+
+Skill Max
+
+Ranks
+
+Cross Skill Max
+
+Ranks
+
+Feats
+
+Ability
+
+Score
+
+Increase
+
+1	 0	 4	 2	 1st	 -
+2	 1,000	 5	 2-1/2	 -	 -
+3	 3,000	 6	 3	 2nd	 -
+4	 6,000	 7	 3-1/2	 -	 1st
+5	 10,000	 8	 4	 -	 -
+6	 15,000	 9	 4-1/2	 3rd	 -
+7	 21,000	 10	 5	 -	 -
+8	 28,000	 11	 5-1/2	 -	 2nd
+9	 36,000	 12	 6	 4th	 -
+10	 45,000	 13	 6-1/2	 -	 -
+11	 55,000	 14	 7	 -	 -
+12	 66,000	 15	 7-1/2	 5ft	 3rd
+13	 78,000	 16	 8	 -	 -
+14	 91.000	 17	 8-1/0	 -	 -
+15	 105,000	 18	 9	 6th	 -
+16	 120,000	 19	 9-1/2	 -	 4th
+17	 136,000	 20	 10	 -	 -
+18	 153,000	 21	 10-1/2	 7th	 -
+19	 171,000	 22	 11	 -	 -
+20	 190,000	 23	 11-1/2	 -	 5th
+
+
+
+// FORMATTED LEVEL CHART
+
+1	 0
+2	 1,000
+3	 3,000
+4	 6,000
+5	 10,000
+6	 15,000
+7	 21,000
+8	 28,000
+9	 36,000
+10	 45,000
+11	 55,000
+12	 66,000
+13	 78,000
+14	 91.000
+15	 105,000
+16	 120,000
+17	 136,000
+18	 153,000
+19	 171,000
+20	 190,000

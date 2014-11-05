@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/film_list_array_adapter"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp" >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/filmlist_icon_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/replayImage_01"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@id/logo"
+            android:contentDescription="@string/filmlist_icon_desc"
+            android:src="@drawable/replay"
+            android:visibility="gone" >
+        </ImageView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp" >
+
+        <TextView
+            android:id="@+id/label"
+            style="@style/CodeFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|left"
+            android:text="@+id/label"
+            android:textSize="20sp" >
+        </TextView>
+
+        <ImageView
+            android:id="@+id/green_checkmark_small"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical|right"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/filmlist_icon_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_checkmark_green_small"
+            android:visibility="gone" >
+        </ImageView>
+    </LinearLayout>
+
+</LinearLayout>

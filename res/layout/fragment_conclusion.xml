@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.movie.locations.ConclusionActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/conclusionTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/conclusionCopyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/conclusionImageUrlText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/pointsDataText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/bonusPointsDataText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/dismissConclusionButton1"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/star"
+        android:text="Dismiss" />
+
+    <TextView
+        android:id="@+id/conclusionCardTitleHeadline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You got a new card!"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:visibility="gone" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/bagItemTitleHeadline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New bag items"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:visibility="gone" >
+    </TextView>
+
+    <ListView
+        android:id="@+id/cardListView"
+        style="@style/listViewDivider"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/bagListView"
+        style="@style/listViewDivider"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:visibility="gone" />
+
+</LinearLayout>

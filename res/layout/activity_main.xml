@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dip" >
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dip"
+            android:enabled="false" />
+
+        <Button
+            android:id="@+id/sign_out_button"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/sign_out_button_name" />
+
+        <Button
+            android:id="@+id/revoke_access_button"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/revoke_access_button_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/sign_in_status"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dip"
+            android:text="@string/status_signed_out" />
+
+        <TextView
+            android:id="@+id/circles_title"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/circles_title" />
+
+        <ListView
+            android:id="@+id/circles_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="0dip" />
+    </LinearLayout>
+
+    <!--
+         <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/imageview_1_desc"
+        android:scaleType="centerCrop" />
+    -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="225dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Postmodern Philosophy"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="An interactive post-apocalyptic journey"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/entry_button"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Enter" />
+    </LinearLayout>
+
+    <!-- style="@style/DropShadowText" -->
+
+</RelativeLayout>

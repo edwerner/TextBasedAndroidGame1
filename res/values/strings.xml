@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MovieLocationsApp</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Film Locations App</string>
+    <string name="title_activity_film_sort">Worlds</string>
+    <string name="title_activity_home">SF Film Locations</string>
+    <string name="button_send">Get started</string>
+    <string name="imageview_1_desc">Film locations app icon</string>
+    <string name="filmlist_icon_desc">Film list icon</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_film_detail">Film Location Detail</string>
+    <string name="content_desc">Content description</string>
+    <string name="title">Title</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="release_year">Release Year</string>
+    <string name="location">Location</string>
+    <string name="production_company">Production Company</string>
+    <string name="distributor">Distributor</string>
+    <string name="director">Director</string>
+    <string name="writer">Writer</string>
+    <string name="actors">Actors</string>
+    <string name="fun_facts">Fun Facts</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_movie_poster">MoviePosterActivity</string>
+    <string name="san">SAN</string>
+    <string name="francisco">FRANCISCO</string>
+    <string name="film">FILM</string>
+    <string name="locations">LOCATIONS</string>
+    <string name="google_play_services_version">4.0.30</string>
+    <string name="app_description">If you love movies, and you love San Francisco,
+		you\'re bound to love this listing of filming locations of movies shot
+		in San Francisco from 1924 through 2010. You\'ll find the titles,
+		locations, fun facts, names of the director, writer, actors, and
+		studio for most of these films.</string>
+    <string name="attribution_text">From the San Francisco Film Commission</string>
+
+    <!-- google plus login string messages -->
+    <string name="circles_title">Visible circles:</string>
+    <string name="sign_out_button_name">Sign out</string>
+    <string name="revoke_access_button_name">Revoke</string>
+    <string name="status_sign_in_required">Sign-in required</string>
+    <string name="status_sign_in_error">Error signing in: %s</string>
+    <string name="status_loading">Loading…</string>
+    <string name="status_signing_in">Signing in with Google+…</string>
+    <string name="status_signed_out">Signed out</string>
+    <string name="status_revoke_access">Revoked access</string>
+    <string name="status_revoke_access_error">Error revoking access: %s</string>
+    <string name="signed_in_as">Signed in as %s</string>
+
+    <!-- Used if there was an error loading the signed in user's name. -->
+    <string name="unknown_person">Unknown</string>
+    <string name="play_services_error">Google Play services is not available. This
+		application will close.</string>
+    <string name="close">Close</string>
+    <string name="profile_picture">User\'s profile picture.</string>
+    <string name="entry_button_text">Go find stuff!</string>
+    <string name="title_activity_user_detail_pager">User Detail</string>
+
+    <!-- user detail page labels -->
+    <string name="user_profile_title_tag">User Profile</string>
+    <string name="user_full_name_tag_1">Name</string>
+    <string name="achievements_title_tag">Achievements</string>
+    <string name="achievements_tag_1">Recent</string>
+    <string name="misc_title_tag">Latest News</string>
+    <string name="misc_tag_1">Today</string>
+    <string name="title_activity_user_detail">UserDetailActivity</string>
+    <string name="get_started_button_text">Get started</string>
+    <string name="check_in_button_text">Check in here</string>
+    <string name="title_activity_comment_detail">CommentDetailActivity</string>
+
+    <!-- navigation drawer -->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="title_activity_quiz">QuizActivity</string>
+    <string name="title_activity_friend_detail">FriendDetailActivity</string>
+    <string name="title_activity_achievement">AchievementActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_bag">BagActivity</string>
+    
+    <!-- conclusion activity text -->
+    <string name="title_activity_conclusion">Conclusion</string>
+
+</resources>

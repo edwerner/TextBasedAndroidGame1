@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.movie.locations.NewsActivity$WelcomeFragment" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How this app works"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/instructions1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Levels"
+        android:textColor="@color/black_overlay"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/instructions2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Each new level is downloaded upon completion. You choose story order!"
+        android:textColor="@color/black_overlay"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/instructionsItems1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Items"
+        android:textColor="@color/black_overlay"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/instructionsItems2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Find equippable quest items in your bag. Your bag can be opened through your &apos;Settings&apos; tray (lower right-hand on phone face)."
+        android:textColor="@color/black_overlay"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/instructionsFriends1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Friends"
+        android:textColor="@color/black_overlay"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/instructionsFriends2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="These are your Google Plus contacts. They&apos;ll appear in your friends list after they download the app. Spread the word with (built-in) Google Plus sharing!"
+        android:textColor="@color/black_overlay"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/instructionsUpdates1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Notifications"
+        android:textColor="@color/black_overlay"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/instructionsUpdates2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Leave notifications 'active' to keep current with new level launches and app updates!"
+        android:textColor="@color/black_overlay"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/dismiss_instructions"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="Got it!"
+        android:textColor="@color/black_overlay" />
+
+</LinearLayout>
