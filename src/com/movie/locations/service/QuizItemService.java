@@ -40,6 +40,7 @@ import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.domain.FilmLocationDataObject;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.QuizItem;
+import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.service.JsonService;
 import com.movie.locations.util.CSVFile;
 
@@ -139,16 +140,31 @@ public class QuizItemService {
 		
 		datasource.close();
 		
+		
+		// SEND UPDATED COLLECTION TO VIEW
+//		final FilmArrayList localLocationArrayList = new FilmArrayList();
+//		localLocationArrayList.setFilmList(locationList);
+		
+		
+		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
+		tempQuizItemArrayList.setQuizList(quizArrayList);
+		
+		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);
+		context.sendBroadcast(newsIntent);
+		
+		
 		// SEND DATABASE CHANGED EVENT
 //       	Intent broadcast = new Intent();
 //       	broadcast.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 ////        filter.addCategory(Intent.CATEGORY_DEFAULT);
 //        sendBroadcast(broadcast);
-		
-		Intent intent = new Intent();
-        intent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-//        intent.addFlags(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-        context.sendBroadcast(intent);
+//		
+//		Intent intent = new Intent();
+//        intent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+////        intent.addFlags(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//        context.sendBroadcast(intent);
 	}
 	public ArrayList<QuizItem> buildWorldLocationQuizObject(JsonNode quizData, Context context) {
 

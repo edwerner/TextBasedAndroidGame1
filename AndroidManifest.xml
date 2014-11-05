@@ -56,14 +56,14 @@
                 <category android:name="com.movie.locations" />
             </intent-filter>
         </receiver>
-        <!-- <receiver
+        <receiver
             android:name="com.movie.locations.service.DatabaseChangedReceiver"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="com.movie.locations.service.DATABASE_CHANGED" >
                 </action>
             </intent-filter>
-        </receiver> -->
+        </receiver>
 
         <service android:name="com.movie.locations.gcm.GcmIntentService" />
 

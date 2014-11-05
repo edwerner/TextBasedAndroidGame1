@@ -766,6 +766,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //					}
 				}
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+				
+				
 //				mDrawerLayout.closeDrawers();
 			}
 

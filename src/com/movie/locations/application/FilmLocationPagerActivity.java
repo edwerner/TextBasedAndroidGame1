@@ -46,6 +46,7 @@ import com.movie.locations.domain.FilmLocationCollection;
 import com.movie.locations.domain.LocationMapParcel;
 import com.movie.locations.domain.MoviePostersHashMap;
 import com.movie.locations.domain.QuizItem;
+import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.WorldLocationArrayList;
 import com.movie.locations.domain.WorldLocationObject;
@@ -361,13 +362,20 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		
 		
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-        filter.addCategory(Intent.CATEGORY_DEFAULT);
-        registerReceiver(mReceiver, filter);
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//        filter.addCategory(Intent.CATEGORY_DEFAULT);
+//        registerReceiver(mReceiver, filter);
 
-		
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		filter.addCategory(Intent.CATEGORY_DEFAULT);
+		registerReceiver(mReceiver, filter);
 
+//		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+////		newsIntent.putExtra("locationArrayList", localLocationArrayList);
+//		sendBroadcast(newsIntent);
 
 //        Intent intent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 //        sendOrderedBroadcast(intent, null, new BroadcastReceiver() {
@@ -398,21 +406,46 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	       // update your list
 		   
 		   
-		   Bundle extras = intent.getExtras();
-//			newsIntent.putExtra("locationArrayList", localLocationArrayList);
-//			FilmArrayList locationArrayList = extras.getParcelable("locationArrayList");
-			System.out.println("DATABASE_CHANGED: " + locationArrayList);
-			ArrayList<FilmLocation> tempLocationList = locationArrayList.getFilmList();
+			Bundle extras = intent.getExtras();
+	//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
+			QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
+			System.out.println("DATABASE_CHANGED: " + quizArrayList);
+			ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
 			
-//			for (FilmLocation loc : tempLocationList) {
-//				System.out.println("DATABASE_CHANGED: " + loc.getLocations());
-//			}
+			for (QuizItem loc : quizItemArrayList) {
+				System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+			}
+			
+			// REDRAW VIEW WITH UPDATED COLLECTION
 			
 		   System.out.println("UPDATED DATA FROM RECEIVER");
 		   
 	   }
-
+	
 	};
+	
+	
+//	public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
+//		
+//		public void onReceive(Context context, Intent intent) {
+//	       // update your list
+//		   
+//		   
+//		   Bundle extras = intent.getExtras();
+////			newsIntent.putExtra("locationArrayList", localLocationArrayList);
+////			FilmArrayList locationArrayList = extras.getParcelable("locationArrayList");
+//			System.out.println("DATABASE_CHANGED: " + locationArrayList);
+//			ArrayList<FilmLocation> tempLocationList = locationArrayList.getFilmList();
+//			
+////			for (FilmLocation loc : tempLocationList) {
+////				System.out.println("DATABASE_CHANGED: " + loc.getLocations());
+////			}
+//			
+//		   System.out.println("UPDATED DATA FROM RECEIVER");
+//		   
+//	   }
+//
+//	};
 	
 //	 private String[] refreshLocationTitles(ArrayList<FilmLocation> filmList) {
 //		
