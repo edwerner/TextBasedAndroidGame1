@@ -21,15 +21,15 @@ public class DatabaseChangedReceiver extends BroadcastReceiver {
 		// TODO Auto-generated method stub
 		System.out.println(ACTION_DATABASE_CHANGED);
 		
-//		Bundle extras = intent.getExtras();
-////		newsIntent.putExtra("locationArrayList", localLocationArrayList);
-//		QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
-//		System.out.println("DATABASE_CHANGED: " + quizArrayList);
-//		ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
-//		
-//		for (QuizItem loc : quizItemArrayList) {
-//			System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
-//		}
+		Bundle extras = intent.getExtras();
+//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
+		QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
+		System.out.println("DATABASE_CHANGED: " + quizArrayList);
+		ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+		
+		for (QuizItem loc : quizItemArrayList) {
+			System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+		}
 		
 	}
 }

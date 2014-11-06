@@ -183,6 +183,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 
 	private Object localUser;
 
+	private IntentFilter filter;
+
 	private static Dialog dialog;
 
 	private static BagItemImpl bagItemImpl;
@@ -412,7 +414,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		dialog = new Dialog(context,android.R.style.Theme_Translucent_NoTitleBar);
 	 	dialog.setContentView(R.layout.replay_level_overlay);
 	 	
-	 	IntentFilter filter = new IntentFilter();
+	 	filter = new IntentFilter();
 		filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		filter.addCategory(Intent.CATEGORY_DEFAULT);
 		registerReceiver(mReceiver, filter);
@@ -430,6 +432,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		 System.out.println("******* RESUME ********");
 		
 
+		 registerReceiver(mReceiver, filter);
+		 
 		 if (locationQuizArrayAdapter != null) {
 			 QuizItem replayQuizItem = null;
 			 boolean answered = true;
@@ -540,24 +544,38 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //				mSectionsPagerAdapter.notifyDataSetChanged();
 				
 				
-//				Bundle extras = intent.getExtras();
-//		//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
-//				QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
-//				System.out.println("DATABASE_CHANGED: " + quizArrayList);
-//				ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
-//				
-//				for (QuizItem loc : quizItemArrayList) {
+				Bundle extras = intent.getExtras();
+		//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
+				QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
+				System.out.println("DATABASE_CHANGED: " + quizArrayList);
+				newQuizList = quizArrayList.getQuizList();
+				QuizItem firstQuizItem = newQuizList.get(0);
+				locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
+				locationQuizArrayAdapter.insert(firstQuizItem, 0);
+				
+//				for (QuizItem loc : newQuizList) {
 //					System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
-//					String tempWorldTitle = loc.getWorldTitle();
-//					if (tempWorldTitle.equals(getTitle())) {
-//						initializeReplayWorld(loc);
-//					}
+////					String tempWorldTitle = loc.getWorldTitle();
+////					if (tempWorldTitle.equals(getTitle())) {
+////						initializeReplayWorld(loc);
+////					}
 //				}
 				
+//				for (int i = 0; i < newQuizList.size(); i++) {
+////					if (newQuizList.get(i).equals(currentQuizItem.getQuestionId())) {
+////						newQuizList.set(i, currentQuizItem);
+//						 locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(i));
+//						 locationQuizArrayAdapter.insert(firstQuizItem, i);
+////					}
+//				}
+				
+				locationQuizArrayAdapter.notifyDataSetChanged();
 				// REDRAW VIEW WITH UPDATED COLLECTION
 				
 			   System.out.println("UPDATED DATA FROM RECEIVER");
+			   
 			   unregisterReceiver(mReceiver);
+			   
 		   }
 		};
 
