@@ -367,10 +367,10 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 //        filter.addCategory(Intent.CATEGORY_DEFAULT);
 //        registerReceiver(mReceiver, filter);
 
-		IntentFilter filter = new IntentFilter();
-		filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-		filter.addCategory(Intent.CATEGORY_DEFAULT);
-		registerReceiver(mReceiver, filter);
+//		IntentFilter filter = new IntentFilter();
+//		filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		filter.addCategory(Intent.CATEGORY_DEFAULT);
+//		registerReceiver(mReceiver, filter);
 
 //		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 //		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
@@ -394,32 +394,39 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 
 	
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+//    @Override
+//    protected void onPause() {
 //        unregisterReceiver(mReceiver);
-    }
+//        super.onPause();
+//    }
 	
+    
 	public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
 		
 		public void onReceive(Context context, Intent intent) {
-	       // update your list
+			// update your list
 		   
-		   
-			Bundle extras = intent.getExtras();
-	//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
-			QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
-			System.out.println("DATABASE_CHANGED: " + quizArrayList);
-			ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+			mSectionsPagerAdapter.notifyDataSetChanged();
 			
-			for (QuizItem loc : quizItemArrayList) {
-				System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
-			}
+			
+//			Bundle extras = intent.getExtras();
+//	//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
+//			QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
+//			System.out.println("DATABASE_CHANGED: " + quizArrayList);
+//			ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+//			
+//			for (QuizItem loc : quizItemArrayList) {
+//				System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+//				String tempWorldTitle = loc.getWorldTitle();
+//				if (tempWorldTitle.equals(getTitle())) {
+//					initializeReplayWorld(loc);
+//				}
+//			}
 			
 			// REDRAW VIEW WITH UPDATED COLLECTION
 			
 		   System.out.println("UPDATED DATA FROM RECEIVER");
-		   
+		   unregisterReceiver(mReceiver);
 	   }
 	
 	};
@@ -613,9 +620,10 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 //		 			RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
 //					runner.execute(updatedQuizItemId);
 		 			
-		//			 			// RESET AND PERSIST QUIZ STATE
-		//			 			final String updatedQuizItemId = updatedQuizItem.getQuestionId();
-		//			 			quizitemsource.updateRecordAnswered(updatedQuizItemId, "FALSE");
+		 			// RESET AND PERSIST QUIZ STATE
+		 			final String updatedQuizItemId = updatedQuizItem.getQuestionId();
+		 			quizitemsource.updateRecordAnswered(updatedQuizItemId, "FALSE");
+		 			
 //		 			dismissReplayDialog();
 		 			dialog.dismiss();
 		 		}

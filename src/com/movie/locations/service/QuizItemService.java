@@ -166,6 +166,18 @@ public class QuizItemService {
 ////        intent.addFlags(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 //        context.sendBroadcast(intent);
 	}
+	
+	public void resetAnsweredQuestion(String result, Context context) {
+		QuizItemImpl datasource = new QuizItemImpl(context);
+		datasource.updateRecordAnswered(result, "FALSE");
+		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
+//		tempQuizItemArrayList.setQuizList(quizArrayList);
+		
+//		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);
+		context.sendBroadcast(newsIntent);
+	}
 	public ArrayList<QuizItem> buildWorldLocationQuizObject(JsonNode quizData, Context context) {
 
 //		JsonNode locations = worldLocations.get("worldLocations");

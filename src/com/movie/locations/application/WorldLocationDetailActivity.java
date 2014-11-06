@@ -30,6 +30,10 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+
+
+
+
 //import com.movie.locations.application.NewsActivity.RestoreLevelDataTaskRunner;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.application.MainActivity.NewUserTaskRunner;
@@ -58,6 +62,8 @@ import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.WorldLocationArrayList;
 import com.movie.locations.domain.WorldLocationObject;
+import com.movie.locations.service.DatabaseChangedReceiver;
+import com.movie.locations.service.QuizItemService;
 import com.movie.locations.service.WorldLocationService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -72,6 +78,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -187,6 +194,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 	// private static ArrayList<FilmLocation> locationList;
 
 	private static ListView locationsList;
+	
+	private static QuizItemService quizItemService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -316,7 +325,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 
 		// CONCLUSION CARD DATABASE IMPLEMENTATION
 		conclusionCardImpl = new ConclusionCardImpl(this);
-		
+		quizItemService = new QuizItemService();
 		
 		// quizItem = bundle.getParcelable("quizItem");
 
@@ -403,167 +412,19 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		dialog = new Dialog(context,android.R.style.Theme_Translucent_NoTitleBar);
 	 	dialog.setContentView(R.layout.replay_level_overlay);
 	 	
-		// quizItem = new QuizItem();
-		//
-		// quizItem.setQuestionId("questionId");
-		// quizItem.setQuestionText("questionText");
-		// quizItem.setAnswer1("answer1");
-		// quizItem.setAnswer2("answer2");
-		// quizItem.setAnswer3("answer3");
-		// quizItem.setAnswer4("answer4");
+	 	IntentFilter filter = new IntentFilter();
+		filter.addAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		filter.addCategory(Intent.CATEGORY_DEFAULT);
+		registerReceiver(mReceiver, filter);
 
-		// TODO: move quizitem implementation to current map detail
-		//
-		// QuizItemImpl quizsource;
-		//
-		// quizsource = new QuizItemImpl(this);
-		//
-		// ArrayList<QuizItem> quizList = quizsource.selectRecords();
-		//
-		// quizMap = new LinkedHashMap<String, QuizItem>();
-		//
-		// if (quizList != null) {
-		// for (QuizItem item : quizList) {
-		// quizMap.put(item.getWorldId(), item);
-		// // System.out.println("FILM ANSWER ONE (1) FROM DATABASE: " +
-		// item.getAnswer1());
-		// // System.out.println("FILM ANSWER ONE (2) FROM DATABASE: " +
-		// item.getAnswer2());
-		// // System.out.println("FILM ANSWER ONE (3) FROM DATABASE: " +
-		// item.getAnswer3());
-		// // System.out.println("FILM ANSWER ONE (4) FROM DATABASE: " +
-		// item.getAnswer4());
-		//
-		// System.out.println("QUIZ ITEM WORLD ID: " + item.getWorldId());
-		//
-		// // System.out.println("FILM TITLES FROM DATABASE: " +
-		// item.getFilmTitle());
-		// // System.out.println("FILM QUESTION ID FROM DATABASE: " +
-		// item.getQuestionId());
-		// // System.out.println("FILM QUESTION TEXT FROM DATABASE: " +
-		// item.getQuestionText());
-		// // System.out.println("FILM ANSWERED FROM DATABASE: " +
-		// item.getAnswered());
-		// }
-		// }
-		//
-		//
-		// QuizItem quizItemMatch = quizsource.selectRecordById(worldId);
-		//
-		// if (quizItemMatch != null) {
-		// System.out.println("FOUND QUIZ ITEM MATCH: " +
-		// quizMap.get(worldId).getWorldId());
-		// intent.putExtra("quizItem", quizMap.get(worldId));
-		// }
-
-		// intent.putExtra("quizItem", quizMap.get(title));
-
-		// LinkedHashMap<String, QuizItem> quizMap = new LinkedHashMap<String,
-		// QuizItem>();
-		//
-		// datasource = new MovieLocationsImpl(this);
-		// quizsource = new QuizItemImpl(this);
-		// locationList = datasource.selectRecords();
-		// currentQuizItem = quizsource.selectRecordById(worldId);
-		// ArrayList<QuizItem> tempQuizList = quizsource.selectRecords();
-		// quizList = new ArrayList<QuizItem>();
-		//
-		// for (QuizItem item : tempQuizList) {
-		// if (item.getWorldTitle().equals(title)) {
-		// quizMap.put(item.getWorldId(), item);
-		// }
-		// }
-
-		// for (FilmLocation collection : locationList) {
-		//
-		// if (collection.getTitle().equals(title)) {
-		//
-		// QuizItem currentQuizItem = quizMap.get(collection.getId());
-		//
-		// System.out.println("FOUND TITLE MATCH: " + collection.getTitle());
-		// // filmArrayList.add(collection);
-		//
-		// WorldLocationObject obj = new WorldLocationObject();
-		//
-		// obj.setCreatedAt(collection.getCreatedAt());
-		// obj.setCreatedMeta(collection.getCreatedMeta());
-		// obj.setUpdatedAt(collection.getUpdatedAt());
-		// obj.setUpdatedMeta(collection.getUpdatedMeta());
-		// obj.setMeta(collection.getMeta());
-		// obj.setTitle(collection.getTitle());
-		// obj.setReleaseYear(collection.getReleaseYear());
-		// obj.setFunFacts(collection.getFunFacts());
-		// obj.setProductionCompany(collection.getProductionCompany());
-		// obj.setDistributor(collection.getDistributor());
-		// obj.setDirector(collection.getDirector());
-		// obj.setWriter(collection.getWriter());
-		// obj.setGeolocation(collection.getGeolocation());
-		// obj.setLocations(collection.getLocations());
-		// obj.setLatitude(collection.getLatitude());
-		// obj.setLongitude(collection.getLongitude());
-		// obj.setSid(collection.getSid());
-		// obj.setId(collection.getId());
-		// obj.setLevel(collection.getLevel());
-		// obj.setStaticMapImageUrl(collection.getStaticMapImageUrl());
-		// obj.setQuestionId(collection.getId());
-		//
-		//
-		// obj.setPosition(collection.getPosition());
-		// obj.setActor1(collection.getActor1());
-		// obj.setActor2(collection.getActor2());
-		// obj.setActor3(collection.getActor3());
-		//
-		//
-		//
-		//
-		// obj.setAnswer1(currentQuizItem.getAnswer1());
-		// obj.setAnswer2(currentQuizItem.getAnswer2());
-		// obj.setAnswer3(currentQuizItem.getAnswer3());
-		// obj.setAnswer4(currentQuizItem.getAnswer4());
-		// obj.setAnswered(currentQuizItem.getAnswered());
-		// obj.setDateTime(currentQuizItem.getDateTime());
-		// obj.setQuestionText(currentQuizItem.getQuestionText());
-		//
-		// obj.setReaction1(currentQuizItem.getReaction1());
-		// obj.setReaction2(currentQuizItem.getReaction2());
-		// obj.setReaction3(currentQuizItem.getReaction3());
-		// obj.setReaction4(currentQuizItem.getReaction4());
-		//
-		// obj.setWorldId(currentQuizItem.getWorldId());
-		// obj.setWorldTitle(currentQuizItem.getWorldTitle());
-		// obj.setSubmittedAnswerIndex(currentQuizItem.getSubmittedAnswerIndex());
-		// obj.setCorrectAnswerIndex(currentQuizItem.getCorrectAnswerIndex());
-		//
-		// obj.setActiveItem(currentQuizItem.getActiveItem());
-		// obj.setActiveItem1(currentQuizItem.getActiveItem1());
-		// obj.setActiveItem2(currentQuizItem.getActiveItem2());
-		// obj.setActiveItem3(currentQuizItem.getActiveItem3());
-		// obj.setActiveItem4(currentQuizItem.getActiveItem4());
-		//
-		//
-		// worldLocationArrayList.add(obj);
-		// }
-		// }
-		//
-		// for (WorldLocationObject list : worldLocationArrayList) {
-		// System.out.println("WORLD LOCATION OBJECT POSITION: " +
-		// list.getPosition());
-		// }
-		//
-
-		// ArrayList<WorldLocationArrayList> worldLocationObjectArrayList = new
-		// ArrayList<WorldLocationArrayList>();
-		// // public WorldLocationArrayList worldLocationList;
-		// worldLocationObjectArrayList.add(worldLocationList);
-		// //
-		// // public static WorldLocationArrayAdapter locationQuizItemAdapter;
-		// locationQuizItemAdapter = new WorldLocationArrayAdapter(this, intent,
-		// worldLocationObjectArrayList);
-
-		// locationQuizItemAdapter = new WorldLocationArrayAdapter(this, intent,
-		// worldLocationList.getWorldLocationList());
 	}
 
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//    }
+    
 	 @Override
 	 public void onResume() {
 		 System.out.println("******* RESUME ********");
@@ -624,49 +485,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		 super.onResume();
 	 }
 
-	// @Override
-	// public void onRestart() {
-	// super.onRestart();
-	// System.out.println("******* RESTARTED QUIZ ACTIVITY ********");
-	// redrawListAdapter();
-	// // Intent previewMessage = new Intent(StampiiStore.this,
-	// StampiiStore.class);
-	// // TabGroupActivity parentActivity = (TabGroupActivity)getParent();
-	// // parentActivity.startChildActivity("StampiiStore", previewMessage);
-	// // this.finish();
-	// }
 
-	// private void redrawListAdapter() {
-	// locationList = datasource.selectRecords();
-	//
-	// String[] listItemTitles = new String[locationList.size()];
-	// String[] listItemImageTiles = new String[locationList.size()];
-	//
-	// // populate list view item data arrays
-	// int counter = 0;
-	// for (FilmLocation location : locationList) {
-	// listItemTitles[counter] = location.getLocations();
-	// listItemImageTiles[counter] = location
-	// .getStaticMapImageUrl();
-	// counter++;
-	// }
-	//
-	// // ArrayList<String> locationTitleList = new
-	// // ArrayList<String>();
-	// // locationTitleList.add(object);
-	//
-	// Collections.sort(newQuizList,
-	// StaticSortingUtilities.QUIZ_ITEMS_ALPHABETICAL_ORDER);
-	//
-	// // set list item titles
-	// locationQuizArrayAdapter.setListItemTitles(listItemTitles);
-	//
-	// // set list item image tiles
-	// locationQuizArrayAdapter.setListItemImageTiles(listItemImageTiles);
-	//
-	// locationQuizArrayAdapter.notifyDataSetChanged();
-	//
-	// }
 
 	 private static void initializeReplayWorld(final QuizItem updatedQuizItem) {
 			
@@ -711,9 +530,39 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 	 			}
 	 		});
 	 		dialog.show();
-	 }
+	 	}
+
+		public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
+			
+			public void onReceive(Context context, Intent intent) {
+				// update your list
+			   
+//				mSectionsPagerAdapter.notifyDataSetChanged();
+				
+				
+//				Bundle extras = intent.getExtras();
+//		//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
+//				QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
+//				System.out.println("DATABASE_CHANGED: " + quizArrayList);
+//				ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+//				
+//				for (QuizItem loc : quizItemArrayList) {
+//					System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+//					String tempWorldTitle = loc.getWorldTitle();
+//					if (tempWorldTitle.equals(getTitle())) {
+//						initializeReplayWorld(loc);
+//					}
+//				}
+				
+				// REDRAW VIEW WITH UPDATED COLLECTION
+				
+			   System.out.println("UPDATED DATA FROM RECEIVER");
+			   unregisterReceiver(mReceiver);
+		   }
+		};
 
 
+		
 	 public static class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
 
 			private String resp;
@@ -760,7 +609,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					
 //					for (QuizItem localQuizItem : quizItemList) {
 						// update database record
-					quizitemsource.updateRecordAnswered(result, "FALSE");
+//					quizitemsource.updateRecordAnswered(result, "FALSE");
+					quizItemService.resetAnsweredQuestion(result, context);
 //					System.out.pringln
 //						quizItemImpl.updateRecordCorrectAnswerIndex(localQuizItem.getQuestionId(), "null");
 //					}
