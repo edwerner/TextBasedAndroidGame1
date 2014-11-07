@@ -824,6 +824,10 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					// update returned quizItem in database
 					System.out.println("RESULT_OK: "
 							+ currentQuizItem.getAnswered());
+					
+					// UPDATE USER POINTS
+					String quizItemPointValue = currentQuizItem.getPointValue();
+					System.out.println("POINT VALUE: " + quizItemPointValue);
 
 					// update database record
 					quizitemsource.updateRecordAnswered(

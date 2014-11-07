@@ -1154,15 +1154,15 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 					replayQuizItem = quizItem;
 				}
 			}
-			if (answered == true) {
-//				System.out.println("QUIZ ITEM ANSWERED: " + replayQuizItem.getAnswered());
-				System.out.println("QUIZ ITEM ANSWERED TRUE");
-				System.out.println("REPLAY QUIZ ITEM: " + replayQuizItem);
-				if (replayQuizItem != null) {
-					initializeReplayWorld(replayQuizItem);
-				}
-				
-			}
+//			if (answered == true) {
+////				System.out.println("QUIZ ITEM ANSWERED: " + replayQuizItem.getAnswered());
+//				System.out.println("QUIZ ITEM ANSWERED TRUE");
+//				System.out.println("REPLAY QUIZ ITEM: " + replayQuizItem);
+//				if (replayQuizItem != null) {
+//					initializeReplayWorld(replayQuizItem);
+//				}
+//				
+//			}
 			
 		}
 		

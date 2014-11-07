@@ -111,6 +111,7 @@ public class QuizItemService {
 			quizItem.setActiveItem3(removeDoubleQuotes(result[19].toString()));
 			quizItem.setActiveItem4(removeDoubleQuotes(result[20].toString()));
 			quizItem.setLevel(removeDoubleQuotes(result[21].toString()));
+			quizItem.setPointValue(removeDoubleQuotes(result[22].toString()));
 			
 			quizArrayList.add(quizItem);
 			System.out.println("OUTPUT LIST QUIZ ITEMS: " + quizItem.getWorldId());

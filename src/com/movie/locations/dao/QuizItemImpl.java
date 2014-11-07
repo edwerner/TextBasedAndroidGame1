@@ -80,6 +80,7 @@ public class QuizItemImpl {
 	public static final String COLUMN_ACTIVE_ITEM_03 = "_activeitem3";
 	public static final String COLUMN_ACTIVE_ITEM_04 = "_activeitem4";
 	public static final String COLUMN_CORRECT_ANSWER_INDEX = "_correctanswerindex";
+	public static final String COLUMN_POINT_VALUE = "_pointvalue";
 	// public final static String COLUMN_STATIC_MAP_IMAGE_URL =
 	// "_staticmapimageurl";
 
@@ -91,7 +92,7 @@ public class QuizItemImpl {
 			COLUMN_WORLD_ID, COLUMN_WORLD_TITLE, COLUMN_ANSWERED, COLUMN_LEVEL,
 			COLUMN_ACTIVE_ITEM, COLUMN_ACTIVE_ITEM_01, COLUMN_ACTIVE_ITEM_02,
 			COLUMN_ACTIVE_ITEM_03, COLUMN_ACTIVE_ITEM_04,
-			COLUMN_CORRECT_ANSWER_INDEX };
+			COLUMN_CORRECT_ANSWER_INDEX, COLUMN_POINT_VALUE };
 
 	/**
 	 * 
@@ -149,6 +150,7 @@ public class QuizItemImpl {
 		values.put(COLUMN_ACTIVE_ITEM_03, quizItem.getActiveItem3());
 		values.put(COLUMN_ACTIVE_ITEM_04, quizItem.getActiveItem4());
 		values.put(COLUMN_CORRECT_ANSWER_INDEX, quizItem.getCorrectAnswerIndex()); // not set on client
+		values.put(COLUMN_POINT_VALUE, quizItem.getPointValue());
 
 		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
 		// Integer.parseInt(id));
@@ -299,6 +301,7 @@ public class QuizItemImpl {
 		quizItem.setActiveItem3(cursor.getString(18));
 		quizItem.setActiveItem4(cursor.getString(19));
 		quizItem.setCorrectAnswerIndex(cursor.getString(20));
+		quizItem.setPointValue(cursor.getString(21));
 		// quizItem.setCorrectAnswerIndex(cursor.getInt(6)); // not needed on
 		// client
 

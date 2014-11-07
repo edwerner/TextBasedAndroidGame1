@@ -33,6 +33,7 @@ public class QuizItemSqliteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_ACTIVE_ITEM_03 = "_activeitem3";
 	public static final String COLUMN_ACTIVE_ITEM_04 = "_activeitem4";
 	public static final String COLUMN_CORRECT_ANSWER_INDEX = "_correctanswerindex";
+	public static final String COLUMN_POINT_VALUE = "_pointvalue";
 
 	private static final int DATABASE_VERSION = 1;
 
@@ -60,7 +61,8 @@ public class QuizItemSqliteHelper extends SQLiteOpenHelper {
 			+ COLUMN_ACTIVE_ITEM_02 + " text, "
 			+ COLUMN_ACTIVE_ITEM_03 + " text, "
 			+ COLUMN_ACTIVE_ITEM_04 + " text, "
-			+ COLUMN_CORRECT_ANSWER_INDEX + " text);";
+			+ COLUMN_CORRECT_ANSWER_INDEX + " text, "
+			+ COLUMN_POINT_VALUE + " text);";
 
 	public QuizItemSqliteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
