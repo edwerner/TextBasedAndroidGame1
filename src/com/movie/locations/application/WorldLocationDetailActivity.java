@@ -895,8 +895,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					// locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(position));
 					// // quizIntent.putExtra("quizItem", currentQuizItem);
 					// }
-
-					generateConclusionCard(currentQuizItem);
+					
+					generateConclusionCard(quizItem);
 					locationQuizArrayAdapter.notifyDataSetChanged();
 
 				} else if (resultCode == RESULT_CANCELED) {
@@ -910,7 +910,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			}
 
 			// locationQuizArrayAdapter.notifyDataSetChanged();
-			generateConclusionCard(quizItem);
+//			generateConclusionCard(quizItem);
 		}// onActivityResult
 
 		// @Override
