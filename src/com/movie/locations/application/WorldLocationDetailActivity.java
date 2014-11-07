@@ -550,8 +550,22 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 				System.out.println("DATABASE_CHANGED: " + quizArrayList);
 				newQuizList = quizArrayList.getQuizList();
 				QuizItem firstQuizItem = newQuizList.get(0);
-				locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
-				locationQuizArrayAdapter.insert(firstQuizItem, 0);
+				
+//				for (QuizItem tempQuizItem : newQuizList) {
+//					if (getTitle().equals(tempQuizItem.getWorldTitle())) {
+//						
+//					}
+//				}
+				
+				for (int i = 0; i < newQuizList.size(); i++) {
+					QuizItem tempQuizItem = newQuizList.get(i);
+					if (getTitle().equals(tempQuizItem.getWorldTitle())) {
+						locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
+						locationQuizArrayAdapter.insert(tempQuizItem, 0);
+					}
+				}
+				
+				
 				
 //				for (QuizItem loc : newQuizList) {
 //					System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
@@ -574,7 +588,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 				
 			   System.out.println("UPDATED DATA FROM RECEIVER");
 			   
-			   unregisterReceiver(mReceiver);
+			   unregisterReceiver(this);
 			   
 		   }
 		};
