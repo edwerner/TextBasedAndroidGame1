@@ -187,6 +187,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 
 	private IntentFilter filter;
 
+	private static PointsItemImpl pointsItemImpl;
+
 	private static Dialog dialog;
 
 	private static BagItemImpl bagItemImpl;
@@ -330,6 +332,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		// CONCLUSION CARD DATABASE IMPLEMENTATION
 		conclusionCardImpl = new ConclusionCardImpl(this);
 		quizItemService = new QuizItemService();
+		pointsItemImpl = new PointsItemImpl(context);
 		
 		// quizItem = bundle.getParcelable("quizItem");
 
@@ -509,6 +512,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //		localQuizItemArrayList.setQuizList(newQuizList);
 	
 //		intent.putExtra("localQuizItemArrayList", localQuizItemArrayList);
+		
+		
 			
 	 	RelativeLayout layout = (RelativeLayout) dialog.findViewById(R.id.overlayLayout);
 	 	layout.setOnClickListener(new OnClickListener() {
@@ -564,6 +569,30 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					if (getTitle().equals(tempQuizItem.getWorldTitle())) {
 						locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
 						locationQuizArrayAdapter.insert(tempQuizItem, 0);
+						
+
+						final String currentUserId = currentUser.getUserId();
+						final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+//						QuizItem tempQuizItem = quizitemsource.selectRecordById(result);
+						
+
+						// UPDATE USER POINTS
+						String quizItemPointValue = tempQuizItem.getPointValue();
+						int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
+						
+						if (updatedUserDatabasePointsItem != null) {
+							String databasePoints = updatedUserDatabasePointsItem.getPoints();
+							System.out.println("USER DATABASE POINTS: " + databasePoints);
+							int databasePointsInt = Integer.parseInt(databasePoints);
+							
+							int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
+							String updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+							pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
+							
+							
+							System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+						}
+						
 					}
 				}
 				
@@ -645,6 +674,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 						// update database record
 //					quizitemsource.updateRecordAnswered(result, "FALSE");
 					quizItemService.resetAnsweredQuestion(result, context);
+					
+//					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
 //					System.out.pringln
 //						quizItemImpl.updateRecordCorrectAnswerIndex(localQuizItem.getQuestionId(), "null");
 //					}
