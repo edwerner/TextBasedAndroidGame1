@@ -48,6 +48,9 @@ import com.google.android.gms.plus.model.people.PersonBuffer;
 
 
 
+
+
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -73,6 +76,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.movie.locations.R;
 import com.movie.locations.R.layout;
 import com.movie.locations.R.menu;
+import com.movie.locations.dao.BagItemImpl;
+import com.movie.locations.dao.ConclusionCardImpl;
+import com.movie.locations.dao.GameTitleImpl;
 import com.movie.locations.dao.LocationCheckinImpl;
 import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
@@ -196,6 +202,9 @@ public class MainActivity extends FragmentActivity implements
 	private FilmLocationService service;
 	private QuizItemService quizservice;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
+	private BagItemImpl bagitemsource;
+	private ConclusionCardImpl conclusioncardsource;
+	private GameTitleImpl gametitlesource;
 
 	private boolean mIntentInProgress;
 
@@ -265,7 +274,10 @@ public class MainActivity extends FragmentActivity implements
 		datasource = new MovieLocationsImpl(this);
 		checkinsource = new LocationCheckinImpl(this);
 		quizitemsource = new QuizItemImpl(this);
-
+		bagitemsource = new BagItemImpl(this);
+		conclusioncardsource = new ConclusionCardImpl(this);
+		gametitlesource = new GameTitleImpl(this);
+		
 //		if (datasource.selectRecords().isEmpty()) {
 //			AsyncTaskRunner runner = new AsyncTaskRunner();
 //			finalResult = (TextView) findViewById(R.id.textView1);
@@ -642,25 +654,7 @@ public class MainActivity extends FragmentActivity implements
 		mSignInClicked = false;
 		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 		
-		FilmLocationService locationService = new FilmLocationService();
-		InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
-		locationService.createContentValues(locationStream, context);
-		
-		QuizItemService quizService = new QuizItemService();
-		InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
-		quizService.createContentValues(quizStream, context);
-		
-		BagItemService bagService = new BagItemService();
-		InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
-		bagService.createContentValues(bagStream, context);
-		
-		ConclusionCardService cardService = new ConclusionCardService();
-		InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
-		cardService.createContentValues(cardStream, context);
-		
-		GameTitleService titleService = new GameTitleService();
-		InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
-		titleService.createContentValues(titleStream, context);
+		createDataServices();
 
 		// // start new intent
 		// Intent intent = new Intent(MainActivity.this,
@@ -818,6 +812,34 @@ public class MainActivity extends FragmentActivity implements
 //		final String finalSid = tempSid.concat("_").concat(format);
 //		return finalSid;
 //	}
+
+	private void createDataServices() {
+		if (datasource.selectRecords() == null) {
+			FilmLocationService locationService = new FilmLocationService();
+			InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
+			locationService.createContentValues(locationStream, context);
+		}
+		if (quizitemsource.selectRecords() == null) {
+			QuizItemService quizService = new QuizItemService();
+			InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
+			quizService.createContentValues(quizStream, context);
+		}
+		if (bagitemsource.selectRecords() == null) {
+			BagItemService bagService = new BagItemService();
+			InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
+			bagService.createContentValues(bagStream, context);
+		}
+		if (conclusioncardsource == null) {
+			ConclusionCardService cardService = new ConclusionCardService();
+			InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
+			cardService.createContentValues(cardStream, context);
+		}
+		if (gametitlesource == null) {
+			GameTitleService titleService = new GameTitleService();
+			InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
+			titleService.createContentValues(titleStream, context);
+		}
+	}
 
 	/*
 	 * onConnectionFailed is called when our Activity could not connect to

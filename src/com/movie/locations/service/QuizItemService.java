@@ -118,7 +118,7 @@ public class QuizItemService {
 		}
 		
 		QuizItemImpl datasource = new QuizItemImpl(context);
-		datasource.delete();
+//		datasource.delete();
 		// create database connection and store
 		// location objects in sqlite database
 		datasource.open();

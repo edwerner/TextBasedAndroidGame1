@@ -155,7 +155,7 @@ public class FilmLocationService {
 		}
 		
 		MovieLocationsImpl datasource = new MovieLocationsImpl(context);
-		datasource.delete();
+//		datasource.delete();
 			
 		// create database connection and store
 		// location objects in sqlite database
