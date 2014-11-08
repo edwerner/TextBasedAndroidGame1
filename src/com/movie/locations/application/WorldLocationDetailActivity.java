@@ -34,6 +34,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 
+
 //import com.movie.locations.application.NewsActivity.RestoreLevelDataTaskRunner;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.application.MainActivity.NewUserTaskRunner;
@@ -45,6 +46,7 @@ import com.movie.locations.R.string;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.MovieLocationsImpl;
+import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.BagItem;
@@ -788,6 +790,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		private QuizItemArrayList localQuizItemArrayList;
 		private ArrayList<QuizItem> localQuizList;
 		private FilmLocation localCurrentLocation;
+//		private UserImpl userImpl;
+		private PointsItemImpl pointsItemImpl;
 
 		public FilmLocationFragment() {
 		}
@@ -827,7 +831,37 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					
 					// UPDATE USER POINTS
 					String quizItemPointValue = currentQuizItem.getPointValue();
+					int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
+					
 					System.out.println("POINT VALUE: " + quizItemPointValue);
+//					String currentUserPoints = currentUser.getCurrentPoints();
+//					String updatedUserPoints = currentUserPoints + quizItemPointValue;
+//					currentUser.setCurrentPoints(updatedUserPoints);
+//					userImpl.updateCurrentUserPoints(updatedUserPoints);
+//					String currentUserDatabasePoints = userImpl.selectRecords();
+					String currentUserId = currentUser.getUserId();
+					
+
+					PointsItem newPointsItem = new PointsItem();
+					newPointsItem.setUserId(currentUserId);
+					newPointsItem.setPointsUserId(currentUserId);
+					newPointsItem.setPoints(quizItemPointValue);
+					
+					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+					
+					if (updatedUserDatabasePointsItem != null) {
+						String databasePoints = updatedUserDatabasePointsItem.getPoints();
+						System.out.println("USER DATABASE POINTS: " + databasePoints);
+						int databasePointsInt = Integer.parseInt(databasePoints);
+						int updatedUserPointsInt = quizItemPointValueInt + databasePointsInt;
+						String updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
+						
+						
+						System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+					} else {
+						pointsItemImpl.createRecord(newPointsItem);
+					}
 
 					// update database record
 					quizitemsource.updateRecordAnswered(
@@ -1017,6 +1051,9 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			View rootView = inflater.inflate(R.layout.fragment_film_detail,
 					container, false);
 
+			
+//			userImpl = new UserImpl(context);
+			pointsItemImpl = new PointsItemImpl(context);
 			
 			localQuizItemArrayList = getArguments().getParcelable(
 					"localQuizItemArrayList");

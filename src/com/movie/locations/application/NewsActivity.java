@@ -30,6 +30,7 @@ import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.GameTitleImpl;
 import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.NewsItemImpl;
+import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.Achievement;
@@ -42,6 +43,7 @@ import com.movie.locations.domain.Friend;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
 import com.movie.locations.domain.NewsItem;
+import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
@@ -129,7 +131,7 @@ public class NewsActivity extends ActionBarActivity {
 	private static BagItemImpl bagItemImpl;
 
 	private static UserImpl userSource;
-	
+	private static PointsItemImpl pointsItemImpl;
 
 	private Button restoreLevelDataButton;
 	private static ArrayList<BagItem> bagItemList;
@@ -258,13 +260,26 @@ public class NewsActivity extends ActionBarActivity {
 		
 		
 		userSource = new UserImpl(this);
+		pointsItemImpl = new PointsItemImpl(this);
+		
 //		User tempUser = userSource.selectRecordById(localUser.getUserId());
 //		tempUser.setCurrentLevel(localUser.getCurrentLevel());
 //		tempUser.setCurrentPoints(localUser.getCurrentPoints());
 //		tempUser.setWorldCount(localUser.getWorldCount());
 		final String FINAL_USER_ID = localUser.getUserId();
 		final String FINAL_USER_CURRENT_LEVEL = localUser.getCurrentLevel();
-		final String FINAL_USER_POINTS = localUser.getCurrentPoints();
+//		final String FINAL_USER_POINTS = localUser.getCurrentPoints();
+		final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
+		final String FINAL_USER_POINTS;
+		if (FINAL_USER_POINTS_ITEM != null) {
+			FINAL_USER_POINTS = FINAL_USER_POINTS_ITEM.getPoints();
+			System.out.println("FINAL_USER_POINTS: " + FINAL_USER_POINTS);
+			localUser.setCurrentPoints(FINAL_USER_POINTS);
+		} else {
+			FINAL_USER_POINTS = "0";
+			localUser.setCurrentPoints(FINAL_USER_POINTS);
+		}
+		
 		final String FINAL_USER_WORLD_COUNT = localUser.getWorldCount();
 		userSource = new UserImpl(this);
 //		localUser = userSource.selectRecordById(localUser.getUserId());
@@ -272,7 +287,8 @@ public class NewsActivity extends ActionBarActivity {
 		userSource.updateWorldCount(FINAL_USER_ID, FINAL_USER_WORLD_COUNT);
 		System.out.println("WORLD COUNT LOGGING: " + FINAL_USER_WORLD_COUNT);
 //		System.out.println("WORLD COUNT LOGGING: " + FINAL_USER_WORLD_COUNT);
-		userSource.updateRecordBonusPointsValue(FINAL_USER_ID, FINAL_USER_POINTS, "0");
+//		userSource.update
+//		userSource.updateRecordBonusPointsValue(FINAL_USER_ID, FINAL_USER_POINTS, "0");
 		userSource.updateCurrentUserLevel(FINAL_USER_ID, FINAL_USER_CURRENT_LEVEL);
 		
 		datasource = new MovieLocationsImpl(this);
@@ -771,7 +787,6 @@ public class NewsActivity extends ActionBarActivity {
 		if (localUser != null) {
 			localUser = userSource.selectRecordById(localUser.getUserId());
 		}
-		
 		
 		quizItemList = quizItemImpl.selectRecords();
 		cardList = conclusionCardImpl.selectRecords();
@@ -1950,19 +1965,31 @@ public class NewsActivity extends ActionBarActivity {
 			currentLevelText.setText(localUser.getCurrentLevel());
 			
 			String currentPoints = localUser.getPoints();
+			System.out.println("localUser.getPoints: " + currentPoints);
 			String currentBonusPoints = localUser.getBonusPoints();
 			
 			
 			
-			
+			final String FINAL_USER_ID = localUser.getUserId();
+			final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
+			final String FINAL_USER_POINTS;
+			if (FINAL_USER_POINTS_ITEM != null) {
+				FINAL_USER_POINTS = FINAL_USER_POINTS_ITEM.getPoints();
+				System.out.println("FINAL_USER_POINTS: " + FINAL_USER_POINTS);
+				localUser.setCurrentPoints(FINAL_USER_POINTS);
+			} else {
+				FINAL_USER_POINTS = "0";
+				localUser.setCurrentPoints(FINAL_USER_POINTS);
+			}
 			
 			int[] levelRange = StaticSortingUtilities.getLevelRange();
 			int nextLevelIndex = Integer.parseInt(localUser.getCurrentLevel()) + 1;
 			final int finalLevelCap = levelRange[nextLevelIndex];
 			
-			int currentTotalPoints = Integer.parseInt(currentPoints) + Integer.parseInt(currentBonusPoints);
+//			int currentTotalPoints = Integer.parseInt(currentPoints) + Integer.parseInt(currentBonusPoints);
 			
-			String currentPointsString = Integer.toString(currentTotalPoints) + "/" + Integer.toString(finalLevelCap);
+//			String currentPointsString = Integer.toString(currentTotalPoints) + "/" + Integer.toString(finalLevelCap);
+			String currentPointsString = FINAL_USER_POINTS + "/" + Integer.toString(finalLevelCap);
 			pointsText.setText(currentPointsString);
 			
 //			localUser.get
