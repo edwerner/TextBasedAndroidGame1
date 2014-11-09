@@ -814,27 +814,27 @@ public class MainActivity extends FragmentActivity implements
 //	}
 
 	private void createDataServices() {
-		if (datasource.selectRecords() == null) {
+		if (datasource.selectRecords().isEmpty()) {
 			FilmLocationService locationService = new FilmLocationService();
 			InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
 			locationService.createContentValues(locationStream, context);
 		}
-		if (quizitemsource.selectRecords() == null) {
+		if (quizitemsource.selectRecords().isEmpty()) {
 			QuizItemService quizService = new QuizItemService();
 			InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
 			quizService.createContentValues(quizStream, context);
 		}
-		if (bagitemsource.selectRecords() == null) {
+		if (bagitemsource.selectRecords().isEmpty()) {
 			BagItemService bagService = new BagItemService();
 			InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
 			bagService.createContentValues(bagStream, context);
 		}
-		if (conclusioncardsource == null) {
+		if (conclusioncardsource.selectRecords().isEmpty()) {
 			ConclusionCardService cardService = new ConclusionCardService();
 			InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
 			cardService.createContentValues(cardStream, context);
 		}
-		if (gametitlesource == null) {
+		if (gametitlesource.selectRecords().isEmpty()) {
 			GameTitleService titleService = new GameTitleService();
 			InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
 			titleService.createContentValues(titleStream, context);

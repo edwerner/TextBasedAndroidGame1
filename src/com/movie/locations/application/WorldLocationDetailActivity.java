@@ -35,6 +35,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 
+
 //import com.movie.locations.application.NewsActivity.RestoreLevelDataTaskRunner;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.application.MainActivity.NewUserTaskRunner;
@@ -821,7 +822,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		private QuizItemArrayList localQuizItemArrayList;
 		private ArrayList<QuizItem> localQuizList;
 		private FilmLocation localCurrentLocation;
-//		private UserImpl userImpl;
+		private UserImpl userImpl;
 		private PointsItemImpl pointsItemImpl;
 
 		public FilmLocationFragment() {
@@ -890,10 +891,20 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 						
 						
 						System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+
+						final String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
+						final int FINAL_USER_POINTS_INT = Integer.parseInt(quizItemPointValue);
+						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+						final String FINAL_CURRENT_LEVEL_STRING = Integer.toString(currentLevel);
+						System.out.println("CURRENT USER LEVEL: " + currentLevel);
+						userImpl.updateCurrentUserLevel(currentUserId, FINAL_CURRENT_LEVEL_STRING);
+						System.out.println("CURRENT USER LEVEL DATABASE: " + userImpl.selectRecordById(currentUserId));
+						
 					} else {
 						pointsItemImpl.createRecord(newPointsItem);
-					}
-
+					} 
+					
+					
 					// update database record
 					quizitemsource.updateRecordAnswered(
 							currentQuizItem.getQuestionId(),
@@ -1083,7 +1094,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					container, false);
 
 			
-//			userImpl = new UserImpl(context);
+			userImpl = new UserImpl(context);
 			pointsItemImpl = new PointsItemImpl(context);
 			
 			localQuizItemArrayList = getArguments().getParcelable(

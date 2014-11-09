@@ -137,7 +137,7 @@ public class NewsActivity extends ActionBarActivity {
 	private static ArrayList<BagItem> bagItemList;
 	public static ArrayList<QuizItem> quizItemList;
 	public static QuizItemImpl quizItemImpl;
-	private static SwipeRefreshLayout swipeLayout;
+//	private static SwipeRefreshLayout swipeLayout;
 	private static FilmArrayList locationArrayList;
 	
 	@Override
@@ -1097,36 +1097,36 @@ public class NewsActivity extends ActionBarActivity {
 					
 
 					
-					final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
-					runner.setContext(context);
-					runner.setLocalUser(localUser);
-				 
-				swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-			    swipeLayout.setOnRefreshListener(
-					    new OnRefreshListener(){
-
-							@Override
-							public void onRefresh() {
-								
-								
-								if (refreshed == false) {
-									runner.execute("http://movie-locations-app.appspot.com/secure/list/BAG_ITEM_TITLE");
-									refreshed = true;
-								}
-								
-								
-								
-								new Handler().postDelayed(new Runnable() {
-							        @Override 
-							        public void run() {
-							            swipeLayout.setRefreshing(false);
-							        }
-							    }, 1000);
-							}});
-			    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
-			            android.R.color.holo_blue_light,
-			            android.R.color.holo_blue_bright,
-			            android.R.color.holo_blue_light);
+//					final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
+//					runner.setContext(context);
+//					runner.setLocalUser(localUser);
+//				 
+//				swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+//			    swipeLayout.setOnRefreshListener(
+//					    new OnRefreshListener(){
+//
+//							@Override
+//							public void onRefresh() {
+//								
+//								
+//								if (refreshed == false) {
+//									runner.execute("http://movie-locations-app.appspot.com/secure/list/BAG_ITEM_TITLE");
+//									refreshed = true;
+//								}
+//								
+//								
+//								
+//								new Handler().postDelayed(new Runnable() {
+//							        @Override 
+//							        public void run() {
+//							            swipeLayout.setRefreshing(false);
+//							        }
+//							    }, 1000);
+//							}});
+//			    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
+//			            android.R.color.holo_blue_light,
+//			            android.R.color.holo_blue_bright,
+//			            android.R.color.holo_blue_light);
 			    
 //			}
 			
@@ -1273,39 +1273,39 @@ public class NewsActivity extends ActionBarActivity {
 					
 
 					
-					final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
-					runner.setContext(context);
-					runner.setLocalUser(localUser);
-				 
-				swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-			    swipeLayout.setOnRefreshListener(
-					    new OnRefreshListener(){
-
-							@Override
-							public void onRefresh() {
-								
-								cardList = conclusionCardImpl.selectRecords();
-								System.out.println("CARD LIST LENGTH: " + cardList.size());
-								System.out.println("GAME TITLE LIST LENGTH: " + gameTitleList.size());
-								if (refreshed == false) {
-//									runner.execute("http://movie-locations-app.appspot.com/secure/list/CARD_TITLE");
-									
-									refreshed = true;
-								}
-								
-								
-								
-								new Handler().postDelayed(new Runnable() {
-							        @Override 
-							        public void run() {
-							            swipeLayout.setRefreshing(false);
-							        }
-							    }, 1000);
-							}});
-			    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
-			            android.R.color.holo_blue_light,
-			            android.R.color.holo_blue_bright,
-			            android.R.color.holo_blue_light);
+//					final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
+//					runner.setContext(context);
+//					runner.setLocalUser(localUser);
+//				 
+//				swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+//			    swipeLayout.setOnRefreshListener(
+//					    new OnRefreshListener(){
+//
+//							@Override
+//							public void onRefresh() {
+//								
+//								cardList = conclusionCardImpl.selectRecords();
+//								System.out.println("CARD LIST LENGTH: " + cardList.size());
+//								System.out.println("GAME TITLE LIST LENGTH: " + gameTitleList.size());
+//								if (refreshed == false) {
+////									runner.execute("http://movie-locations-app.appspot.com/secure/list/CARD_TITLE");
+//									
+//									refreshed = true;
+//								}
+//								
+//								
+//								
+//								new Handler().postDelayed(new Runnable() {
+//							        @Override 
+//							        public void run() {
+//							            swipeLayout.setRefreshing(false);
+//							        }
+//							    }, 1000);
+//							}});
+//			    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
+//			            android.R.color.holo_blue_light,
+//			            android.R.color.holo_blue_bright,
+//			            android.R.color.holo_blue_light);
 			    
 //			}
 			
@@ -1444,39 +1444,39 @@ public class NewsActivity extends ActionBarActivity {
 			
 
 			
-			final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
-			runner.setContext(context);
-			runner.setLocalUser(localUser);
-		 
-		swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-	    swipeLayout.setOnRefreshListener(
-			    new OnRefreshListener(){
-
-					@Override
-					public void onRefresh() {
-						
-						
-						boolean refreshed = false;
-						if (refreshed == false) {
-//							runner.execute("http://movie-locations-app.appspot.com/secure/list/NEWS_ITEM_TITLE");
-							cardList = conclusionCardImpl.selectRecords();
-							System.out.println("CARD LIST LENGTH: " + cardList.size());
-							refreshed = true;
-						}
-						
-						
-						
-						new Handler().postDelayed(new Runnable() {
-					        @Override 
-					        public void run() {
-					            swipeLayout.setRefreshing(false);
-					        }
-					    }, 1000);
-					}});
-	    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
-	            android.R.color.holo_blue_light,
-	            android.R.color.holo_blue_bright,
-	            android.R.color.holo_blue_light);
+//			final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
+//			runner.setContext(context);
+//			runner.setLocalUser(localUser);
+//		 
+//		swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+//	    swipeLayout.setOnRefreshListener(
+//			    new OnRefreshListener(){
+//
+//					@Override
+//					public void onRefresh() {
+//						
+//						
+//						boolean refreshed = false;
+//						if (refreshed == false) {
+////							runner.execute("http://movie-locations-app.appspot.com/secure/list/NEWS_ITEM_TITLE");
+//							cardList = conclusionCardImpl.selectRecords();
+//							System.out.println("CARD LIST LENGTH: " + cardList.size());
+//							refreshed = true;
+//						}
+//						
+//						
+//						
+//						new Handler().postDelayed(new Runnable() {
+//					        @Override 
+//					        public void run() {
+//					            swipeLayout.setRefreshing(false);
+//					        }
+//					    }, 1000);
+//					}});
+//	    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
+//	            android.R.color.holo_blue_light,
+//	            android.R.color.holo_blue_bright,
+//	            android.R.color.holo_blue_light);
 	    
 	    
 //	}
@@ -1962,7 +1962,7 @@ public class NewsActivity extends ActionBarActivity {
 			System.out.println("userText: " + userText);
 			userText.setText(localUser.getDisplayName());
 			
-			currentLevelText.setText(localUser.getCurrentLevel());
+//			currentLevelText.setText(localUser.getCurrentLevel());
 			
 			String currentPoints = localUser.getPoints();
 			System.out.println("localUser.getPoints: " + currentPoints);
@@ -1971,6 +1971,7 @@ public class NewsActivity extends ActionBarActivity {
 			
 			
 			final String FINAL_USER_ID = localUser.getUserId();
+			final String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
 			final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
 			final String FINAL_USER_POINTS;
 			if (FINAL_USER_POINTS_ITEM != null) {
@@ -1981,7 +1982,10 @@ public class NewsActivity extends ActionBarActivity {
 				FINAL_USER_POINTS = "0";
 				localUser.setCurrentPoints(FINAL_USER_POINTS);
 			}
-			
+			final int FINAL_USER_POINTS_INT = Integer.parseInt(FINAL_USER_POINTS);
+			int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+			final String CURRENT_LEVEL_STRING = Integer.toString(currentLevel); 
+			currentLevelText.setText(CURRENT_LEVEL_STRING);
 			int[] levelRange = StaticSortingUtilities.getLevelRange();
 			int nextLevelIndex = Integer.parseInt(localUser.getCurrentLevel()) + 1;
 			final int finalLevelCap = levelRange[nextLevelIndex];
@@ -2224,36 +2228,36 @@ public class NewsActivity extends ActionBarActivity {
 			
 
 			
-			final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
-			runner.setContext(context);
-			runner.setLocalUser(localUser);
-		 
-		swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-	    swipeLayout.setOnRefreshListener(
-			    new OnRefreshListener(){
-
-					@Override
-					public void onRefresh() {
-						
-						
-						if (refreshed == false) {
-							runner.execute("http://movie-locations-app.appspot.com/secure/list/WORLD_TITLE");
-							refreshed = true;
-						}
-						
-						
-						
-						new Handler().postDelayed(new Runnable() {
-					        @Override 
-					        public void run() {
-					            swipeLayout.setRefreshing(false);
-					        }
-					    }, 1000);
-					}});
-	    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
-	            android.R.color.holo_blue_light,
-	            android.R.color.holo_blue_bright,
-	            android.R.color.holo_blue_light);
+//			final WorldTitleAsyncTaskRunner runner = new WorldTitleAsyncTaskRunner();
+//			runner.setContext(context);
+//			runner.setLocalUser(localUser);
+//		 
+//		swipeLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+//	    swipeLayout.setOnRefreshListener(
+//			    new OnRefreshListener(){
+//
+//					@Override
+//					public void onRefresh() {
+//						
+//						
+//						if (refreshed == false) {
+//							runner.execute("http://movie-locations-app.appspot.com/secure/list/WORLD_TITLE");
+//							refreshed = true;
+//						}
+//						
+//						
+//						
+//						new Handler().postDelayed(new Runnable() {
+//					        @Override 
+//					        public void run() {
+//					            swipeLayout.setRefreshing(false);
+//					        }
+//					    }, 1000);
+//					}});
+//	    swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
+//	            android.R.color.holo_blue_light,
+//	            android.R.color.holo_blue_bright,
+//	            android.R.color.holo_blue_light);
 	    
 	    
 	    

@@ -166,19 +166,19 @@ public class NavMenuItemArrayAdapter extends ArrayAdapter<NavMenuItem> {
 		
 //    	Button restoreLevelDataButton = (Button) rowView.findViewById(R.id.restoreLevelData);
     	
-    	if (values.get(position).getTitle().equals("Restore")) {
-//    		restoreLevelDataButton.setVisibility(Button.VISIBLE);
-	    	
-        	// Create the AlertDialog
-        	final AlertDialog dialog = builder.create();
-        	
-    		
-    		rowView.setOnClickListener(new View.OnClickListener() {
-    		    public void onClick(View v) {
-    		    	dialog.show();
-    		    }
-    		});
-    	}
+//    	if (values.get(position).getTitle().equals("Restore")) {
+////    		restoreLevelDataButton.setVisibility(Button.VISIBLE);
+//	    	
+//        	// Create the AlertDialog
+//        	final AlertDialog dialog = builder.create();
+//        	
+//    		
+//    		rowView.setOnClickListener(new View.OnClickListener() {
+//    		    public void onClick(View v) {
+//    		    	dialog.show();
+//    		    }
+//    		});
+//    	}
 		
 		
 		// leave listener attached leaving
