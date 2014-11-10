@@ -24,11 +24,18 @@ public class DatabaseChangedReceiver extends BroadcastReceiver {
 		Bundle extras = intent.getExtras();
 //		newsIntent.putExtra("locationArrayList", localLocationArrayList);
 		QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
-		System.out.println("DATABASE_CHANGED: " + quizArrayList);
-		ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+		String mobileNotificationSettings = extras.getString("mobileNotificationSettings");
 		
-		for (QuizItem loc : quizItemArrayList) {
-			System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+		if (quizArrayList != null) {
+			System.out.println("DATABASE_CHANGED: " + quizArrayList);
+			ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+			
+			for (QuizItem loc : quizItemArrayList) {
+				System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+			}	
+		}
+		if (mobileNotificationSettings != null) {
+			System.out.println("MOBILE NOTIFICATION SETTINGS CHANGED");
 		}
 		
 	}

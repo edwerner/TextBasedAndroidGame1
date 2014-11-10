@@ -69,8 +69,8 @@ public class ConclusionActivity extends ActionBarActivity {
 			emailNotifications = extras.getString("emailNotifications");
 			mobileNotifications = extras.getString("mobileNotifications");
 			
-			System.out.println("EMAIL NOTIFICATIONS: " + emailNotifications);
-			System.out.println("MOBILE NOTIFICATIONS: " + mobileNotifications);
+//			System.out.println("EMAIL NOTIFICATIONS: " + emailNotifications);
+//			System.out.println("MOBILE NOTIFICATIONS: " + mobileNotifications);
 			
 			conclusionTitle = extras.getString("conclusionTitle");
 			conclusionCopy = extras.getString("conclusionCopy");
@@ -117,27 +117,27 @@ public class ConclusionActivity extends ActionBarActivity {
 				updatePointsDatabase();
 			}
 			
-			if (emailNotifications != null && mobileNotifications != null) {
-				updateUserNotificationsSettings();
-			}
+//			if (emailNotifications != null && mobileNotifications != null) {
+//				updateUserNotificationsSettings();
+//			}
 //		}
 	}
 	
-	private void updateUserNotificationsSettings() {
-
-		
-		userSource.open();
-		
-		// UPDATE USER PREFERENCES
-		final String FINAL_CURRENT_USER_ID_STRING = currentUserId;
-		
-		if (emailNotifications != null && mobileNotifications != null) {
-			userSource.updateUserNotificationPreferences(FINAL_CURRENT_USER_ID_STRING, emailNotifications, mobileNotifications);
-			System.out.println("UPDATED USER PREFERENCES DATABASE");
-		}
-		userSource.close();
-		
-	}
+//	private void updateUserNotificationsSettings() {
+//
+//		
+//		userSource.open();
+//		
+//		// UPDATE USER PREFERENCES
+//		final String FINAL_CURRENT_USER_ID_STRING = currentUserId;
+//		
+//		if (emailNotifications != null && mobileNotifications != null) {
+//			userSource.updateUserNotificationPreferences(FINAL_CURRENT_USER_ID_STRING, emailNotifications, mobileNotifications);
+//			System.out.println("UPDATED USER PREFERENCES DATABASE");
+//		}
+//		userSource.close();
+//		
+//	}
 
 	public void updatePointsDatabase() {
 

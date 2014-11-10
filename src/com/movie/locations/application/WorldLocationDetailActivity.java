@@ -155,7 +155,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 	private static ArrayList<FilmLocation> filmArrayList;
 	private static ArrayList<WorldLocationObject> worldLocationArrayList;
 
-	private static User currentUser;
+	private User currentUser;
 
 	private static Intent intent;
 	private static Context context;
@@ -188,7 +188,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 
 	private QuizItemArrayList localQuizItemArrayList;
 
-	private UserImpl userSource;
+	private static UserImpl userSource;
 
 	private Object localUser;
 
@@ -343,6 +343,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		quizItemService = new QuizItemService();
 		pointsItemImpl = new PointsItemImpl(context);
 		
+		System.out.println("CURRENT USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
+		
 		// quizItem = bundle.getParcelable("quizItem");
 
 		// worldLocationList = bundle.getParcelable("worldLocationList");
@@ -466,7 +468,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			 if (currentUser != null) {
 				 // RELOAD USER HERE TO UPDATE POINTS
 				 final String CURRENT_USER_ID = currentUser.getUserId();
-//				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
+				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
+				 System.out.println("ON RESUME USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
 //				 currentUser = userImpl.selectRecordById(CURRENT_USER_ID);
 //				 
 //					final String currentUserId = currentUser.getUserId();
@@ -818,6 +821,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			args.putInt(FilmLocationFragment.ARG_SECTION_NUMBER, fragmentIndex);
 			args.putParcelable("localQuizItemArrayList", localQuizItemArrayList);
 			args.putParcelable("localCurrentLocation", currentLocation);
+			args.putParcelable("fragmentUser", currentUser);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -879,25 +883,10 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		private FilmLocation localCurrentLocation;
 		private UserImpl userImpl;
 		private PointsItemImpl pointsItemImpl;
+		private User fragmentUser;
 
 		public FilmLocationFragment() {
 		}
-
-		// @Override
-		// public void onActivityResult(int requestCode, int resultCode, Intent
-		// data) {
-		// super.onActivityResult(requestCode, resultCode, data);
-		// // switch(requestCode) {
-		// // case (MY_CHILD_ACTIVITY) : {
-		// if (resultCode == Activity.RESULT_OK) {
-		// // TODO Extract the data returned from the child Activity.
-		// System.out.println("RESULT_OK: " + resultCode);
-		// }
-		// // break;
-		// // }
-		// // }
-		// }
-
 		@Override
 		public void onActivityResult(int requestCode, int resultCode,
 				Intent data) {
@@ -911,6 +900,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					// String result = data.getStringExtra("hello");
 					currentQuizItem = data.getExtras()
 							.getParcelable("quizItem");
+					
+//					fragmentUser = data.getExtras().getParcelable("currentUser");
 //					System.out.println("QUIZ ITEM CORRECT ANSWER INDEX: " + currentQuizItem.getCorrectAnswerIndex());
 					// update returned quizItem in database
 					System.out.println("RESULT_OK: "
@@ -926,7 +917,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //					currentUser.setCurrentPoints(updatedUserPoints);
 //					userImpl.updateCurrentUserPoints(updatedUserPoints);
 //					String currentUserDatabasePoints = userImpl.selectRecords();
-					String currentUserId = currentUser.getUserId();
+					String currentUserId = fragmentUser.getUserId();
 					
 
 					PointsItem newPointsItem = new PointsItem();
@@ -945,17 +936,21 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
 						
 						
-						final User FINAL_CURRENT_USER = userImpl.selectRecordById(currentUserId);
+//						final User FINAL_CURRENT_USER = userImpl.selectRecordById(currentUserId);
 //						final User FINAL_TEMP_USER = userImpl.selectRecordById(currentUserId);
 //						final String FINAL_CURRENT_USER_LEVEL = FINAL_TEMP_USER.getCurrentLevel();
-						final String FINAL_CURRENT_USER_LEVEL = FINAL_CURRENT_USER.getCurrentLevel();
+						final String FINAL_CURRENT_USER_LEVEL = fragmentUser.getCurrentLevel();
 						final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
 						final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
 						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
 						System.out.println("CURRENT LEVEL **: " + currentLevel);
 						System.out.println("CURRENT LEVEL FINAL **: " + FINAL_CURRENT_USER_LEVEL_INT);
+						System.out.println("RESULT MOBILE NOTIFICATIONS: " + fragmentUser.getMobileNotifications());
 						
-						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+//						final String FINAL_MOBILE_NOTIFICATIONS = currentUser.getEmailNotifications();
+////						FINAL_MOBILE_NOTIFICATIONS.equals("true")
+//						System.out.println("MOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
+						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT && fragmentUser.getMobileNotifications().equals("true")) {
 //							// SEND LEVEL UP NOTIFICATION
 							sendLevelUpNotification();
 						}
@@ -1064,6 +1059,14 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			NotificationCompat.Builder builder;
 			String copy = "Temp copy";
 			String msg = "Temp message";
+//			final String FINAL_MOBILE_NOTIFICATIONS = FINAL_CURRENT_USER.getEmailNotifications();
+//			FINAL_MOBILE_NOTIFICATIONS.equals("true")
+//			System.out.println("MOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
+			
+//			final String FINAL_MOBILE_NOTIFICATIONS = fragmentUser.getEmailNotifications();
+//			FINAL_MOBILE_NOTIFICATIONS.equals("true")
+//			System.out.println("MOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
+		
 			
 			if (title != null) {
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
@@ -1148,48 +1151,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			conclusionCard.setLevel("level");
 			
 			achievementIntent.putExtra("conclusionCard", conclusionCard);
-//					achievementIntent.putExtra("bagItemArrayList", bagItemArrayList);
-			
-			
-//			JsonNode points = pointsJson.path("points");
-//			String worldCount;
-//			String currentLevel;
-////					String notificationSettingsData = extras.getString("currentLevel");
-//			
-//			for (JsonNode point : points) {
-//				if (point.get("worldCount") != null) {
-////							System.out.println("WORLD LOCATIONS WORLD COUNT ****: " + removeDoubleQuotes(point.get("pointValue").toString()));
-////							pointsItem.setPoints(removeDoubleQuotes(point.get("pointValue").toString()));
-//					worldCount = removeDoubleQuotes(point.get("worldCount").toString());
-//					achievementIntent.putExtra("worldCount", worldCount);
-//					System.out.println("GCM INTENT SERVICE WORLD COUNT: " + worldCount);
-//				}
-//				if (point.get("currentLevel") != null) {
-////							System.out.println("WORLD LOCATIONS WORLD COUNT ****: " + removeDoubleQuotes(point.get("pointValue").toString()));
-////							pointsItem.setPoints(removeDoubleQuotes(point.get("pointValue").toString()));
-//					currentLevel = removeDoubleQuotes(point.get("currentLevel").toString());
-//					achievementIntent.putExtra("currentLevel", currentLevel);
-//					System.out.println("GCM INTENT SERVICE CURRENT LEVEL: " + currentLevel);
-//				}	
-//			}
-//					
-			
-//					String worldCount = points.get("worldCount").toString();
-//					// TRAVERSE JSON NODE TO GET THIS VALUE
-//					if (worldCount != null) {
-//						achievementIntent.putExtra("worldCount", worldCount);
-//						System.out.println("GCM INTENT SERVICE WORLD COUNT: " + worldCount);
-//					}
-			
-			// TODO: GET THIS VALUE FROM SOMEWHERE
-//					achievementIntent.putExtra("worldCount", "1");
-//					pointsItem.setUserId(getCurrentUserId());
-//			final String pointsUserId = "TEMP_POINTS_USER_ID_" + getCurrentUserId();
-//			pointsItem.setUserId(getCurrentUserId());
-//			pointsItem.setPointsUserId(pointsUserId);
-//			achievementIntent.putExtra("currentUserId", getCurrentUserId());
-//			achievementIntent.putExtra("pointsItem", pointsItem);
-//					getApplication().startActivityForResult(achievementIntent, 1);
+//			achievementIntent.putExtra("bagItemArrayList", bagItemArrayList);
 			startActivity(achievementIntent);
 				
 			
@@ -1208,7 +1170,12 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					container, false);
 
 			
-			userImpl = new UserImpl(context);
+//			userImpl = new UserImpl(context);
+			fragmentUser = getArguments().getParcelable("fragmentUser");
+//			String fragmentUserId = fragmentUser.getUserId();
+//			fragmentUser = userSource.selectRecordById(fragmentUserId);
+			final String FINAL_USER_MOBILE_NOTIFICATIONS = fragmentUser.getMobileNotifications();
+			System.out.println("FRAGMENT USER MOBILE NOTIFICATIONS: " + FINAL_USER_MOBILE_NOTIFICATIONS);
 			pointsItemImpl = new PointsItemImpl(context);
 			
 			localQuizItemArrayList = getArguments().getParcelable(
@@ -2219,11 +2186,11 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 								// }
 
 								final Intent quizIntent = new Intent(context, QuizActivity.class);
-								final String CURRENT_USER_ID = currentUser.getUserId();
-								final String QUIZ_ITEM_SID = currentUser.getUserSid();
+								final String CURRENT_USER_ID = fragmentUser.getUserId();
+								final String QUIZ_ITEM_SID = fragmentUser.getUserSid();
 								
-								System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + currentUser.getCurrentPoints());
-								quizIntent.putExtra("currentUser", currentUser);
+								System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + fragmentUser.getCurrentPoints());
+								quizIntent.putExtra("currentUser", fragmentUser);
 								quizIntent.putExtra("quizItemSid", QUIZ_ITEM_SID);
 								quizIntent.putExtra("bagItemArrayList", bagItemArrayList);
 								quizIntent.putExtra("quizItem", item);
