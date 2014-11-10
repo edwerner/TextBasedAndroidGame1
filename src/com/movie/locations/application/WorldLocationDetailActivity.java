@@ -36,9 +36,11 @@ import org.springframework.web.client.RestTemplate;
 
 
 
+
 //import com.movie.locations.application.NewsActivity.RestoreLevelDataTaskRunner;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.application.MainActivity.NewUserTaskRunner;
+import com.movie.locations.AchievementActivity;
 import com.movie.locations.R;
 import com.movie.locations.R.id;
 import com.movie.locations.R.layout;
@@ -77,6 +79,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -91,6 +96,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -203,6 +209,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 	private static ListView locationsList;
 	
 	private static QuizItemService quizItemService;
+	private UserImpl userImpl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -318,6 +325,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 
 		bagItemImpl = new BagItemImpl(context);
 		datasource = new MovieLocationsImpl(context);
+		userImpl = new UserImpl(context);
 
 		// initialize database connection
 		quizitemsource = new QuizItemImpl(context);
@@ -458,8 +466,32 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			 if (currentUser != null) {
 				 // RELOAD USER HERE TO UPDATE POINTS
 				 final String CURRENT_USER_ID = currentUser.getUserId();
-				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
-				 System.out.println("ON RESUME CURRENT USER POINTS: " + currentUser.getCurrentPoints());
+//				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
+//				 currentUser = userImpl.selectRecordById(CURRENT_USER_ID);
+//				 
+//					final String currentUserId = currentUser.getUserId();
+//					final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+////					QuizItem tempQuizItem = quizitemsource.selectRecordById(result);
+//					
+//
+//					// UPDATE USER POINTS
+//					String quizItemPointValue = tempQuizItem.getPointValue();
+//					int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
+//					
+//					if (updatedUserDatabasePointsItem != null) {
+//						String databasePoints = updatedUserDatabasePointsItem.getPoints();
+//						System.out.println("USER DATABASE POINTS: " + databasePoints);
+//						int databasePointsInt = Integer.parseInt(databasePoints);
+//						
+//						int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
+//						String updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+//						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
+//						
+//						
+//						System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+//					}
+					
+//				 System.out.println("ON RESUME CURRENT USER POINTS: " + currentUser.getCurrentPoints());
 			 }
 			 
 			 
@@ -564,15 +596,17 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //						
 //					}
 //				}
-				
+				String currentUserId = currentUser.getUserId();
+				String updatedUserPointsString = null;
 				for (int i = 0; i < newQuizList.size(); i++) {
 					QuizItem tempQuizItem = newQuizList.get(i);
 					if (getTitle().equals(tempQuizItem.getWorldTitle())) {
 						locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
 						locationQuizArrayAdapter.insert(tempQuizItem, 0);
 						
-
-						final String currentUserId = currentUser.getUserId();
+						
+						
+						
 						final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
 //						QuizItem tempQuizItem = quizitemsource.selectRecordById(result);
 						
@@ -587,17 +621,37 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 							int databasePointsInt = Integer.parseInt(databasePoints);
 							
 							int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
-							String updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+							updatedUserPointsString = Integer.toString(updatedUserPointsInt);
 							pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
 							
 							
 							System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+						} else {
+							updatedUserPointsString = currentUser.getPoints();
 						}
 						
 					}
 				}
 				
+
 				
+				
+//				final User FINAL_CURRENT_USER = userImpl.selectRecordById(currentUserId);
+////				final User FINAL_TEMP_USER = userImpl.selectRecordById(currentUserId);
+////				final String FINAL_CURRENT_USER_LEVEL = FINAL_TEMP_USER.getCurrentLevel();
+//				final String FINAL_CURRENT_USER_LEVEL = FINAL_CURRENT_USER.getCurrentLevel();
+//				final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
+//				final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
+//				int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+//				System.out.println("CURRENT LEVEL **: " + currentLevel);
+//				System.out.println("CURRENT LEVEL FINAL **: " + FINAL_CURRENT_USER_LEVEL_INT);
+//				
+//				if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+//					// SEND LEVEL UP NOTIFICATION
+//					sendLevelUpNotification();
+//				}
+//				final String FINAL_CURRENT_LEVEL_STRING = Integer.toString(currentLevel);
+//				System.out.println("CURRENT USER LEVEL: " + currentLevel);
 				
 //				for (QuizItem loc : newQuizList) {
 //					System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
@@ -624,6 +678,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			   
 		   }
 		};
+
 
 
 		
@@ -890,15 +945,20 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
 						
 						
-						System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
-
-						final String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
-						final int FINAL_USER_POINTS_INT = Integer.parseInt(quizItemPointValue);
+						final User FINAL_CURRENT_USER = userImpl.selectRecordById(currentUserId);
+//						final User FINAL_TEMP_USER = userImpl.selectRecordById(currentUserId);
+//						final String FINAL_CURRENT_USER_LEVEL = FINAL_TEMP_USER.getCurrentLevel();
+						final String FINAL_CURRENT_USER_LEVEL = FINAL_CURRENT_USER.getCurrentLevel();
+						final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
+						final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
 						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
-						final String FINAL_CURRENT_LEVEL_STRING = Integer.toString(currentLevel);
-						System.out.println("CURRENT USER LEVEL: " + currentLevel);
-						userImpl.updateCurrentUserLevel(currentUserId, FINAL_CURRENT_LEVEL_STRING);
-						System.out.println("CURRENT USER LEVEL DATABASE: " + userImpl.selectRecordById(currentUserId));
+						System.out.println("CURRENT LEVEL **: " + currentLevel);
+						System.out.println("CURRENT LEVEL FINAL **: " + FINAL_CURRENT_USER_LEVEL_INT);
+						
+						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+//							// SEND LEVEL UP NOTIFICATION
+							sendLevelUpNotification();
+						}
 						
 					} else {
 						pointsItemImpl.createRecord(newPointsItem);
@@ -978,6 +1038,10 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					
 					generateConclusionCard(quizItem);
 					locationQuizArrayAdapter.notifyDataSetChanged();
+					
+					
+					
+						
 
 				} else if (resultCode == RESULT_CANCELED) {
 
@@ -993,6 +1057,56 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //			generateConclusionCard(quizItem);
 		}// onActivityResult
 
+
+		private void sendLevelUpNotification() {
+			int NOTIFICATION_ID = 1;
+			NotificationManager mNotificationManager;
+			NotificationCompat.Builder builder;
+			String copy = "Temp copy";
+			String msg = "Temp message";
+			
+			if (title != null) {
+				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
+			            .setAutoCancel(true)
+			            .setDefaults(Notification.DEFAULT_VIBRATE)
+						.setContentTitle("Trivia Warlock")
+						.setContentText(title)
+						.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
+				System.out.println("TITLE: " + title);
+				System.out.println("COPY: " + copy);
+
+				// create and start achievement activity
+
+				mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+				
+				Intent achievementIntent = new Intent(context, AchievementActivity.class);
+				AchievementActivity.setContext(context);
+				
+				achievementIntent.putExtra("messageId", NOTIFICATION_ID);
+				achievementIntent.putExtra("achievementTitle", title);
+				achievementIntent.putExtra("achievementCopy", copy);
+				
+				
+//				if (levelUp != null) {
+//					System.out.println("GCM INTENT SERVICE CONCLUSION LEVEL UP DATA: " + levelUp);
+////					levelUpImageUrl
+//					String levelUpImageUrl = extras.getString("levelUpImageUrl");
+//					ACHIEVEMENT_IMAGE_URL = levelUpImageUrl;
+//					achievementIntent.putExtra("levelUp", levelUp);
+//					
+////					achievementIntent.putExtra("levelUpImageUrl", levelUpImageUrl);
+//				}
+				String ACHIEVEMENT_IMAGE_URL = "http://mymoneybox.mfsa.com.mt/Files/Blue-SRT-4.png";
+				achievementIntent.putExtra("achievementImageUrl", ACHIEVEMENT_IMAGE_URL);
+
+				PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
+
+				mBuilder.setContentIntent(contentIntent);
+				mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());	
+			}
+			
+		}
+		
 		// @Override
 		// public void onResume() {
 		// System.out.println("******* RESUME ********");
