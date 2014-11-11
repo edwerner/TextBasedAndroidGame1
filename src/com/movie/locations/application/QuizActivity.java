@@ -21,7 +21,6 @@ import org.springframework.web.client.RestTemplate;
 
 //import com.movie.locations.BagActivity;
 import com.movie.locations.R;
-import com.movie.locations.application.NewsActivity.RestoreLevelDataTaskRunner;
 import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
