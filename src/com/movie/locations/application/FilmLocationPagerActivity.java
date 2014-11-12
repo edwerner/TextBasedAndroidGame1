@@ -1,96 +1,37 @@
 package com.movie.locations.application;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParseException;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
 import com.movie.locations.R;
-import com.movie.locations.R.id;
-import com.movie.locations.R.layout;
-import com.movie.locations.R.menu;
-import com.movie.locations.R.string;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
-import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.FilmLocationCollection;
 import com.movie.locations.domain.LocationMapParcel;
-import com.movie.locations.domain.MoviePostersHashMap;
 import com.movie.locations.domain.QuizItem;
-import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
-import com.movie.locations.domain.WorldLocationArrayList;
-import com.movie.locations.domain.WorldLocationObject;
 import com.movie.locations.service.DatabaseChangedReceiver;
-import com.movie.locations.service.FilmLocationService;
-import com.movie.locations.service.WorldLocationService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class FilmLocationPagerActivity extends FragmentActivity {
 
@@ -127,15 +68,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	private static FilmLocation currentLocation;
 	private static QuizItemImpl quizitemsource;
 	private static ArrayList<QuizItem> newQuizList;
-
-//	private static String[] locationTitles;
-//	private static int currentPositionIndex;
-	
-//	@Override
-//	protected void onSaveInstanceState(Bundle bundle) {
-//	  super.onSaveInstanceState(bundle);
-//	  bundle.putParcelable("locationMap", locationMap);
-//	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -341,7 +273,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		private FilmLocationMapTileArrayAdapter commentAdapter;
 		private ListView commentView;
 		private String fragmentTitle;
-		private ArrayList<String> localWorldImageUrls;
 		private FilmArrayList filmArrayList;
 		private View rootView;
 
@@ -454,7 +385,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			BagItemArrayList localBagItemArrayList = getArguments().getParcelable("bagItemArrayList");
 			User localCurrentUser = getArguments().getParcelable("currentUser");
 			localWorldTitles = getArguments().getStringArrayList("worldTitles");
-			localWorldImageUrls = getArguments().getStringArrayList("localWorldImageUrls");
+//			localWorldImageUrls = getArguments().getStringArrayList("localWorldImageUrls");
 			filmArrayList = getArguments().getParcelable("locationArrayList");
 			ArrayList<FilmLocation> filmList = filmArrayList.getFilmList();
 			currentTitle = localWorldTitles.get(getArguments().getInt(ARG_SECTION_NUMBER));
@@ -528,90 +459,8 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 //			filmTitle.setText(currentTitle);
 			
 			mViewPager.setOnPageChangeListener(this);
-
-			
 			return rootView;
 		}
 	}
-
-	public class QuizItemTaskRunner extends AsyncTask<String, String, String> {
-
-		private String resp;
-		private JsonNode json;
-		private ProgressDialog dialog;
-		
-
-		@Override
-		protected String doInBackground(String... params) {
-			publishProgress("Sleeping..."); // Calls onProgressUpdate()
-			try {
-//				// Do your long operations here and return the result
-////				String url = params[0];
-//				String response = "response message";
-//				String serverUrl = params[0];
-//
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("ERROR STACK TRACE");
-				resp = e.getMessage();
-			}
-			return resp;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-		 */
-		@Override
-		protected void onPostExecute(String result) {
-			// execution of result of Long time consuming operation
-			// finalResult.setText(result);
-			// set json data here to serialize
-
-			if (dialog != null) {
-				dialog.setTitle("Messaging complete.");
-				dialog.setMessage("Time for more trivia!");
-				dialog.dismiss();
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onPreExecute()
-		 */
-		@Override
-		protected void onPreExecute() {
-			// Things to be done before execution of long running operation. For
-			// example showing ProgessDialog
-
-			dialog = new ProgressDialog(context);
-			dialog.setTitle("Sending...");
-			
-			// TODO: create random text generator
-			// for messages so that people with 
-			// slower connections are kept occupied
-			dialog.setMessage("Should only take a sec.");
-			dialog.setCancelable(false);
-			dialog.setIndeterminate(true);
-			dialog.show();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-		 */
-		@Override
-		protected void onProgressUpdate(String... text) {
-			// finalResult.setText(text[0]);
-			// Things to be done while execution of long running operation is in
-			// progress. For example updating ProgessDialog
-		}
-	}
-
 
 }

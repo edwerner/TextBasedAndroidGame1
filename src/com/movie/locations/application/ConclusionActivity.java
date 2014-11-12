@@ -48,9 +48,9 @@ public class ConclusionActivity extends ActionBarActivity {
 	private ConclusionCard conclusionCard;
 	private UserImpl userSource;
 	private String currentLevelString;
-	private static String emailNotifications;
-	private static String mobileNotifications;
-	private static User currentUser;
+//	private static String emailNotifications;
+//	private static String mobileNotifications;
+//	private static User currentUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +66,8 @@ public class ConclusionActivity extends ActionBarActivity {
 			// get intent string attributes
 			Bundle extras = intent.getExtras();
 			
-			emailNotifications = extras.getString("emailNotifications");
-			mobileNotifications = extras.getString("mobileNotifications");
+//			emailNotifications = extras.getString("emailNotifications");
+//			mobileNotifications = extras.getString("mobileNotifications");
 			
 //			System.out.println("EMAIL NOTIFICATIONS: " + emailNotifications);
 //			System.out.println("MOBILE NOTIFICATIONS: " + mobileNotifications);
@@ -112,10 +112,10 @@ public class ConclusionActivity extends ActionBarActivity {
 //			System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT LEVEL: " + currentUser.getCurrentLevel());
 //			System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT POINTS: " + currentUser.getCurrentPoints());
 			
-			if (pointsItem != null) {
-				CURRENT_USER_ID = pointsItem.getUserId();
-				updatePointsDatabase();
-			}
+//			if (pointsItem != null) {
+//				CURRENT_USER_ID = pointsItem.getUserId();
+//				updatePointsDatabase();
+//			}
 			
 //			if (emailNotifications != null && mobileNotifications != null) {
 //				updateUserNotificationsSettings();
@@ -142,69 +142,9 @@ public class ConclusionActivity extends ActionBarActivity {
 	public void updatePointsDatabase() {
 
 		System.out.println("POINTS DATABASE");
-		
-//		pointsItem.setPointsUserId(pointsUserId);
-//		pointsItem.setUserId(currentUserId);
-		
-//		System.out.println("POINTS_ITEM USER ID: " + pointsUserId);
 		System.out.println("POINTS_ITEM CURRENT USER ID: " + CURRENT_USER_ID);
 		
 		System.out.println("POINTS ITEM PARCEL USER ID: " + CURRENT_USER_ID);
-		
-//		PointsItem pointsItem = new PointsItem();
-//		UserImpl userSource = new UserImpl(this);
-		
-		
-//		pointsSource.delete();
-		
-//		ArrayList<User> userSourceList = userSource.selectRecords();
-////		
-//		if (userSourceList != null) {
-//			for (User user : userSourceList) {
-//				System.out.println("POINTS DATABASE SAVE POINTS: " + user.getPoints());
-//				System.out.println("POINTS DATABASE SAVE BONUS_POINTS: " + user.getBonusPoints());
-//				System.out.println("POINTS DATABASE SAVE USER_ID: " + user.getUserId());
-//				System.out.println("POINTS DATABASE SAVE POINTS_USER_ID: " + user.getPointsUserId());
-//			}	
-//		} else {
-//			System.out.println("POINTS DATABASE SAVE EMPTY");
-//		}
-		
-		// IF THIS IS EVER NULL WE'VE GOT BIGGER PROBLEMS
-//		User tempUser = userSource.selectRecordById(CURRENT_USER_ID);
-//		pointsSource.open();
-		 
-		
-		
-////		pointsSource.delete();
-//		if (tempUser == null) {
-////			System.out.println("POINTS DATABASE CURRENT_USER_ID NULL");
-////			// create database connection and store
-////			// location objects in sqlite database
-////
-////			// TODO: REMOVE THIS AFTER DEBUGGING
-////			 
-////			
-////			// THIS SIDE IS HANDLING DOMAIN OBJECTDATABASE TRANSACTIONS
-////			//
-////			// THE SERVICE IS 
-//////			pointsItem.setUserId(currentUserId);
-//////			pointsItem.setPointsUserId(pointsUserId);
-////			userSource.open();
-////			
-////			userSource.createRecord(pointsItem);
-//////			pointsSource.delete();
-////			userSource.close();
-//		} else {
-			
-			
-			
-//			String currentPoints = tempUser.getPoints();
-			
-//			if (currentPoints == null) {
-//				
-//			}
-			
 //			String currentBonusPoints = tempUser.getBonusPoints();
 			String updatedPoints = null;
 			String updatedBonusPoints = null;
@@ -270,7 +210,7 @@ public class ConclusionActivity extends ActionBarActivity {
 				
 				// CHECK CURRENT LEVEL
 				
-				currentUser = userSource.selectRecordById(currentUserId);
+//				currentUser = userSource.selectRecordById(currentUserId);
 //				int currentLevel = Integer.parseInt(currentUser.getCurrentLevel());
 //				String CURRENT_LEVEL_STRING = Integer.toString(currentLevel);
 //				int currentLevelCheck = StaticSortingUtilities.CHECK_LEVEL_RANGE(CURRENT_LEVEL_STRING, FINAL_BONUS_POINTS);

@@ -2,19 +2,14 @@ package com.movie.locations.application;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Locale;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.AchievementActivity;
 import com.movie.locations.R;
-import com.movie.locations.dao.BagItemImpl;
-import com.movie.locations.dao.ConclusionCardImpl;
-import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.BagItemArrayList;
-import com.movie.locations.domain.Comment;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
@@ -22,7 +17,6 @@ import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
-import com.movie.locations.domain.WorldLocationObject;
 import com.movie.locations.service.DatabaseChangedReceiver;
 import com.movie.locations.service.QuizItemService;
 import com.movie.locations.util.StaticSortingUtilities;
@@ -290,10 +284,6 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			   unregisterReceiver(this);
 		   }
 		};
-
-
-
-		
 	 public static class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
 
 			private String resp;
@@ -471,23 +461,13 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		// "http://ojw.dev.openstreetmap.org/StaticMap/?lat=37.76663290389&lon=-122.44194030762&z=14&mode=Export&show=1";
 		public final String DEFAULT_MAP_IMAGE_URL = "http://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=200x100&scale=2&sensor=true";
 		public String UNIQUE_MAP_IMAGE_URL = "";
-		// public final String PREFIX =
-		// "http://ojw.dev.openstreetmap.org/StaticMap/?";
 		public final String PREFIX = "http://maps.googleapis.com/maps/api/staticmap?center=";
 		public String CENTER = "";
-		// public String SETTINGS = "&z=14&mode=Export&show=1";
 		public String SETTINGS = "&zoom=13&size=200x100&scale=2&sensor=true";
-		private String MOVIE_POSTER_URL = "";
 		private final String SEARCH_DELIMITER = "+San+Francisco+California";
-		// private static List<String> filmList;
-
-		private ArrayList<FilmLocation> filmList;
-
 		private QuizItem currentQuizItem;
 		private QuizItemArrayList localQuizItemArrayList;
-		private ArrayList<QuizItem> localQuizList;
 		private FilmLocation localCurrentLocation;
-		private UserImpl userImpl;
 		private PointsItemImpl pointsItemImpl;
 		private User fragmentUser;
 
@@ -710,7 +690,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			
 			localQuizItemArrayList = getArguments().getParcelable(
 					"localQuizItemArrayList");
-			localQuizList = localQuizItemArrayList.getQuizList();
+//			localQuizList = localQuizItemArrayList.getQuizList();
 
 			localCurrentLocation = getArguments().getParcelable(
 					"localCurrentLocation");
@@ -1273,7 +1253,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 												+ item.getAnswered());
 
 								final Intent quizIntent = new Intent(context, QuizActivity.class);
-								final String CURRENT_USER_ID = fragmentUser.getUserId();
+//								final String CURRENT_USER_ID = fragmentUser.getUserId();
 								final String QUIZ_ITEM_SID = fragmentUser.getUserSid();
 								
 								System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + fragmentUser.getCurrentPoints());
@@ -1282,30 +1262,12 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 								quizIntent.putExtra("bagItemArrayList", bagItemArrayList);
 								quizIntent.putExtra("quizItem", item);
 								startActivityForResult(quizIntent, 1);
-
-								// ********************************************************//
-								// TODO: REFACTOR conclusion messaging on question
-								// complete
-								// and launch new activity with title, copy and
-								// image url
-								// ********************************************************//
-
-								// TODO: cut persistence from quiz activity and
-								// only
-								// access the database from the main calling
-								// thread
-								// within **this** activity
-								// }
-								// });
 							}
-
 						});
-
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
-
 }
