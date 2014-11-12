@@ -1,24 +1,44 @@
 package com.movie.locations.service;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 //import org.springframework.web.servlet.ModelAndView;
 
 //import com.fasterxml.jackson.core.JsonFactory;
 import org.codehaus.jackson.JsonFactory;
+
 import android.content.Context;
 import android.content.Intent;
+
+import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
 //import com.movie.locations.domain.FilmLocation.Builder;
+import com.movie.locations.domain.FilmLocationDataObject;
+import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.service.JsonService;
@@ -26,6 +46,7 @@ import com.movie.locations.util.CSVFile;
 
 public class QuizItemService {
 	private ArrayList<QuizItem> quizList;
+	private Map<String, QuizItem> quizData;
 	private final String QUIZ_ITEM_URI = "http://movie-locations-app.appspot.com/questions";
 	private JsonNode questionsJson;
 
@@ -52,7 +73,11 @@ public class QuizItemService {
 	public void createContentValues(InputStream stream, Context context) {
 		
 		CSVFile csvFile = new CSVFile(stream);
+
+		String LOCATION_ID = null;
 		String QUIZ_WORLD_ID = null;
+		String ANSWERED_FALSE = "false";
+		
 		// compose world location objects
 		List quizList = csvFile.read();
 		ArrayList<QuizItem> quizArrayList = new ArrayList<QuizItem>();
@@ -116,6 +141,12 @@ public class QuizItemService {
 		
 		datasource.close();
 		
+		
+		// SEND UPDATED COLLECTION TO VIEW
+//		final FilmArrayList localLocationArrayList = new FilmArrayList();
+//		localLocationArrayList.setFilmList(locationList);
+		
+		
 		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 //		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
@@ -123,6 +154,18 @@ public class QuizItemService {
 		
 		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);
 		context.sendBroadcast(newsIntent);
+		
+		
+		// SEND DATABASE CHANGED EVENT
+//       	Intent broadcast = new Intent();
+//       	broadcast.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+////        filter.addCategory(Intent.CATEGORY_DEFAULT);
+//        sendBroadcast(broadcast);
+//		
+//		Intent intent = new Intent();
+//        intent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+////        intent.addFlags(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//        context.sendBroadcast(intent);
 	}
 	
 	public void resetAnsweredQuestion(String result, Context context) {
@@ -156,9 +199,17 @@ public class QuizItemService {
 
 		String LOCATION_WORLD_TITLE = null;
 		
+
+		
+		
+
+		
 		// set attributes
+		
 		for (JsonNode item : quizItems) {
+			
 			QuizItem quizItem = new QuizItem();
+			
 			quizItem.setQuestionId(removeDoubleQuotes(item.get("questionId").toString()));
 			quizItem.setQuestionText(removeDoubleQuotes(item.get("questionText").toString()));
 			quizItem.setAnswer1(removeDoubleQuotes(item.get("answer1").toString()));
@@ -182,8 +233,11 @@ public class QuizItemService {
 			if (!quizList.contains(quizItem)) {
 				quizList.add(quizItem);
 			}
+			
 		}
+		
 
+		
 		// create database connection and store
 		// location objects in sqlite database
 		quizDatasource.open();
@@ -193,6 +247,9 @@ public class QuizItemService {
 		
 		if (currentQuizItems != null) {
 			quizDatasource.deleteRecordsByTitle(LOCATION_WORLD_TITLE);
+			
+			// UPDATE CURRENT ATTRIBUTES
+//			datasource.
 		}
 		
 
@@ -201,13 +258,103 @@ public class QuizItemService {
 		
 
 		for (QuizItem item : quizList) {
+//			FilmLocation existingLocation = datasource.selectRecordById(loc.getId());
+//			if (existingLocation == null) {
 				quizDatasource.createRecord(item);
+
 				System.out.println("DATABASE QUIZ ITEM BUILD: " + item.getQuestionText());
+//			}
+			
+//			if (existingLocation == null || existingLocation.getId() != loc.getId()) {
+//				datasource.createRecord(loc);
+//
+//				System.out.println("DATABASE WORLD LOCATIONS BUILD OBJECTS LOCATIONS: " + loc.getLocations());
+//				System.out.println("DATABASE WORLD LOCATIONS BUILD OBJECTS ID: " + loc.getId());
 			}
-			quizDatasource.close();
+		
+//		quizDatasource.createRecord(quizItem);
+//		ArrayList<QuizItem> quizDatasourceList = quizDatasource.selectRecords();
+//		for (QuizItem quiz : quizDatasourceList) {
+//			System.out.println("WORLD LOCATIONS ACTIVE OBJECT: " + quiz.getActiveItem());	
+//		}
+		quizDatasource.close();
 		
 		return quizList;
 	}
+	
+//	public ArrayList<QuizItem> buildQuizObject(JsonNode quizItems, Context context) {
+//		
+//		
+////		JsonNode locations = worldLocations.get("worldLocations");
+//		JsonNode quizItemJson = quizItems.path("quizItems");
+//		System.out.println("WORLD LOCATIONS BUILD OBJECTS: " + quizItemJson);
+////		System.out.println(nameNode.getTextValue());
+//		
+//		// compose world location objects
+//		
+//		
+//		ArrayList<QuizItem> quizList = new ArrayList<QuizItem>();
+//		
+//		QuizItemImpl quizsource = new QuizItemImpl(context);
+//
+//		// clear existing film location records
+//		quizsource.delete();
+//		
+//		
+//
+//
+//		
+//		// set attributes
+//		
+//		for (JsonNode quiz : quizItemJson) {
+//			QuizItem quizItem = new QuizItem();
+//			
+////			generator.writeStringField("level", newLevel.getProperty("level").toString());
+////			generator.writeStringField("locations", newLevel.getProperty("locations").toString());
+////			generator.writeStringField("id", newLevel.getProperty("id").toString());
+////			generator.writeStringField("position", newLevel.getProperty("position").toString());
+////			generator.writeStringField("sid", newLevel.getProperty("sid").toString());
+////			// generator.writeStringField("createdAt", newLevel.getProperty("createdAt").toString());
+////			// generator.writeStringField("createdMeta", newLevel.getProperty("createdMeta").toString());
+////			// generator.writeStringField("updatedAt", newLevel.getProperty("updatedAt").toString());
+////			// generator.writeStringField("updatedMeta", newLevel.getProperty("updatedMeta").toString());
+////			// generator.writeStringField("meta", newLevel.getProperty("meta").toString());
+////			generator.writeStringField("title", newLevel.getProperty("title").toString());
+////			// generator.writeStringField("releaseYear", newLevel.getProperty("releaseYear").toString());
+////			// generator.writeStringField("funFacts", newLevel.getProperty("funFacts").toString());
+////			// generator.writeStringField("productionCompany", newLevel.getProperty("productionCompany").toString());
+////			// generator.writeStringField("distributor", newLevel.getProperty("distributor").toString());
+////			// generator.writeStringField("director", newLevel.getProperty("director").toString());
+////			// generator.writeStringField("writer", newLevel.getProperty("writer").toString());
+////			// generator.writeStringField("actor1", newLevel.getProperty("actor1").toString());
+////			// generator.writeStringField("actor2", newLevel.getProperty("actor2").toString());
+////			// generator.writeStringField("actor3", newLevel.getProperty("actor3").toString());
+////			generator.writeStringField("latitude", newLevel.getProperty("latitude").toString());
+////			generator.writeStringField("longitude", newLevel.getProperty("longitude").toString());
+////			generator.writeStringField("staticMapImageUrl", newLevel.getProperty("staticMapImageUrl").toString());
+//			quizList.add(quizItem);
+//			
+//			// create database connection and store
+//			// location objects in sqlite database
+////			quizsource.open();
+////			quizsource.createRecord(quizItem);
+////			quizsource.close();
+//		}
+		
+//		datasource.open();
+//		ArrayList<FilmLocation> databaseLocations = datasource.selectRecords();
+//		
+//		for (FilmLocation locList : databaseLocations) {
+//			System.out.println("DATABASE LOCATIONS BUILD OBJECTS: " + locList.getLocations());
+//		}
+//		datasource.close();
+		
+//		JsonNode position = locations.get("positions");
+//		System.out.println("WORLD LOCATIONS BUILD OBJECTS: " + locations);
+//		
+//		// return world location object
+//		return quizList;
+//	}
 
 	public QuizItemService getQuizData() throws JsonProcessingException,
 			JSONException, IOException {
@@ -228,11 +375,20 @@ public class QuizItemService {
 
 	// builder creation pattern
 	public QuizItemService buildQuizObjects() throws IOException, JSONException {
+
+		// convert json nodes to array
+		// int length = filmLocations.getMovies().size();
+		// JsonNode[] quizArray = new JsonNode[questionsJson.size()];
+
 		ObjectMapper mapper = new ObjectMapper();
-		Iterator<JsonNode> iterator = questionsJson.path("questions").getElements();
+
+		Iterator<JsonNode> iterator = questionsJson.path("questions")
+				.getElements();
+
 		while (iterator.hasNext()) {
 			JsonNode node = iterator.next();
 			QuizItem quizItem = mapper.readValue(node, QuizItem.class);
+//			System.out.println("service title: " + quizItem.getFilmTitle());
 			quizList.add(quizItem);
 		}
 
@@ -253,6 +409,15 @@ public class QuizItemService {
 
 	// private ArrayList<FilmLocation> filmList;
 	public ArrayList<QuizItem> returnQuizList() {
+		// ObjectMapper mapper = new ObjectMapper();
+		// JsonNode json = mapper.convertValue(filmData.get("location"),
+		// JsonNode.class);
+		// @SuppressWarnings("unchecked")
+		// Map<String,Object> jsonMap = mapper.readValue(json, Map.class);
+
+		// mapper.writeValue(json, filmList);
+
+		// System.out.println("FILM LIST: " + filmList);
 		return quizList;
 	}
 }
