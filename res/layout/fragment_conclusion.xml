@@ -30,13 +30,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/dismissConclusionButton1"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/star"
-        android:text="Dismiss" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dismissConclusionButton1"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/star"
+            android:text="Dismiss" />
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share on Google+" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/conclusionCardTitleHeadline1"
