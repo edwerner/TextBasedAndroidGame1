@@ -10,6 +10,7 @@ public class Achievement implements Parcelable {
 	String userId;
 	String dateTime;
 	String imageUrl;
+	String level;
 	public Achievement() {
 		// EMPTY CONSTRUCTOR
 	}
@@ -27,6 +28,7 @@ public class Achievement implements Parcelable {
 		pc.writeString(userId);
 		pc.writeString(dateTime);
 		pc.writeString(imageUrl);
+		pc.writeString(level);
 	}	
 	
 	public Achievement(Parcel pc) {
@@ -36,6 +38,7 @@ public class Achievement implements Parcelable {
 		userId = pc.readString();
 		dateTime = pc.readString();
 		imageUrl = pc.readString();
+		level = pc.readString();
 	}
 
 	public static final Parcelable.Creator<BagItem> CREATOR = new Parcelable.Creator<BagItem>() {
@@ -83,5 +86,11 @@ public class Achievement implements Parcelable {
 	}
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
 	}
 }

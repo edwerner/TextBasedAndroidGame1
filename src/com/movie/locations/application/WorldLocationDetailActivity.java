@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Locale;
+
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.AchievementActivity;
 import com.movie.locations.R;
+import com.movie.locations.dao.AchievementImpl;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
+import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.Comment;
 import com.movie.locations.domain.ConclusionCard;
@@ -27,6 +30,7 @@ import com.movie.locations.service.DatabaseChangedReceiver;
 import com.movie.locations.service.QuizItemService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.Dialog;
@@ -99,6 +103,9 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 	private static LocationQuizArrayAdapter locationQuizArrayAdapter;
 	private static ListView locationsList;
 	private static QuizItemService quizItemService;
+	private AchievementImpl achievementImpl;
+	private Achievement levelAchievement;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +180,16 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //		conclusionCardImpl = new ConclusionCardImpl(this);
 		quizItemService = new QuizItemService();
 		pointsItemImpl = new PointsItemImpl(context);
+		achievementImpl = new AchievementImpl(context);
+		
+
+		String currentUserLevelString = currentUser.getCurrentLevel();
+		int currentLevelInt = Integer.parseInt(currentUserLevelString);
+		int nextLevel = currentLevelInt + 1;
+		final String NEXT_ACHIEVEMENT_LEVEL = Integer.toString(nextLevel);
+		levelAchievement = achievementImpl.selectRecordByLevel(NEXT_ACHIEVEMENT_LEVEL);
+		System.out.println("LEVEL ACHIEVEMENT: " + levelAchievement.getLevel());
+		System.out.println("LEVEL ACHIEVEMENT IMAGE URL: " + levelAchievement.getLevel());
 		
 		System.out.println("CURRENT USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
 
@@ -428,6 +445,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			args.putParcelable("localQuizItemArrayList", localQuizItemArrayList);
 			args.putParcelable("localCurrentLocation", currentLocation);
 			args.putParcelable("fragmentUser", currentUser);
+			args.putParcelable("levelAchievement", levelAchievement);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -490,6 +508,8 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		private UserImpl userImpl;
 		private PointsItemImpl pointsItemImpl;
 		private User fragmentUser;
+//		private AchievementImpl achievementImpl;
+		private Achievement levelAchievement;
 
 		public FilmLocationFragment() {
 		}
@@ -543,7 +563,11 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //						System.out.println("MOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
 						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT && fragmentUser.getMobileNotifications().equals("true")) {
 //							// SEND LEVEL UP NOTIFICATION
-							sendLevelUpNotification();
+							
+							if (levelAchievement != null) {
+								sendLevelUpNotification();	
+							}
+							
 						}
 						
 					} else {
@@ -615,8 +639,15 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 			String msg = "Welcome to level ";
 			
 			if (title != null) {
-				String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
-				msg += " " + FINAL_USER_LEVEL + " !";
+
+				String achievementId = levelAchievement.getAchievementId();
+				String achievementTitle = levelAchievement.getTitle();
+				String achievementCopy = levelAchievement.getDescription();
+				String achievementLevel = levelAchievement.getLevel();
+				String achievementImageUrl = levelAchievement.getImageUrl();
+				
+//				String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
+				msg += " " + achievementLevel + " !";
 				
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
 			            .setAutoCancel(true)
@@ -640,13 +671,16 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 //				achievementImageUrl = intent.getStringExtra("achievementImageUrl");
 //				levelUp = intent.getStringExtra("levelUp");
 				
-				achievementIntent.putExtra("messageId", NOTIFICATION_ID);
-				achievementIntent.putExtra("achievementTitle", "You leveled up!");
-				achievementIntent.putExtra("achievementCopy", copy);
-				achievementIntent.putExtra("levelUp", FINAL_USER_LEVEL);
 				
-				String ACHIEVEMENT_IMAGE_URL = "http://mymoneybox.mfsa.com.mt/Files/Blue-SRT-4.png";
-				achievementIntent.putExtra("achievementImageUrl", ACHIEVEMENT_IMAGE_URL);
+				
+				achievementIntent.putExtra("messageId", achievementId);
+				achievementIntent.putExtra("achievementTitle", achievementTitle);
+				achievementIntent.putExtra("achievementCopy", achievementCopy);
+				achievementIntent.putExtra("levelUp", achievementLevel);
+				
+//				String ACHIEVEMENT_IMAGE_URL = "http://mymoneybox.mfsa.com.mt/Files/Blue-SRT-4.png";
+				achievementIntent.putExtra("achievementImageUrl", achievementImageUrl);
+				System.out.println("achievementImageUrl: " + achievementImageUrl);
 
 				PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -715,6 +749,7 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					container, false);
 
 			fragmentUser = getArguments().getParcelable("fragmentUser");
+			levelAchievement = getArguments().getParcelable("levelAchievement");
 			final String FINAL_USER_MOBILE_NOTIFICATIONS = fragmentUser.getMobileNotifications();
 			System.out.println("FRAGMENT USER MOBILE NOTIFICATIONS: " + FINAL_USER_MOBILE_NOTIFICATIONS);
 			pointsItemImpl = new PointsItemImpl(context);
@@ -879,6 +914,10 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 					.findViewById(R.id.locationsView1);
 
 			prepareArrayAdapterData(rootView);
+			
+//			achievementImpl = new AchievementImpl(context);
+			final String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
+//			levelAchievement = achievementImpl.selectRecordById(FINAL_USER_LEVEL);
 
 			// intent.putExtra("createdAt",
 			// currentWorldLocation.getCreatedAt());

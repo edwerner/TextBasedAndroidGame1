@@ -846,9 +846,9 @@ public class MainActivity extends FragmentActivity implements
 			titleService.createContentValues(titleStream, context);
 		}
 		if (achievementsource.selectRecords().isEmpty()) {
-			AchievementService titleService = new AchievementService();
+			AchievementService achievementService = new AchievementService();
 			InputStream achievementStream = getResources().openRawResource(R.raw.achievement_copy);
-			titleService.createContentValues(achievementStream, context);
+			achievementService.createContentValues(achievementStream, context);
 		}
 	}
 

@@ -44,11 +44,12 @@ public class AchievementImpl {
 	public static final String COLUMN_USER_ID = "_userid";
 	public static final String COLUMN_DATETIME = "_datetime";
 	public static final String COLUMN_IMAGE_URL = "_imageurl";
+	public static final String COLUMN_LEVEL = "_level";
 
 	public static Map<String, BagItem> BAG_ITEM_MAP = new HashMap<String, BagItem>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE,
 			COLUMN_DESCRIPTION, COLUMN_USER_ID, COLUMN_DATETIME,
-			COLUMN_IMAGE_URL };
+			COLUMN_IMAGE_URL, COLUMN_LEVEL };
 
 	/**
 	 * 
@@ -78,8 +79,9 @@ public class AchievementImpl {
 		values.put(COLUMN_TITLE, achievement.getTitle());
 		values.put(COLUMN_DESCRIPTION, achievement.getDescription());
 		values.put(COLUMN_USER_ID, achievement.getUserId());
-		values.put(COLUMN_DATETIME, achievement.getImageUrl());
+		values.put(COLUMN_DATETIME, achievement.getDateTime());
 		values.put(COLUMN_IMAGE_URL, achievement.getImageUrl());
+		values.put(COLUMN_LEVEL, achievement.getLevel());
 
 		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
 		// Integer.parseInt(id));
@@ -109,10 +111,10 @@ public class AchievementImpl {
 		database.delete(TABLE_NAME, COLUMN_ID + "=?", levelArray);
 	}
 
-	public Achievement selectRecordById(String string) throws SQLException {
+	public Achievement selectRecordByLevel(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
-				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
+				COLUMN_LEVEL + "=?", recordIdArray, null, null, null, null);
 		Achievement achievement = null;
 		if (cursor != null) {
 			// lazy evaluation
@@ -159,6 +161,7 @@ public class AchievementImpl {
 		achievement.setUserId(cursor.getString(3));
 		achievement.setDateTime(cursor.getString(4));
 		achievement.setImageUrl(cursor.getString(5));
+		achievement.setLevel(cursor.getString(6));
 
 		return achievement;
 	}

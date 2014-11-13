@@ -44,7 +44,7 @@ public class AchievementService {
 		CSVFile csvFile = new CSVFile(stream);
 
 		String ACHIEVEMENT_ID = null;
-//		String ACHIEVEMENT_LEVEL = null;
+		String ACHIEVEMENT_LEVEL = null;
 		
 		// compose world location objects
 		List locationList = csvFile.read();
@@ -54,12 +54,14 @@ public class AchievementService {
 			Object[] result = (Object[]) iter.next();
 			Achievement achievement = new Achievement();
 			ACHIEVEMENT_ID = result[0].toString();
-			achievement.setAchievementId(ACHIEVEMENT_ID);
+			achievement.setAchievementId(removeDoubleQuotes(ACHIEVEMENT_ID));
 			achievement.setTitle(removeDoubleQuotes(removeDoubleQuotes(result[1].toString())));
 			achievement.setDescription(removeDoubleQuotes(result[2].toString()));
-			achievement.setImageUrl(removeDoubleQuotes(result[3].toString()));
-			achievement.setUserId(removeDoubleQuotes(result[4].toString()));
-			achievement.setDateTime(removeDoubleQuotes(result[5].toString()));
+			achievement.setUserId(removeDoubleQuotes(result[3].toString()));
+			achievement.setDateTime(removeDoubleQuotes(result[4].toString()));
+			achievement.setImageUrl(removeDoubleQuotes(result[5].toString()));
+			ACHIEVEMENT_LEVEL = result[6].toString();
+			achievement.setLevel(removeDoubleQuotes(ACHIEVEMENT_LEVEL));
 			achievementArrayList.add(achievement);
 			System.out.println("OUTPUT LIST: " + achievement.getTitle());
 		}
@@ -70,7 +72,7 @@ public class AchievementService {
 		// location objects in sqlite database
 		datasource.open();
 		
-		Achievement currentTitleLocations = datasource.selectRecordById(ACHIEVEMENT_ID);
+		Achievement currentTitleLocations = datasource.selectRecordByLevel(ACHIEVEMENT_LEVEL);
 		System.out.println("DELETED LOCATIONS BEFORE: " + locationList.size());
 		
 		if (currentTitleLocations != null) {
