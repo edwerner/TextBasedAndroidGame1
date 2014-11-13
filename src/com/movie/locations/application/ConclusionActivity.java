@@ -2,6 +2,7 @@ package com.movie.locations.application;
 
 import java.util.ArrayList;
 
+import com.google.android.gms.plus.PlusShare;
 import com.movie.locations.R;
 import com.movie.locations.application.WorldLocationDetailActivity.FilmLocationFragment;
 import com.movie.locations.dao.PointsItemImpl;
@@ -18,6 +19,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -91,10 +93,6 @@ public class ConclusionActivity extends ActionBarActivity {
 			
 			context = this;
 			
-
-			
-//			Fragment fragment = new FilmLocationFragment();
-//			
 			Fragment conclusionFragment = new PlaceholderFragment(); 
 			Bundle bundle = new Bundle();
 			bundle.putParcelable("bagItemArrayList", bagItemArrayList);
@@ -107,103 +105,23 @@ public class ConclusionActivity extends ActionBarActivity {
 			
 			
 			userSource = new UserImpl(this);
-//			currentUser = userSource.selectRecordById(currentUserId);
-//			System.out.println("CURRENT USER CONCLUSION ACTIVITY: " + currentUser.getUserId());
-//			System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT LEVEL: " + currentUser.getCurrentLevel());
-//			System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT POINTS: " + currentUser.getCurrentPoints());
 			
 			if (pointsItem != null) {
 				CURRENT_USER_ID = pointsItem.getUserId();
 				updatePointsDatabase();
 			}
 			
-//			if (emailNotifications != null && mobileNotifications != null) {
-//				updateUserNotificationsSettings();
-//			}
-//		}
 	}
 	
-//	private void updateUserNotificationsSettings() {
-//
-//		
-//		userSource.open();
-//		
-//		// UPDATE USER PREFERENCES
-//		final String FINAL_CURRENT_USER_ID_STRING = currentUserId;
-//		
-//		if (emailNotifications != null && mobileNotifications != null) {
-//			userSource.updateUserNotificationPreferences(FINAL_CURRENT_USER_ID_STRING, emailNotifications, mobileNotifications);
-//			System.out.println("UPDATED USER PREFERENCES DATABASE");
-//		}
-//		userSource.close();
-//		
-//	}
 
 	public void updatePointsDatabase() {
 
 		System.out.println("POINTS DATABASE");
 		
-//		pointsItem.setPointsUserId(pointsUserId);
-//		pointsItem.setUserId(currentUserId);
-		
-//		System.out.println("POINTS_ITEM USER ID: " + pointsUserId);
 		System.out.println("POINTS_ITEM CURRENT USER ID: " + CURRENT_USER_ID);
 		
 		System.out.println("POINTS ITEM PARCEL USER ID: " + CURRENT_USER_ID);
 		
-//		PointsItem pointsItem = new PointsItem();
-//		UserImpl userSource = new UserImpl(this);
-		
-		
-//		pointsSource.delete();
-		
-//		ArrayList<User> userSourceList = userSource.selectRecords();
-////		
-//		if (userSourceList != null) {
-//			for (User user : userSourceList) {
-//				System.out.println("POINTS DATABASE SAVE POINTS: " + user.getPoints());
-//				System.out.println("POINTS DATABASE SAVE BONUS_POINTS: " + user.getBonusPoints());
-//				System.out.println("POINTS DATABASE SAVE USER_ID: " + user.getUserId());
-//				System.out.println("POINTS DATABASE SAVE POINTS_USER_ID: " + user.getPointsUserId());
-//			}	
-//		} else {
-//			System.out.println("POINTS DATABASE SAVE EMPTY");
-//		}
-		
-		// IF THIS IS EVER NULL WE'VE GOT BIGGER PROBLEMS
-//		User tempUser = userSource.selectRecordById(CURRENT_USER_ID);
-//		pointsSource.open();
-		 
-		
-		
-////		pointsSource.delete();
-//		if (tempUser == null) {
-////			System.out.println("POINTS DATABASE CURRENT_USER_ID NULL");
-////			// create database connection and store
-////			// location objects in sqlite database
-////
-////			// TODO: REMOVE THIS AFTER DEBUGGING
-////			 
-////			
-////			// THIS SIDE IS HANDLING DOMAIN OBJECTDATABASE TRANSACTIONS
-////			//
-////			// THE SERVICE IS 
-//////			pointsItem.setUserId(currentUserId);
-//////			pointsItem.setPointsUserId(pointsUserId);
-////			userSource.open();
-////			
-////			userSource.createRecord(pointsItem);
-//////			pointsSource.delete();
-////			userSource.close();
-//		} else {
-			
-			
-			
-//			String currentPoints = tempUser.getPoints();
-			
-//			if (currentPoints == null) {
-//				
-//			}
 			
 //			String currentBonusPoints = tempUser.getBonusPoints();
 			String updatedPoints = null;
@@ -261,7 +179,6 @@ public class ConclusionActivity extends ActionBarActivity {
 //					final String CURRENT_USER_LEVEL = Integer.toString(currentLevelCheck);
 //					userSource.updateCurrentUserLevel(CURRENT_USER_ID, CURRENT_USER_LEVEL);
 //				}
-				
 				
 				
 				
@@ -441,6 +358,23 @@ public class ConclusionActivity extends ActionBarActivity {
 				public void onClick(View v) {
 					getActivity().finish();
 				}
+			});
+
+			Button shareButton = (Button) rootView.findViewById(R.id.share_button);
+			shareButton.setOnClickListener(new Button.OnClickListener() {
+			    @Override
+			    public void onClick(View v) {
+			      String image = "http://i.dailymail.co.uk/i/pix/2013/03/15/article-2293722-0294CDD8000004B0-59_306x455.jpg";
+				// Launch the Google+ share dialog with attribution to your app.
+			      Intent shareIntent = new PlusShare.Builder(context)
+			          .setType("text/plain")
+			          .setText("Test post")
+			          .setContentUrl(Uri.parse(image))
+//			          .setContentUrl(Uri.parse("https://developers.google.com/+/"))
+			          .getIntent();
+
+			      startActivityForResult(shareIntent, 0);
+			    }
 			});
 			
 			return rootView;
