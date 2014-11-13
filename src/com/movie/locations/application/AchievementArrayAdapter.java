@@ -76,7 +76,7 @@ public class AchievementArrayAdapter extends ArrayAdapter<Achievement> {
 		commentIntent.putExtra("userId", values.get(position).getUserId());
 		commentIntent.putExtra("dateTime", values.get(position).getDateTime());
 		commentIntent.putExtra("title", values.get(position).getTitle());
-		commentIntent.putExtra("catchPhrase", values.get(position).getCatchPhrase());
+//		commentIntent.putExtra("catchPhrase", values.get(position).getCatchPhrase());
 		
 		commentIntent.putExtra("localUser", localUser);
 		

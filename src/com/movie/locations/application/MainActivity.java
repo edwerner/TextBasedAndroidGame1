@@ -51,6 +51,8 @@ import com.google.android.gms.plus.model.people.PersonBuffer;
 
 
 
+
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -76,6 +78,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.movie.locations.R;
 import com.movie.locations.R.layout;
 import com.movie.locations.R.menu;
+import com.movie.locations.dao.AchievementImpl;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.GameTitleImpl;
@@ -91,6 +94,7 @@ import com.movie.locations.domain.MoviePostersHashMap;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.gcm.GcmIntentService;
+import com.movie.locations.service.AchievementService;
 import com.movie.locations.service.BagItemService;
 import com.movie.locations.service.ConclusionCardService;
 import com.movie.locations.service.FilmLocationService;
@@ -205,6 +209,7 @@ public class MainActivity extends FragmentActivity implements
 	private BagItemImpl bagitemsource;
 	private ConclusionCardImpl conclusioncardsource;
 	private GameTitleImpl gametitlesource;
+	private AchievementImpl achievementsource;
 
 	private boolean mIntentInProgress;
 
@@ -277,6 +282,7 @@ public class MainActivity extends FragmentActivity implements
 		bagitemsource = new BagItemImpl(this);
 		conclusioncardsource = new ConclusionCardImpl(this);
 		gametitlesource = new GameTitleImpl(this);
+		achievementsource = new AchievementImpl(this);
 		
 //		if (datasource.selectRecords().isEmpty()) {
 //			AsyncTaskRunner runner = new AsyncTaskRunner();
@@ -838,6 +844,11 @@ public class MainActivity extends FragmentActivity implements
 			GameTitleService titleService = new GameTitleService();
 			InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
 			titleService.createContentValues(titleStream, context);
+		}
+		if (achievementsource.selectRecords().isEmpty()) {
+			AchievementService titleService = new AchievementService();
+			InputStream achievementStream = getResources().openRawResource(R.raw.achievement_copy);
+			titleService.createContentValues(achievementStream, context);
 		}
 	}
 

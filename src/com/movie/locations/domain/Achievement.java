@@ -1,11 +1,53 @@
 package com.movie.locations.domain;
 
-public class Achievement {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Achievement implements Parcelable {
 	String achievementId;
 	String title;
-	String catchPhrase;
+	String description;
 	String userId;
 	String dateTime;
+	String imageUrl;
+	public Achievement() {
+		// EMPTY CONSTRUCTOR
+	}
+	
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel pc, int flags) {
+		pc.writeString(achievementId);
+		pc.writeString(title);
+		pc.writeString(description);
+		pc.writeString(userId);
+		pc.writeString(dateTime);
+		pc.writeString(imageUrl);
+	}	
+	
+	public Achievement(Parcel pc) {
+		achievementId = pc.readString();
+		title = pc.readString();
+		description = pc.readString();
+		userId = pc.readString();
+		dateTime = pc.readString();
+		imageUrl = pc.readString();
+	}
+
+	public static final Parcelable.Creator<BagItem> CREATOR = new Parcelable.Creator<BagItem>() {
+		public BagItem createFromParcel(Parcel in) {
+			return new BagItem(in);
+		}
+
+		public BagItem[] newArray(int size) {
+			return new BagItem[size];
+		}
+	};
+	
 	public String getAchievementId() {
 		return achievementId;
 	}
@@ -18,11 +60,11 @@ public class Achievement {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getCatchPhrase() {
-		return catchPhrase;
+	public String getDescription() {
+		return description;
 	}
-	public void setCatchPhrase(String catchPhrase) {
-		this.catchPhrase = catchPhrase;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getUserId() {
 		return userId;
@@ -35,5 +77,11 @@ public class Achievement {
 	}
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 }

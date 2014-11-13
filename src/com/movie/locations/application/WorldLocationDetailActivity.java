@@ -610,19 +610,22 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 		private void sendLevelUpNotification() {
 			int NOTIFICATION_ID = 1;
 			NotificationManager mNotificationManager;
-			NotificationCompat.Builder builder;
-			String copy = "Temp copy";
-			String msg = "Temp message";
+//			NotificationCompat.Builder builder;
+			String copy = "Keep going!";
+			String msg = "Welcome to level ";
 			
 			if (title != null) {
+				String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
+				msg += " " + FINAL_USER_LEVEL + " !";
+				
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
 			            .setAutoCancel(true)
 			            .setDefaults(Notification.DEFAULT_VIBRATE)
-						.setContentTitle("Trivia Warlock")
-						.setContentText(title)
+						.setContentTitle("Duchamp's Puzzle")
+						.setContentText(msg)
 						.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
-				System.out.println("TITLE: " + title);
-				System.out.println("COPY: " + copy);
+//				System.out.println("TITLE: " + title);
+//				System.out.println("COPY: " + copy);
 
 				// create and start achievement activity
 				mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -630,9 +633,17 @@ public class WorldLocationDetailActivity extends FragmentActivity implements
 				Intent achievementIntent = new Intent(context, AchievementActivity.class);
 				AchievementActivity.setContext(context);
 				
+				
+//				messageId = intent.getIntExtra("messageId", 1);
+//				achievementTitle = intent.getStringExtra("achievementTitle");
+//				achievementCopy = intent.getStringExtra("achievementCopy");
+//				achievementImageUrl = intent.getStringExtra("achievementImageUrl");
+//				levelUp = intent.getStringExtra("levelUp");
+				
 				achievementIntent.putExtra("messageId", NOTIFICATION_ID);
-				achievementIntent.putExtra("achievementTitle", title);
+				achievementIntent.putExtra("achievementTitle", "You leveled up!");
 				achievementIntent.putExtra("achievementCopy", copy);
+				achievementIntent.putExtra("levelUp", FINAL_USER_LEVEL);
 				
 				String ACHIEVEMENT_IMAGE_URL = "http://mymoneybox.mfsa.com.mt/Files/Blue-SRT-4.png";
 				achievementIntent.putExtra("achievementImageUrl", ACHIEVEMENT_IMAGE_URL);

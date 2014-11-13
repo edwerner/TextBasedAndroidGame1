@@ -1,22 +1,12 @@
 package com.movie.locations.application;
-
-import java.lang.ref.WeakReference;
-
 import com.movie.locations.R;
-import com.movie.locations.R.id;
-import com.movie.locations.R.layout;
-import com.movie.locations.R.menu;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,12 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.os.Build;
 
 public class AchievementActivity extends ActionBarActivity {
 
 	private static Context achievementContext;
 	private int messageId;
+	private static String message;
 	private static String levelUp;
 	private static String achievementTitle;
 	private static String achievementCopy;
@@ -46,6 +36,7 @@ public class AchievementActivity extends ActionBarActivity {
 					.add(R.id.container, new AchievementFragment()).commit();
 			Intent intent = getIntent();
 			messageId = intent.getIntExtra("messageId", 1);
+			message = intent.getStringExtra("message");
 			achievementTitle = intent.getStringExtra("achievementTitle");
 			achievementCopy = intent.getStringExtra("achievementCopy");
 			achievementImageUrl = intent.getStringExtra("achievementImageUrl");
@@ -133,7 +124,7 @@ public class AchievementActivity extends ActionBarActivity {
 			imageLoader.displayImage(achievementImageUrl, achievementPoster);
 			
 			TextView currentLevelText = (TextView) rootView.findViewById(R.id.currentLevelText1);
-			currentLevelText.setText("Welcome to level" + levelUp + "!");
+			currentLevelText.setText("Welcome to level " + levelUp + " !");
 			
 			return rootView;
 		}
