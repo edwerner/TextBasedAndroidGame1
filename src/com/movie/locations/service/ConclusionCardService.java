@@ -102,7 +102,7 @@ public class ConclusionCardService {
 		}
 		
 		ConclusionCardImpl datasource = new ConclusionCardImpl(context);
-		datasource.delete();
+//		datasource.delete();
 			
 		// create database connection and store
 		// location objects in sqlite database

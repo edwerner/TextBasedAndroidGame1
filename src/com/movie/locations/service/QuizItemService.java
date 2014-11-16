@@ -40,6 +40,7 @@ import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.domain.FilmLocationDataObject;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.QuizItem;
+import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.service.JsonService;
 import com.movie.locations.util.CSVFile;
 
@@ -110,13 +111,14 @@ public class QuizItemService {
 			quizItem.setActiveItem3(removeDoubleQuotes(result[19].toString()));
 			quizItem.setActiveItem4(removeDoubleQuotes(result[20].toString()));
 			quizItem.setLevel(removeDoubleQuotes(result[21].toString()));
+			quizItem.setPointValue(removeDoubleQuotes(result[22].toString()));
 			
 			quizArrayList.add(quizItem);
 			System.out.println("OUTPUT LIST QUIZ ITEMS: " + quizItem.getWorldId());
 		}
 		
 		QuizItemImpl datasource = new QuizItemImpl(context);
-		datasource.delete();
+//		datasource.delete();
 		// create database connection and store
 		// location objects in sqlite database
 		datasource.open();
@@ -139,16 +141,44 @@ public class QuizItemService {
 		
 		datasource.close();
 		
+		
+		// SEND UPDATED COLLECTION TO VIEW
+//		final FilmArrayList localLocationArrayList = new FilmArrayList();
+//		localLocationArrayList.setFilmList(locationList);
+		
+		
+		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
+		tempQuizItemArrayList.setQuizList(quizArrayList);
+		
+		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);
+		context.sendBroadcast(newsIntent);
+		
+		
 		// SEND DATABASE CHANGED EVENT
 //       	Intent broadcast = new Intent();
 //       	broadcast.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 ////        filter.addCategory(Intent.CATEGORY_DEFAULT);
 //        sendBroadcast(broadcast);
+//		
+//		Intent intent = new Intent();
+//        intent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+////        intent.addFlags(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//        context.sendBroadcast(intent);
+	}
+	
+	public void resetAnsweredQuestion(String result, Context context) {
+		QuizItemImpl datasource = new QuizItemImpl(context);
+		datasource.updateRecordAnswered(result, "FALSE");
+		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		ArrayList<QuizItem> currentTitleLocations = datasource.selectRecords();
+		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
+		tempQuizItemArrayList.setQuizList(currentTitleLocations);
 		
-		Intent intent = new Intent();
-        intent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-//        intent.addFlags(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-        context.sendBroadcast(intent);
+		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);
+		context.sendBroadcast(newsIntent);
 	}
 	public ArrayList<QuizItem> buildWorldLocationQuizObject(JsonNode quizData, Context context) {
 

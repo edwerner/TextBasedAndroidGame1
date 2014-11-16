@@ -111,7 +111,7 @@ public class GameTitleService {
 		}
 		
 		GameTitleImpl datasource = new GameTitleImpl(context);
-		datasource.delete();
+//		datasource.delete();
 			
 		// create database connection and store
 		// location objects in sqlite database
@@ -200,7 +200,7 @@ public class GameTitleService {
 					}
 					
 					for (GameTitle localGameTitle : gameTitleDatabaseList) {
-						System.out.println("GAME TITLE SERVICE DATABASE OBJECT: " + localGameTitle.getTitle());	
+						System.out.println("GAME TITLE SERVICE DATABASE OBJECT: " + localGameTitle.getTitle());
 					}
 					gameTitleImpl.close();
 				}

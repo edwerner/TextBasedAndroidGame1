@@ -42,6 +42,7 @@ public class QuizItem implements Parcelable {
 	private String activeItem4; //
 	private String correctAnswerIndex; // not set on client
 	private String level; //
+	private String pointValue;
 	
 	public QuizItem() {
 		// empty constructor
@@ -79,6 +80,7 @@ public class QuizItem implements Parcelable {
 		pc.writeString(activeItem3);
 		pc.writeString(activeItem4);
 		pc.writeString(level);
+		pc.writeString(pointValue);
 	}	
 	
 	public QuizItem(Parcel pc) {
@@ -107,6 +109,7 @@ public class QuizItem implements Parcelable {
 		activeItem3 = pc.readString();
 		activeItem4 = pc.readString();
 		level = pc.readString();
+		pointValue = pc.readString();
 	}
 
 	public static final Parcelable.Creator<QuizItem> CREATOR = new Parcelable.Creator<QuizItem>() {
@@ -350,5 +353,15 @@ public class QuizItem implements Parcelable {
 
 	public String getSubmittedIndex() {
 		return submittedAnswerIndex;
+	}
+
+
+	public String getPointValue() {
+		return pointValue;
+	}
+
+
+	public void setPointValue(String pointValue) {
+		this.pointValue = pointValue;
 	}
 }

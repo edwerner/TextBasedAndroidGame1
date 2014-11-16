@@ -2,8 +2,11 @@ package com.movie.locations.service;
 
 import java.util.ArrayList;
 
-import com.movie.locations.domain.FilmArrayList;
-import com.movie.locations.domain.FilmLocation;
+
+//import com.movie.locations.domain.FilmArrayList;
+//import com.movie.locations.domain.FilmLocation;
+import com.movie.locations.domain.QuizItem;
+import com.movie.locations.domain.QuizItemArrayList;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,12 +23,19 @@ public class DatabaseChangedReceiver extends BroadcastReceiver {
 		
 		Bundle extras = intent.getExtras();
 //		newsIntent.putExtra("locationArrayList", localLocationArrayList);
-		FilmArrayList locationArrayList = extras.getParcelable("locationArrayList");
-		System.out.println("DATABASE_CHANGED: " + locationArrayList);
-		ArrayList<FilmLocation> tempLocationList = locationArrayList.getFilmList();
+		QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
+		String mobileNotificationSettings = extras.getString("mobileNotificationSettings");
 		
-		for (FilmLocation loc : tempLocationList) {
-			System.out.println("DATABASE_CHANGED: " + loc.getLocations());
+		if (quizArrayList != null) {
+			System.out.println("DATABASE_CHANGED: " + quizArrayList);
+			ArrayList<QuizItem> quizItemArrayList = quizArrayList.getQuizList();
+			
+			for (QuizItem loc : quizItemArrayList) {
+				System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
+			}	
+		}
+		if (mobileNotificationSettings != null) {
+			System.out.println("MOBILE NOTIFICATION SETTINGS CHANGED");
 		}
 		
 	}
