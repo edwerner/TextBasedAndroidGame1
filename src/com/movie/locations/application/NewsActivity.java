@@ -34,7 +34,7 @@ import com.movie.locations.gcm.GcmIntentService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -54,6 +54,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -92,8 +93,8 @@ public class NewsActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_news);
 		
+		setContentView(R.layout.activity_news);
 		context = this;
 
 //		if (savedInstanceState == null) {
@@ -156,25 +157,24 @@ public class NewsActivity extends ActionBarActivity {
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 		// enable ActionBar app icon to behave as action to toggle nav drawer
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setHomeButtonEnabled(true);
 
 		// ActionBarDrawerToggle ties together the the proper interactions
 		// between the sliding drawer and the action bar app icon
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
 		mDrawerLayout, /* DrawerLayout object */
 		R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
-		R.string.drawer_open, /* "open drawer" description for accessibility */
-		R.string.drawer_close /* "close drawer" description for accessibility */
+		R.string.drawer_open
 		) {
 			public void onDrawerClosed(View view) {
-				getActionBar().setTitle(mTitle);
+				getSupportActionBar().setTitle(mTitle);
 				invalidateOptionsMenu(); // creates call to
 											// onPrepareOptionsMenu()
 			}
 
 			public void onDrawerOpened(View drawerView) {
-				getActionBar().setTitle(mDrawerTitle);
+				getSupportActionBar().setTitle(mDrawerTitle);
 				invalidateOptionsMenu(); // creates call to
 											// onPrepareOptionsMenu()
 			}
@@ -245,25 +245,15 @@ public class NewsActivity extends ActionBarActivity {
         boolean checked = ((CheckBox) view).isChecked();
 //        CheckBox mobileCheckbox = (CheckBox) R.id.emailNotifications1;
         
-        // Check which checkbox was clicked
-        switch(view.getId()) {
-            case R.id.checkboxNotifications1:
-                if (checked) {
-                	System.out.println("Mobile notifications checked");
-                	localUser.setMobileNotifications("true");
-                } else {
-                	localUser.setMobileNotifications("false");
-                }
-                break;
-//            case R.id.emailNotifications1:
-//            	if (checked) {
-//                	System.out.println("Email notifications checked");
-//                	localUser.setEmailNotifications("true");
-//                } else {
-//                	localUser.setEmailNotifications("false");
-//                }
-//                break;
-        }
+        int id = view.getId();
+		if (id == R.id.checkboxNotifications1) {
+			if (checked) {
+				System.out.println("Mobile notifications checked");
+				localUser.setMobileNotifications("true");
+			} else {
+				localUser.setMobileNotifications("false");
+			}
+		}
     }
 	public static void setUpdatedNewsData(FilmArrayList locationArrayList) {
 		NewsActivity.locationArrayList = locationArrayList;
@@ -300,9 +290,8 @@ public class NewsActivity extends ActionBarActivity {
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
-		// Handle action buttons
-		switch (item.getItemId()) {
-		case R.id.action_websearch:
+		int itemId = item.getItemId();
+		if (itemId == R.id.action_websearch) {
 			// create intent to perform web search for this planet
 			Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
 			intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
@@ -314,7 +303,7 @@ public class NewsActivity extends ActionBarActivity {
 						Toast.LENGTH_LONG).show();
 			}
 			return true;
-		default:
+		} else {
 			return super.onOptionsItemSelected(item);
 		}
 	}

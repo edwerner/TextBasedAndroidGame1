@@ -559,26 +559,21 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onClick(View v) {
 		if (!mGoogleApiClient.isConnecting()) {
-			// We only process button clicks when GoogleApiClient is not
-			// transitioning
-			// between connected and not connected.
-			switch (v.getId()) {
-			case R.id.sign_in_button:
+			int id = v.getId();
+			if (id == R.id.sign_in_button) {
 				mStatus.setText(R.string.status_signing_in);
 				if (!mGoogleApiClient.isConnecting()) {
 					mSignInClicked = true;
 					resolveSignInError();
 				}
-				break;
-			case R.id.sign_out_button:
+			} else if (id == R.id.sign_out_button) {
 				// We clear the default account on sign out so that Google Play
 				// services will not return an onConnected callback without user
 				// interaction.
 				Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 				mGoogleApiClient.disconnect();
 				mGoogleApiClient.connect();
-				break;
-			case R.id.revoke_access_button:
+			} else if (id == R.id.revoke_access_button) {
 				// After we revoke permissions for the user with a
 				// GoogleApiClient
 				// instance, we must discard it and create a new one.
@@ -591,34 +586,16 @@ public class MainActivity extends FragmentActivity implements
 				Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
 				mGoogleApiClient = buildGoogleApiClient();
 				mGoogleApiClient.connect();
-				break;
-			case R.id.entry_button:
-//				// configure universal image loader
-//				// and allow image caching
-//				DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-//						.cacheInMemory(true).cacheOnDisc(true)
-//						.displayer(new FadeInBitmapDisplayer(500)).build();
-//
-//				// Create global configuration and initialize ImageLoader with this
-//				// configuration
-//				ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-//						getApplicationContext()).defaultDisplayImageOptions(
-//						defaultOptions).build();
-//
-//				// initialize image loader
-//				ImageLoader.getInstance().init(config);
-				
+			} else if (id == R.id.entry_button) {
 				// TODO: refactor this
 				//
 				// set current user in service
 				GcmIntentService.setCurrentUserId(localUser.getUserId());
-				
 				userProfileIntent = new Intent(MainActivity.this, NewsActivity.class);
 				userProfileIntent.putExtra("localUser", localUser);
-//
+				//
 //				// start user profile intent
 				startActivity(userProfileIntent);
-				break;
 			}
 		}
 	}
