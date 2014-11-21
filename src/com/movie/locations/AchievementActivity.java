@@ -2,6 +2,8 @@ package com.movie.locations;
 
 import java.lang.ref.WeakReference;
 
+import com.movie.locations.application.NewsActivity.UserDetailFragment;
+import com.movie.locations.domain.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.support.v7.app.ActionBarActivity;
@@ -24,13 +26,11 @@ import android.os.Build;
 
 public class AchievementActivity extends ActionBarActivity {
 
-	private static Context achievementContext;
 	private int messageId;
-	private static String levelUp;
-	private static String achievementTitle;
-	private static String achievementCopy;
-	private static String achievementImageUrl;
-	protected static ImageLoader imageLoader = ImageLoader.getInstance();
+	private String levelUp;
+	private String achievementTitle;
+	private String achievementCopy;
+	private String achievementImageUrl;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +38,28 @@ public class AchievementActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_achievement);
 
 		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new AchievementFragment()).commit();
+
 			Intent intent = getIntent();
 			messageId = intent.getIntExtra("messageId", 1);
 			achievementTitle = intent.getStringExtra("achievementTitle");
 			achievementCopy = intent.getStringExtra("achievementCopy");
 			achievementImageUrl = intent.getStringExtra("achievementImageUrl");
 			levelUp = intent.getStringExtra("levelUp");
+
+			
+			
+			Fragment achievementFragment = new AchievementFragment();
+			Bundle userBundle = new Bundle();
+			userBundle.putInt("messageId", messageId);
+			userBundle.putString("achievementTitle", achievementTitle);
+			userBundle.putString("achievementCopy", achievementCopy);
+			userBundle.putString("achievementImageUrl", achievementImageUrl);
+			userBundle.putString("levelUp", levelUp);
+			achievementFragment.setArguments(userBundle);
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, achievementFragment).commit();
+			
+			
 		}
 	}
 
@@ -68,18 +82,10 @@ public class AchievementActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public static void setContext(Context context) {
-		achievementContext = context;
-	}
-
-	public Context getContext() {
-		return achievementContext;
-	}
-
 	// kill notification thread
 	public void cancelNotification(int notifyId) {
 		String service = Context.NOTIFICATION_SERVICE;
-		NotificationManager manager = (NotificationManager) getContext()
+		NotificationManager manager = (NotificationManager) getBaseContext()
 				.getSystemService(service);
 //		manager.cancel(notifyId);
 		manager.cancelAll();
@@ -90,22 +96,6 @@ public class AchievementActivity extends ActionBarActivity {
 	public void onResume() {
 		super.onResume();
 		cancelNotification(messageId);
-	}
-
-	public String getAchievementTitle() {
-		return achievementTitle;
-	}
-
-	public static void setAchievementTitle(String title) {
-		achievementTitle = title;
-	}
-
-	public String getAchievementCopy() {
-		return achievementCopy;
-	}
-
-	public static void setAchievementCopy(String copy) {
-		achievementCopy = copy;
 	}
 
 	/**
@@ -121,6 +111,13 @@ public class AchievementActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_achievement,
 					container, false);
+
+			final String achievementTitle = getArguments().getString("achievementTitle");
+			final String achievementCopy = getArguments().getString("achievementCopy");
+			final String achievementImageUrl = getArguments().getString("achievementImageUrl");
+			final String levelUp = getArguments().getString("levelUp");
+			final ImageLoader imageLoader = ImageLoader.getInstance();
+			
 			TextView achievementTitleText = (TextView) rootView.findViewById(R.id.achievementTitleText1);
 			achievementTitleText.setText(achievementTitle);
 			TextView achievementCopyText = (TextView) rootView.findViewById(R.id.achievementCopyText1);

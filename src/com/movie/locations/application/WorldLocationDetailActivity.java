@@ -687,7 +687,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 				
 				Intent achievementIntent = new Intent(context, AchievementActivity.class);
-				AchievementActivity.setContext(context);
+//				AchievementActivity.setContext(context);
 				
 				
 //				messageId = intent.getIntExtra("messageId", 1);

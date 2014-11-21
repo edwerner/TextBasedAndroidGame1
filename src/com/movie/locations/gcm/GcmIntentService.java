@@ -216,7 +216,7 @@ public class GcmIntentService extends IntentService {
 								.getSystemService(Context.NOTIFICATION_SERVICE);
 						
 						Intent achievementIntent = new Intent(this, AchievementActivity.class);
-						AchievementActivity.setContext(this.getBaseContext());
+//						AchievementActivity.setContext(this.getBaseContext());
 						
 						achievementIntent.putExtra("messageId", NOTIFICATION_ID);
 						achievementIntent.putExtra("achievementTitle", title);
@@ -495,7 +495,7 @@ public class GcmIntentService extends IntentService {
 					.getSystemService(Context.NOTIFICATION_SERVICE);
 			
 			Intent achievementIntent = new Intent(this, AchievementActivity.class);
-			AchievementActivity.setContext(this.getBaseContext());
+//			AchievementActivity.setContext(this.getBaseContext());
 			
 			achievementIntent.putExtra("messageId", NOTIFICATION_ID);
 			achievementIntent.putExtra("achievementTitle", title);

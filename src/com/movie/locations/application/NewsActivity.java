@@ -66,29 +66,25 @@ import android.widget.Toast;
 public class NewsActivity extends ActionBarActivity {
 
 	// navigation drawer
-	private static DrawerLayout mDrawerLayout;
+	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] navArray;
 	protected static ImageLoader imageLoader = ImageLoader.getInstance();
-	private static User localUser;
-	private static int pos;
+	private User localUser;
 	private FragmentTransaction ft;
-	private static Intent intent;
-	private static Context context;
-	private static ConclusionCardImpl conclusionCardImpl;
-	private static MovieLocationsImpl datasource;
-	private static ArrayList<ConclusionCard> cardList;
-	private static ConclusionCardArrayAdapter conclusionCardAdapter;
-	private static BagItemImpl bagItemImpl;
-	private static UserImpl userSource;
-	private static PointsItemImpl pointsItemImpl;
-	private static ArrayList<BagItem> bagItemList;
-	public static ArrayList<QuizItem> quizItemList;
-	public static QuizItemImpl quizItemImpl;
-	private static FilmArrayList locationArrayList;
+	private Intent intent;
+	private Context context;
+	private ConclusionCardImpl conclusionCardImpl;
+	private MovieLocationsImpl datasource;
+	private ArrayList<ConclusionCard> cardList;
+	private ConclusionCardArrayAdapter conclusionCardAdapter;
+	private BagItemImpl bagItemImpl;
+	private UserImpl userSource;
+	private PointsItemImpl pointsItemImpl;
+	private ArrayList<BagItem> bagItemList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -229,9 +225,9 @@ public class NewsActivity extends ActionBarActivity {
 		System.out.println("BAG ITEM LIST SIZE: " + bagItemList.size());
 		ArrayList<FilmLocation> tempLocationList = datasource.selectRecords();
 		System.out.println("START NEWS ACTIVITY LOCATION LIST LENGTH: " + tempLocationList.size());
-		FilmArrayList tempLocationArrayList = new FilmArrayList();
-		tempLocationArrayList.setFilmList(tempLocationList);
-		setUpdatedNewsData(tempLocationArrayList);
+//		FilmArrayList tempLocationArrayList = new FilmArrayList();
+//		tempLocationArrayList.setFilmList(tempLocationList);
+//		setUpdatedNewsData(tempLocationArrayList);
 	}
 
     @Override
@@ -255,12 +251,7 @@ public class NewsActivity extends ActionBarActivity {
 			}
 		}
     }
-	public static void setUpdatedNewsData(FilmArrayList locationArrayList) {
-		NewsActivity.locationArrayList = locationArrayList;
-	}
-	public static FilmArrayList getUpdatedNewsData() {
-		return locationArrayList;
-	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.news, menu);
@@ -334,7 +325,7 @@ public class NewsActivity extends ActionBarActivity {
 			localUser = userSource.selectRecordById(localUser.getUserId());
 		}
 		
-		quizItemList = quizItemImpl.selectRecords();
+//		quizItemList = quizItemImpl.selectRecords();
 		cardList = conclusionCardImpl.selectRecords();
 
 		// BAG ITEM NEWS ITEM
@@ -358,13 +349,21 @@ public class NewsActivity extends ActionBarActivity {
 //			ft.show(newsFragment);
 			break;
 		case 1:
-			ft.replace(R.id.content_frame, new UserDetailFragment());
+			Fragment userFragment = new UserDetailFragment();
+			Bundle userBundle = new Bundle();
+			userBundle.putParcelable("localUser", localUser);
+			userFragment.setArguments(userBundle);
+			ft.replace(R.id.content_frame, userFragment);
 //			ft.replace(R.id.container, userDetailFragment);
 //			ft.hide(newsFragment);
 //			ft.show(userDetailFragment);
 			break;
 		case 2:
-			ft.replace(R.id.content_frame, new FilmLocationsFragment());
+			Fragment locationsFragment = new FilmLocationsFragment();
+			Bundle locationsBundle = new Bundle();
+			locationsBundle.putParcelable("localUser", localUser);
+			locationsFragment.setArguments(locationsBundle);
+			ft.replace(R.id.content_frame, locationsFragment);
 //			ft.replace(R.id.content_frame, new FriendsFragment());
 //			ft.replace(R.id.container, new FilmLocationsFragment());
 //			ft.replace(R.id.container, userDetailFragment);
@@ -395,7 +394,6 @@ public class NewsActivity extends ActionBarActivity {
 			break;
 		}
 		ft.commit();
-		setPos(position);
 
 		System.out.println("nav item " + position + " clicked");
 	}
@@ -424,21 +422,13 @@ public class NewsActivity extends ActionBarActivity {
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-
-	public static int getPos() {
-		return pos;
-	}
-
-	public void setPos(int position) {
-		pos = position;
-	}
-
-
-	public static class BagItemListFragment extends Fragment {
+	
+	public class BagItemListFragment extends Fragment {
 		
-		private static ArrayList<NewsItem> newsUpdateList;
 //		private LinearLayout instructionsLayout;
 		protected boolean refreshed = false;
+		private ArrayList<BagItem> bagItemList;
+		private BagItemImpl bagItemImpl;
 
 		public BagItemListFragment() {
 		}
@@ -450,7 +440,7 @@ public class NewsActivity extends ActionBarActivity {
 
 
 					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
-					
+					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 //					String BAG_ITEM_TITLE = "BAG_ITEM_TITLE";
 //					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(BAG_ITEM_TITLE);
@@ -459,8 +449,9 @@ public class NewsActivity extends ActionBarActivity {
 					for (GameTitle tempTitle : gameTitleList) {
 						System.out.println("CARD DATABASE TITLE: " + tempTitle.getTitle());
 					}
-					
-
+					final Context bagContext = getActivity().getApplicationContext();
+					bagItemImpl = new BagItemImpl(bagContext);
+					bagItemList = bagItemImpl.selectRecords();
 					System.out.println("REFRESHED DATA");
 					
 					// sort the list
@@ -484,7 +475,7 @@ public class NewsActivity extends ActionBarActivity {
 							}	
 						}
 					}
-					
+					final Intent intent = getActivity().getIntent();
 					final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 					
 					if (gameTitleList.size() > 0) {
@@ -494,11 +485,12 @@ public class NewsActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-	public static class ConclusionCardFragment extends Fragment {
+	public class ConclusionCardFragment extends Fragment {
 		
-		private static ArrayList<NewsItem> newsUpdateList;
 //		private LinearLayout instructionsLayout;
 		protected boolean refreshed = false;
+		private ArrayList<ConclusionCard> cardList;
+//		private ConclusionCardImpl conclusionCardImpl;
 
 		public ConclusionCardFragment() {
 		}
@@ -508,7 +500,11 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_conclusion_card, container, false);
 
+					final Context cardContext = getActivity().getApplicationContext();
+					ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
+					cardList = conclusionCardImpl.selectRecords();
 					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreConclusionCardDataListView1);
+					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 					String CARD_TITLE = "CARD_TITLE";
 					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(CARD_TITLE);
@@ -517,6 +513,8 @@ public class NewsActivity extends ActionBarActivity {
 					}
 					System.out.println("REFRESHED DATA");
 
+					final Context quizContext = getActivity().getApplicationContext();
+					QuizItemImpl quizItemImpl = new QuizItemImpl(quizContext);
 					// sort the list
 					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
 					Collections.sort(cardList, StaticSortingUtilities.CARD_TITLES_ALPHABETICAL_ORDER);
@@ -543,7 +541,7 @@ public class NewsActivity extends ActionBarActivity {
 							}	
 						}
 					}
-					
+					final Intent intent = getActivity().getIntent();
 					final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 					
 					if (gameTitleList.size() > 0) {
@@ -557,12 +555,13 @@ public class NewsActivity extends ActionBarActivity {
 	// /**
 	// * A placeholder fragment containing a simple view.
 	// */
-	public static class NewsFragment extends Fragment {
+	public class NewsFragment extends Fragment {
 		
-		private static ArrayList<NewsItem> newsUpdateList;
+		private ArrayList<NewsItem> newsUpdateList;
 //		private LinearLayout instructionsLayout;
 		private String QUIZ_ITEM_NEWS_ITEM_IMAGE_URL = "http://www.phonandroid.com/forum/download/file.php?avatar=218224_1342902645.jpg";
-
+//		private ConclusionCardImpl conclusionCardImpl;
+		
 		public NewsFragment() {
 		}
 
@@ -571,6 +570,7 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_news, container, false);
 			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreNewsItemDataListView1);
+			final Context context = getActivity().getApplicationContext();
 			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 			String NEWS_ITEM_TITLE = "NEWS_ITEM_TITLE";
 			final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(NEWS_ITEM_TITLE);
@@ -608,6 +608,7 @@ public class NewsActivity extends ActionBarActivity {
 					gameTitleList.set(i, tempTitle);
 				}	
 			}
+			final Intent intent = getActivity().getIntent();
 			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 			if (gameTitleList.size() > 0) {
 				restoreListView.setAdapter(levelRestoreListAdapter);
@@ -623,13 +624,17 @@ public class NewsActivity extends ActionBarActivity {
 //			BagItemImpl localBagItemImpl = new BagItemImpl(context);
 //			ArrayList<BagItem> localBagItemList = localBagItemImpl.selectRecords();
 			BagItem latestBagItem = null;
-			
+			final Context bagContext = getActivity().getApplicationContext();
+			BagItemImpl bagItemImpl = new BagItemImpl(bagContext);
+			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
 			if (bagItemList.size() > 0) {
 				int latestBagItemIndex = bagItemList.size() - 1;
 				latestBagItem = bagItemList.get(latestBagItemIndex);
 				newsItemAdapter.setLatestBagItem(latestBagItem);	
 			}
 			// CONCLUSION CARD NEWS ITEM
+			final Context cardContext = getActivity().getApplicationContext();
+			ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
 			ArrayList<ConclusionCard> localConclusionCardList = conclusionCardImpl.selectRecords();
 			ConclusionCard latestConclusionCard = null;
 			if (localConclusionCardList.size() > 0) {
@@ -638,8 +643,8 @@ public class NewsActivity extends ActionBarActivity {
 				newsItemAdapter.setLatestConclusionCard(latestConclusionCard);	
 			}
 			// QUIZ ITEM NEWS ITEM
-			quizItemImpl = new QuizItemImpl(context);
-			quizItemList = quizItemImpl.selectRecords();
+			QuizItemImpl quizItemImpl = new QuizItemImpl(context);
+			ArrayList<QuizItem> quizItemList = quizItemImpl.selectRecords();
 			NewsItem bagItemNewsItem = new NewsItem();
 			bagItemNewsItem.setNewsType("BagItem");
 			
@@ -752,106 +757,15 @@ public class NewsActivity extends ActionBarActivity {
 			}
 			return rootView;
 		}
-		
-
-		public class UploadFilmLocationsTaskRunner extends AsyncTask<String, String, String> {
-
-			private String resp;
-			private ProgressDialog dialog;
-			private MovieLocationsImpl datasource;
-			private ArrayList<FilmLocation> filmLocationList;
-			
-			@Override
-			protected String doInBackground(String... params) {
-				publishProgress("Sleeping..."); // Calls onProgressUpdate()
-				try {
-					String dataUrl = params[0];
-					datasource = new MovieLocationsImpl(context);
-					filmLocationList = datasource.selectRecords();
-							
-//					for (FilmLocation item : filmLocationList) {
-//						System.out.println("UPLOAD FILM LOCATIONS: " + item.getTitle());
-//					}
-					
-					FilmArrayList filmArrayList = new FilmArrayList();
-					filmArrayList.setFilmList(datasource.selectRecords());
-
-					// Set the Content-Type header
-					HttpHeaders requestHeaders = new HttpHeaders();
-					requestHeaders.setContentType(new MediaType("application","json"));
-					HttpEntity<FilmArrayList> requestEntity = new HttpEntity<FilmArrayList>(filmArrayList, requestHeaders);
-
-					// Create a new RestTemplate instance
-					RestTemplate restTemplate = new RestTemplate();
-
-					// Add the Jackson and String message converters
-					restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-					restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-
-					// Make the HTTP POST request, marshaling the request to JSON, and the response to a String
-					ResponseEntity<FilmArrayList> responseEntity = restTemplate.exchange(dataUrl, HttpMethod.POST, requestEntity, FilmArrayList.class);
-					FilmArrayList filmLocationResponse = responseEntity.getBody();
-					ArrayList<FilmLocation> responseLocationList = filmLocationResponse.getFilmList();
-					FilmLocation responseLocation = responseLocationList.get(0);
-					System.out.println("REST TEMPLATE POST RESPONSE: " + responseLocation.getTitle());
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("ERROR STACK TRACE");
-					resp = e.getMessage();
-				}
-				return resp;
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-			 */
-			@Override
-			protected void onPostExecute(String result) {
-				// execution of result of Long time consuming operation
-				if (dialog != null) {
-					dialog.dismiss();
-				}
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPreExecute()
-			 */
-			@Override
-			protected void onPreExecute() {
-				// Things to be done before execution of long running operation. For
-				// example showing ProgessDialog
-
-				dialog = new ProgressDialog(context);
-				dialog.setTitle("Initializing...");
-				dialog.setMessage("Downloading level data.");
-				dialog.setCancelable(false);
-				dialog.setIndeterminate(true);
-				dialog.show();
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-			 */
-			@Override
-			protected void onProgressUpdate(String... text) {
-				// finalResult.setText(text[0]);
-				// Things to be done while execution of long running operation is in
-				// progress. For example updating ProgessDialog
-			}
-		}
 	}
 	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class UserDetailFragment extends Fragment {
+	public class UserDetailFragment extends Fragment {
 
+		private PointsItemImpl pointsItemImpl;
+		
 		public UserDetailFragment() {
 		}
 
@@ -863,6 +777,8 @@ public class NewsActivity extends ActionBarActivity {
 
 			ImageView userAvatar = (ImageView) rootView
 					.findViewById(R.id.userAvatar1);
+
+			final User localUser = getArguments().getParcelable("localUser");
 			imageLoader.displayImage(localUser.getAvatarImageUrl(), userAvatar);
 
 			// TextView userProfileTitleTag = (TextView)
@@ -894,6 +810,10 @@ public class NewsActivity extends ActionBarActivity {
 			System.out.println("localUser.getPoints: " + currentPoints);			
 			final String FINAL_USER_ID = localUser.getUserId();
 			final String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
+			
+			final Context pointsContext = getActivity().getApplicationContext();
+			pointsItemImpl = new PointsItemImpl(pointsContext);
+
 			final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
 			final String FINAL_USER_POINTS;
 			if (FINAL_USER_POINTS_ITEM != null) {
@@ -921,7 +841,7 @@ public class NewsActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class FilmLocationsFragment extends Fragment {
+	public class FilmLocationsFragment extends Fragment {
 
 		protected boolean refreshed = false;
 
@@ -933,7 +853,7 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_film_locations,
 					container, false);
-			
+			final User localUser = getArguments().getParcelable("localUser");
 			TextView locationsTitle = (TextView) rootView.findViewById(R.id.locationsTag1);
 //			TextView locationsText = (TextView) rootView.findViewById(R.id.locationsText);
 
@@ -941,6 +861,7 @@ public class NewsActivity extends ActionBarActivity {
 //			locationsText.setText("Get started!");
 			
 			Button getStartedButton = (Button) rootView.findViewById(R.id.get_started_button);
+			final Context context = getActivity().getApplicationContext();
 			final MovieLocationsImpl datasource = new MovieLocationsImpl(context);
 			final ArrayList<FilmLocation> defaultLocationList = datasource.selectRecords();
 			System.out.println("DEFAULT LOCATION LIST :" +  defaultLocationList);
@@ -1012,6 +933,7 @@ public class NewsActivity extends ActionBarActivity {
 			String WORLD_TITLE = "WORLD_TITLE";
 			final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
 			System.out.println("REFRESHED DATA");
+			final Intent intent = getActivity().getIntent();
 			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 			if (gameTitleList.size() > 0) {
 				restoreListView.setAdapter(levelRestoreListAdapter);
@@ -1025,9 +947,9 @@ public class NewsActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class AchievementsFragment extends Fragment {
+	public class AchievementsFragment extends Fragment {
 
-		private static ArrayList<Achievement> achievementList;
+		private ArrayList<Achievement> achievementList;
 		
 		public AchievementsFragment() {
 		}
@@ -1048,6 +970,7 @@ public class NewsActivity extends ActionBarActivity {
 				comment.setDateTime("dateTime");
 				achievementList.add(comment);	
 			}
+			final Intent intent = getActivity().getIntent();
 			AchievementArrayAdapter adapter = new AchievementArrayAdapter(
 					getActivity(), intent, achievementList);
 			if (achievementList.size() >= 0) {
