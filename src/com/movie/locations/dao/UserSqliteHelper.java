@@ -9,21 +9,20 @@ public class UserSqliteHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "users.db";
 	public static final String TABLE_USERS = "users";
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_USER_SID = "_usersid";
-	public static final String COLUMN_CLIENT_ID = "_clientid";
-	public final static String COLUMN_DISPLAY_NAME = "_displayname";
-	public final static String COLUMN_EMAIL_ADDRESS = "_emailaddress";
-	public final static String COLUMN_AVATAR_IMAGE_URL = "_avatarimageurl";
-	public final static String COLUMN_CURRENT_LEVEL = "_currentlevel";
-	public final static String COLUMN_ANSWER_CURRENT_POINTS = "_currentpoints";
-	public static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
-	public static final String COLUMN_POINTS = "_points";
-	public static final String COLUMN_BONUS_POINTS = "_bonuspoints";
-	public static final String COLUMN_WORLD_COUNT = "_worldcount";
-	public static final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
-	public static final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
-
+	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_USER_SID = "_usersid";
+	private static final String COLUMN_CLIENT_ID = "_clientid";
+	private final static String COLUMN_DISPLAY_NAME = "_displayname";
+	private final static String COLUMN_EMAIL_ADDRESS = "_emailaddress";
+	private final static String COLUMN_AVATAR_IMAGE_URL = "_avatarimageurl";
+	private final static String COLUMN_CURRENT_LEVEL = "_currentlevel";
+	private final static String COLUMN_ANSWER_CURRENT_POINTS = "_currentpoints";
+	private static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
+	private static final String COLUMN_POINTS = "_points";
+	private static final String COLUMN_BONUS_POINTS = "_bonuspoints";
+	private static final String COLUMN_WORLD_COUNT = "_worldcount";
+	private static final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
+	private static final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
 	private static final int DATABASE_VERSION = 1;
 
 	// Database creation sql statement

@@ -16,23 +16,14 @@ import android.database.sqlite.SQLiteDatabase;
 public class GameTitleImpl {
 
 	private GameTitleSqliteHelper dbHelper;
-
 	private SQLiteDatabase database;
-
-	// private String bagGroupTitle;
-	// private String itemTitle;
-	// private String description;
-	// private String imageUrl;
-	// private String level;
-
-	public final static String TABLE_NAME = "gametitles"; // name of table
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_TITLE = "_title";
-	public static final String COLUMN_TYPE = "_type";
-	public static final String COLUMN_LEVEL = "_level";
-	public static final String COLUMN_PHASE = "_phase";
-
-	public static Map<String, GameTitle> BAG_ITEM_MAP = new HashMap<String, GameTitle>();
+	private final static String TABLE_NAME = "gametitles"; // name of table
+	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_TITLE = "_title";
+	private static final String COLUMN_TYPE = "_type";
+	private static final String COLUMN_LEVEL = "_level";
+	private static final String COLUMN_PHASE = "_phase";
+	private static Map<String, GameTitle> BAG_ITEM_MAP = new HashMap<String, GameTitle>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_PHASE };
 
 	/**

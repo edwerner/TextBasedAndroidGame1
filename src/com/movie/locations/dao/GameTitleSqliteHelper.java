@@ -9,12 +9,11 @@ public class GameTitleSqliteHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "gametitles.db";
 	public static final String TABLE_GAME_TITLES = "gametitles";	
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_TITLE = "_title";
-	public static final String COLUMN_TYPE = "_type";
-	public static final String COLUMN_LEVEL = "_level";
-	public static final String COLUMN_PHASE = "_phase";
-	
+	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_TITLE = "_title";
+	private static final String COLUMN_TYPE = "_type";
+	private static final String COLUMN_LEVEL = "_level";
+	private static final String COLUMN_PHASE = "_phase";	
 	private static final int DATABASE_VERSION = 1;
 
 	// Database creation sql statement

@@ -1,55 +1,26 @@
 package com.movie.locations.dao;
-
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.movie.locations.domain.BagItem;
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
-import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.NewsItem;
-import com.movie.locations.domain.QuizItem;
-import com.movie.locations.domain.User;
-import com.movie.locations.util.SessionIdentifierGenerator;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 
 public class NewsItemImpl {
 
 	private NewsItemSqliteHelper dbHelper;
-
 	private SQLiteDatabase database;
-
-	// private String bagGroupTitle;
-	// private String itemTitle;
-	// private String description;
-	// private String imageUrl;
-	// private String level;
-	// private static final String DATABASE_NAME = "newsitems.db";
-	// public static final String TABLE_NEWS_ITEMS = "newsitems";
-
-	public final static String TABLE_NAME = "newsitems"; // name of table
-	public static final String COLUMN_ID = "_id";
-	public final static String COLUMN_TITLE = "_title";
-	public final static String COLUMN_TEXT = "_text";
-	public final static String COLUMN_IMAGE_URL = "_imageurl";
-	public final static String COLUMN_NEWS_TYPE = "_newstype";
-	public final static String COLUMN_DATETIME = "_datetime";
-
-	public static Map<String, NewsItem> BAG_ITEM_MAP = new HashMap<String, NewsItem>();
+	private final static String TABLE_NAME = "newsitems"; // name of table
+	private static final String COLUMN_ID = "_id";
+	private final static String COLUMN_TITLE = "_title";
+	private final static String COLUMN_TEXT = "_text";
+	private final static String COLUMN_IMAGE_URL = "_imageurl";
+	private final static String COLUMN_NEWS_TYPE = "_newstype";
+	private final static String COLUMN_DATETIME = "_datetime";
+	private static Map<String, NewsItem> BAG_ITEM_MAP = new HashMap<String, NewsItem>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TEXT,
 			COLUMN_IMAGE_URL, COLUMN_NEWS_TYPE, COLUMN_DATETIME };
 
@@ -163,13 +134,6 @@ public class NewsItemImpl {
 		newsItem.setImageUrl(cursor.getString(3));
 		newsItem.setNewsType(cursor.getString(4));
 		newsItem.setDateTime(cursor.getString(5));
-//		pc.writeString(id);
-//		pc.writeString(title);
-//		pc.writeString(text);
-//		pc.writeString(imageUrl);
-//		pc.writeString(newsType);
-//		pc.writeString(dateTime);
-
 		return newsItem;
 	}
 

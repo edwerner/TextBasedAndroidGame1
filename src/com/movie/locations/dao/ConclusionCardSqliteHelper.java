@@ -9,12 +9,11 @@ public class ConclusionCardSqliteHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "conclusioncards.db";
 	public static final String TABLE_CONCLUSION_CARDS = "conclusioncards"; // name of table
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_TITLE = "_title";
-	public static final String COLUMN_COPY = "_copy";
-	public static final String COLUMN_IMAGE_URL = "_imageurl";
-	public static final String COLUMN_LEVEL = "_level";
-
+	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_TITLE = "_title";
+	private static final String COLUMN_COPY = "_copy";
+	private static final String COLUMN_IMAGE_URL = "_imageurl";
+	private static final String COLUMN_LEVEL = "_level";
 	private static final int DATABASE_VERSION = 1;
 
 	// Database creation sql statement

@@ -77,23 +77,24 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 	private QuizItem quizItem;
 	private User currentUser;
 	private Intent intent;
-	private static Context context;
 	private String UNIQUE_MAP_IMAGE_URL = null;
 	private BagItemArrayList bagItemArrayList;
 	private FilmArrayList locationArrayList;
 	private FilmLocation currentLocation;
 	private QuizItemImpl quizitemsource;
-	private static ArrayList<QuizItem> newQuizList;
 	private QuizItemArrayList localQuizItemArrayList;
 	private UserImpl userSource;
 	private IntentFilter filter;
 	private PointsItemImpl pointsItemImpl;
+	private AchievementImpl achievementImpl;
+	private Achievement levelAchievement;
+
+	private static Context context;
+	private static ArrayList<QuizItem> newQuizList;
 	private static Dialog dialog;
 	private static LocationQuizArrayAdapter locationQuizArrayAdapter;
 	private static ListView locationsList;
 //	private static QuizItemService quizItemService;
-	private AchievementImpl achievementImpl;
-	private Achievement levelAchievement;
 
 
 	@Override

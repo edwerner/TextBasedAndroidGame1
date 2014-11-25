@@ -1,90 +1,45 @@
 package com.movie.locations.dao;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
-import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.QuizItem;
-import com.movie.locations.util.SessionIdentifierGenerator;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 
 public class QuizItemImpl {
 
 	private QuizItemSqliteHelper dbHelper;
-
 	private SQLiteDatabase database;
-
 	public final static String TABLE_NAME = "quizitems"; // name of table
-
-	// DATABASE COLUMN NAMES
-	//
-	// questionId
-	// filmTitle
-	// dateTime
-	// questionText
-	// answer1
-	// answer2
-	// answer3
-	// answer4
-	// reaction1
-	// reaction2
-	// reaction3
-	// reaction4
-	// worldId
-	// worldTitle
-	// submittedAnswerIndex // not persisting, just for http post
-	// correctAnswerIndex // not needed on client
-	// answered
-	// level
-	// activeItem
-	// activeItem1
-	// activeItem2
-	// activeItem3
-	// activeItem4
-
-	public static final String COLUMN_ID = "_id";
-	// public static final String COLUMN_SID = "_sid";
-	// public final static String COLUMN_FILM_TITLE = "_filmtitle";
-	public final static String COLUMN_ANSWER_SUBMIT_COUNT = "_datetime";
-	public final static String COLUMN_QUESTION_TEXT = "_questiontext";
-	public final static String COLUMN_ANSWER_01 = "_answer1";
-	public final static String COLUMN_ANSWER_02 = "_answer2";
-	public final static String COLUMN_ANSWER_03 = "_answer3";
-	public final static String COLUMN_ANSWER_04 = "_answer4";
-	public final static String COLUMN_REACTION_01 = "_reaction1";
-	public final static String COLUMN_REACTION_02 = "_reaction2";
-	public final static String COLUMN_REACTION_03 = "_reaction3";
-	public final static String COLUMN_REACTION_04 = "_reaction4";
-	public static final String COLUMN_WORLD_ID = "_worldid";
-	public static final String COLUMN_WORLD_TITLE = "_worldtitle";
-	// public static final String COLUMN_LOCATIONS = "_locations";
-	// public static final String COLUMN_POSITION = "_position";
-	public final static String COLUMN_ANSWERED = "_answered";
-	public static final String COLUMN_LEVEL = "_level";
-	public static final String COLUMN_ACTIVE_ITEM = "_activeitem";
-	public static final String COLUMN_ACTIVE_ITEM_01 = "_activeitem1";
-	public static final String COLUMN_ACTIVE_ITEM_02 = "_activeitem2";
-	public static final String COLUMN_ACTIVE_ITEM_03 = "_activeitem3";
-	public static final String COLUMN_ACTIVE_ITEM_04 = "_activeitem4";
-	public static final String COLUMN_CORRECT_ANSWER_INDEX = "_correctanswerindex";
-	public static final String COLUMN_POINT_VALUE = "_pointvalue";
+	private static final String COLUMN_ID = "_id";
+	private final static String COLUMN_ANSWER_SUBMIT_COUNT = "_datetime";
+	private final static String COLUMN_QUESTION_TEXT = "_questiontext";
+	private final static String COLUMN_ANSWER_01 = "_answer1";
+	private final static String COLUMN_ANSWER_02 = "_answer2";
+	private final static String COLUMN_ANSWER_03 = "_answer3";
+	private final static String COLUMN_ANSWER_04 = "_answer4";
+	private final static String COLUMN_REACTION_01 = "_reaction1";
+	private final static String COLUMN_REACTION_02 = "_reaction2";
+	private final static String COLUMN_REACTION_03 = "_reaction3";
+	private final static String COLUMN_REACTION_04 = "_reaction4";
+	private static final String COLUMN_WORLD_ID = "_worldid";
+	private static final String COLUMN_WORLD_TITLE = "_worldtitle";
+	private final static String COLUMN_ANSWERED = "_answered";
+	private static final String COLUMN_LEVEL = "_level";
+	private static final String COLUMN_ACTIVE_ITEM = "_activeitem";
+	private static final String COLUMN_ACTIVE_ITEM_01 = "_activeitem1";
+	private static final String COLUMN_ACTIVE_ITEM_02 = "_activeitem2";
+	private static final String COLUMN_ACTIVE_ITEM_03 = "_activeitem3";
+	private static final String COLUMN_ACTIVE_ITEM_04 = "_activeitem4";
+	private static final String COLUMN_CORRECT_ANSWER_INDEX = "_correctanswerindex";
+	private static final String COLUMN_POINT_VALUE = "_pointvalue";
 	// public final static String COLUMN_STATIC_MAP_IMAGE_URL =
 	// "_staticmapimageurl";
 
-	public static Map<String, QuizItem> QUIZ_ITEM_MAP = new HashMap<String, QuizItem>();
+	private static Map<String, QuizItem> QUIZ_ITEM_MAP = new HashMap<String, QuizItem>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_ANSWER_SUBMIT_COUNT,
 			COLUMN_QUESTION_TEXT, COLUMN_ANSWER_01, COLUMN_ANSWER_02,
 			COLUMN_ANSWER_03, COLUMN_ANSWER_04, COLUMN_REACTION_01,
@@ -117,19 +72,7 @@ public class QuizItemImpl {
 
 	public QuizItem createRecord(QuizItem quizItem) {
 		ContentValues values = new ContentValues();
-
-		// COLUMN_ID, COLUMN_FILM_TITLE,
-		// COLUMN_DATETIME, COLUMN_QUESTION_TEXT, COLUMN_ANSWER_01,
-		// COLUMN_ANSWER_02, COLUMN_ANSWER_03, COLUMN_ANSWER_04,
-		// COLUMN_REACTION_01, COLUMN_REACTION_02, COLUMN_REACTION_03,
-		// COLUMN_REACTION_04, COLUMN_WORLD_ID, COLUMN_WORLD_TITLE,
-		// COLUMN_ANSWERED, COLUMN_LEVEL,
-		// COLUMN_ACTIVE_ITEM, COLUMN_ACTIVE_ITEM_01, COLUMN_ACTIVE_ITEM_02,
-		// COLUMN_ACTIVE_ITEM_03, COLUMN_ACTIVE_ITEM_04
-
 		values.put(COLUMN_ID, quizItem.getQuestionId());
-		// values.put(COLUMN_SID, quizItem.get());
-		// values.put(COLUMN_FILM_TITLE, quizItem.getFilmTitle());
 		values.put(COLUMN_ANSWER_SUBMIT_COUNT, quizItem.getAnswerSubmitCount());
 		values.put(COLUMN_QUESTION_TEXT, quizItem.getQuestionText());
 		values.put(COLUMN_ANSWER_01, quizItem.getAnswer1());
@@ -151,9 +94,6 @@ public class QuizItemImpl {
 		values.put(COLUMN_ACTIVE_ITEM_04, quizItem.getActiveItem4());
 		values.put(COLUMN_CORRECT_ANSWER_INDEX, quizItem.getCorrectAnswerIndex()); // not set on client
 		values.put(COLUMN_POINT_VALUE, quizItem.getPointValue());
-
-		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
-		// Integer.parseInt(id));
 
 		long insertId = database.insert(QuizItemSqliteHelper.TABLE_QUIZ_ITEMS,
 				null, values);
@@ -280,7 +220,6 @@ public class QuizItemImpl {
 
 		QuizItem quizItem = new QuizItem();
 		quizItem.setQuestionId(cursor.getString(0));
-		// quizItem.setFilmTitle(cursor.getString(1));
 		quizItem.setAnswerSubmitCount(cursor.getString(1));
 		quizItem.setQuestionText(cursor.getString(2));
 		quizItem.setAnswer1(cursor.getString(3));
@@ -302,9 +241,6 @@ public class QuizItemImpl {
 		quizItem.setActiveItem4(cursor.getString(19));
 		quizItem.setCorrectAnswerIndex(cursor.getString(20));
 		quizItem.setPointValue(cursor.getString(21));
-		// quizItem.setCorrectAnswerIndex(cursor.getInt(6)); // not needed on
-		// client
-
 		return quizItem;
 	}
 }

@@ -1,49 +1,25 @@
 package com.movie.locations.dao;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.movie.locations.domain.BagItem;
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
 import com.movie.locations.domain.ConclusionCard;
-import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.QuizItem;
-import com.movie.locations.domain.User;
-import com.movie.locations.util.SessionIdentifierGenerator;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 
 public class ConclusionCardImpl {
 
 	private ConclusionCardSqliteHelper dbHelper;
-
 	private SQLiteDatabase database;
-
-//	private String id;
-//	private String title;
-//	private String copy;
-//	private String imageUrl;
-//	private String level;
-
-	public final static String TABLE_NAME = "conclusioncards"; // name of table
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_TITLE = "_title";
-	public static final String COLUMN_COPY = "_copy";
-	public static final String COLUMN_IMAGE_URL = "_imageurl";
-	public static final String COLUMN_LEVEL = "_level";
-
-	public static Map<String, ConclusionCard> BAG_ITEM_MAP = new HashMap<String, ConclusionCard>();
+	private static final String TABLE_NAME = "conclusioncards"; // name of table
+	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_TITLE = "_title";
+	private static final String COLUMN_COPY = "_copy";
+	private static final String COLUMN_IMAGE_URL = "_imageurl";
+	private static final String COLUMN_LEVEL = "_level";
+	private static Map<String, ConclusionCard> BAG_ITEM_MAP = new HashMap<String, ConclusionCard>();
 	private String[] allColumns = { COLUMN_ID,
 			COLUMN_TITLE, COLUMN_COPY, COLUMN_IMAGE_URL, COLUMN_LEVEL };
 

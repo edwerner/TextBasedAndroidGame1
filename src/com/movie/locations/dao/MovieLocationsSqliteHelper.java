@@ -8,30 +8,29 @@ import android.util.Log;
 public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "locations.db";
 	public static final String TABLE_LOCATIONS = "locations";
-	public static final String COLUMN_ID = "_id";
-	public final static String COLUMN_SID = "_sid";
-	public static final String COLUMN_LEVEL = "_level";
-	public final static String COLUMN_POSITION = "_position";
-	public final static String COLUMN_CREATED_AT = "_createdat";
-	public final static String COLUMN_CREATED_META = "_createdmeta";
-	public final static String COLUMN_UPDATED_AT = "_updateat";
-	public final static String COLUMN_UPDATED_META = "_updatedmeta";
-	public final static String COLUMN_META = "_meta";
-	public final static String COLUMN_TITLE = "_title";
-	public final static String COLUMN_RELEASE_YEAR = "_releaseyear";
-	public final static String COLUMN_LOCATIONS = "_locations";
-	public final static String COLUMN_FUN_FACTS = "_funfacts";
-	public final static String COLUMN_PRODUCTION_COMPANY = "_productioncompany";
-	public final static String COLUMN_DISTRIBUTOR = "_distributor";
-	public final static String COLUMN_DIRECTOR = "_director";
-	public final static String COLUMN_WRITER = "_writer";
-	public final static String COLUMN_ACTOR_1 = "_actor1";
-	public final static String COLUMN_ACTOR_2 = "_actor2";
-	public final static String COLUMN_ACTOR_3 = "_actor3";
-	public final static String COLUMN_LATITUDE = "_latitide";
-	public final static String COLUMN_LONGITUDE = "_longitude";
-	public final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
-
+	private static final String COLUMN_ID = "_id";
+	private final static String COLUMN_SID = "_sid";
+	private static final String COLUMN_LEVEL = "_level";
+	private final static String COLUMN_POSITION = "_position";
+	private final static String COLUMN_CREATED_AT = "_createdat";
+	private final static String COLUMN_CREATED_META = "_createdmeta";
+	private final static String COLUMN_UPDATED_AT = "_updateat";
+	private final static String COLUMN_UPDATED_META = "_updatedmeta";
+	private final static String COLUMN_META = "_meta";
+	private final static String COLUMN_TITLE = "_title";
+	private final static String COLUMN_RELEASE_YEAR = "_releaseyear";
+	private final static String COLUMN_LOCATIONS = "_locations";
+	private final static String COLUMN_FUN_FACTS = "_funfacts";
+	private final static String COLUMN_PRODUCTION_COMPANY = "_productioncompany";
+	private final static String COLUMN_DISTRIBUTOR = "_distributor";
+	private final static String COLUMN_DIRECTOR = "_director";
+	private final static String COLUMN_WRITER = "_writer";
+	private final static String COLUMN_ACTOR_1 = "_actor1";
+	private final static String COLUMN_ACTOR_2 = "_actor2";
+	private final static String COLUMN_ACTOR_3 = "_actor3";
+	private final static String COLUMN_LATITUDE = "_latitide";
+	private final static String COLUMN_LONGITUDE = "_longitude";
+	private final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
 	private static final int DATABASE_VERSION = 5;
 
 	// Database creation sql statement
@@ -81,45 +80,3 @@ public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 }
-
-// package com.movie.locations.dao;
-//
-// import android.content.Context;
-// import android.database.sqlite.SQLiteDatabase;
-// import android.database.sqlite.SQLiteOpenHelper;
-// import android.util.Log;
-//
-// public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
-//
-// public static final String TABLE_LOCATIONS = "locations";
-// public static final String COLUMN_ID = "_id";
-// public static final String COLUMN_LOCATION = "location";
-//
-// private static final String DATABASE_NAME = "locations.db";
-// private static final int DATABASE_VERSION = 1;
-//
-// // Database creation sql statement
-// private static final String DATABASE_CREATE = "create table "
-// + TABLE_LOCATIONS + "(" + COLUMN_ID
-// + " integer primary key autoincrement, " + COLUMN_LOCATION
-// + " text not null);";
-//
-// public MovieLocationsSqliteHelper(Context context) {
-// super(context, DATABASE_NAME, null, DATABASE_VERSION);
-// }
-//
-// @Override
-// public void onCreate(SQLiteDatabase database) {
-// database.execSQL(DATABASE_CREATE);
-// }
-//
-// @Override
-// public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-// Log.w(MovieLocationsSqliteHelper.class.getName(),
-// "Upgrading database from version " + oldVersion + " to "
-// + newVersion + ", which will destroy all old data");
-// db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);
-// onCreate(db);
-// }
-//
-// } 

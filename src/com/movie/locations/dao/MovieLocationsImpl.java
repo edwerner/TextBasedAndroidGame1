@@ -1,53 +1,43 @@
 package com.movie.locations.dao;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.QuizItem;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 
 public class MovieLocationsImpl {
 
 	private MovieLocationsSqliteHelper dbHelper;
-
 	private SQLiteDatabase database;
-
-	public final static String COLUMN_TABLE = "locations"; // name of table
-	public final static String COLUMN_SID = "_sid";
-	public static final String COLUMN_ID = "_id";
+	private final static String COLUMN_TABLE = "locations"; // name of table
+	private final static String COLUMN_SID = "_sid";
+	private static final String COLUMN_ID = "_id";
 	public static final String COLUMN_LEVEL = "_level";
-	public final static String COLUMN_POSITION = "_position";
-	public final static String COLUMN_CREATED_AT = "_createdat";
-	public final static String COLUMN_CREATED_META = "_createdmeta";
-	public final static String COLUMN_UPDATED_AT = "_updateat";
-	public final static String COLUMN_UPDATED_META = "_updatedmeta";
-	public final static String COLUMN_META = "_meta";
-	public final static String COLUMN_TITLE = "_title";
-	public final static String COLUMN_RELEASE_YEAR = "_releaseyear";
-	public final static String COLUMN_LOCATIONS = "_locations";
-	public final static String COLUMN_FUN_FACTS = "_funfacts";
-	public final static String COLUMN_PRODUCTION_COMPANY = "_productioncompany";
-	public final static String COLUMN_DISTRIBUTOR = "_distributor";
-	public final static String COLUMN_DIRECTOR = "_director";
-	public final static String COLUMN_WRITER = "_writer";
-	public final static String COLUMN_ACTOR_1 = "_actor1";
-	public final static String COLUMN_ACTOR_2 = "_actor2";
-	public final static String COLUMN_ACTOR_3 = "_actor3";
-	public final static String COLUMN_LATITUDE = "_latitide";
-	public final static String COLUMN_LONGITUDE = "_longitude";
-	public final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
-	public static Map<String, FilmLocation> LOCATION_MAP = new HashMap<String, FilmLocation>();
+	private final static String COLUMN_POSITION = "_position";
+	private final static String COLUMN_CREATED_AT = "_createdat";
+	private final static String COLUMN_CREATED_META = "_createdmeta";
+	private final static String COLUMN_UPDATED_AT = "_updateat";
+	private final static String COLUMN_UPDATED_META = "_updatedmeta";
+	private final static String COLUMN_META = "_meta";
+	private final static String COLUMN_TITLE = "_title";
+	private final static String COLUMN_RELEASE_YEAR = "_releaseyear";
+	private final static String COLUMN_LOCATIONS = "_locations";
+	private final static String COLUMN_FUN_FACTS = "_funfacts";
+	private final static String COLUMN_PRODUCTION_COMPANY = "_productioncompany";
+	private final static String COLUMN_DISTRIBUTOR = "_distributor";
+	private final static String COLUMN_DIRECTOR = "_director";
+	private final static String COLUMN_WRITER = "_writer";
+	private final static String COLUMN_ACTOR_1 = "_actor1";
+	private final static String COLUMN_ACTOR_2 = "_actor2";
+	private final static String COLUMN_ACTOR_3 = "_actor3";
+	private final static String COLUMN_LATITUDE = "_latitide";
+	private final static String COLUMN_LONGITUDE = "_longitude";
+	private final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
+	private static Map<String, FilmLocation> LOCATION_MAP = new HashMap<String, FilmLocation>();
 
 	// public static final String COLUMN_LOCATION = "location";
 	private String[] allColumns = { COLUMN_ID, COLUMN_SID, COLUMN_LEVEL,
@@ -80,11 +70,6 @@ public class MovieLocationsImpl {
 	}
 
 	public FilmLocation createRecord(FilmLocation location) {
-		// ContentValues values = new ContentValues();
-		// values.put(COLUMN_ID, id);
-		// values.put(COLUMN_LOCATION, name);
-		// return database.insert(COLUMN_TABLE, null, values);
-
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_ID, location.getId());
 		values.put(COLUMN_SID, location.getSid());
@@ -110,9 +95,6 @@ public class MovieLocationsImpl {
 		values.put(COLUMN_LONGITUDE, location.getLongitude());
 		values.put(COLUMN_STATIC_MAP_IMAGE_URL, location.getStaticMapImageUrl());
 
-		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
-		// Integer.parseInt(id));
-
 		long insertId = database.insert(
 				MovieLocationsSqliteHelper.TABLE_LOCATIONS, null, values);
 		Cursor cursor = database.query(
@@ -128,11 +110,7 @@ public class MovieLocationsImpl {
 			}
 			cursor.close();
 		}
-
-		// ClassLoaderHelper.LOCATION_MAP.put(location.getSid(), location);
-
 		return locationCursor;
-
 	}
 
 	public ArrayList<FilmLocation> selectRecords() {
@@ -152,7 +130,6 @@ public class MovieLocationsImpl {
 		}
 		return locations; // iterate to get each value.
 	}
-
 
 	public ArrayList<FilmLocation> selectRecordsByTitle(String title) {
 		ArrayList<FilmLocation> locations = new ArrayList<FilmLocation>();
@@ -177,28 +154,6 @@ public class MovieLocationsImpl {
 	}
 	
 	public void deleteRecordsByTitle(String recordTitle) {
-//
-////		ContentValues quizObject = new ContentValues();
-//		
-//		ArrayList<FilmLocation> locations = new ArrayList<FilmLocation>();
-//		
-//		// String[] cols = new String[] { COLUMN_ID };
-//		Cursor mCursor = database.query(true, COLUMN_TABLE, allColumns, null,
-//				null, null, null, null, null);
-//		// String num;
-//
-//		if (mCursor != null && mCursor.moveToFirst()) {
-//			while (!mCursor.isAfterLast()) {
-//				FilmLocation location = cursorToComment(mCursor);
-//				
-//				if (location.getTitle().equals(recordTitle)) {
-//					locations.add(location);
-//				}
-//				
-//				mCursor.moveToNext();
-//			}
-//			mCursor.close();
-//		}
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] recordTitleArray = { recordTitle };
@@ -211,7 +166,6 @@ public class MovieLocationsImpl {
 		String[] levelArray = { level };
 		database.delete(COLUMN_TABLE, COLUMN_LEVEL + "=?", levelArray);
 	}
-	
 	
 	public FilmLocation selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
@@ -229,16 +183,6 @@ public class MovieLocationsImpl {
 
 	private FilmLocation cursorToComment(Cursor cursor) {
 		FilmLocation location = new FilmLocation();
-
-		// private String[] allColumns = { COLUMN_ID, COLUMN_SID,
-		// COLUMN_POSITION,
-		// COLUMN_CREATED_AT, COLUMN_CREATED_META, COLUMN_UPDATED_AT,
-		// COLUMN_UPDATED_META, COLUMN_META, COLUMN_TITLE,
-		// COLUMN_RELEASE_YEAR, COLUMN_LOCATIONS, COLUMN_FUN_FACTS,
-		// COLUMN_PRODUCTION_COMPANY, COLUMN_PRODUCTION_COMPANY,
-		// COLUMN_DISTRIBUTOR, COLUMN_DIRECTOR, COLUMN_WRITER, COLUMN_ACTOR_1,
-		// COLUMN_ACTOR_2, COLUMN_ACTOR_3, COLUMN_LATITUDE, COLUMN_LONGITUDE };
-
 		location.setId(cursor.getString(0));
 		location.setSid(cursor.getString(1));
 		location.setLevel(cursor.getString(2));

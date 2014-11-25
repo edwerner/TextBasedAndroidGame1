@@ -7,13 +7,12 @@ import android.util.Log;
 
 public class PointsItemSqliteHelper extends SQLiteOpenHelper {
 	
-	// THE XP STORAGE MECHANISM ON THE MOBILE CLIENT
 	private static final String DATABASE_NAME = "pointsitems.db";
 	public static final String TABLE_POINTS_ITEMS = "pointsitems";
-	public static final String COLUMN_USER_ID = "_userid";
-	public static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
-	public static final String COLUMN_POINTS = "_points";
-	public static final String COLUMN_BONUS_POINTS = "_bonuspoints";
+	private static final String COLUMN_USER_ID = "_userid";
+	private static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
+	private static final String COLUMN_POINTS = "_points";
+	private static final String COLUMN_BONUS_POINTS = "_bonuspoints";
 	private static final int DATABASE_VERSION = 1;
 
 	// Database creation sql statement

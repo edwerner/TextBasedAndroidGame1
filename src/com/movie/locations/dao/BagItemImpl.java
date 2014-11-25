@@ -1,49 +1,26 @@
 package com.movie.locations.dao;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import com.movie.locations.domain.BagItem;
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
-import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.QuizItem;
-import com.movie.locations.domain.User;
-import com.movie.locations.util.SessionIdentifierGenerator;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 
 public class BagItemImpl {
 
 	private BagItemSqliteHelper dbHelper;
-
 	private SQLiteDatabase database;
-
-	// private String bagGroupTitle;
-	// private String itemTitle;
-	// private String description;
-	// private String imageUrl;
-	// private String level;
-
-	public final static String TABLE_NAME = "bagitems"; // name of table
-	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_GROUP_TITLE = "_grouptitle";
-	public static final String COLUMN_TITLE = "_title";
-	public static final String COLUMN_DESCRIPTION = "_description";
-	public static final String COLUMN_IMAGE_URL = "_imageurl";
-	public static final String COLUMN_LEVEL = "_level";
-
-	public static Map<String, BagItem> BAG_ITEM_MAP = new HashMap<String, BagItem>();
+	private final static String TABLE_NAME = "bagitems"; // name of table
+	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_GROUP_TITLE = "_grouptitle";
+	private static final String COLUMN_TITLE = "_title";
+	private static final String COLUMN_DESCRIPTION = "_description";
+	private static final String COLUMN_IMAGE_URL = "_imageurl";
+	private static final String COLUMN_LEVEL = "_level";
+	private static Map<String, BagItem> BAG_ITEM_MAP = new HashMap<String, BagItem>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_GROUP_TITLE,
 			COLUMN_TITLE, COLUMN_DESCRIPTION, COLUMN_IMAGE_URL, COLUMN_LEVEL };
 

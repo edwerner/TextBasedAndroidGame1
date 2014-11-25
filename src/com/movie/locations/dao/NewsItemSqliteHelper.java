@@ -9,30 +9,12 @@ public class NewsItemSqliteHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME = "newsitems.db";
 	public static final String TABLE_NEWS_ITEMS = "newsitems";
-	public static final String COLUMN_ID = "_id";
-	public final static String COLUMN_TITLE = "_title";
-	public final static String COLUMN_TEXT = "_text";
-	public final static String COLUMN_IMAGE_URL = "_imageurl";
-	public final static String COLUMN_NEWS_TYPE = "_newstype";
-	public final static String COLUMN_DATETIME = "_datetime";
-
-	
-	// News item updates should include
-	//
-	// 
-	// - Display Name
-	// - Avatar image
-	// - Achievement title
-	// - Date/time
-	// - Movie title
-	//
-	// ------------------------------------------------------------------
-	//
-	// TODO:
-	//
-	// - Design avatar selection and menu update features
-	// - Design User domain to store selected avatar
-
+	private static final String COLUMN_ID = "_id";
+	private final static String COLUMN_TITLE = "_title";
+	private final static String COLUMN_TEXT = "_text";
+	private final static String COLUMN_IMAGE_URL = "_imageurl";
+	private final static String COLUMN_NEWS_TYPE = "_newstype";
+	private final static String COLUMN_DATETIME = "_datetime";
 	private static final int DATABASE_VERSION = 1;
 
 	// Database creation sql statement
