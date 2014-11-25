@@ -86,8 +86,6 @@ public class QuizActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
-
-
 		if (savedInstanceState == null) {
 			
 			context = this;
@@ -141,6 +139,7 @@ public class QuizActivity extends FragmentActivity {
 
 			QuizFragment quizFragment = new QuizFragment();
 			Bundle args = new Bundle();
+			
 			// SEND CURRENT USER PARCEL
 			args.putParcelable("currentUser", currentUser);
 			args.putParcelable("quizItem", quizItem);

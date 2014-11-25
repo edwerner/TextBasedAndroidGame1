@@ -73,27 +73,25 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 	ViewPager mViewPager;
 
 	private String title = "title";
-	private static String location = "location";
-	private static QuizItem quizItem;
+	private String location = "location";
+	private QuizItem quizItem;
 	private User currentUser;
 	private Intent intent;
 	private static Context context;
-	private static String UNIQUE_MAP_IMAGE_URL = null;
-	public static ArrayList<QuizItem> quizList;
-	public static QuizItem quizItemMatch;
-	private static BagItemArrayList bagItemArrayList;
-	private static FilmArrayList locationArrayList;
-	public FilmLocation currentLocation;
-	private static QuizItemImpl quizitemsource;
+	private String UNIQUE_MAP_IMAGE_URL = null;
+	private BagItemArrayList bagItemArrayList;
+	private FilmArrayList locationArrayList;
+	private FilmLocation currentLocation;
+	private QuizItemImpl quizitemsource;
 	private static ArrayList<QuizItem> newQuizList;
 	private QuizItemArrayList localQuizItemArrayList;
-	private static UserImpl userSource;
+	private UserImpl userSource;
 	private IntentFilter filter;
-	private static PointsItemImpl pointsItemImpl;
+	private PointsItemImpl pointsItemImpl;
 	private static Dialog dialog;
 	private static LocationQuizArrayAdapter locationQuizArrayAdapter;
 	private static ListView locationsList;
-	private static QuizItemService quizItemService;
+//	private static QuizItemService quizItemService;
 	private AchievementImpl achievementImpl;
 	private Achievement levelAchievement;
 
@@ -139,9 +137,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		}
 
 		context = this;
-
 		intent = getIntent();
-
 		Bundle bundle = intent.getExtras();
 		locationArrayList = bundle.getParcelable("locationArrayList");
 		bagItemArrayList = bundle.getParcelable("bagItemArrayList");
@@ -169,7 +165,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 		// CONCLUSION CARD DATABASE IMPLEMENTATION
 //		conclusionCardImpl = new ConclusionCardImpl(this);
-		quizItemService = new QuizItemService();
+//		quizItemService = new QuizItemService();
 		pointsItemImpl = new PointsItemImpl(context);
 		achievementImpl = new AchievementImpl(context);
 		
@@ -227,8 +223,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		 super.onResume();
 	 }
 
-
-
 	 private static void initializeReplayWorld(final QuizItem updatedQuizItem) {
 		 
 	 	RelativeLayout layout = (RelativeLayout) dialog.findViewById(R.id.overlayLayout);
@@ -236,17 +230,17 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		 	@Override
 	 		public void onClick(View arg0) {
 		 		System.out.println("CLICKED REPLAY MODAL: " + updatedQuizItem.getAnswered());
-		 		if (updatedQuizItem.getAnswered().equals("true")) {
-		 			System.out.println("RESETTING QUIZ ITEM: " + updatedQuizItem.getWorldId());
-		 			System.out.println("CURRENT QUIZ ITEM ID: "+ updatedQuizItem.getQuestionId());
-		 			final String updatedQuizItemId = updatedQuizItem.getQuestionId();
-		 			
-		 			// RESET AND PERSIST QUIZ STATE
-		 			RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
-					runner.execute(updatedQuizItemId);
-					
-		 			dialog.dismiss();
-		 		}
+			 		if (updatedQuizItem.getAnswered().equals("true")) {
+			 			System.out.println("RESETTING QUIZ ITEM: " + updatedQuizItem.getWorldId());
+			 			System.out.println("CURRENT QUIZ ITEM ID: "+ updatedQuizItem.getQuestionId());
+			 			final String updatedQuizItemId = updatedQuizItem.getQuestionId();
+			 			
+			 			// RESET AND PERSIST QUIZ STATE
+			 			RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
+						runner.execute(updatedQuizItemId);
+						
+			 			dialog.dismiss();
+			 		}
 	 			}
 	 		});
 	 		dialog.show();
@@ -298,11 +292,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			   unregisterReceiver(this);
 		   }
 		};
-
-
-
 		
-	 public static class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
+		public static class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
 
 			private String resp;
 			private ProgressDialog dialog;
@@ -341,21 +332,11 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					message = "Level data reset.";
 					
 					System.out.println("ANSWERED QUIZ ID: " + result);
-					// RESET QUIZ ITEMS LOCALLY
-					// WE NEED TO GET THE WORLD TITLE
-					
-//					for (QuizItem localQuizItem : quizItemList) {
-						// update database record
-//					quizitemsource.updateRecordAnswered(result, "FALSE");
+					QuizItemService quizItemService;
+					quizItemService = new QuizItemService();
 					quizItemService.resetAnsweredQuestion(result, context);
-					
-//					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
-//					System.out.pringln
-//						quizItemImpl.updateRecordCorrectAnswerIndex(localQuizItem.getQuestionId(), "null");
-//					}
 				}
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				
 				
 //				mDrawerLayout.closeDrawers();
 			}
@@ -461,6 +442,11 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			args.putParcelable("fragmentUser", currentUser);
 			args.putParcelable("levelAchievement", levelAchievement);
 			args.putString("title", title);
+			args.putString("location", location);
+			args.putParcelable("quizItem", quizItem);
+			args.putString("UNIQUE_MAP_IMAGE_URL", UNIQUE_MAP_IMAGE_URL);
+			args.putParcelable("bagItemArrayList", bagItemArrayList);
+			args.putParcelable("locationArrayList", locationArrayList);
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -510,7 +496,14 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		private User fragmentUser;
 		private Achievement levelAchievement;
 		private String title = "title";
-		public String SETTINGS = "&zoom=13&size=200x100&scale=2&sensor=true";
+		private String SETTINGS = "&zoom=13&size=200x100&scale=2&sensor=true";
+		private String location = "location";
+		private QuizItem quizItem;
+//		private Context context;
+		private String UNIQUE_MAP_IMAGE_URL = "UNIQUE_MAP_IMAGE_URL";
+		private BagItemArrayList bagItemArrayList;
+		private QuizItemImpl quizitemsource;
+		private FilmArrayList locationArrayList;
 
 		public FilmLocationFragment() {
 		}
@@ -662,14 +655,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 //				AchievementActivity.setContext(context);
 				
 				
-//				messageId = intent.getIntExtra("messageId", 1);
-//				achievementTitle = intent.getStringExtra("achievementTitle");
-//				achievementCopy = intent.getStringExtra("achievementCopy");
-//				achievementImageUrl = intent.getStringExtra("achievementImageUrl");
-//				levelUp = intent.getStringExtra("levelUp");
-				
-				
-				
 				achievementIntent.putExtra("messageId", achievementId);
 				achievementIntent.putExtra("achievementTitle", achievementTitle);
 				achievementIntent.putExtra("achievementCopy", achievementCopy);
@@ -744,12 +729,18 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_film_detail,
 					container, false);
-
+			
+//			context = getActivity().getApplicationContext();
 			fragmentUser = getArguments().getParcelable("fragmentUser");
 			levelAchievement = getArguments().getParcelable("levelAchievement");
+			location = getArguments().getString("location");
+			quizItem = getArguments().getParcelable("quizItem");
+			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
+			locationArrayList = getArguments().getParcelable("locationArrayList");
 			final String FINAL_USER_MOBILE_NOTIFICATIONS = fragmentUser.getMobileNotifications();
 			System.out.println("FRAGMENT USER MOBILE NOTIFICATIONS: " + FINAL_USER_MOBILE_NOTIFICATIONS);
 			pointsItemImpl = new PointsItemImpl(context);
+			quizitemsource = new QuizItemImpl(context);
 			
 			localQuizItemArrayList = getArguments().getParcelable(
 					"localQuizItemArrayList");
@@ -915,89 +906,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 //			achievementImpl = new AchievementImpl(context);
 			final String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
 //			levelAchievement = achievementImpl.selectRecordById(FINAL_USER_LEVEL);
-
-			// intent.putExtra("createdAt",
-			// currentWorldLocation.getCreatedAt());
-			// intent.putExtra("createdMeta",
-			// currentWorldLocation.getCreatedMeta());
-			// intent.putExtra("updatedAt",
-			// currentWorldLocation.getUpdatedAt());
-			// intent.putExtra("updatedMeta",
-			// currentWorldLocation.getUpdatedMeta());
-			// intent.putExtra("meta", currentWorldLocation.getMeta());
-			// intent.putExtra("title", currentWorldLocation.getTitle());
-			// intent.putExtra("releaseYear",
-			// currentWorldLocation.getReleaseYear());
-			// intent.putExtra("funFacts", currentWorldLocation.getFunFacts());
-			// intent.putExtra("productionCompany",
-			// currentWorldLocation.getProductionCompany());
-			// intent.putExtra("distributor",
-			// currentWorldLocation.getDistributor());
-			// intent.putExtra("director", currentWorldLocation.getDirector());
-			// intent.putExtra("writer", currentWorldLocation.getWriter());
-			// // intent.putExtra("worldId",
-			// currentWorldLocation.getGeolocation());
-			// intent.putExtra("locations",
-			// currentWorldLocation.getLocations());
-			// intent.putExtra("latitude", currentWorldLocation.getLatitude());
-			// intent.putExtra("longitude",
-			// currentWorldLocation.getLongitude());
-			//
-			//
-			// intent.putExtra("sid", currentWorldLocation.getSid());
-			// intent.putExtra("id", currentWorldLocation.getId());
-			// intent.putExtra("level", currentWorldLocation.getLevel());
-			// intent.putExtra("staticMapImageUrl",
-			// currentWorldLocation.getStaticMapImageUrl());
-			// intent.putExtra("questionId",
-			// currentWorldLocation.getQuestionId());
-			//
-			//
-			// intent.putExtra("position", currentWorldLocation.getPosition());
-			// intent.putExtra("actor1", currentWorldLocation.getActor1());
-			// intent.putExtra("actor2", currentWorldLocation.getActor2());
-			// intent.putExtra("actor3", currentWorldLocation.getActor3());
-			//
-			//
-			//
-			//
-			// intent.putExtra("answer1", currentWorldLocation.getAnswer1());
-			// intent.putExtra("answer2", currentWorldLocation.getAnswer2());
-			// intent.putExtra("answer3", currentWorldLocation.getAnswer3());
-			// intent.putExtra("answer4", currentWorldLocation.getAnswer4());
-			// intent.putExtra("answered", currentWorldLocation.getAnswered());
-			// intent.putExtra("dateTime", currentWorldLocation.getDateTime());
-			// intent.putExtra("questionText",
-			// currentWorldLocation.getQuestionText());
-			//
-			// intent.putExtra("reaction1",
-			// currentWorldLocation.getReaction1());
-			// intent.putExtra("reaction2",
-			// currentWorldLocation.getReaction2());
-			// intent.putExtra("reaction3",
-			// currentWorldLocation.getReaction3());
-			// intent.putExtra("reaction4",
-			// currentWorldLocation.getReaction4());
-			//
-			// intent.putExtra("worldId", currentWorldLocation.getWorldId());
-			// intent.putExtra("worldTitle",
-			// currentWorldLocation.getWorldTitle());
-			// intent.putExtra("submittedAnswerIndex",
-			// currentWorldLocation.getSubmittedAnswerIndex());
-			// intent.putExtra("correctAnswerIndex",
-			// currentWorldLocation.getCorrectAnswerIndex());
-			//
-			// intent.putExtra("activeItem",
-			// currentWorldLocation.getActiveItem());
-			// intent.putExtra("activeItem1",
-			// currentWorldLocation.getActiveItem1());
-			// intent.putExtra("activeItem2",
-			// currentWorldLocation.getActiveItem2());
-			// intent.putExtra("activeItem3",
-			// currentWorldLocation.getActiveItem3());
-			// intent.putExtra("activeItem4",
-			// currentWorldLocation.getActiveItem4());
-
 			// filmImage.setVisibility(ImageView.VISIBLE);
 			switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
 
