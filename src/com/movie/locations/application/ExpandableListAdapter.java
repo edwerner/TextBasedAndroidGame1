@@ -1,12 +1,9 @@
 package com.movie.locations.application;
-
 import com.movie.locations.R;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -15,20 +12,18 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Toast;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-	private final SparseArray<BagItem> sparseItemArrayList;
-	public LayoutInflater inflater;
-	public Activity activity;
+	private SparseArray<BagItem> sparseItemArrayList;
+	private LayoutInflater inflater;
+	private Activity activity;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	private int currentTotalPoints;
-	private int currentLevelCap;
+//	private int currentLevelCap;
 	private String currentLevel;
 
 	public ExpandableListAdapter(Activity act,
@@ -68,89 +63,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		ImageView bagIconView = (ImageView) convertView
 				.findViewById(R.id.bag_icon);
 
-		// String[] bagIconArray = {
-		// "http://www.zeldadungeon.net/Zelda14/Items/Air-Potion-Icon.png",
-		// "https://cdn1.iconfinder.com/data/icons/all_google_icons_symbols_by_carlosjj-du/128/glasses.png",
-		// "http://us.cdn2.123rf.com/168nwm/thirteenfifty/thirteenfifty1201/thirteenfifty120100330/12093404-skeleton-key-silhouette.jpg",
-		// "http://www.zeldadungeon.net/Zelda14/Items/Heart-Potion-Icon.png",
-		// "http://a4.mzstatic.com/us/r30/Purple/e4/33/a9/mzl.isoelwer.175x175-75.png"
-		// };
-
 		// String UNIQUE_MAP_IMAGE_URL;
 		imageLoader.displayImage(bagItem.getImageUrl(), bagIconView);
 
-		// int count = getGroupCount();
-		// // String counter = Integer.toString(count);
-		// //
-		// for (int j = 0; j < count; j++) {
-		// Object child = getChild(0, j);
-		// // System.out.println("asdf");
-		// // convertView.getChildAt(j).setBackgroundColor(Color.TRANSPARENT);
-		// // convertView.getC
-		// }
-
-		// convertView.setFocusableInTouchMode(true);
-
-		final View selectorView = convertView;
+//		final View selectorView = convertView;
 		convertView.setOnClickListener(new OnClickListener() {
-
-			//
 
 			@Override
 			public void onClick(View view) {
-				
-				
-				
-
-//				currentBagItem = item;
-//				System.out.println("SET CURRENT BAG ITEM: " + item);
-//				System.out.println("SET CURRENT BAG ITEM: " + index);
-//				for (int j = 0; j < getGroupCount(); j++) {
-//					if (j != childPosition) {
-//						((ViewGroup) selectorView).getChildAt(j).setSelected(false);
-//					} else {
-//						((ViewGroup) selectorView).getChildAt(j).setSelected(true);
-//					}
-//				}
-				
-				
-				
-				
-//				view.setSelected(!view.isSelected());
-				
-//				for (int j = 0; j < getGroupCount(); j++) {
-//					if (j != childPosition) {
-//						view.setSelected(!view.isSelected());
-//					} else {
-//						((ViewGroup) selectorView).getChildAt(j).setBackgroundColor(Color.WHITE);
-//					}
-//					
-//				}
-					
-//				// remove current item selected
-//				for (int j = 0; j < ((ViewGroup) selectorView).getChildCount(); j++) {
-//					((ViewGroup) selectorView).getChildAt(j).setBackgroundColor(Color.WHITE);
-//				}
-
-				// selectorView.setBackgroundColor(Color.WHITE);
-				// v.setSelected(false);
-////				v.refreshDrawableState();
-//				v.setSelected(!v.isSelected());
-//				// convertView.setSelected(false);
-//
-//				// convertView.setChoiceMode(childPosition);
-//
-//				// v.setSelected(true);
-//
 				Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-
-				// v.setSelected(true);
-				//
 				QuizActivity.updateBagItems(bagItem, childPosition);
-				
 				view.setSelected(true);
 			}
-			// convertView.refreshDrawableState();
 		});
 
 		return convertView;

@@ -3,5 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.movie.locations.AchievementActivity"
+    tools:context="com.movie.locations.application.AchievementActivity"
     tools:ignore="MergeRootFrame" />

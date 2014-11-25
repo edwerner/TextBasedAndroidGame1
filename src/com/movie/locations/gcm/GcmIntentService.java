@@ -27,8 +27,8 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.movie.locations.AchievementActivity;
 import com.movie.locations.R;
+import com.movie.locations.application.AchievementActivity;
 import com.movie.locations.application.ConclusionActivity;
 import com.movie.locations.application.MainActivity;
 import com.movie.locations.domain.BagItem;

@@ -1,5 +1,4 @@
 package com.movie.locations.application;
-
 import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,14 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
-	private final Context context;
-	private final ArrayList<GameTitle> values;
+	private Context context;
+	private ArrayList<GameTitle> values;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	public String UNIQUE_MAP_IMAGE_URL = "";
-	public final String DEFAULT_MAP_IMAGE_URL = "http://maps.googleapis.com/maps/api/staticmap?center=San+Francisco+California&zoom=14&size=200x200&sensor=true";
-	public final String PREFIX = "http://maps.googleapis.com/maps/api/staticmap?center=";
-	public String CENTER = "";
-	public String SETTINGS = "&zoom=16&size=200x200&sensor=true";
+	private String UNIQUE_MAP_IMAGE_URL = "";
+	private String DEFAULT_MAP_IMAGE_URL = "http://maps.googleapis.com/maps/api/staticmap?center=San+Francisco+California&zoom=14&size=200x200&sensor=true";
+	private String PREFIX = "http://maps.googleapis.com/maps/api/staticmap?center=";
+	private String CENTER = "";
+	private String SETTINGS = "&zoom=16&size=200x200&sensor=true";
 	private Intent intent;
 
 	public GameTitleArrayAdapter(Context context, Intent intent,
@@ -72,26 +71,18 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			
 	    	// CREATE CONFIRMATION DIALOG
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(context);
-	    	
 	    	builder.setMessage(DIALOG_MESSAGE).setTitle(DIALOG_TITLE);
 	    	
 			// Add the buttons
 	    	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
-	           
-
 			public void onClick(DialogInterface dialog, int id) {
-	        	   
-	        	   // START ASYNC THREAD
-//	        	   RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
-//	        	   runner.execute(FINAL_RESTORE_LEVEL_DATA_URL);
-	        	   
 	               // User clicked OK button
 	        	   System.out.println("RESTORED");
 	           }
 	       });
+	    	
 	    	builder.setNegativeButton(CANCEL_MESSAGE, new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
-	        	   
 	               // User cancelled the dialog
 	        	   System.out.println("CANCELLED");
 	           }
@@ -138,22 +129,17 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			// Add the buttons
 	    	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
-	        	   
-	        	   // START ASYNC THREAD
-//	        	   RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
-//	        	   runner.execute(FINAL_RESTORE_LEVEL_DATA_URL);
-	        	   
 	               // User clicked OK button
 	        	   System.out.println("RESTORED");
 	           }
 	       });
 	    	builder.setNegativeButton(CANCEL_MESSAGE, new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
-	        	   
 	               // User cancelled the dialog
 	        	   System.out.println("CANCELLED");
 	           }
 	       });
+	    	
         	// Create the AlertDialog
         	final AlertDialog dialog = builder.create();
     		rowView.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +148,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
     		    }
     		});
 		}
+		
 		bagItemTitle.setText(gameTitleText);
 		imageLoader.displayImage(BAG_ITEM_IMAGE_URL, imageView);
 

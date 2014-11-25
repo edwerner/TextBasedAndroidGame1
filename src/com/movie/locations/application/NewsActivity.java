@@ -1,14 +1,6 @@
 package com.movie.locations.application;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 import com.movie.locations.R;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
@@ -22,7 +14,6 @@ import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.Friend;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
 import com.movie.locations.domain.NewsItem;
@@ -41,7 +32,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-//import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -54,7 +44,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -345,8 +334,6 @@ public class NewsActivity extends ActionBarActivity {
 		switch (position) {
 		case 0:
 			ft.replace(R.id.content_frame, new NewsFragment());
-//			ft.hide(userDetailFragment);
-//			ft.show(newsFragment);
 			break;
 		case 1:
 			Fragment userFragment = new UserDetailFragment();
@@ -354,9 +341,6 @@ public class NewsActivity extends ActionBarActivity {
 			userBundle.putParcelable("localUser", localUser);
 			userFragment.setArguments(userBundle);
 			ft.replace(R.id.content_frame, userFragment);
-//			ft.replace(R.id.container, userDetailFragment);
-//			ft.hide(newsFragment);
-//			ft.show(userDetailFragment);
 			break;
 		case 2:
 			Fragment locationsFragment = new FilmLocationsFragment();
@@ -364,33 +348,18 @@ public class NewsActivity extends ActionBarActivity {
 			locationsBundle.putParcelable("localUser", localUser);
 			locationsFragment.setArguments(locationsBundle);
 			ft.replace(R.id.content_frame, locationsFragment);
-//			ft.replace(R.id.content_frame, new FriendsFragment());
-//			ft.replace(R.id.container, new FilmLocationsFragment());
-//			ft.replace(R.id.container, userDetailFragment);
 			break;
 		case 3:
 			ft.replace(R.id.content_frame, new ConclusionCardFragment());
-//			ft.replace(R.id.content_frame, new FilmLocationsFragment());
-//			Intent pagerActivityIntent = new Intent(this, FilmLocationPagerActivity.class);
-//			pagerActivityIntent.putExtra("localUser", localUser);
-//			startActivity(pagerActivityIntent);
-//			ft.replace(R.id.container, userDetailFragment);
 			break;
 		case 4:
 			ft.replace(R.id.content_frame, new BagItemListFragment());
-//			ft.replace(R.id.container, userDetailFragment);
 			break;
 		case 5:
 			ft.replace(R.id.content_frame, new AboutFragment());
-//			ft.replace(R.id.container, userDetailFragment);
-//			ft.hide(newsFragment);
-//			ft.show(userDetailFragment);
 			break;
 		case 6:
 			ft.replace(R.id.content_frame, new SettingsFragment());
-//			ft.replace(R.id.container, userDetailFragment);
-//			ft.hide(newsFragment);
-//			ft.show(userDetailFragment);
 			break;
 		}
 		ft.commit();
@@ -442,8 +411,6 @@ public class NewsActivity extends ActionBarActivity {
 					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
 					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-//					String BAG_ITEM_TITLE = "BAG_ITEM_TITLE";
-//					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(BAG_ITEM_TITLE);
 					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
 					
 					for (GameTitle tempTitle : gameTitleList) {
@@ -487,10 +454,8 @@ public class NewsActivity extends ActionBarActivity {
 	}
 	public class ConclusionCardFragment extends Fragment {
 		
-//		private LinearLayout instructionsLayout;
 		protected boolean refreshed = false;
 		private ArrayList<ConclusionCard> cardList;
-//		private ConclusionCardImpl conclusionCardImpl;
 
 		public ConclusionCardFragment() {
 		}
@@ -558,9 +523,7 @@ public class NewsActivity extends ActionBarActivity {
 	public class NewsFragment extends Fragment {
 		
 		private ArrayList<NewsItem> newsUpdateList;
-//		private LinearLayout instructionsLayout;
 		private String QUIZ_ITEM_NEWS_ITEM_IMAGE_URL = "http://www.phonandroid.com/forum/download/file.php?avatar=218224_1342902645.jpg";
-//		private ConclusionCardImpl conclusionCardImpl;
 		
 		public NewsFragment() {
 		}
@@ -617,12 +580,6 @@ public class NewsActivity extends ActionBarActivity {
 			newsUpdateList = new ArrayList<NewsItem>();
 			NewsItemAdapter newsItemAdapter = new NewsItemAdapter();
 			
-			// SET COLLECTIONS
-			// COMPOSE HERE AND REFACTOR LATER
-			
-//			// BAG ITEM NEWS ITEM
-//			BagItemImpl localBagItemImpl = new BagItemImpl(context);
-//			ArrayList<BagItem> localBagItemList = localBagItemImpl.selectRecords();
 			BagItem latestBagItem = null;
 			final Context bagContext = getActivity().getApplicationContext();
 			BagItemImpl bagItemImpl = new BagItemImpl(bagContext);
@@ -873,33 +830,14 @@ public class NewsActivity extends ActionBarActivity {
 				getStartedButton.setVisibility(Button.GONE);
 				
 				// LAUNCH DIALOG
-				
-
-
-				
 		    	String CONFIRM_MESSAGE = "Okay";
 		    	String DIALOG_TITLE = "Your level queue is empty.";
 		    	String DIALOG_MESSAGE = "Pull down menu to refresh list. Confirm and restore world data.";
-				
-				
 				
 		    	// CREATE CONFIRMATION DIALOG
 		    	AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		    	
 		    	builder.setMessage(DIALOG_MESSAGE).setTitle(DIALOG_TITLE);
-		    	
-		    	// TODO: ITERATE AND DELETE CURRENT LEVEL DATA
-		    	// - BAG ITEMS
-		    	// - QUIZ ITEMS
-		    	// - LOCATIONS
-		    	
-		    	
-		    	
-
-		    	
-
-		    	
-		    	
 		    	
 				// Add the buttons
 		    	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
@@ -907,8 +845,7 @@ public class NewsActivity extends ActionBarActivity {
 //		        	   getActivity().finish();
 		        	   dialog.dismiss();
 		           }
-		       });
-		    	
+		    	});
 		    	final AlertDialog emptyLevelQueueDialog = builder.create();
 		    	emptyLevelQueueDialog.show();
 			} else {
@@ -1047,7 +984,7 @@ public class NewsActivity extends ActionBarActivity {
 //	        	 
 //	        }
 //	        preferenceCheckboxes[0] =  mobile:
-//	        	preferenceCheckboxes[1] =  R.id.checkboxNotifications1:
+//	        preferenceCheckboxes[1] =  R.id.checkboxNotifications1:
 	  
 	        for (int i = 0; i < preferenceCheckboxes.length; i++) {
 	        	final int tempCheckBoxId = preferenceCheckboxes[i];
@@ -1120,32 +1057,7 @@ public class NewsActivity extends ActionBarActivity {
 				}
 //				settingsUser = userSource.selectRecordById(FINAL_USER_ID);
 				System.out.println("MOBILE NOTIFICATIONS POST EXECUTE: " + localUser.getMobileNotifications());
-				
-				
-				
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-				
-				
-//				String message = "Success!";
-//				if (result.equals("success")) {
-//					message = "Level data restored.";
-//				} else if (result.equals("error")) {
-//					message = "Something went wrong.";
-//				} else {
-//					message = "Level data reset.";
-//					
-//					quizItemList = quizItemImpl.selectRecordsByTitle(result);
-//					// RESET QUIZ ITEMS LOCALLY
-//					// WE NEED TO GET THE WORLD TITLE
-//					
-//					for (QuizItem localQuizItem : quizItemList) {
-//						// update database record
-//						quizItemImpl.updateRecordAnswered(localQuizItem.getQuestionId(), "false");
-//						quizItemImpl.updateRecordCorrectAnswerIndex(localQuizItem.getQuestionId(), "null");
-//					}
-//				}
-//				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-//				mDrawerLayout.closeDrawers();
 			}
 
 			/*
@@ -1177,249 +1089,6 @@ public class NewsActivity extends ActionBarActivity {
 				// Things to be done while execution of long running operation is in
 				// progress. For example updating ProgessDialog
 			}
-		}
-	}
-
-
-	public class DeleteUserTaskRunner extends AsyncTask<String, String, String> {
-
-		private String resp;
-		private ProgressDialog dialog;
-		private ArrayList<FilmLocation> filmLocationList;
-		
-		@Override
-		protected String doInBackground(String... params) {
-			publishProgress("Sleeping..."); // Calls onProgressUpdate()
-			try {
-				
-
-	        	   
-	        	   // CREATE REST TEMPLATE TO RETURN LEVEL JSON
-						// TODO: create a function that only
-						// places the restore button on the current
-						// world available
-						//
-						// OR WE COULD LEAVE IT AS-IS SO THE USER
-						// IS FREE TO REPLAY ANY LEVEL TO GAIN XP
-						//
-						// [THIS IS LEVEL GRINDING]
-						// WE COULD ADD GRINDING ACHIEVEMENTS
-
-						// Do your long operations here and return the result
-//						String url = params[0];
-						// resp = "async call in progress";
-
-						// Set the Content-Type header
-						HttpHeaders requestHeaders = new HttpHeaders();
-						requestHeaders.setContentType(new MediaType("application", "json"));
-						
-						
-						// GET LAST LEVEL CURRENTLY AVAILABLE
-//						ArrayList<FilmLocation> tempLocationList = datasource.selectRecords();
-						
-						// TODO: REFACTOR THIS VALUE TO RESTORE ALL LEVELS
-//						int lastLocationIndex = datasource.selectRecords().size() - 1;
-//						FilmLocation lastLocation = tempLocationList.get(lastLocationIndex);
-//						String lastLocationTitle = lastLocation.getTitle();
-						
-
-						
-						// SEND WORLD TITLE
-						// WE WON'T NEED THIS IF WE'RE USING A
-						// REST TEMPLATE
-//						localUser.setUserSid(lastLocationTitle);
-						HttpEntity<User> requestEntity = new HttpEntity<User>(localUser, requestHeaders);
-//						System.out.println("REST TEMPLATE PRE RESPONSE: " + quizItem.getSubmittedIndex());
-
-						// Create a new RestTemplate instance
-						RestTemplate restTemplate = new RestTemplate();
-
-						// Add the Jackson and String message converters
-						restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-						restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-
-						// Make the HTTP POST request, marshaling the request to
-						// JSON, and the response to a String
-						// ResponseEntity<String> responseEntity =
-						// restTemplate.exchange(url, HttpMethod.POST,
-						// requestEntity, String.class);
-						// String response = responseEntity.getBody();
-
-						
-						// CREATE A FUNCTION ON THE SERVER TO
-						// TAKE REQUEST BASED ON WORLD TITLE
-						//
-						// RETURN ALL GCM RESPONSE JSON TO CLIENT
-						// AND REBUILD LEVELS
-						String url = params[0];
-						ResponseEntity<User> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, User.class);
-						User response = responseEntity.getBody();
-						resp = response.getUserSid();
-//						if (response.getUserSid().equals("success")) {
-//							// RESET DATABASE RECORDS
-////							ArrayList<BagItem> bagList = bagItemImpl.selectRecords();
-////							ArrayList<BagItem> bagList = bagItemImpl.selectRecordsByTitle(title);
-////							
-////							for (BagItem item : bagList) {
-////								if (item.getLevel().equals(currentUser.getWorldCount())) {
-////									
-////								}
-////							}
-////							ArrayList<QuizItem> quizList = quizitemsource.selectRecords();
-//							
-////							ArrayList<FilmLocation> tempLocationList = datasource.selectRecords();
-////							int lastLocationIndex = datasource.selectRecords().size();
-////							FilmLocation lastLocation = tempLocationList.get(lastLocationIndex);
-////							String lastLocationTitle = lastLocation.getTitle();
-////							System.out.println("ASYNC DATASOURCE: " + datasource);
-////							System.out.println("ASYNC TITLE: " + lastLocation.getTitle());
-//							
-////							datasource.deleteRecordsByTitle(lastLocationTitle);
-////							quizitemsource.deleteRecordsByTitle(lastLocationTitle);
-////							bagItemImpl.deleteRecordsByLevel(response.getCurrentLevel());
-////							conclusionCardImpl.deleteRecordsByLevel(response.getCurrentLevel());
-//							
-////							locationQuizArrayAdapter.notifyDataSetChanged();
-////							locationQuizArrayAdapter.setListItemTitles(listItemTitles);
-////							locationQuizArrayAdapter.setListItemImageTiles(listItemImageTiles);
-////							locationQuizArrayAdapter.notifyDataSetChanged();
-//							
-//							// REDRAW LIST ADAPTER
-////							redrawListAdapter();
-//							
-//							
-//							
-//					
-//							
-////							for (FilmLocation item : locationList) {
-////								
-////							}
-//							
-////							bagItemImpl.delete();
-////							quizitemsource.delete();
-////							datasource.delete();
-//							
-//							String worldCount = localUser.getWorldCount();
-////							String worldCount = null;
-////							if (localUser.getWorldCount().equals("0")) {
-////								worldCount = "1";
-////							} else {
-////								worldCount = localUser.getWorldCount();
-////							}
-//
-//							// THESE DELETIONS NEED TO HAPPEN ELSEWHERE 
-////							quizitemsource.deleteRecordsByLevel(worldCount);
-////							datasource.deleteRecordsByLevel(worldCount);
-////							bagItemImpl.deleteRecordsByLevel(worldCount);
-////							conclusionCardImpl.deleteRecordsByLevel(worldCount);
-//							
-//							System.out.println("RESPONSE WORLD COUNT: " + response.getWorldCount());
-////							System.out.println("RESPONSE RECORDS COUNT: " + lastLocationIndex);
-//						}
-
-//						System.out.println("REST TEMPLATE POST RESPONSE: " + response.getAnswered());
-						
-						
-						
-						
-						// check server for existing user, then update regId if that changed at all
-						//
-						// TODO: check if google plus id will change at all
-						
-						
-//						// Set the username and password for creating a Basic Auth request
-////						HttpAuthentication authHeader = new HttpBasicAuthentication(username, password);
-//						HttpHeaders requestHeaders = new HttpHeaders();
-//						requestHeaders.setContentType(new MediaType("application", "json"));
-////						requestHeaders.setAuthorization(authHeader);
-//						HttpEntity<User> requestEntity = new HttpEntity<User>(requestHeaders);
-	//
-//						// Create a new RestTemplate instance
-//						RestTemplate restTemplate = new RestTemplate();
-	//
-//						// Add the String message converter
-//						restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-//						
-//					    // Make the HTTP GET request to the Basic Auth protected URL
-//					    ResponseEntity<User> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, User.class);
-//						User response = responseEntity.getBody();
-						System.out.println("NEW USER REGISTERED: " + response.getDisplayName());
-						
-						
-						
-						
-						
-					
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("ERROR STACK TRACE");
-				resp = e.getMessage();
-			}
-			return resp;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-		 */
-		@Override
-		protected void onPostExecute(String result) {
-			// execution of result of Long time consuming operation
-			if (dialog != null) {
-				dialog.dismiss();
-			}
-//			String message = "Success!";
-//			if (result.equals("success")) {
-//				message = "Level data restored.";
-//			} else if (result.equals("error")) {
-//				message = "Something went wrong.";
-//			} else {
-//				message = "Level data reset.";
-//				
-//				quizItemList = quizItemImpl.selectRecordsByTitle(result);
-//				// RESET QUIZ ITEMS LOCALLY
-//				// WE NEED TO GET THE WORLD TITLE
-//				
-//				for (QuizItem localQuizItem : quizItemList) {
-//					// update database record
-//					quizItemImpl.updateRecordAnswered(localQuizItem.getQuestionId(), "false");
-//					quizItemImpl.updateRecordCorrectAnswerIndex(localQuizItem.getQuestionId(), "null");
-//				}
-//			}
-//			Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-//			mDrawerLayout.closeDrawers();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onPreExecute()
-		 */
-		@Override
-		protected void onPreExecute() {
-			// Things to be done before execution of long running operation. For
-			// example showing ProgessDialog
-
-			dialog = new ProgressDialog(context);
-			dialog.setTitle("Restoring...");
-			dialog.setMessage("Replay available in a moment.");
-			dialog.setCancelable(false);
-			dialog.setIndeterminate(true);
-			dialog.show();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-		 */
-		@Override
-		protected void onProgressUpdate(String... text) {
-			// finalResult.setText(text[0]);
-			// Things to be done while execution of long running operation is in
-			// progress. For example updating ProgessDialog
 		}
 	}
 }

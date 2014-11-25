@@ -10,6 +10,7 @@ public class NewsItemAdapter {
 	private ConclusionCard latestConclusionCard;
 	private FilmLocation latestLocation;
 	private QuizItem latestQuizItem;
+	
 	public BagItem getLatestBagItem() {
 		return latestBagItem;
 	}
@@ -33,6 +34,5 @@ public class NewsItemAdapter {
 	}
 	public void setLatestQuizItem(QuizItem latestQuizItem) {
 		this.latestQuizItem = latestQuizItem;
-	}
-	
+	}	
 }

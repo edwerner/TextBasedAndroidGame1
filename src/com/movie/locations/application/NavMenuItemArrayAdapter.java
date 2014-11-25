@@ -72,18 +72,13 @@ public class NavMenuItemArrayAdapter extends ArrayAdapter<NavMenuItem> {
     	builder.setMessage(DIALOG_MESSAGE).setTitle(DIALOG_TITLE);
     	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   
-        	   // START ASYNC THREAD
-//        	   RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
-//        	   runner.execute("http://movie-locations-app.appspot.com/secure/restoreLevelData");
-        	   
                // User clicked OK button
         	   System.out.println("RESTORED");
            }
        });
+    	
     	builder.setNegativeButton(CANCEL_MESSAGE, new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
-        	   
                // User cancelled the dialog
         	   System.out.println("CANCELLED");
            }

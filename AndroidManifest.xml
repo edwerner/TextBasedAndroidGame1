@@ -175,7 +175,7 @@
             android:label="@string/title_activity_friend_detail" >
         </activity>
         <activity
-            android:name="com.movie.locations.AchievementActivity"
+            android:name="com.movie.locations.application.AchievementActivity"
             android:label="@string/title_activity_achievement" >
         </activity>
         <activity

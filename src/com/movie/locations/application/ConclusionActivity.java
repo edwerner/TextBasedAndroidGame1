@@ -4,24 +4,18 @@ import java.util.ArrayList;
 
 import com.google.android.gms.plus.PlusShare;
 import com.movie.locations.R;
-import com.movie.locations.application.WorldLocationDetailActivity.FilmLocationFragment;
-import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.User;
-import com.movie.locations.util.StaticSortingUtilities;
-
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,231 +24,133 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.os.Build;
 
 public class ConclusionActivity extends ActionBarActivity {
 
 	private Intent intent;
-	public static String conclusionTitle;
-	public static String conclusionCopy;
-	public static String conclusionImageUrl;
-	public static String pointsData;
-	public static String bonusPointsData;
-//	private Context context;
+	private String conclusionTitle;
+	private String conclusionCopy;
+	private String conclusionImageUrl;
+	private String pointsData;
+	private String bonusPointsData;
 	private String currentUserId;
 	private PointsItem pointsItem;
-	String CURRENT_USER_ID;
+	private String CURRENT_USER_ID;
 	private String worldCount;
 	private BagItemArrayList bagItemArrayList;
-	private static Context context;
+//	private Context context;
 	private ConclusionCard conclusionCard;
 	private UserImpl userSource;
 	private String currentLevelString;
-	private static String emailNotifications;
-	private static String mobileNotifications;
-	private static User currentUser;
+//	private static String emailNotifications;
+//	private static String mobileNotifications;
+//	private static User currentUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_conclusion);
+		
+		intent = getIntent();
 
-//		if (savedInstanceState == null) {
-			
-//			context = this;
-			// quizItem = new quizItem();
-			intent = getIntent();
-
-			// get intent string attributes
-			Bundle extras = intent.getExtras();
-			
-			emailNotifications = extras.getString("emailNotifications");
-			mobileNotifications = extras.getString("mobileNotifications");
-			
-//			System.out.println("EMAIL NOTIFICATIONS: " + emailNotifications);
-//			System.out.println("MOBILE NOTIFICATIONS: " + mobileNotifications);
-			
-			conclusionTitle = extras.getString("conclusionTitle");
-			conclusionCopy = extras.getString("conclusionCopy");
-			conclusionImageUrl = extras.getString("conclusionImageUrl");
-			
-			bagItemArrayList = extras.getParcelable("bagItemArrayList");
-//			conclusionImageUrl = extras.getString("conclusionImageUrl");
-//			pointsData = extras.getString("pointsData");
-//			bonusPointsData = extras.getString("bonusPointsData");
-			currentUserId = extras.getString("currentUserId");
-			pointsItem = extras.getParcelable("pointsItem");
-//			System.out.println("POINTS ITEM PARCEL USER POINTS ID: " + pointsItem.getPointsUserId());
-			System.out.println("BAG ITEM ARRAY LIST: " + bagItemArrayList);
-			
-			worldCount = extras.getString("worldCount");
-			currentLevelString = extras.getString("currentLevel");
-			conclusionCard = extras.getParcelable("conclusionCard");
-			
-			context = this;
-			
-			Fragment conclusionFragment = new PlaceholderFragment(); 
-			Bundle bundle = new Bundle();
-			bundle.putParcelable("bagItemArrayList", bagItemArrayList);
-			bundle.putParcelable("conclusionCard", conclusionCard);
-			conclusionFragment.setArguments(bundle);
-			
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, conclusionFragment).commit();
-			
-			
-			
-			userSource = new UserImpl(this);
-			
-			if (pointsItem != null) {
-				CURRENT_USER_ID = pointsItem.getUserId();
-				updatePointsDatabase();
-			}
-			
+		// get intent string attributes
+		Bundle extras = intent.getExtras();
+		
+//			emailNotifications = extras.getString("emailNotifications");
+//			mobileNotifications = extras.getString("mobileNotifications");
+		conclusionTitle = extras.getString("conclusionTitle");
+		conclusionCopy = extras.getString("conclusionCopy");
+		conclusionImageUrl = extras.getString("conclusionImageUrl");
+		bagItemArrayList = extras.getParcelable("bagItemArrayList");
+		currentUserId = extras.getString("currentUserId");
+		pointsItem = extras.getParcelable("pointsItem");
+		System.out.println("BAG ITEM ARRAY LIST: " + bagItemArrayList);
+		worldCount = extras.getString("worldCount");
+		currentLevelString = extras.getString("currentLevel");
+		conclusionCard = extras.getParcelable("conclusionCard");
+		Fragment conclusionFragment = new PlaceholderFragment(); 
+		Bundle bundle = new Bundle();
+		bundle.putParcelable("bagItemArrayList", bagItemArrayList);
+		bundle.putParcelable("conclusionCard", conclusionCard);
+		bundle.putString("conclusionTitle", conclusionTitle);
+		bundle.putString("conclusionCopy", conclusionCopy);
+		bundle.putString("conclusionImageUrl", conclusionImageUrl);
+		bundle.putString("pointsData", pointsData);
+		conclusionFragment.setArguments(bundle);
+		
+		getSupportFragmentManager().beginTransaction()
+				.add(R.id.container, conclusionFragment).commit();
+		
+		userSource = new UserImpl(this);
+		
+		if (pointsItem != null) {
+			CURRENT_USER_ID = pointsItem.getUserId();
+			updatePointsDatabase();
+		}
 	}
 	
 
 	public void updatePointsDatabase() {
 
 		System.out.println("POINTS DATABASE");
-		
 		System.out.println("POINTS_ITEM CURRENT USER ID: " + CURRENT_USER_ID);
-		
 		System.out.println("POINTS ITEM PARCEL USER ID: " + CURRENT_USER_ID);
+		String updatedPoints = null;
+		String updatedBonusPoints = null;
 		
-			
-//			String currentBonusPoints = tempUser.getBonusPoints();
-			String updatedPoints = null;
-			String updatedBonusPoints = null;
-			
-			pointsData = pointsItem.getPoints();
-//			final String finalPointsData = pointsData;
-			bonusPointsData = pointsItem.getBonusPoints();
-//			final String finalBonusPointsData = bonusPointsData;
-			
-			// THIS PART IS NOW STABLE
+		pointsData = pointsItem.getPoints();
+		bonusPointsData = pointsItem.getBonusPoints();
 
-			if (pointsData != null) {
-				System.out.println("POINTS DATABASE POINTS_DATA NOT NULL");
+		if (pointsData != null) {
+			System.out.println("POINTS DATABASE POINTS_DATA NOT NULL");
+			// compose updated point sums
+			int pointsSum = Integer.parseInt(pointsData);
+			updatedPoints = Integer.toString(pointsSum);
+			System.out.println("POINTS DATABASE UPDATED POINTS: " + updatedPoints);
+			if (bonusPointsData != null) {
+				System.out.println("POINTS DATABASE BONUS_POINTS_DATA NOT NULL");
 				// compose updated point sums
-//				int pointsSum = Integer.parseInt(currentPoints) + Integer.parseInt(pointsData);
-				int pointsSum = Integer.parseInt(pointsData);
-				updatedPoints = Integer.toString(pointsSum);
-//				pointsSource.updateRecordPointsValue(currentUserId, updatedPoints);
-				System.out.println("POINTS DATABASE UPDATED POINTS: " + updatedPoints);
-				if (bonusPointsData != null) {
-					System.out.println("POINTS DATABASE BONUS_POINTS_DATA NOT NULL");
-					// compose updated point sums
-					System.out.println("NULL BROKEN VALUE CURRENT_POINTS: " + bonusPointsData);
-					System.out.println("NULL BROKEN VALUE BONUS_POINTS_DATA: " + bonusPointsData);
-					int bonusPointsSum = Integer.parseInt(bonusPointsData) + Integer.parseInt(bonusPointsData);
-
-					System.out.println("NULL BROKEN VALUE BONUS_POINTS_SUM: " + bonusPointsSum);
-					updatedBonusPoints = Integer.toString(bonusPointsSum);
-//					pointsSource.updateRecordBonusPointsValue(currentUserId, updatedBonusPoints);
-					System.out.println("POINTS DATABASE BONUS UPDATED BONUS POINTS: " + updatedBonusPoints);
-
-				}
-				
-				int FINAL_BONUS_POINTS;
-				
-				if (updatedBonusPoints != null) {
-					FINAL_BONUS_POINTS = Integer.parseInt(updatedPoints) + Integer.parseInt(updatedBonusPoints);
-				} else {
-					FINAL_BONUS_POINTS = Integer.parseInt(updatedPoints);
-				}
-				
-				System.out.println("FINAL_BONUS_POINTS: " + updatedPoints);
-				
-//				userSource.open();
-
-//				// SEE IF USER IS ELIGIBLE TO LEVEL UP
-//				if (currentLevelCheck == currentLevel) {
-//					// USER IS THE SAME LEVEL
-//					
-//					
-//					
-//				} else {
-//					// UPDATE CURRENT USER LEVEL
-//					final String CURRENT_USER_LEVEL = Integer.toString(currentLevelCheck);
-//					userSource.updateCurrentUserLevel(CURRENT_USER_ID, CURRENT_USER_LEVEL);
-//				}
-				
-				
-				
-				userSource.open();
-				
-				
-				// CHECK CURRENT LEVEL
-				
-				currentUser = userSource.selectRecordById(currentUserId);
-//				int currentLevel = Integer.parseInt(currentUser.getCurrentLevel());
-//				String CURRENT_LEVEL_STRING = Integer.toString(currentLevel);
-//				int currentLevelCheck = StaticSortingUtilities.CHECK_LEVEL_RANGE(CURRENT_LEVEL_STRING, FINAL_BONUS_POINTS);
-//				
-//				final String CURRENT_USER_LEVEL = Integer.toString(currentLevelCheck);
-//				userSource.updateCurrentUserLevel(currentUserId, CURRENT_USER_LEVEL);
-				
-				// update record with all current data
-				userSource.updateRecordBonusPointsValue(currentUserId, updatedPoints, null);
-
-//				User user = userSource.selectRecordById(currentUserId);
-//				System.out.println("UPDATED CURRENT POINTS: " + user.getCurrentPoints());
-				
-				// UPDATE WORLD COUNT
-				if (worldCount != null) {
-					
-					// CHECK FOR END OF NEW WORLDS
-					// QUERY DATABASE FOR RECORDS WITH UPDATED WORLD COUNT
-					
-//					if () {
-//						
-//					}
-					
-					userSource.updateWorldCount(currentUserId, worldCount);
-					System.out.println("UPDATED WORLD COUNT: " + worldCount);
-				}
-				
-				if (currentLevelString != null) {
-					userSource.updateCurrentUserLevel(currentUserId, currentLevelString);
-//					userSource.updateWorldCount(currentUserId, worldCount);
-					System.out.println("UPDATED CURRENT LEVEL STRING: " + currentLevelString);
-				}
-				
-				
-////				// UPDATE USER PREFERENCES
-////				final String FINAL_CURRENT_USER_EMAIL_NOTIFICATIONS = emailNotifications;
-////				final String FINAL_CURRENT_USER_MOBILE_NOTIFICATIONS = mobileNotifications;
-//				
-////				public void updateUserNotificationPreferences(String recordId, String updatedEmailNotifications, String updatedMobileNotifications) {
-//				// UPDATE USER PREFERENCES
-//				final String FINAL_CURRENT_USER_ID_STRING = currentUser.getUserId();
-//				
-//				if (emailNotifications != null && mobileNotifications != null) {
-//					System.out.println("UPDATED USER PREFERENCES DATABASE");
-//					userSource.updateUserNotificationPreferences(FINAL_CURRENT_USER_ID_STRING, emailNotifications, mobileNotifications);
-//					
-//				}
-				
-				
-				
-				
-				User updatedUser = userSource.selectRecordById(currentUserId);
-				
-				System.out.println("CURRENT USER CONCLUSION ACTIVITY: " + updatedUser.getUserId());
-				System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT LEVEL: " + updatedUser.getCurrentLevel());
-				System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT POINTS: " + updatedUser.getCurrentPoints());
-				System.out.println("CURRENT USER CONCLUSION ACTIVITY WORLD COUNT: " + updatedUser.getWorldCount());
-				
-				
-				
-				
-//				pointsSource.delete();
-				userSource.close();
+				System.out.println("NULL BROKEN VALUE CURRENT_POINTS: " + bonusPointsData);
+				System.out.println("NULL BROKEN VALUE BONUS_POINTS_DATA: " + bonusPointsData);
+				int bonusPointsSum = Integer.parseInt(bonusPointsData) + Integer.parseInt(bonusPointsData);
+				System.out.println("NULL BROKEN VALUE BONUS_POINTS_SUM: " + bonusPointsSum);
+				updatedBonusPoints = Integer.toString(bonusPointsSum);
+				System.out.println("POINTS DATABASE BONUS UPDATED BONUS POINTS: " + updatedBonusPoints);
 			}
-//		}
-		
-//		pointsSource.close();
+			
+//			int FINAL_BONUS_POINTS = 0;
+//			
+//			if (updatedBonusPoints != null) {
+//				FINAL_BONUS_POINTS = Integer.parseInt(updatedPoints) + Integer.parseInt(updatedBonusPoints);
+//			} else {
+//				FINAL_BONUS_POINTS = Integer.parseInt(updatedPoints);
+//			}
+			
+			System.out.println("FINAL_BONUS_POINTS: " + updatedPoints);
+			userSource.open();
+			
+			// update record with all current data
+			userSource.updateRecordBonusPointsValue(currentUserId, updatedPoints, null);
+			
+			// UPDATE WORLD COUNT
+			if (worldCount != null) {
+				userSource.updateWorldCount(currentUserId, worldCount);
+				System.out.println("UPDATED WORLD COUNT: " + worldCount);
+			}
+			
+			if (currentLevelString != null) {
+				userSource.updateCurrentUserLevel(currentUserId, currentLevelString);
+//					userSource.updateWorldCount(currentUserId, worldCount);
+				System.out.println("UPDATED CURRENT LEVEL STRING: " + currentLevelString);
+			}
+			
+			User updatedUser = userSource.selectRecordById(currentUserId);
+			System.out.println("CURRENT USER CONCLUSION ACTIVITY: " + updatedUser.getUserId());
+			System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT LEVEL: " + updatedUser.getCurrentLevel());
+			System.out.println("CURRENT USER CONCLUSION ACTIVITY CURRENT POINTS: " + updatedUser.getCurrentPoints());
+			System.out.println("CURRENT USER CONCLUSION ACTIVITY WORLD COUNT: " + updatedUser.getWorldCount());
+			userSource.close();
+		}
 	}
 	
 	@Override
@@ -281,9 +177,6 @@ public class ConclusionActivity extends ActionBarActivity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
-		
-		private BagItemArrayList bagItemArrayList;
-		private ConclusionCard conclusionCard;
 
 		public PlaceholderFragment() {
 		}
@@ -301,28 +194,28 @@ public class ConclusionActivity extends ActionBarActivity {
 			TextView bonusPointsDataText = (TextView) rootView.findViewById(R.id.bonusPointsDataText);
 			TextView conclusionCardTitleHeadlineText = (TextView) rootView.findViewById(R.id.conclusionCardTitleHeadline1);
 			
-			String CONCLUSION_TITLE_TEXT = conclusionTitle;
-			String CONCLUSION_COPY_TEXT = conclusionCopy;
-			
-			
-			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
-			conclusionCard = getArguments().getParcelable("conclusionCard");
+			final BagItemArrayList bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
+			final ConclusionCard conclusionCard = getArguments().getParcelable("conclusionCard");
+			final String conclusionTitle = getArguments().getParcelable("conclusionTitle");
+			final String conclusionCopy = getArguments().getParcelable("conclusionCopy");
+			final String conclusionImageUrl = getArguments().getParcelable("conclusionImageUrl");
+			final String pointsData = getArguments().getParcelable("pointsData");
+			final String bonusPointsData = getArguments().getParcelable("bonusPointsData");
+			final Context context = getActivity().getApplicationContext();
 			
 			if (conclusionCard != null) {
-//				conclusionCardTitleHeadline1
-
-					conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
-					Intent intent = new Intent();
-					
-					ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
-					cardList.add(conclusionCard);
-					
-					// SHOW NEW BAG ITEM(S)
-					ConclusionCardArrayAdapter conclusionCardAdapter = new ConclusionCardArrayAdapter(context, intent, cardList);
-					ListView cardListView = (ListView) rootView.findViewById(R.id.cardListView);
-					cardListView.setVisibility(ListView.VISIBLE);
-					cardListView.setAdapter(conclusionCardAdapter);
-					
+				conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
+				Intent intent = new Intent();
+				
+				ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
+				cardList.add(conclusionCard);
+				
+				
+				// SHOW NEW BAG ITEM(S)
+				ConclusionCardArrayAdapter conclusionCardAdapter = new ConclusionCardArrayAdapter(context, intent, cardList);
+				ListView cardListView = (ListView) rootView.findViewById(R.id.cardListView);
+				cardListView.setVisibility(ListView.VISIBLE);
+				cardListView.setAdapter(conclusionCardAdapter);					
 			}
 			
 			if (bagItemArrayList != null) {
@@ -338,17 +231,17 @@ public class ConclusionActivity extends ActionBarActivity {
 					bagListView.setVisibility(ListView.VISIBLE);
 					bagListView.setAdapter(bagItemAdapter);
 					
-					int currentLevel = Integer.parseInt(bagList.get(0).getLevel());
-					if (currentLevel < 2) {
-						CONCLUSION_TITLE_TEXT = "Welcome to [app name]!";
-						CONCLUSION_COPY_TEXT = "Here's some quest items to get you started. Refer to 'Help' section for details.";
-					}
+//					int currentLevel = Integer.parseInt(bagList.get(0).getLevel());
+//					if (currentLevel < 2) {
+//						conclusionTitle = "Welcome to [app name]!";
+//						conclusionCopy = "Here's some quest items to get you started. Refer to 'Help' section for details.";
+//					}
 				}
 				
 			}
 			
-			conclusionTitleText.setText(CONCLUSION_TITLE_TEXT);
-			conclusionCopyText.setText(CONCLUSION_COPY_TEXT);
+			conclusionTitleText.setText(conclusionTitle);
+			conclusionCopyText.setText(conclusionCopy);
 			conclusionImageUrlText.setText(conclusionImageUrl);
 			pointsDataText.setText(pointsData);
 			bonusPointsDataText.setText(bonusPointsData);
@@ -376,10 +269,8 @@ public class ConclusionActivity extends ActionBarActivity {
 			      startActivityForResult(shareIntent, 0);
 			    }
 			});
-			
 			return rootView;
 		}
 	}
-
 }
 

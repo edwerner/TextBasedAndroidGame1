@@ -31,14 +31,11 @@ public class NewsArrayAdapter extends ArrayAdapter<NewsItem> {
 	private final Context context;
 	private final ArrayList<NewsItem> values;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	private final String SEARCH_DELIMITER = "+San+Francisco+California";
-	public String UNIQUE_MAP_IMAGE_URL = "";
-	public final String DEFAULT_MAP_IMAGE_URL = "http://maps.googleapis.com/maps/api/staticmap?center=San+Francisco+California&zoom=14&size=200x200&sensor=true";
-	public final String PREFIX = "http://maps.googleapis.com/maps/api/staticmap?center=";
-	public String CENTER = "";
-	public String SETTINGS = "&zoom=16&size=200x200&sensor=true";
-	private String MOVIE_POSTER_URL = "";
-	private User user;
+	private String UNIQUE_MAP_IMAGE_URL = "";
+	private final String DEFAULT_MAP_IMAGE_URL = "http://maps.googleapis.com/maps/api/staticmap?center=San+Francisco+California&zoom=14&size=200x200&sensor=true";
+	private final String PREFIX = "http://maps.googleapis.com/maps/api/staticmap?center=";
+	private String CENTER = "";
+	private String SETTINGS = "&zoom=16&size=200x200&sensor=true";
 	private Intent intent;
 
 	public NewsArrayAdapter(Context context, Intent intent,
@@ -63,28 +60,11 @@ public class NewsArrayAdapter extends ArrayAdapter<NewsItem> {
 		View rowView = inflater.inflate(R.layout.news_update_array_adapter,
 				parent, false);
 
-		final Intent commentIntent = new Intent(context, CommentDetailActivity.class);
+		final Intent commentIntent = new Intent(context, AchievementActivity.class);
 		
 		// get intent string attributes
 		Bundle bundle = intent.getExtras();
-//		System.out.println("BUNDLE INTENT: " + bundle);
 		User localUser = bundle.getParcelable("localUser");
-		
-//		pc.writeString(userId);
-//		pc.writeString(dateTime);
-//		pc.writeString(filmId);
-//		pc.writeString(comment);
-//		pc.writeString(commentId);
-		
-		
-		
-		
-//		String title;
-//		String text;
-//		String userId;
-//		String achievementId;
-//		String dateTime;
-		
 		commentIntent.putExtra("title", values.get(position).getTitle());
 		commentIntent.putExtra("text", values.get(position).getText());
 //		commentIntent.putExtra("userId", values.get(position).getUserId());
@@ -92,24 +72,9 @@ public class NewsArrayAdapter extends ArrayAdapter<NewsItem> {
 //		commentIntent.putExtra("achievementId", values.get(position).getAchievementId());
 		
 		commentIntent.putExtra("localUser", localUser);
-		
-		// leave listener attached leaving
-		// any null location map view hidden
-		//
-		// this way we can let the user add
-		// a location to reveal the map view
-		// 
-		// this means we're only setting the
-		// adapter if location is not null
-		
-		// if the map quota goes over, we need to prevent
-		// the user from passing an empty value to the map
-		// detail activity by blocking click events
-//		if (!values.get(position).getText().equals(null)) {
-			rowView.setOnClickListener(null);	
-//		} 
+	
+		rowView.setOnClickListener(null);
 
-//		TextView nameView = (TextView) rowView.findViewById(R.id.userDisplayName);
 		TextView newsTitleText = (TextView) rowView.findViewById(R.id.newsUpdateTitleText1);
 		TextView newsText = (TextView) rowView.findViewById(R.id.newsUpdateText1);
 		TextView newsDescriptionText = (TextView) rowView.findViewById(R.id.newsDescriptionText1);
@@ -118,53 +83,11 @@ public class NewsArrayAdapter extends ArrayAdapter<NewsItem> {
 		
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.userCommentAvatar);
 		
-//		if (values.get(position).getLocations() != null) {
-//			String formattedLocation = removeParenthesis((values.get(position)
-//					.getLocations()));
-//
-//			//regex parenthesis
-//			formattedLocation = formattedLocation.replaceAll(" ", "+");
-//			formattedLocation += SEARCH_DELIMITER;
-//			UNIQUE_MAP_IMAGE_URL = PREFIX + formattedLocation + SETTINGS;
-//			
-////			System.out.println("UNIQUE_MAP_IMAGE_URL: " + UNIQUE_MAP_IMAGE_URL);
-//			
-//			// Load image, decode it to Bitmap and display Bitmap in ImageView
-//			// mapUnavailable.setVisibility(ImageView.GONE);
-//			// defaultMapThumb.setVisibility(ImageView.GONE);
-//			// moviePosterThumb.setVisibility(ImageView.GONE);
-//			imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView);
-//		} else {
-//			UNIQUE_MAP_IMAGE_URL = DEFAULT_MAP_IMAGE_URL;
-//			// imageView.setVisibility(ImageView.GONE);
-//
-//			// defaultMapImage
-//			// defaultMapThumb.setVisibility(ImageView.VISIBLE);
-//		}
-
-		
-		
-		// ImageView mapThumb = (ImageView) rowView.findViewById(R.id.mapView1);
-
-		
-		
-		
-		
-		//		imageLoader.displayImage(DEFAULT_MAP_IMAGE_URL, imageView);
-
-//		nameView.setText(values.get(position).getUserId());
-//		newsTitleText.setText(values.get(position).getTitle());
-		
 		String FINAL_NEWS_TYPE_TITLE_TEXT = "Latest Game Item";
 		String FINAL_NEWS_TEXT_PREFIX = "Game item description: ";
 //		String FINAL_NEWS_TYPE_DESCRIPTION_TEXT = values.get(position).getText();
 		String FINAL_NEWS_TEXT = "";
-		
-//		QuizItem
-//		Location
-//		ConclusionCard
-//		BagItem
-		
+	
 		if (values.get(position).getText() != null) {
 			FINAL_NEWS_TEXT = values.get(position).getText();
 			if (values.get(position).getNewsType().equals("QuizItem")) {
@@ -198,21 +121,8 @@ public class NewsArrayAdapter extends ArrayAdapter<NewsItem> {
 			}
 			FINAL_NEWS_ITEM_IMAGE_URL = "http://hakenberg.de/_images/icon.red.gif";
 		}
-		
 		imageLoader.displayImage(FINAL_NEWS_ITEM_IMAGE_URL, imageView);
-
 		newsTitleText.setText(FINAL_NEWS_TYPE_TITLE_TEXT);
-
-		
-		
-//		newsDescriptionText.setText(FINAL_NEWS_TEXT);
-
-		// Change icon based on name
-//		String s = "NEW COMMENT ADDED: " + values.get(position).getComment();
-
-//		System.out.println(s);
-
-		// imageView.setImageResource(R.drawable.film_reel_sm);
 
 		return rowView;
 	}

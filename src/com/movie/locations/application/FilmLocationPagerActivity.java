@@ -1,96 +1,36 @@
 package com.movie.locations.application;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParseException;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
 import com.movie.locations.R;
-import com.movie.locations.R.id;
-import com.movie.locations.R.layout;
-import com.movie.locations.R.menu;
-import com.movie.locations.R.string;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
-import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
-import com.movie.locations.domain.CheckIn;
-import com.movie.locations.domain.ClassLoaderHelper;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.FilmLocationCollection;
 import com.movie.locations.domain.LocationMapParcel;
-import com.movie.locations.domain.MoviePostersHashMap;
 import com.movie.locations.domain.QuizItem;
-import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
-import com.movie.locations.domain.WorldLocationArrayList;
-import com.movie.locations.domain.WorldLocationObject;
 import com.movie.locations.service.DatabaseChangedReceiver;
-import com.movie.locations.service.FilmLocationService;
-import com.movie.locations.service.WorldLocationService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class FilmLocationPagerActivity extends FragmentActivity {
 
@@ -102,7 +42,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	 * intensive, it may be best to switch to a
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	private SectionsPagerAdapter mSectionsPagerAdapter;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -110,32 +50,17 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	private static ViewPager mViewPager;
 	private MovieLocationsImpl datasource;
 	private HashMap<String, ArrayList<FilmLocation>> filmMap;
-	private static Intent intent;
-	private static User currentUser;
-	private static Context context;
+	private User currentUser;
+	private Context context;
 	private ArrayList<String> worldTitles;
-	public static int initializedIndex = 0;
-	public static ListView commentView;
-	public static ListAdapter commentAdapter;
-	public static ArrayList<FilmLocation> localFilmArrayList;
-	public static ArrayList<FilmLocation> localAdapterFilmList;
-	private static ArrayList<FilmLocation> locationList;
+	private ArrayList<FilmLocation> locationList;
 	private LocationMapParcel locationMap;
 	private ArrayList<String> localWorldImageUrls;
 	private FilmArrayList locationArrayList;
-	private static BagItemArrayList bagItemArrayList;
-	private static FilmLocation currentLocation;
-	private static QuizItemImpl quizitemsource;
-	private static ArrayList<QuizItem> newQuizList;
-
-//	private static String[] locationTitles;
-//	private static int currentPositionIndex;
-	
-//	@Override
-//	protected void onSaveInstanceState(Bundle bundle) {
-//	  super.onSaveInstanceState(bundle);
-//	  bundle.putParcelable("locationMap", locationMap);
-//	}
+	private BagItemArrayList bagItemArrayList;
+	private FilmLocation currentLocation;
+	private QuizItemImpl quizitemsource;
+	private ArrayList<QuizItem> newQuizList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +84,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		filmMap = new LinkedHashMap<String, ArrayList<FilmLocation>>();
 		worldTitles = new ArrayList<String>();
 		localWorldImageUrls = new ArrayList<String>();
-//		int worldTitleCount = 0;
 		
 		// sort the list
 //		Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
@@ -184,14 +108,9 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			System.out.println("datasource: " + datasource);
 			final String CURRENT_TITLE = worldTitles.get(i);
 			System.out.println("CURRENT_TITLE: " + CURRENT_TITLE);
-//			ArrayList<FilmLocation> locationByTitle = datasource.selectRecordsByTitle(CURRENT_TITLE);
-			
 			System.out.println("SELECT RECORDS BY TITLE COUNT: " + locationList.size());
 			
-//			String currentTitle = "TITLE";
-			
 			for (FilmLocation location : locationList) {
-//				currentTitle = location.getTitle();
 				tempList.add(location);
 			}
 			
@@ -203,9 +122,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		System.out.println("LOCATION TITLE ARRAY LENGTH ****: " + arraylength);
 		System.out.println("FILM MAP SIZE ****: " + filmMap.size());
 		currentUser = bundle.getParcelable("localUser");
-//		userImpl = new UserImpl(this);
-		// Create the adapter that will return a fragment for each of the three
-		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
@@ -216,8 +132,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		
 		System.out.println("QUIZ LIST SIZE:" + newQuizList.size());
 	}
-
-	
 
 //    @Override
 //    protected void onPause() {
@@ -235,6 +149,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		   unregisterReceiver(mReceiver);
 	   }
 	};
+	
 	@Override
 	 public void onResume() {
 		System.out.println("******* RESUME PAGER ACTIVITY ********");
@@ -276,10 +191,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a MovieSectionFragment (defined as a static inner class
-			// below) with the page number as its lone argument.
-			// System.out.println("INDEX: " + position);
 			Fragment fragment = new MovieSectionFragment();
 			Bundle args = new Bundle();
 			args.putInt(MovieSectionFragment.ARG_SECTION_NUMBER, position);
@@ -327,7 +238,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	 * Movie fragment
 	 * 
 	 */
-	public static class MovieSectionFragment extends Fragment implements
+	public class MovieSectionFragment extends Fragment implements
 			OnPageChangeListener {
 		/**
 		 * The fragment argument representing the section number for this
@@ -341,7 +252,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		private FilmLocationMapTileArrayAdapter commentAdapter;
 		private ListView commentView;
 		private String fragmentTitle;
-		private ArrayList<String> localWorldImageUrls;
 		private FilmArrayList filmArrayList;
 		private View rootView;
 
@@ -368,7 +278,6 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			// TODO Auto-generated method stub
 
 		}
-
 		
 		// ON PAGE CHANGED UPDATE
 		@Override
@@ -387,11 +296,10 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 //		    String myString = savedInstanceState.getString("MyString");
 //		  }
 		
-
 		public void prepareArrayAdapterData(View rootView) {
 			ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
-			boolean answered = true;
-			QuizItem replayQuizItem = null;
+//			boolean answered = true;
+//			QuizItem replayQuizItem = null;
 			QuizItem firstLocation = newQuizList.get(0);
 			currentTitle = firstLocation.getWorldTitle();
 			
@@ -401,23 +309,12 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 				System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
 				if (quizItem.getWorldTitle().equals(currentTitle)) {
 					finalQuizList.add(quizItem);
-//					System.out.println("QUIZ ITEM GET ANSWERED:" + quizItem.getAnswered());
-					if (quizItem.getAnswered().equals("FALSE")) {
-						answered = false;
-					}
-					replayQuizItem = quizItem;
+//					if (quizItem.getAnswered().equals("FALSE")) {
+//						answered = false;
+//					}
+//					replayQuizItem = quizItem;
 				}
 			}
-//			if (answered == true) {
-////				System.out.println("QUIZ ITEM ANSWERED: " + replayQuizItem.getAnswered());
-//				System.out.println("QUIZ ITEM ANSWERED TRUE");
-//				System.out.println("REPLAY QUIZ ITEM: " + replayQuizItem);
-//				if (replayQuizItem != null) {
-//					initializeReplayWorld(replayQuizItem);
-//				}
-//				
-//			}
-			
 		}
 		
 		@Override
@@ -469,7 +366,9 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 					finalList.add(loc);
 				}
 			}
-			intent = new Intent(context, WorldLocationDetailActivity.class);
+			
+			final Context context = getActivity().getApplicationContext();
+			final Intent intent = new Intent(context, WorldLocationDetailActivity.class);
 			FilmLocation localCurrentLocation = finalList.get(0);
 			// pass only current location
 			intent.putExtra("locationArrayList", localLocationArrayList);
@@ -481,137 +380,9 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
 			commentView.setAdapter(commentAdapter);
 			commentAdapter.notifyDataSetChanged();
-			
-//			if (!currentLocation.getLocations().equals("null")) {
-//				commentView.setAdapter(commentAdapter);
-//			} else {
-			
-//				ImageView defaultMapTile = (ImageView) rootView.findViewById(R.id.defaultMapTile1);
-//				defaultMapTile.setVisibility(ImageView.VISIBLE);
-//				defaultMapTile.setOnClickListener(new LinearLayout.OnClickListener() {
-//					public void onClick(View v) {
-//						startActivity(intent);
-//					}
-//				});
-//			}
-//			
-//			
-//			intent = new Intent(context, WorldLocationDetailActivity.class);
-//			
-//			// pass only current location
-//			intent.putExtra("locationArrayList", locationArrayList);
-//			intent.putExtra("currentLocation", currentLocation);
-//			intent.putExtra("bagItemArrayList", bagItemArrayList);
-//			intent.putExtra("localUser", currentUser);
-//			
-//			// default background click area
-//			rootView.setOnClickListener(new LinearLayout.OnClickListener() {
-//				public void onClick(View v) {
-//					startActivity(intent);
-//				}
-//			});
-			
-			
-//			ImageView defaultMapTile = (ImageView) rootView.findViewById(R.id.defaultMapTile1);
-//			defaultMapTile.setVisibility(ImageView.VISIBLE);
-//			defaultMapTile.setBackgroundResource(firstItem);
-//			imageLoader.displayImage(currentImageUrl, defaultMapTile);
-			
-			
-//			defaultMapTile.setOnClickListener(new LinearLayout.OnClickListener() {
-//				public void onClick(View v) {
-//					startActivity(intent);
-//				}
-//			});
-
-//			TextView filmTitle = (TextView) rootView.findViewById(R.id.film_title);
-//			filmTitle.setText(currentTitle);
-			
 			mViewPager.setOnPageChangeListener(this);
-
 			
 			return rootView;
 		}
 	}
-
-	public class QuizItemTaskRunner extends AsyncTask<String, String, String> {
-
-		private String resp;
-		private JsonNode json;
-		private ProgressDialog dialog;
-		
-
-		@Override
-		protected String doInBackground(String... params) {
-			publishProgress("Sleeping..."); // Calls onProgressUpdate()
-			try {
-//				// Do your long operations here and return the result
-////				String url = params[0];
-//				String response = "response message";
-//				String serverUrl = params[0];
-//
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("ERROR STACK TRACE");
-				resp = e.getMessage();
-			}
-			return resp;
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-		 */
-		@Override
-		protected void onPostExecute(String result) {
-			// execution of result of Long time consuming operation
-			// finalResult.setText(result);
-			// set json data here to serialize
-
-			if (dialog != null) {
-				dialog.setTitle("Messaging complete.");
-				dialog.setMessage("Time for more trivia!");
-				dialog.dismiss();
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onPreExecute()
-		 */
-		@Override
-		protected void onPreExecute() {
-			// Things to be done before execution of long running operation. For
-			// example showing ProgessDialog
-
-			dialog = new ProgressDialog(context);
-			dialog.setTitle("Sending...");
-			
-			// TODO: create random text generator
-			// for messages so that people with 
-			// slower connections are kept occupied
-			dialog.setMessage("Should only take a sec.");
-			dialog.setCancelable(false);
-			dialog.setIndeterminate(true);
-			dialog.show();
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-		 */
-		@Override
-		protected void onProgressUpdate(String... text) {
-			// finalResult.setText(text[0]);
-			// Things to be done while execution of long running operation is in
-			// progress. For example updating ProgessDialog
-		}
-	}
-
-
 }
