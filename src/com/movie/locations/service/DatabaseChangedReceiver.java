@@ -1,13 +1,7 @@
 package com.movie.locations.service;
-
 import java.util.ArrayList;
-
-
-//import com.movie.locations.domain.FilmArrayList;
-//import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,11 +12,10 @@ public class DatabaseChangedReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		// TODO Auto-generated method stub
+
 		System.out.println(ACTION_DATABASE_CHANGED);
 		
 		Bundle extras = intent.getExtras();
-//		newsIntent.putExtra("locationArrayList", localLocationArrayList);
 		QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
 		String mobileNotificationSettings = extras.getString("mobileNotificationSettings");
 		
@@ -34,9 +27,9 @@ public class DatabaseChangedReceiver extends BroadcastReceiver {
 				System.out.println("DATABASE_CHANGED: " + loc.getWorldTitle());
 			}	
 		}
+		
 		if (mobileNotificationSettings != null) {
 			System.out.println("MOBILE NOTIFICATION SETTINGS CHANGED");
 		}
-		
 	}
 }

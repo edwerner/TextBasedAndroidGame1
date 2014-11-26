@@ -14,7 +14,6 @@ import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
 import com.movie.locations.dao.AchievementImpl;
 import com.movie.locations.domain.Achievement;
-import com.movie.locations.service.JsonService;
 import com.movie.locations.util.CSVFile;
 
 public class AchievementService {
@@ -86,14 +85,6 @@ public class AchievementService {
 		}
 		
 		datasource.close();
-	}
-
-	public JsonNode createJsonMapper(String uri)
-			throws JsonProcessingException, JSONException, IOException {
-		final JsonService service = new JsonService();
-		final ObjectMapper mapper = new ObjectMapper();
-		final JsonNode json = mapper.readTree(service.getJson(uri).toString());
-		return json;
 	}
 
 	public String removeDoubleQuotes(String string) {
