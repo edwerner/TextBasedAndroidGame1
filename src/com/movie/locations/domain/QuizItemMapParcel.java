@@ -3,11 +3,9 @@ package com.movie.locations.domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
-// CREATE LOCATION MAP DOMAIN AND SET ARRAY LISTS
 public class QuizItemMapParcel implements Parcelable {
 	
 	private HashMap<String, ArrayList<QuizItem>> quizItemHashMap;
@@ -38,7 +36,6 @@ public class QuizItemMapParcel implements Parcelable {
         if (hashMapSize > 0) {
             for (Map.Entry<String, ArrayList<QuizItem>> entry : quizItemHashMap.entrySet()) {
             	pc.writeString(entry.getKey());
-//            	locationList = entry.getValue();
             	pc.writeList(entry.getValue());
             }
         }

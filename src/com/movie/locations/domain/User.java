@@ -1,11 +1,6 @@
 package com.movie.locations.domain;
-
-import java.util.ArrayList;
-import java.util.Map;
-
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.movie.locations.domain.StaticConstants;
 
 // user domain object
 /**
@@ -57,7 +52,6 @@ public class User implements Parcelable {
 	}	
 	
 	public User(Parcel pc) {
-//		pc.readParcelable(ClassLoaderHelper.getClassLoader());
 		userId = pc.readString();
 		userSid = pc.readString();
 		userClientId = pc.readString();

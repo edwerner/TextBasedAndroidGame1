@@ -43,5 +43,4 @@ public class GameTitle {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	
 }

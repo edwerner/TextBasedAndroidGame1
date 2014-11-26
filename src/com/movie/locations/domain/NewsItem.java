@@ -31,7 +31,6 @@ public class NewsItem implements Parcelable {
 	}	
 	
 	public NewsItem(Parcel pc) {
-//		pc.readParcelable(ClassLoaderHelper.getClassLoader());
 		id = pc.readString();
 		title = pc.readString();
 		text = pc.readString();

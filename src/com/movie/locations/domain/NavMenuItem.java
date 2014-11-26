@@ -3,9 +3,6 @@ package com.movie.locations.domain;
 import android.support.v4.app.Fragment;
 
 public class NavMenuItem {
-	// TITLE
-	// IMAGE URL
-	// LINK-THROUGH FRAGMENT
 	private String title;
 	private String imageUrl;
 	private Fragment fragment;

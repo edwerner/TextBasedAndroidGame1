@@ -21,7 +21,6 @@ import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
-import com.movie.locations.gcm.GcmIntentService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
@@ -91,7 +90,7 @@ public class NewsActivity extends ActionBarActivity {
 //		}
 		
 		
-		GcmIntentService.setCurrentUserId(localUser.getUserId());
+//		GcmIntentService.setCurrentUserId(localUser.getUserId());
 		
 		// setup navigation drawer
 		navArray = new String[7];

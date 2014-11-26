@@ -9,7 +9,6 @@ public class ConclusionCard implements Parcelable {
 	private String copy;
 	private String imageUrl;
 	private String level;
-
 	
 	@Override
 	public int describeContents() {
@@ -78,5 +77,4 @@ public class ConclusionCard implements Parcelable {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 }

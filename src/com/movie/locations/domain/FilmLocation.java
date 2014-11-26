@@ -1,13 +1,8 @@
 package com.movie.locations.domain;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.movie.locations.domain.StaticConstants;
 
-// film location pojo with builder pattern
 /**
  * The Class FilmLocation.
  */
@@ -120,7 +115,6 @@ public class FilmLocation implements Parcelable {
 	}	
 	
 	public FilmLocation(Parcel pc) {
-//		pc.readParcelable(ClassLoaderHelper.getClassLoader());
 		sid = pc.readString();
 		level = pc.readString();
 		position = pc.readString();

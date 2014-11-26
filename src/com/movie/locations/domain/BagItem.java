@@ -43,7 +43,6 @@ public class BagItem implements Parcelable {
 	}	
 	
 	public BagItem(Parcel pc) {
-//		pc.readParcelable(ClassLoaderHelper.getClassLoader());
 		bagGroupTitle = pc.readString();
 		itemId = pc.readString();
 		itemTitle = pc.readString();

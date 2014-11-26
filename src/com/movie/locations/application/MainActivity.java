@@ -43,7 +43,6 @@ import com.movie.locations.dao.MovieLocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.User;
-import com.movie.locations.gcm.GcmIntentService;
 import com.movie.locations.service.AchievementService;
 import com.movie.locations.service.BagItemService;
 import com.movie.locations.service.ConclusionCardService;
@@ -451,7 +450,7 @@ public class MainActivity extends FragmentActivity implements
 				// TODO: refactor this
 				//
 				// set current user in service
-				GcmIntentService.setCurrentUserId(localUser.getUserId());
+//				GcmIntentService.setCurrentUserId(localUser.getUserId());
 				userProfileIntent = new Intent(MainActivity.this, NewsActivity.class);
 				userProfileIntent.putExtra("localUser", localUser);
 				//

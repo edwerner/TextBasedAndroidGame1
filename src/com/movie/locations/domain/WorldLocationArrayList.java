@@ -1,5 +1,4 @@
 package com.movie.locations.domain;
-
 import java.util.ArrayList;
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 
 import com.movie.locations.R;
 import com.movie.locations.domain.BagItem;
-import com.movie.locations.domain.Comment;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.NewsItem;
 import com.movie.locations.domain.QuizItem;

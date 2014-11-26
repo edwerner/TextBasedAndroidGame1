@@ -1,5 +1,4 @@
 package com.movie.locations.domain;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -29,28 +28,27 @@ public class WorldLocationObject implements Parcelable {
 	private String id;
 	private String level;
 	private String staticMapImageUrl;
-	private String questionId; //
-//	private String filmTitle; //
-	private String dateTime; //
-	private String questionText; //
-	private String answer1; //
-	private String answer2; //
-	private String answer3; //
-	private String answer4; //
-	private String reaction1; //
-	private String reaction2; //
-	private String reaction3; //
-	private String reaction4; //
-	private String worldId; //
-	private String worldTitle; //
-	private String submittedAnswerIndex; //
-	private String answered = "false"; //
-	private String activeItem; //
-	private String activeItem1; //
-	private String activeItem2; //
-	private String activeItem3; //
-	private String activeItem4; //
-	private String correctAnswerIndex; // not set on client
+	private String questionId;
+	private String dateTime;
+	private String questionText;
+	private String answer1;
+	private String answer2;
+	private String answer3;
+	private String answer4;
+	private String reaction1;
+	private String reaction2;
+	private String reaction3;
+	private String reaction4;
+	private String worldId;
+	private String worldTitle;
+	private String submittedAnswerIndex;
+	private String answered = "false";
+	private String activeItem;
+	private String activeItem1;
+	private String activeItem2;
+	private String activeItem3;
+	private String activeItem4;
+	private String correctAnswerIndex;
 	
 	// empty constructor
 	public WorldLocationObject() {
@@ -88,7 +86,6 @@ public class WorldLocationObject implements Parcelable {
 		pc.writeString(longitude);
 		pc.writeString(staticMapImageUrl);
 		pc.writeString(questionId);
-//		pc.writeString(filmTitle);
 		pc.writeString(dateTime);
 		pc.writeString(questionText);
 		pc.writeString(answer1);
@@ -102,8 +99,7 @@ public class WorldLocationObject implements Parcelable {
 		pc.writeString(worldId);
 		pc.writeString(worldTitle);
 		pc.writeString(submittedAnswerIndex);
-		pc.writeValue(correctAnswerIndex); // not set on client	
-//		pc.writeInt(correctAnswerIndex);
+		pc.writeValue(correctAnswerIndex);
 		pc.writeString(answered);
 		pc.writeString(activeItem);
 		pc.writeString(activeItem1);
@@ -114,7 +110,6 @@ public class WorldLocationObject implements Parcelable {
 	}	
 	
 	public WorldLocationObject(Parcel pc) {
-//		pc.readParcelable(ClassLoaderHelper.getClassLoader());
 		sid = pc.readString();
 		level = pc.readString();
 		position = pc.readString();
@@ -138,10 +133,7 @@ public class WorldLocationObject implements Parcelable {
 		latitude = pc.readString();
 		longitude = pc.readString();
 		staticMapImageUrl = pc.readString();
-//		pc.readParcelable(Thread.currentThread().getContextClassLoader());
-//		ClassLoaderHelper.setClassLoader(Thread.currentThread().getContextClassLoader());
 		questionId = pc.readString();
-//		filmTitle = pc.readString();
 		dateTime = pc.readString();
 		questionText = pc.readString();
 		answer1 = pc.readString();
@@ -155,7 +147,7 @@ public class WorldLocationObject implements Parcelable {
 		worldId = pc.readString();
 		worldTitle = pc.readString();
 		submittedAnswerIndex = pc.readString();
-		correctAnswerIndex = pc.readString(); // not set on client
+		correctAnswerIndex = pc.readString();
 		answered = pc.readString();
 		activeItem = pc.readString();
 		activeItem1 = pc.readString();
@@ -537,10 +529,5 @@ public class WorldLocationObject implements Parcelable {
 
 	public void setStaticMapImageUrl(String staticMapImageUrl) {
 		this.staticMapImageUrl = staticMapImageUrl;
-	}
-	
-	
-	
+	}	
 }
-
-

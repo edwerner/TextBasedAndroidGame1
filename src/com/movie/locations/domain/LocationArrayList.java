@@ -28,13 +28,11 @@ public class LocationArrayList implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel pc, int flags) {
-		pc.writeTypedList(filmList);
+		pc.writeList(filmList);
 	}	
 	
 	public LocationArrayList(Parcel pc) {
-		pc.readParcelable(ClassLoaderHelper.getClassLoader());
-//		pc.readArrayList(ClassLoaderHelper.getClassLoader());
-		filmList = pc.readArrayList(getClass().getClassLoader());
+		pc.readList(filmList, FilmLocation.class.getClassLoader());
 	}
 
 	public static final Parcelable.Creator<LocationArrayList> CREATOR = new Parcelable.Creator<LocationArrayList>() {
