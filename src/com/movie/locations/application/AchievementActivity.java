@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -115,6 +116,13 @@ public class AchievementActivity extends ActionBarActivity {
 			TextView currentLevelText = (TextView) rootView.findViewById(R.id.currentLevelText1);
 			currentLevelText.setText("Welcome to level" + levelUp + "!");
 			
+			Button dismissConclusionButton = (Button) rootView.findViewById(R.id.dismissConclusionButton1);
+			dismissConclusionButton.setOnClickListener(new Button.OnClickListener() {
+				public void onClick(View v) {
+					getActivity().finish();
+				}
+			});
+
 			return rootView;
 		}
 	}

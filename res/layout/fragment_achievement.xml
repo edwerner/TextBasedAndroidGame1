@@ -37,5 +37,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="16sp" />
+    
+     <Button
+         android:id="@+id/dismissConclusionButton1"
+         style="@style/CodeFont"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:drawableLeft="@drawable/star"
+         android:text="Dismiss" />
 
 </LinearLayout>

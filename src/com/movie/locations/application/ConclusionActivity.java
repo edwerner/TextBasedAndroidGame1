@@ -68,7 +68,7 @@ public class ConclusionActivity extends ActionBarActivity {
 		worldCount = extras.getString("worldCount");
 		currentLevelString = extras.getString("currentLevel");
 		conclusionCard = extras.getParcelable("conclusionCard");
-		Fragment conclusionFragment = new PlaceholderFragment(); 
+		Fragment conclusionFragment = new ConclusionFragment(); 
 		Bundle bundle = new Bundle();
 		bundle.putParcelable("bagItemArrayList", bagItemArrayList);
 		bundle.putParcelable("conclusionCard", conclusionCard);
@@ -176,9 +176,9 @@ public class ConclusionActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment {
+	public static class ConclusionFragment extends Fragment {
 
-		public PlaceholderFragment() {
+		public ConclusionFragment() {
 		}
 
 		@Override
@@ -209,7 +209,6 @@ public class ConclusionActivity extends ActionBarActivity {
 				
 				ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
 				cardList.add(conclusionCard);
-				
 				
 				// SHOW NEW BAG ITEM(S)
 				ConclusionCardArrayAdapter conclusionCardAdapter = new ConclusionCardArrayAdapter(context, intent, cardList);
