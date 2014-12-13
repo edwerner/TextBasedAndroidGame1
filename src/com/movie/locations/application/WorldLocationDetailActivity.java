@@ -5,6 +5,7 @@ import java.util.Locale;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.R;
 import com.movie.locations.dao.AchievementImpl;
+import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
@@ -89,6 +90,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 	private AchievementImpl achievementImpl;
 	private Achievement levelAchievement;
 
+
 	private static Context context;
 	private static ArrayList<QuizItem> newQuizList;
 	private static Dialog dialog;
@@ -164,8 +166,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		localQuizItemArrayList.setQuizList(newQuizList);
 		intent.putExtra("localQuizItemArrayList", localQuizItemArrayList);
 
-		// CONCLUSION CARD DATABASE IMPLEMENTATION
-//		conclusionCardImpl = new ConclusionCardImpl(this);
 //		quizItemService = new QuizItemService();
 		pointsItemImpl = new PointsItemImpl(context);
 		achievementImpl = new AchievementImpl(context);
@@ -505,7 +505,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		private BagItemArrayList bagItemArrayList;
 		private QuizItemImpl quizitemsource;
 		private FilmArrayList locationArrayList;
-
+		private ConclusionCardImpl conclusionCardImpl;
+		
 		public FilmLocationFragment() {
 		}
 		@Override
@@ -516,6 +517,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 			if (requestCode == 1) {
 
+				String updatedUserPointsString = null;
+				
 				if (resultCode == RESULT_OK) {
 					currentQuizItem = data.getExtras().getParcelable("quizItem");
 					System.out.println("RESULT_OK: " + currentQuizItem.getAnswered());
@@ -539,7 +542,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						System.out.println("USER DATABASE POINTS: " + databasePoints);
 						int databasePointsInt = Integer.parseInt(databasePoints);
 						int updatedUserPointsInt = quizItemPointValueInt + databasePointsInt;
-						String updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+						updatedUserPointsString = Integer.toString(updatedUserPointsInt);
 						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);						
 						
 //						final User FINAL_CURRENT_USER = userImpl.selectRecordById(currentUserId);
@@ -608,7 +611,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						}
 					}
 					
-					generateConclusionCard(quizItem);
+					generateConclusionCard(currentQuizItem, updatedUserPointsString);
 					locationQuizArrayAdapter.notifyDataSetChanged();
 				} else if (resultCode == RESULT_CANCELED) {
 
@@ -689,8 +692,9 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		// super.onResume();
 		// }
 
-		private void generateConclusionCard(QuizItem quizItem) {
-
+		private void generateConclusionCard(QuizItem quizItem, String currentUserPoints) {
+			
+			System.out.println("GENERATE QUIZ POINTS: " + quizItem.getQuestionId());
 			
 			Intent achievementIntent = new Intent(context, ConclusionActivity.class);
 			achievementIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -705,14 +709,19 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			achievementIntent.putExtra("conclusionImageUrl", "conclusionImageUrl");
 			
 			// TODO: GET THIS CARD DATA FROM GCM MESSAGE
-			ConclusionCard conclusionCard = new ConclusionCard();
-			conclusionCard.setId("cardId");
-			conclusionCard.setTitle("title");
-			conclusionCard.setCopy("card copy");
-			conclusionCard.setImageUrl("http://wow.zamimg.com/images/wow/icons/large/spell_holy_summonlightwell.jpg");
-			conclusionCard.setLevel("level");
+//			ConclusionCard conclusionCard = new ConclucsionCard();
+			final String questionId = quizItem.getQuestionId();
+			ConclusionCard conclusionCard = conclusionCardImpl.selectRecordById(questionId);
+			conclusionCard.setId(questionId);
+			conclusionCard.setTitle(conclusionCard.getTitle());
+			conclusionCard.setCopy(conclusionCard.getCopy());
+			conclusionCard.setImageUrl(conclusionCard.getImageUrl());
+			conclusionCard.setLevel(conclusionCard.getLevel());
 			
 			achievementIntent.putExtra("conclusionCard", conclusionCard);
+			achievementIntent.putExtra("currentUserPoints", currentUserPoints);
+//			System.out.println("CURRENT USER POINTS: " + fragmentUser.getPoints());
+			achievementIntent.putExtra("pointValue", quizItem.getPointValue());
 //			achievementIntent.putExtra("bagItemArrayList", bagItemArrayList);
 			startActivity(achievementIntent);
 				
@@ -731,7 +740,11 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			View rootView = inflater.inflate(R.layout.fragment_film_detail,
 					container, false);
 			
+			
 //			context = getActivity().getApplicationContext();
+
+			conclusionCardImpl = new ConclusionCardImpl(context);
+			
 			fragmentUser = getArguments().getParcelable("fragmentUser");
 			levelAchievement = getArguments().getParcelable("levelAchievement");
 			location = getArguments().getString("location");

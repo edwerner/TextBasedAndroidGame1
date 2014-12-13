@@ -10,6 +10,8 @@ import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.User;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.content.Context;
@@ -22,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,7 +47,9 @@ public class ConclusionActivity extends ActionBarActivity {
 	private String currentLevelString;
 //	private static String emailNotifications;
 //	private static String mobileNotifications;
-//	private static User currentUser;
+	private String currentUserPoints;
+	private String pointValue;
+	private String updatedPoints;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +69,20 @@ public class ConclusionActivity extends ActionBarActivity {
 		bagItemArrayList = extras.getParcelable("bagItemArrayList");
 		currentUserId = extras.getString("currentUserId");
 		pointsItem = extras.getParcelable("pointsItem");
+		pointValue = extras.getString("pointValue");
 		System.out.println("BAG ITEM ARRAY LIST: " + bagItemArrayList);
 		worldCount = extras.getString("worldCount");
 		currentLevelString = extras.getString("currentLevel");
 		conclusionCard = extras.getParcelable("conclusionCard");
+		currentUserPoints = extras.getString("currentUserPoints");
+		
+		userSource = new UserImpl(this);
+		
+//		if (pointsItem != null) {
+//			CURRENT_USER_ID = pointsItem.getUserId();
+//			updatePointsDatabase();
+//		}
+		
 		Fragment conclusionFragment = new ConclusionFragment(); 
 		Bundle bundle = new Bundle();
 		bundle.putParcelable("bagItemArrayList", bagItemArrayList);
@@ -75,18 +90,14 @@ public class ConclusionActivity extends ActionBarActivity {
 		bundle.putString("conclusionTitle", conclusionTitle);
 		bundle.putString("conclusionCopy", conclusionCopy);
 		bundle.putString("conclusionImageUrl", conclusionImageUrl);
-		bundle.putString("pointsData", pointsData);
+		bundle.putString("pointValue", pointValue);
+		bundle.putString("updatedPoints", updatedPoints);
+		bundle.putString("currentUserPoints", currentUserPoints);
+//		bundle.putParcelable("pointsItem", pointsItem);
 		conclusionFragment.setArguments(bundle);
 		
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.container, conclusionFragment).commit();
-		
-		userSource = new UserImpl(this);
-		
-		if (pointsItem != null) {
-			CURRENT_USER_ID = pointsItem.getUserId();
-			updatePointsDatabase();
-		}
 	}
 	
 
@@ -95,7 +106,7 @@ public class ConclusionActivity extends ActionBarActivity {
 		System.out.println("POINTS DATABASE");
 		System.out.println("POINTS_ITEM CURRENT USER ID: " + CURRENT_USER_ID);
 		System.out.println("POINTS ITEM PARCEL USER ID: " + CURRENT_USER_ID);
-		String updatedPoints = null;
+		updatedPoints = null;
 		String updatedBonusPoints = null;
 		
 		pointsData = pointsItem.getPoints();
@@ -181,6 +192,8 @@ public class ConclusionActivity extends ActionBarActivity {
 		public ConclusionFragment() {
 		}
 
+		protected ImageLoader imageLoader = ImageLoader.getInstance();
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
@@ -193,57 +206,68 @@ public class ConclusionActivity extends ActionBarActivity {
 			TextView pointsDataText = (TextView) rootView.findViewById(R.id.pointsDataText);
 			TextView bonusPointsDataText = (TextView) rootView.findViewById(R.id.bonusPointsDataText);
 			TextView conclusionCardTitleHeadlineText = (TextView) rootView.findViewById(R.id.conclusionCardTitleHeadline1);
-			
+			ImageView conclusionImage = (ImageView) rootView.findViewById(R.id.conclusionImage);
+//			conclusionTitleText.setText(conclusionTitle);
+//			conclusionCopyText.setText(conclusionCopy);
+//			conclusionImageUrlText.setText(conclusionImageUrl);
+//			pointsDataText.setText(pointsData);
+//			bonusPointsDataText.setText(bonusPointsData);
 			final BagItemArrayList bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
 			final ConclusionCard conclusionCard = getArguments().getParcelable("conclusionCard");
-			final String conclusionTitle = getArguments().getParcelable("conclusionTitle");
-			final String conclusionCopy = getArguments().getParcelable("conclusionCopy");
-			final String conclusionImageUrl = getArguments().getParcelable("conclusionImageUrl");
-			final String pointsData = getArguments().getParcelable("pointsData");
+			final String conclusionTitle = conclusionCard.getTitle();
+			final String conclusionCopy = conclusionCard.getCopy();
+			final String conclusionImageUrl = conclusionCard.getImageUrl();
+			final PointsItem pointsItem = getArguments().getParcelable("pointsItem");
+//			final String pointsText = pointsItem.getPoints();
+			final String pointValue = getArguments().getString("pointValue");
 			final String bonusPointsData = getArguments().getParcelable("bonusPointsData");
 			final Context context = getActivity().getApplicationContext();
-			
-			if (conclusionCard != null) {
-				conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
-				Intent intent = new Intent();
-				
-				ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
-				cardList.add(conclusionCard);
-				
-				// SHOW NEW BAG ITEM(S)
-				ConclusionCardArrayAdapter conclusionCardAdapter = new ConclusionCardArrayAdapter(context, intent, cardList);
-				ListView cardListView = (ListView) rootView.findViewById(R.id.cardListView);
-				cardListView.setVisibility(ListView.VISIBLE);
-				cardListView.setAdapter(conclusionCardAdapter);					
-			}
-			
-			if (bagItemArrayList != null) {
-				ArrayList<BagItem> bagList =  bagItemArrayList.getBagItemArrayList();
-				
-				if (bagList != null) {
-					newBagItemTitleText.setVisibility(TextView.VISIBLE);
-					Intent intent = new Intent();
-					
-					// SHOW NEW BAG ITEM(S)
-					BagItemArrayAdapter bagItemAdapter = new BagItemArrayAdapter(context, intent, bagList);
-					ListView bagListView = (ListView) rootView.findViewById(R.id.bagListView);
-					bagListView.setVisibility(ListView.VISIBLE);
-					bagListView.setAdapter(bagItemAdapter);
-					
-//					int currentLevel = Integer.parseInt(bagList.get(0).getLevel());
-//					if (currentLevel < 2) {
-//						conclusionTitle = "Welcome to [app name]!";
-//						conclusionCopy = "Here's some quest items to get you started. Refer to 'Help' section for details.";
-//					}
-				}
-				
-			}
-			
+			final String updatedPoints = getArguments().getString("updatedPoints");
+			final String currentUserPoints = getArguments().getString("currentUserPoints");
+
+			conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
+			imageLoader.displayImage(conclusionImageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);
-			conclusionImageUrlText.setText(conclusionImageUrl);
-			pointsDataText.setText(pointsData);
-			bonusPointsDataText.setText(bonusPointsData);
+//			conclusionImageUrlText.setText(conclusionImageUrl);
+			pointsDataText.setText("Points: " + pointValue);
+			bonusPointsDataText.setText("Total Points: " + currentUserPoints);
+			
+//			if (conclusionCard != null) {
+//				conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
+//				Intent intent = new Intent();
+//				
+//				ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
+//				cardList.add(conclusionCard);
+//				
+//				// SHOW NEW BAG ITEM(S)
+//				ConclusionCardArrayAdapter conclusionCardAdapter = new ConclusionCardArrayAdapter(context, intent, cardList);
+//				ListView cardListView = (ListView) rootView.findViewById(R.id.cardListView);
+//				cardListView.setVisibility(ListView.VISIBLE);
+//				cardListView.setAdapter(conclusionCardAdapter);					
+//			}
+//			
+//			if (bagItemArrayList != null) {
+//				ArrayList<BagItem> bagList =  bagItemArrayList.getBagItemArrayList();
+//				
+//				if (bagList != null) {
+//					newBagItemTitleText.setVisibility(TextView.VISIBLE);
+//					Intent intent = new Intent();
+//					
+//					// SHOW NEW BAG ITEM(S)
+//					BagItemArrayAdapter bagItemAdapter = new BagItemArrayAdapter(context, intent, bagList);
+//					ListView bagListView = (ListView) rootView.findViewById(R.id.bagListView);
+//					bagListView.setVisibility(ListView.VISIBLE);
+//					bagListView.setAdapter(bagItemAdapter);
+//					
+////					int currentLevel = Integer.parseInt(bagList.get(0).getLevel());
+////					if (currentLevel < 2) {
+////						conclusionTitle = "Welcome to [app name]!";
+////						conclusionCopy = "Here's some quest items to get you started. Refer to 'Help' section for details.";
+////					}
+//				}
+//				
+//			}
 			
 			Button dismissConclusionButton = (Button) rootView.findViewById(R.id.dismissConclusionButton1);
 			dismissConclusionButton.setOnClickListener(new Button.OnClickListener() {

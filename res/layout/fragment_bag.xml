@@ -31,8 +31,7 @@
         android:id="@+id/bag_icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:contentDescription="@string/filmlist_icon_desc"
-        android:src="@drawable/ic_launcher" >
+        android:contentDescription="@string/filmlist_icon_desc">
     </ImageView>
 
     <LinearLayout

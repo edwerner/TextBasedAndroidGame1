@@ -5,6 +5,25 @@
     android:orientation="vertical"
     tools:context="com.movie.locations.ConclusionActivity$PlaceholderFragment" >
 
+    <ImageView
+        android:id="@+id/conclusionImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="centerCrop" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/conclusionCardTitleHeadline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You got a new card!"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone" >
+    </TextView>
+    
     <TextView
         android:id="@+id/conclusionTitleText"
         android:layout_width="wrap_content"
@@ -50,15 +69,6 @@
             android:text="Share on Google+" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/conclusionCardTitleHeadline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You got a new card!"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:visibility="gone" >
-    </TextView>
 
     <TextView
         android:id="@+id/bagItemTitleHeadline1"
