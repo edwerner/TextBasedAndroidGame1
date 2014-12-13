@@ -570,6 +570,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						
 					} else {
 						pointsItemImpl.createRecord(newPointsItem);
+						updatedUserPointsString = newPointsItem.getPoints();
 					} 
 					
 					
