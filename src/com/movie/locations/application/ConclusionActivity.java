@@ -1,5 +1,9 @@
 package com.movie.locations.application;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import com.google.android.gms.plus.PlusShare;
@@ -16,8 +20,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -226,7 +235,8 @@ public class ConclusionActivity extends ActionBarActivity {
 			final String currentUserPoints = getArguments().getString("currentUserPoints");
 
 			conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
-			imageLoader.displayImage(conclusionImageUrl, conclusionImage);
+			final String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
+			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);
 //			conclusionImageUrlText.setText(conclusionImageUrl);
@@ -277,19 +287,38 @@ public class ConclusionActivity extends ActionBarActivity {
 			});
 
 			Button shareButton = (Button) rootView.findViewById(R.id.share_button);
+			InputStream imageStream = null;
+			
+			try {
+				imageStream = getActivity().getAssets().open(conclusionImageUrl + ".jpg");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			InputStream inputStream = am.open(file:///android_asset/myfoldername/myfilename);
+				
+				
+	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+	    	System.out.println("Bitmap: " + bitmap);
+	    	System.out.println("Content Resolver: " + getActivity().getContentResolver());
+	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
+	    	System.out.println("Post Image: " + postImage);
 			shareButton.setOnClickListener(new Button.OnClickListener() {
 			    @Override
 			    public void onClick(View v) {
-			      String image = "http://i.dailymail.co.uk/i/pix/2013/03/15/article-2293722-0294CDD8000004B0-59_306x455.jpg";
-				// Launch the Google+ share dialog with attribution to your app.
-			      Intent shareIntent = new PlusShare.Builder(context)
-			          .setType("text/plain")
-			          .setText("Test post")
-			          .setContentUrl(Uri.parse(image))
-//			          .setContentUrl(Uri.parse("https://developers.google.com/+/"))
-			          .getIntent();
+//			    	Uri screenshotUri = Uri.parse(path);
+//			    	String image = "http://i.dailymail.co.uk/i/pix/2013/03/15/article-2293722-0294CDD8000004B0-59_306x455.jpg";
+					// Launch the Google+ share dialog with attribution to your app.
+					  Intent shareIntent = new PlusShare.Builder(context)
+					      .setType("text/plain")
+					      .setText("Test post")
+					      .setStream(Uri.parse(postImage))
+//					          .setContentUrl(Uri.parse("https://developers.google.com/+/"))
+					      .getIntent();
+					  
+					  startActivityForResult(shareIntent, 0);
 
-			      startActivityForResult(shareIntent, 0);
+			      
 			    }
 			});
 			return rootView;
