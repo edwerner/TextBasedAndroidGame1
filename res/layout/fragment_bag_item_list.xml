@@ -3,6 +3,7 @@
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context="com.movie.locations.NewsActivity$BagItemListFragment" >
 
     <LinearLayout
@@ -19,7 +20,8 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- <TextView
+        <!--
+             <TextView
             android:id="@+id/pullToRefreshText1"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
@@ -27,7 +29,9 @@
             android:paddingBottom="20dp"
             android:text="Pull down to refresh"
             android:textSize="18sp"
-            android:textStyle="italic" /> -->
+            android:textStyle="italic" />
+        -->
+
 
         <!--
                  <ListView
@@ -36,7 +40,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="10dp"
-                android:clickable="true" />
+                android:clickable="true" />
         -->
 
         <ListView

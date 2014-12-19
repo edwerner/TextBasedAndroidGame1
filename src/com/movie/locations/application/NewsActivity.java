@@ -411,9 +411,10 @@ public class NewsActivity extends ActionBarActivity {
 					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
-					
+					int counter = 0;
 					for (GameTitle tempTitle : gameTitleList) {
-						System.out.println("CARD DATABASE TITLE: " + tempTitle.getTitle());
+						counter++;
+						System.out.println("CARD DATABASE TITLE COUNTER: " + counter);
 					}
 					final Context bagContext = getActivity().getApplicationContext();
 					bagItemImpl = new BagItemImpl(bagContext);
