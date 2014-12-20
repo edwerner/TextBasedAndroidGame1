@@ -483,12 +483,16 @@ public class NewsActivity extends ActionBarActivity {
 					// sort the list
 					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
 					Collections.sort(cardList, StaticSortingUtilities.CARD_TITLES_ALPHABETICAL_ORDER);
+					
+
+					System.out.println("CARD TITLES LENGTH: " + gameTitleList.size());
 					if (gameTitleList.size() > 0) {
 						if (cardList.size() > 0) {
 							for (int i = 0; i < cardList.size(); i++) {
 								GameTitle tempTitle = gameTitleList.get(i);
 								String currentTitleString = tempTitle.getTitle();
 								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
+								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem);
 								ConclusionCard existingCard = cardList.get(i);
 								String currentCardTitle = existingCard.getTitle();
 								if (!currentTitleString.equals(currentCardTitle)) {
