@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
+import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.User;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -100,23 +101,38 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			gameTitleText += itemLevelText;
 			String existingImageUrl = values.get(position).getImageUrl();
 			if (existingImageUrl != null) {
+//				final String finalImageUrl = "assets://" + existingImageUrl + ".jpg";
 				BAG_ITEM_IMAGE_URL = existingImageUrl;
 			}
-			final Intent conclusionIntent = new Intent(context, ConclusionActivity.class);
+			
 
+//			private String id;
+//			private String title;
+//			private String type;
+//			private String level;
+//			private String phase;
+//			private String imageUrl;
+			
+			
+			final Intent conclusionIntent = new Intent(context, ConclusionActivity.class);
+			ConclusionCard tempCard = new ConclusionCard();
+			tempCard.setTitle(values.get(position).getTitle());
+			tempCard.setLevel(values.get(position).getLevel());
+			tempCard.setImageUrl(values.get(position).getId());
+			
+			System.out.println("TEMP CARD IMAGE URL: " + values.get(position).getImageUrl());
 			// get intent string attributes
 			Bundle bundle = intent.getExtras();
-			User localUser = bundle.getParcelable("localUser");
-			conclusionIntent.putExtra("id", values.get(position).getId());
-			conclusionIntent.putExtra("title", values.get(position).getTitle());
-			conclusionIntent.putExtra("type", values.get(position).getType());
-			conclusionIntent.putExtra("level", values.get(position).getLevel());
-			conclusionIntent.putExtra("imageUrl", values.get(position).getImageUrl());
-			conclusionIntent.putExtra("localUser", localUser);
+			conclusionIntent.putExtra("conclusionCard", tempCard);
+//			conclusionIntent.putExtra("title", values.get(position).getTitle());
+//			conclusionIntent.putExtra("type", values.get(position).getType());
+//			conclusionIntent.putExtra("level", values.get(position).getLevel());
+//			conclusionIntent.putExtra("imageUrl", values.get(position).getImageUrl());
 			if (!values.get(position).getId().equals(null)) {
 	    		rowView.setOnClickListener(new View.OnClickListener() {
 	    		    public void onClick(View v) {
 	    		    	context.startActivity(conclusionIntent);
+	    		    	System.out.println("current image Url: " + values.get(position).getImageUrl());
 	    		    }
 	    		});
 			}

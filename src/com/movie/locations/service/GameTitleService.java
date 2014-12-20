@@ -59,7 +59,6 @@ public class GameTitleService {
 			title.setLevel(removeDoubleQuotes(result[3].toString()));
 			title.setPhase(removeDoubleQuotes(result[4].toString()));
 			title.setImageUrl(removeDoubleQuotes(result[5].toString()));
-			
 			gameTitleList.add(title);
 			System.out.println("OUTPUT CONCLUSION CARDS: " + title.getId());
 		}

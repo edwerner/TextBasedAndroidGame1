@@ -1,80 +1,80 @@
-BAG_ITEM_TITLE,car_01,Car 1,Car item,assets://led_red.jpg,1
-BAG_ITEM_TITLE,car_02,Car 2,Car item,assets://led_green.jpg,1
-BAG_ITEM_TITLE,car_03,Car 3,Car item,assets://led_tricolor.jpg,1
-BAG_ITEM_TITLE,car_04,Car 4,Car item,assets://motor_vib.jpg,1
+BAG_ITEM_TITLE,led_red,Car 1,Car item,assets://led_red.jpg,1
+BAG_ITEM_TITLE,led_green,Car 2,Car item,assets://led_green.jpg,1
+BAG_ITEM_TITLE,led_tricolor,Car 3,Car item,assets://led_tricolor.jpg,1
+BAG_ITEM_TITLE,motor_vib,Car 4,Car item,assets://motor_vib.jpg,1
 BAG_ITEM_TITLE,9v_battery_case,9V Battery Case,Bag Item,assets://9v_battery_case.jpg,1
 BAG_ITEM_TITLE,audio_ports,Audio Ports,Bag Item,assets://audio_ports.jpg,1
 BAG_ITEM_TITLE,breadboard_lg,Large Breadboard,Bag Item,assets://breadboard_lg.jpg,1
 BAG_ITEM_TITLE,breadboard_sm,Small Breadboard,Bag Item,assets://breadboard_sm.jpg,1
-BAG_ITEM_TITLE,capacitor_ceramic_001.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_ceramic_001.jpg,1
-BAG_ITEM_TITLE,capacitor_ceramic_002.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_ceramic_002.jpg,1
-BAG_ITEM_TITLE,capacitor_ceramic_003.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_ceramic_003.jpg,1
-BAG_ITEM_TITLE,capacitor_electrolytic.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic.jpg,1
-BAG_ITEM_TITLE,capacitor_electrolytic_lg_001.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic_lg_001.jpg,1
-BAG_ITEM_TITLE,capacitor_electrolytic_lg_002.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic_lg_002.jpg,1
-BAG_ITEM_TITLE,capacitor_electrolytic_lg_003.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic_lg_003.jpg,1
-BAG_ITEM_TITLE,capacitor_lg_001.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_lg_001.jpg,1
-BAG_ITEM_TITLE,capacitor_lg_002.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_lg_002.jpg,1
-BAG_ITEM_TITLE,capacitor_lg_003.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_lg_003.jpg,1
-BAG_ITEM_TITLE,capacitor_lg_004.jpg,Capacitor (ceramic),Bag Item,assets://capacitor_lg_004.jpg,1
-BAG_ITEM_TITLE,circuitboard_001.jpg,Circuit Board,Display Item,assets://circuitboard_001.jpg,1
-BAG_ITEM_TITLE,circuitboard_002.jpg,Circuit Board,Display Item,assets://circuitboard_002.jpg,1
-BAG_ITEM_TITLE,circuitboard_003.jpg,Circuit Board,Display Item,assets://circuitboard_003.jpg,1
-BAG_ITEM_TITLE,circuitboard_004.jpg,Circuit Board,Display Item,assets://circuitboard_004.jpg,1
-BAG_ITEM_TITLE,circuitboard_005.jpg,Circuit Board,Display Item,assets://circuitboard_005.jpg,1
-BAG_ITEM_TITLE,circuitboard_006.jpg,Circuit Board,Display Item,assets://circuitboard_006.jpg,1
-BAG_ITEM_TITLE,circuitboard_007.jpg,Circuit Board,Display Item,assets://circuitboard_007.jpg,1
-BAG_ITEM_TITLE,circuitboard_008.jpg,Circuit Board,Display Item,assets://circuitboard_008.jpg,1
-BAG_ITEM_TITLE,diode.jpg,Diode,Bag Item,assets://diode.jpg,1
-BAG_ITEM_TITLE,floppy_drive.jpg,"3.5"" Floppy Drive",Bag Item,assets://floppy_drive.jpg,1
-BAG_ITEM_TITLE,hard_disk_drive_headers.jpg,Hard Disk Drive Headers,Bag Item,assets://hard_disk_drive_headers.jpg,1
-BAG_ITEM_TITLE,hard_drive_001.jpg,Hard Drive,Bag Item,assets://hard_drive_001.jpg,1
-BAG_ITEM_TITLE,hard_drive_002.jpg,Hard Drive,Bag Item,assets://hard_drive_002.jpg,1
-BAG_ITEM_TITLE,hard_drive_003.jpg,Hard Drive,Bag Item,assets://hard_drive_003.jpg,1
-BAG_ITEM_TITLE,hard_drive_004.jpg,Hard Drive,Bag Item,assets://hard_drive_004.jpg,1
-BAG_ITEM_TITLE,headers_female_8_pin_lg.jpg,Headers (female),Bag Item,assets://headers_female_8_pin_lg.jpg,1
-BAG_ITEM_TITLE,headers_female_8_pin_sm.jpg,Headers (female),Bag Item,assets://headers_female_8_pin_sm.jpg,1
-BAG_ITEM_TITLE,headers_male_5_pin.jpg,Headers (male),Bag Item,assets://headers_male_5_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_8_pin.jpg,Headers (male),Bag Item,assets://headers_male_8_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_19_pin.jpg,Headers (male),Bag Item,assets://headers_male_19_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_5_pin.jpg,Headers (male),Bag Item,assets://headers_male_dual_5_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_8_pin.jpg,Headers (male),Bag Item,assets://headers_male_dual_8_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_27_pin.jpg,Headers (male),Bag Item,assets://headers_male_dual_27_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_lg.jpg,Headers (male),Bag Item,assets://headers_male_dual_lg.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_med.jpg,Headers (male),Bag Item,assets://headers_male_dual_med.jpg,1
-BAG_ITEM_TITLE,jumper_cable_lg.jpg,LG Jumper Cable,Bag Item,assets://jumper_cable_lg.jpg,1
-BAG_ITEM_TITLE,jumper_cable_sm.jpg,SM Jumper Cable,Bag Item,assets://jumper_cable_sm.jpg,1
-BAG_ITEM_TITLE,led_green.jpg,Green LED,Bag Item,assets://led_green.jpg,1
-BAG_ITEM_TITLE,led_red.jpg,Red LED,Bag Item,assets://led_red.jpg,1
-BAG_ITEM_TITLE,led_tricolor.jpg,Tricolor LED,Bag Item,assets://led_tricolor.jpg,1
-BAG_ITEM_TITLE,memory_stick.jpg,Memory Stick,Bag Item,assets://memory_stick.jpg,1
-BAG_ITEM_TITLE,motherboard_001.jpg,Motherboard,Display Item,assets://motherboard_001.jpg,1
-BAG_ITEM_TITLE,motherboard_002.jpg,Motherboard,Display Item,assets://motherboard_002.jpg,1
-BAG_ITEM_TITLE,motor_vibr.jpg,Motor,Bag Item,assets://motor_vibr.jpg,1
-BAG_ITEM_TITLE,network_interface_card_001.jpg,Network Interface Card (NIC),Bag Item,assets://network_interface_card_001.jpg,1
-BAG_ITEM_TITLE,oscillator_001.jpg,Oscillator,Bag Item,assets://oscillator_001.jpg,1
-BAG_ITEM_TITLE,oscillator_002.jpg,Oscillator,Bag Item,assets://oscillator_002.jpg,1
-BAG_ITEM_TITLE,photoresistor.jpg,Photo Resistor,Bag Item,assets://photoresistor.jpg,1
-BAG_ITEM_TITLE,piezo_buzzer_001.jpg,Piezo Buzzer,Bag Item,assets://piezo_buzzer_001.jpg,1
-BAG_ITEM_TITLE,piezo_buzzer_002.jpg,Piezo Buzzer,Bag Item,assets://piezo_buzzer_002.jpg,1
-BAG_ITEM_TITLE,potentiometer_rotary.jpg,Rotary Potentiometer,Bag Item,assets://potentiometer_rotary.jpg,1
-BAG_ITEM_TITLE,potentiometer_trim.jpg,Trim Potentiometer,Bag Item,assets://potentiometer_trim.jpg,1
-BAG_ITEM_TITLE,power_supply_unit.jpg,Power Supply Unit,Bag Item,assets://power_supply_unit.jpg,1
-BAG_ITEM_TITLE,power_switch.jpg,Power Switch,Bag Item,assets://power_switch.jpg,1
-BAG_ITEM_TITLE,pressure_sensor.jpg,Pressure Sensor,Bag Item,assets://pressure_sensor.jpg,1
-BAG_ITEM_TITLE,printer_connector_001.jpg,Printer Connector,Bag Item,assets://printer_connector_001.jpg,1
-BAG_ITEM_TITLE,printer_connector_002.jpg,Printer Connector,Bag Item,assets://printer_connector_002.jpg,1
-BAG_ITEM_TITLE,protoboard.jpg,Protoboard,Bag Item,assets://protoboard.jpg,1
-BAG_ITEM_TITLE,ps_2_ports.jpg,PS/2 ports,Bag Item,assets://ps_2_ports.jpg,1
-BAG_ITEM_TITLE,psu_plug.jpg,Power Supply Unit (PSU) Plug,Bag Item,assets://psu_plug.jpg,1
-BAG_ITEM_TITLE,ribbon_cable.jpg,Ribbon Cable,Bag Item,assets://ribbon_cable.jpg,1
-BAG_ITEM_TITLE,sdramm_dimm_slots.jpg,SDRAM DIMM (memory) Slots,Bag Item,assets://sdram_dimm_slots.jpg,1
-BAG_ITEM_TITLE,servomotor_micro.jpg,Servomotor,Bag Item,assets://servomotor_micro.jpg,1
-BAG_ITEM_TITLE,sleep_switch_display.jpg,Sleep Switch Display,Bag Item,assets://sleep_swich_display.jpg,1
-BAG_ITEM_TITLE,speaker.jpg,Audio Speaker,Bag Item,assets://speaker.jpg,1
-BAG_ITEM_TITLE,switch_dpdt.jpg,Switch (DPDT),Bag Item,assets://switch_dpdt.jpg,1
-BAG_ITEM_TITLE,switch_spst.jpg,Switch (SPST),Bag Item,assets://switch_spst.jpg,1
-BAG_ITEM_TITLE,tilt_sensor.jpg,Tilt Sensor,Bag Item,assets://tile_sensor.jpg,1
-BAG_ITEM_TITLE,transformer.jpg,Transformer,Bag Item,assets://transformer.jpg,1
-BAG_ITEM_TITLE,transistor_npn.jpg,Transistor (NPN),Bag Item,assets://transistor_npn.jpg,1
-BAG_ITEM_TITLE,vga_connector.jpg,VGA Connector,Bag Item,assets://vga_connector.jpg,1
+BAG_ITEM_TITLE,capacitor_ceramic_001,Capacitor (ceramic),Bag Item,assets://capacitor_ceramic_001.jpg,1
+BAG_ITEM_TITLE,capacitor_ceramic_002,Capacitor (ceramic),Bag Item,assets://capacitor_ceramic_002.jpg,1
+BAG_ITEM_TITLE,capacitor_ceramic_003,Capacitor (ceramic),Bag Item,assets://capacitor_ceramic_003.jpg,1
+BAG_ITEM_TITLE,capacitor_electrolytic,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic.jpg,1
+BAG_ITEM_TITLE,capacitor_electrolytic_lg_001,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic_lg_001.jpg,1
+BAG_ITEM_TITLE,capacitor_electrolytic_lg_002,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic_lg_002.jpg,1
+BAG_ITEM_TITLE,capacitor_electrolytic_lg_003,Capacitor (ceramic),Bag Item,assets://capacitor_electrolytic_lg_003.jpg,1
+BAG_ITEM_TITLE,capacitor_lg_001,Capacitor (ceramic),Bag Item,assets://capacitor_lg_001.jpg,1
+BAG_ITEM_TITLE,capacitor_lg_002,Capacitor (ceramic),Bag Item,assets://capacitor_lg_002.jpg,1
+BAG_ITEM_TITLE,capacitor_lg_003,Capacitor (ceramic),Bag Item,assets://capacitor_lg_003.jpg,1
+BAG_ITEM_TITLE,capacitor_lg_004,Capacitor (ceramic),Bag Item,assets://capacitor_lg_004.jpg,1
+BAG_ITEM_TITLE,circuitboard_001,Circuit Board,Display Item,assets://circuitboard_001.jpg,1
+BAG_ITEM_TITLE,circuitboard_002,Circuit Board,Display Item,assets://circuitboard_002.jpg,1
+BAG_ITEM_TITLE,circuitboard_003,Circuit Board,Display Item,assets://circuitboard_003.jpg,1
+BAG_ITEM_TITLE,circuitboard_004,Circuit Board,Display Item,assets://circuitboard_004.jpg,1
+BAG_ITEM_TITLE,circuitboard_005,Circuit Board,Display Item,assets://circuitboard_005.jpg,1
+BAG_ITEM_TITLE,circuitboard_006,Circuit Board,Display Item,assets://circuitboard_006.jpg,1
+BAG_ITEM_TITLE,circuitboard_007,Circuit Board,Display Item,assets://circuitboard_007.jpg,1
+BAG_ITEM_TITLE,circuitboard_008,Circuit Board,Display Item,assets://circuitboard_008.jpg,1
+BAG_ITEM_TITLE,diode,Diode,Bag Item,assets://diode.jpg,1
+BAG_ITEM_TITLE,floppy_drive,"3.5"" Floppy Drive",Bag Item,assets://floppy_drive.jpg,1
+BAG_ITEM_TITLE,hard_disk_drive_headers,Hard Disk Drive Headers,Bag Item,assets://hard_disk_drive_headers.jpg,1
+BAG_ITEM_TITLE,hard_drive_001,Hard Drive,Bag Item,assets://hard_drive_001.jpg,1
+BAG_ITEM_TITLE,hard_drive_002,Hard Drive,Bag Item,assets://hard_drive_002.jpg,1
+BAG_ITEM_TITLE,hard_drive_003,Hard Drive,Bag Item,assets://hard_drive_003.jpg,1
+BAG_ITEM_TITLE,hard_drive_004,Hard Drive,Bag Item,assets://hard_drive_004.jpg,1
+BAG_ITEM_TITLE,headers_female_8_pin_lg,Headers (female),Bag Item,assets://headers_female_8_pin_lg.jpg,1
+BAG_ITEM_TITLE,headers_female_8_pin_sm,Headers (female),Bag Item,assets://headers_female_8_pin_sm.jpg,1
+BAG_ITEM_TITLE,headers_male_5_pin,Headers (male),Bag Item,assets://headers_male_5_pin.jpg,1
+BAG_ITEM_TITLE,headers_male_8_pin,Headers (male),Bag Item,assets://headers_male_8_pin.jpg,1
+BAG_ITEM_TITLE,headers_male_19_pin,Headers (male),Bag Item,assets://headers_male_19_pin.jpg,1
+BAG_ITEM_TITLE,headers_male_dual_5_pin_lg,Headers (male),Bag Item,assets://headers_male_dual_5_pin_lg.jpg,1
+BAG_ITEM_TITLE,headers_male_dual_8_pin_lg,Headers (male),Bag Item,assets://headers_male_dual_8_pin_lg.jpg,1
+BAG_ITEM_TITLE,headers_male_dual_27_pin_lg,Headers (male),Bag Item,assets://headers_male_dual_27_pin_lg.jpg,1
+BAG_ITEM_TITLE,headers_male_dual_lg,Headers (male),Bag Item,assets://headers_male_dual_lg.jpg,1
+BAG_ITEM_TITLE,headers_male_dual_med,Headers (male),Bag Item,assets://headers_male_dual_med.jpg,1
+BAG_ITEM_TITLE,jumper_cable_lg,LG Jumper Cable,Bag Item,assets://jumper_cable_lg.jpg,1
+BAG_ITEM_TITLE,jumper_cable_sm,SM Jumper Cable,Bag Item,assets://jumper_cable_sm.jpg,1
+BAG_ITEM_TITLE,led_green,Green LED,Bag Item,assets://led_green.jpg,1
+BAG_ITEM_TITLE,led_red,Red LED,Bag Item,assets://led_red.jpg,1
+BAG_ITEM_TITLE,led_tricolor,Tricolor LED,Bag Item,assets://led_tricolor.jpg,1
+BAG_ITEM_TITLE,memory_stick,Memory Stick,Bag Item,assets://memory_stick.jpg,1
+BAG_ITEM_TITLE,motherboard_001,Motherboard,Display Item,assets://motherboard_001.jpg,1
+BAG_ITEM_TITLE,motherboard_002,Motherboard,Display Item,assets://motherboard_002.jpg,1
+BAG_ITEM_TITLE,motor_vibr,Motor,Bag Item,assets://motor_vibr.jpg,1
+BAG_ITEM_TITLE,network_interface_card_001,Network Interface Card (NIC),Bag Item,assets://network_interface_card_001.jpg,1
+BAG_ITEM_TITLE,oscillator_001,Oscillator,Bag Item,assets://oscillator_001.jpg,1
+BAG_ITEM_TITLE,oscillator_002,Oscillator,Bag Item,assets://oscillator_002.jpg,1
+BAG_ITEM_TITLE,photoresistor,Photo Resistor,Bag Item,assets://photoresistor.jpg,1
+BAG_ITEM_TITLE,piezo_buzzer_001,Piezo Buzzer,Bag Item,assets://piezo_buzzer_001.jpg,1
+BAG_ITEM_TITLE,piezo_buzzer_002,Piezo Buzzer,Bag Item,assets://piezo_buzzer_002.jpg,1
+BAG_ITEM_TITLE,potentiometer_rotary,Rotary Potentiometer,Bag Item,assets://potentiometer_rotary.jpg,1
+BAG_ITEM_TITLE,potentiometer_trim,Trim Potentiometer,Bag Item,assets://potentiometer_trim.jpg,1
+BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Bag Item,assets://power_supply_unit.jpg,1
+BAG_ITEM_TITLE,power_switch,Power Switch,Bag Item,assets://power_switch.jpg,1
+BAG_ITEM_TITLE,pressure_sensor,Pressure Sensor,Bag Item,assets://pressure_sensor.jpg,1
+BAG_ITEM_TITLE,printer_connector_001,Printer Connector,Bag Item,assets://printer_connector_001.jpg,1
+BAG_ITEM_TITLE,printer_connector_002,Printer Connector,Bag Item,assets://printer_connector_002.jpg,1
+BAG_ITEM_TITLE,protoboard,Protoboard,Bag Item,assets://protoboard.jpg,1
+BAG_ITEM_TITLE,ps_2_ports,PS/2 ports,Bag Item,assets://ps_2_ports.jpg,1
+BAG_ITEM_TITLE,psu_plug,Power Supply Unit (PSU) Plug,Bag Item,assets://psu_plug.jpg,1
+BAG_ITEM_TITLE,ribbon_cable,Ribbon Cable,Bag Item,assets://ribbon_cable.jpg,1
+BAG_ITEM_TITLE,sdram_dimm_slots,SDRAM DIMM (memory) Slots,Bag Item,assets://sdram_dimm_slots.jpg,1
+BAG_ITEM_TITLE,servomotor_micro,Servomotor,Bag Item,assets://servomotor_micro.jpg,1
+BAG_ITEM_TITLE,sleep_switch_display,Sleep Switch Display,Bag Item,assets://sleep_switch_display.jpg,1
+BAG_ITEM_TITLE,speaker,Audio Speaker,Bag Item,assets://speaker.jpg,1
+BAG_ITEM_TITLE,switch_dpdt,Switch (DPDT),Bag Item,assets://switch_dpdt.jpg,1
+BAG_ITEM_TITLE,switch_spst,Switch (SPST),Bag Item,assets://switch_spst.jpg,1
+BAG_ITEM_TITLE,tilt_sensor,Tilt Sensor,Bag Item,assets://tilt_sensor.jpg,1
+BAG_ITEM_TITLE,transformer,Transformer,Bag Item,assets://transformer.jpg,1
+BAG_ITEM_TITLE,transistor_npn,Transistor (NPN),Bag Item,assets://transistor_npn.jpg,1
+BAG_ITEM_TITLE,vga_connector,VGA Connector,Bag Item,assets://vga_connector.jpg,1

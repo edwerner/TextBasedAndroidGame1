@@ -410,7 +410,11 @@ public class NewsActivity extends ActionBarActivity {
 					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
 					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
+//					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
+
+					String WORLD_TITLE = "BAG_ITEM_TITLE";
+					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
+					
 					int counter = 0;
 					for (GameTitle tempTitle : gameTitleList) {
 						counter++;
@@ -429,15 +433,42 @@ public class NewsActivity extends ActionBarActivity {
 					System.out.println("GAME TITLE LENGTH: " + gameTitleList.size());
 					System.out.println("BAG ITEM LENGTH: " + bagItemList.size());
 					
+//					if (gameTitleList.size() > 0) {
+//						if (bagItemList.size() > 0) {
+//							for (int i = 0; i < bagItemList.size(); i++) {
+//								GameTitle tempTitle = gameTitleList.get(i);
+//								BagItem existingBagItem = bagItemList.get(i);
+//								tempTitle.setPhase("EXISTS");
+//								String tempImageUrl = existingBagItem.getItemId();
+//								System.out.println("CURRENT BAG ITEM URL: " + tempImageUrl);
+//								tempTitle.setImageUrl(tempImageUrl);
+//								tempTitle.setLevel(existingBagItem.getLevel());
+//								gameTitleList.set(i, tempTitle);
+//							}	
+//						}
+//					}
 					if (gameTitleList.size() > 0) {
 						if (bagItemList.size() > 0) {
 							for (int i = 0; i < bagItemList.size(); i++) {
 								GameTitle tempTitle = gameTitleList.get(i);
+								String currentTitleString = tempTitle.getTitle();
+//								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
+//								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
+								System.out.println("TEMP TITLE ID: " + tempTitle.getId());
 								BagItem existingBagItem = bagItemList.get(i);
-								tempTitle.setPhase("EXISTS");
-								String tempImageUrl = existingBagItem.getImageUrl();
-								tempTitle.setImageUrl(tempImageUrl);
-								tempTitle.setLevel(existingBagItem.getLevel());
+								String currentCardTitle = existingBagItem.getItemTitle();
+								System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
+								System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
+								if (currentTitleString.equals(currentCardTitle)) {
+									System.out.println("CARD EXISTS");
+									tempTitle.setPhase("EXISTS");
+									String tempImageUrl = existingBagItem.getImageUrl();
+									System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
+									tempTitle.setImageUrl(tempImageUrl);
+									tempTitle.setLevel(existingBagItem.getLevel());
+								} else {
+									System.out.println("CARD DOESN'T EXIST");
+								}
 								gameTitleList.set(i, tempTitle);
 							}	
 						}
@@ -492,15 +523,19 @@ public class NewsActivity extends ActionBarActivity {
 								GameTitle tempTitle = gameTitleList.get(i);
 								String currentTitleString = tempTitle.getTitle();
 								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem);
+								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
+								System.out.println("TEMP TITLE ID: " + tempTitle.getId());
 								ConclusionCard existingCard = cardList.get(i);
 								String currentCardTitle = existingCard.getTitle();
+								System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
+								System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
 								if (!currentTitleString.equals(currentCardTitle)) {
 									// CARD IS MISSING
 									tempTitle.setPhase("MISSING");
 									// UPDATE UI FROM ADAPTER
-								} else if (tempQuizItem != null && tempQuizItem.getAnswered().equals("true")) {
+								} else if (tempQuizItem != null) {
 									// SET THE IMAGE
+									System.out.println("CARD EXISTS");
 									tempTitle.setPhase("EXISTS");
 									String tempImageUrl = existingCard.getImageUrl();
 									tempTitle.setImageUrl(tempImageUrl);

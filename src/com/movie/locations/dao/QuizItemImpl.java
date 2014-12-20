@@ -130,7 +130,7 @@ public class QuizItemImpl {
 	public QuizItem selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
-				COLUMN_WORLD_ID + "=?", recordIdArray, null, null, null, null);
+				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
 		QuizItem quizItem = null;
 		if (cursor != null) {
 			// lazy evaluation
