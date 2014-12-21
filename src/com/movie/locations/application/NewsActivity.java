@@ -468,6 +468,7 @@ public class NewsActivity extends ActionBarActivity {
 									tempTitle.setLevel(existingBagItem.getLevel());
 								} else {
 									System.out.println("CARD DOESN'T EXIST");
+									tempTitle.setPhase("MISSING");
 								}
 								gameTitleList.set(i, tempTitle);
 							}	
@@ -522,24 +523,27 @@ public class NewsActivity extends ActionBarActivity {
 							for (int i = 0; i < cardList.size(); i++) {
 								GameTitle tempTitle = gameTitleList.get(i);
 								String currentTitleString = tempTitle.getTitle();
-								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
+//								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
+								System.out.println("TEMP QUIZ ITEM: " + tempTitle.getId());
+//								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
 								System.out.println("TEMP TITLE ID: " + tempTitle.getId());
 								ConclusionCard existingCard = cardList.get(i);
 								String currentCardTitle = existingCard.getTitle();
 								System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
 								System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
-								if (!currentTitleString.equals(currentCardTitle)) {
-									// CARD IS MISSING
-									tempTitle.setPhase("MISSING");
-									// UPDATE UI FROM ADAPTER
-								} else if (tempQuizItem != null) {
+								if (currentTitleString.equals(currentCardTitle)) {
 									// SET THE IMAGE
 									System.out.println("CARD EXISTS");
 									tempTitle.setPhase("EXISTS");
 									String tempImageUrl = existingCard.getImageUrl();
-									tempTitle.setImageUrl(tempImageUrl);
+									System.out.println("TEMP IMAGE URL*: " + tempImageUrl);
+									final String finalImageUrl = "assets://" + tempImageUrl + ".jpg";
+									tempTitle.setImageUrl(finalImageUrl);
 									tempTitle.setLevel(existingCard.getLevel());
+									tempTitle.setType("conclusion");
+								} else {
+									// CARD IS MISSING
+									tempTitle.setPhase("MISSING");
 								}
 								gameTitleList.set(i, tempTitle);
 							}	

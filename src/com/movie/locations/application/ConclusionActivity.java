@@ -236,6 +236,7 @@ public class ConclusionActivity extends ActionBarActivity {
 
 			conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
 			final String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
+			System.out.println("CONCLUSION IMAGE URL: " + imageUrl);
 			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);

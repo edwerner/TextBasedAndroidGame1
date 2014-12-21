@@ -1,1 +1,5 @@
-"QuestionId_01","First card","Magic Ring","led_green",1
+QuestionId_01,Transformer 1,Transformer,circuitboard_001,1
+QuestionId_02,Transformer 2,Transformer,circuitboard_002,1
+QuestionId_03,Transformer 3,Transformer,circuitboard_003,1
+QuestionId_04,Transformer 4,Transformer,circuitboard_004,1
+QuestionId_05,Transformer 5,Transformer,circuitboard_005,1

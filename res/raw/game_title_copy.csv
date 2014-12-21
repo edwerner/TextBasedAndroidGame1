@@ -78,4 +78,8 @@ tilt_sensor,Tilt Sensor,BAG_ITEM_TITLE,1,start,assets://tilt_sensor.jpg
 transformer,Transformer,BAG_ITEM_TITLE,1,start,assets://transformer.jpg
 transistor_npn,Transistor (NPN),BAG_ITEM_TITLE,1,start,assets://transistor_npn.jpg
 vga_connector,VGA Connector,BAG_ITEM_TITLE,1,start,assets://vga_connector.jpg
-first_card,First card,CARD_TITLE,1,start,assets://vga_connector.jpg
+circuitboard_001,Transformer 1,CARD_TITLE,1,start,assets://circuitboard_001.jpg
+circuitboard_002,Transformer 2,CARD_TITLE,1,start,assets://circuitboard_002.jpg
+circuitboard_003,Transformer 3,CARD_TITLE,1,start,assets://circuitboard_003.jpg
+circuitboard_004,Transformer 4,CARD_TITLE,1,start,assets://circuitboard_004.jpg
+circuitboard_005,Transformer 5,CARD_TITLE,1,start,assets://circuitboard_005.jpg
