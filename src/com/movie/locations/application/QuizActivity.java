@@ -105,6 +105,9 @@ public class QuizActivity extends FragmentActivity {
 			
 			// select current user so we can update current xp
 			userSource = new UserImpl(context);
+
+//			currentUser = userSource.selectRecordById(localUser.getUserId());
+			
 //			currentUser = userSource.selectRecordById(currentUserId);
 			currentUser = extras.getParcelable("currentUser");
 			currentPoints = currentUser.getCurrentPoints();
@@ -354,10 +357,12 @@ public class QuizActivity extends FragmentActivity {
 			String bagTitle = "Current level: " + tempUser.getCurrentLevel();
 			final String CURRENT_USER_LEVEL = tempUser.getCurrentLevel();
 			final String CURRENT_USER_POINTS = tempUser.getCurrentPoints();
-			
+			final int CURRENT_USER_POINTS_INT = Integer.parseInt(CURRENT_USER_POINTS);
+			final int CURRENT_USER_LEVEL_INT = StaticSortingUtilities.CHECK_LEVEL_RANGE(CURRENT_USER_LEVEL, CURRENT_USER_POINTS_INT);
+			final String FINAL_CURRENT_USER_LEVEL_STRING = Integer.toString(CURRENT_USER_LEVEL_INT);
 			if (tempUser != null) {
-				if (CURRENT_USER_POINTS != null && CURRENT_USER_LEVEL != null) {
-					bagTitle = "Level " + CURRENT_USER_LEVEL + "    " + CURRENT_USER_POINTS + "/" + getCurrentLevelCap(CURRENT_USER_LEVEL) + " XP";
+				if (CURRENT_USER_POINTS != null && FINAL_CURRENT_USER_LEVEL_STRING != null) {
+					bagTitle = "Level " + FINAL_CURRENT_USER_LEVEL_STRING + "    " + CURRENT_USER_POINTS + "/" + getCurrentLevelCap(FINAL_CURRENT_USER_LEVEL_STRING) + " XP";
 				}
 			}
 			

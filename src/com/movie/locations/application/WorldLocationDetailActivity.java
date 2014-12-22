@@ -494,6 +494,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		private QuizItemArrayList localQuizItemArrayList;
 		private FilmLocation localCurrentLocation;
 		private PointsItemImpl pointsItemImpl;
+		private UserImpl userSource;
 		private User fragmentUser;
 		private Achievement levelAchievement;
 		private String title = "title";
@@ -536,6 +537,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					newPointsItem.setPoints(quizItemPointValue);
 					
 					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+//					User localDatabaseUser = userSource.selectRecordById(currentUserId);
 					
 					if (updatedUserDatabasePointsItem != null) {
 						String databasePoints = updatedUserDatabasePointsItem.getPoints();
@@ -560,12 +562,16 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 ////						FINAL_MOBILE_NOTIFICATIONS.equals("true")
 //						System.out.println("MOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
 						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT && fragmentUser.getMobileNotifications().equals("true")) {
+							final String currentLevelString = Integer.toString(currentLevel);
+							if (userSource != null) {
+								userSource.updateCurrentUserLevel(currentUserId, currentLevelString);	
+							}
+							
 //							// SEND LEVEL UP NOTIFICATION
 							
 							if (levelAchievement != null) {
 								sendLevelUpNotification();	
 							}
-							
 						}
 						
 					} else {
@@ -1246,7 +1252,15 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 								final Intent quizIntent = new Intent(context, QuizActivity.class);
 								final String CURRENT_USER_ID = fragmentUser.getUserId();
 								final String QUIZ_ITEM_SID = fragmentUser.getUserSid();
-								
+								final PointsItem currentPointsItem = pointsItemImpl.selectRecordById(CURRENT_USER_ID);
+								if (currentPointsItem != null) {
+									final String currentPoints = currentPointsItem.getPoints();
+									if (currentPoints != null) {
+										fragmentUser.setCurrentPoints(currentPoints);
+									} 
+								}else {
+									fragmentUser.setCurrentPoints("0");
+								}
 								System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + fragmentUser.getCurrentPoints());
 								quizIntent.putExtra("currentUser", fragmentUser);
 								quizIntent.putExtra("quizItemSid", QUIZ_ITEM_SID);

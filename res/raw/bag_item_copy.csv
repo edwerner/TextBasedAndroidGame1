@@ -55,7 +55,7 @@ BAG_ITEM_TITLE,network_interface_card_001,Network Interface Card (NIC),Bag Item,
 BAG_ITEM_TITLE,oscillator_001,Oscillator,Bag Item,assets://oscillator_001.jpg,1
 BAG_ITEM_TITLE,oscillator_002,Oscillator,Bag Item,assets://oscillator_002.jpg,1
 BAG_ITEM_TITLE,photoresistor,Photo Resistor,Bag Item,assets://photoresistor.jpg,1
-BAG_ITEM_TITLE,piezo_buzzer_001,Piezo Buzzer,Bag Item,assets://piezo_buzzer_001.jpg,1
+BAG_ITEM_TITLE,piezo_buzzer_001,Piezo Buzzer 001,Bag Item,assets://piezo_buzzer_001.jpg,1
 BAG_ITEM_TITLE,piezo_buzzer_002,Piezo Buzzer,Bag Item,assets://piezo_buzzer_002.jpg,1
 BAG_ITEM_TITLE,potentiometer_rotary,Rotary Potentiometer,Bag Item,assets://potentiometer_rotary.jpg,1
 BAG_ITEM_TITLE,potentiometer_trim,Trim Potentiometer,Bag Item,assets://potentiometer_trim.jpg,1

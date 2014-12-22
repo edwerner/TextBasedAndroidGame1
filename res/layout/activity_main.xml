@@ -85,16 +85,16 @@
             style="@style/CodeFont"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Postmodern Philosophy"
-            android:textSize="20sp" />
+            android:text="Circuitquest"
+            android:textSize="34sp" />
 
         <TextView
             android:id="@+id/textView2"
             style="@style/CodeFont"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="An interactive post-apocalyptic journey"
-            android:textSize="14sp" />
+            android:text="A puzzle game about circuits"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/entry_button"
