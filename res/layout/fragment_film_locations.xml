@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-  <!--       <TextView
+        <!--
+             <TextView
             android:id="@+id/pullToRefreshText1"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
@@ -19,16 +20,26 @@
             android:paddingBottom="20dp"
             android:text="Pull down to refresh"
             android:textSize="18sp"
-            android:textStyle="italic" /> -->
+            android:textStyle="italic" /> -->
+        -->
+
+        <ImageView
+            android:id="@+id/gameWorldsImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/filmlist_icon_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/circuitboard_005" >
+        </ImageView>
 
         <TextView
             android:id="@+id/locationsTag1"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/misc_tag_1"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:text="Game Worlds"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/locationsText"
@@ -37,15 +48,19 @@
             android:layout_height="wrap_content"
             android:textSize="12sp" />
 
-        <Button
+        <!--
+             <Button
             android:id="@+id/get_started_button"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/star"
             android:text="Launch locations!" />
+        -->
 
-        <TextView
+
+        <!--
+             <TextView
             android:id="@+id/restoreLevelDataHeadline1"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
@@ -53,7 +68,9 @@
             android:paddingTop="10dp"
             android:text="Data Recovery"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" />
+        -->
+
 
         <!--
                  <TextView
@@ -64,7 +81,7 @@
                 android:text="(Press and hold to restore)"
                 android:textSize="18sp"
                 android:paddingTop="10dp"
-                android:textStyle="italic" />
+                android:textStyle="italic" />
         -->
 
         <ListView

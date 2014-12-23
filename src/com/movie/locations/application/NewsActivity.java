@@ -857,10 +857,11 @@ public class NewsActivity extends ActionBarActivity {
 			TextView locationsTitle = (TextView) rootView.findViewById(R.id.locationsTag1);
 //			TextView locationsText = (TextView) rootView.findViewById(R.id.locationsText);
 
-			locationsTitle.setText("Film Locations");
+//			locationsTitle.setText("Film Locations");
 //			locationsText.setText("Get started!");
 			
-			Button getStartedButton = (Button) rootView.findViewById(R.id.get_started_button);
+//			Button getStartedButton = (Button) rootView.findViewById(R.id.get_started_button);
+			ImageView gameWorldsImage = (ImageView) rootView.findViewById(R.id.gameWorldsImage);
 			final Context context = getActivity().getApplicationContext();
 			final MovieLocationsImpl datasource = new MovieLocationsImpl(context);
 			final ArrayList<FilmLocation> defaultLocationList = datasource.selectRecords();
@@ -870,7 +871,7 @@ public class NewsActivity extends ActionBarActivity {
 			
 			// TURN OFF BUTTON VISIBILITY
 			if (defaultLocationList.size() == 0) {
-				getStartedButton.setVisibility(Button.GONE);
+				gameWorldsImage.setVisibility(Button.GONE);
 				
 				// LAUNCH DIALOG
 		    	String CONFIRM_MESSAGE = "Okay";
@@ -892,7 +893,7 @@ public class NewsActivity extends ActionBarActivity {
 		    	final AlertDialog emptyLevelQueueDialog = builder.create();
 		    	emptyLevelQueueDialog.show();
 			} else {
-				getStartedButton.setOnClickListener(new View.OnClickListener() {
+				gameWorldsImage.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						// start new intent
 						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);

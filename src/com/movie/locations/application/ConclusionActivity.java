@@ -214,7 +214,7 @@ public class ConclusionActivity extends ActionBarActivity {
 			TextView conclusionImageUrlText = (TextView) rootView.findViewById(R.id.conclusionImageUrlText);
 			TextView pointsDataText = (TextView) rootView.findViewById(R.id.pointsDataText);
 			TextView bonusPointsDataText = (TextView) rootView.findViewById(R.id.bonusPointsDataText);
-			TextView conclusionCardTitleHeadlineText = (TextView) rootView.findViewById(R.id.conclusionCardTitleHeadline1);
+//			TextView conclusionCardTitleHeadlineText = (TextView) rootView.findViewById(R.id.conclusionCardTitleHeadline1);
 			ImageView conclusionImage = (ImageView) rootView.findViewById(R.id.conclusionImage);
 //			conclusionTitleText.setText(conclusionTitle);
 //			conclusionCopyText.setText(conclusionCopy);
@@ -234,14 +234,14 @@ public class ConclusionActivity extends ActionBarActivity {
 			final String updatedPoints = getArguments().getString("updatedPoints");
 			final String currentUserPoints = getArguments().getString("currentUserPoints");
 
-			conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
+//			conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
 			final String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
 			System.out.println("CONCLUSION IMAGE URL: " + imageUrl);
 			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);
 //			conclusionImageUrlText.setText(conclusionImageUrl);
-			pointsDataText.setText("Points: " + pointValue);
+			pointsDataText.setText("Points Earned: " + pointValue);
 			bonusPointsDataText.setText("Total Points: " + currentUserPoints);
 			
 //			if (conclusionCard != null) {

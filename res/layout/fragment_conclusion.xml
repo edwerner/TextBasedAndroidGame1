@@ -14,44 +14,57 @@
         android:scaleType="centerCrop" >
     </ImageView>
 
+    <!--
     <TextView
         android:id="@+id/conclusionCardTitleHeadline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You got a new card!"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:textSize="20sp"
+        style="@style/CodeFont"
         android:visibility="gone" >
-    </TextView>
-    
+    </TextView>
+    -->
+
     <TextView
         android:id="@+id/conclusionTitleText"
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/conclusionCopyText"
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/conclusionImageUrlText"
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/pointsDataText"
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/bonusPointsDataText"
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <Button
@@ -59,24 +72,24 @@
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/star"
+            android:layout_alignParentBottom="true"
             android:text="Dismiss" />
 
         <Button
             android:id="@+id/share_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:text="Share on Google+" />
     </LinearLayout>
 
-
     <TextView
         android:id="@+id/bagItemTitleHeadline1"
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New bag items"
-        android:textSize="32sp"
-        android:textStyle="bold"
+        android:textSize="20dp"
         android:visibility="gone" >
     </TextView>
 
