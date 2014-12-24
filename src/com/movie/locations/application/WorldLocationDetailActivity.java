@@ -953,46 +953,46 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				System.out.println("Locations: "
 						+ localCurrentLocation.getLocations());
 
-				releaseYearTagText2.setText("Release Year");
-				releaseYearText2.setText(localCurrentLocation.getReleaseYear());
-				System.out.println("Release Year: "
-						+ localCurrentLocation.getReleaseYear());
+//				releaseYearTagText2.setText("Release Year");
+//				releaseYearText2.setText(localCurrentLocation.getReleaseYear());
+//				System.out.println("Release Year: "
+//						+ localCurrentLocation.getReleaseYear());
 
-				productionCompanyTagText2.setText("Production Company");
-				productionCompanyText2.setText(localCurrentLocation
-						.getProductionCompany());
-				System.out.println("ProductionCompany: "
-						+ localCurrentLocation.getProductionCompany());
+//				productionCompanyTagText2.setText("Production Company");
+//				productionCompanyText2.setText(localCurrentLocation
+//						.getProductionCompany());
+//				System.out.println("ProductionCompany: "
+//						+ localCurrentLocation.getProductionCompany());
 
-				distributorTagText2.setText("Distributor");
-				distributorText2.setText(localCurrentLocation.getDistributor());
-				System.out.println("Distributor: "
-						+ localCurrentLocation.getDistributor());
-
-				directorTagText2.setText("Director");
-				directorText2.setText(localCurrentLocation.getDirector());
-				System.out.println("Director: "
-						+ localCurrentLocation.getDirector());
-
-				actorsTagText2.setText("Actor 1");
-				actorsText2.setText(localCurrentLocation.getActor1());
-				System.out.println("Actor 1: "
-						+ localCurrentLocation.getActor1());
-
-				actorsTagText2.setText("Actor 2");
-				actorsText2.setText(localCurrentLocation.getActor2());
-				System.out.println("Actor 2: "
-						+ localCurrentLocation.getActor2());
-
-				actorsTagText2.setText("Actor 3");
-				actorsText2.setText(localCurrentLocation.getActor3());
-				System.out.println("Actor 3: "
-						+ localCurrentLocation.getActor3());
-
-				writerTagText2.setText("Writer");
-				writerText2.setText(localCurrentLocation.getWriter());
-				System.out.println("Writer: "
-						+ localCurrentLocation.getWriter());
+//				distributorTagText2.setText("Distributor");
+//				distributorText2.setText(localCurrentLocation.getDistributor());
+//				System.out.println("Distributor: "
+//						+ localCurrentLocation.getDistributor());
+//
+//				directorTagText2.setText("Director");
+//				directorText2.setText(localCurrentLocation.getDirector());
+//				System.out.println("Director: "
+//						+ localCurrentLocation.getDirector());
+//
+//				actorsTagText2.setText("Actor 1");
+//				actorsText2.setText(localCurrentLocation.getActor1());
+//				System.out.println("Actor 1: "
+//						+ localCurrentLocation.getActor1());
+//
+//				actorsTagText2.setText("Actor 2");
+//				actorsText2.setText(localCurrentLocation.getActor2());
+//				System.out.println("Actor 2: "
+//						+ localCurrentLocation.getActor2());
+//
+//				actorsTagText2.setText("Actor 3");
+//				actorsText2.setText(localCurrentLocation.getActor3());
+//				System.out.println("Actor 3: "
+//						+ localCurrentLocation.getActor3());
+//
+//				writerTagText2.setText("Writer");
+//				writerText2.setText(localCurrentLocation.getWriter());
+//				System.out.println("Writer: "
+//						+ localCurrentLocation.getWriter());
 
 				break;
 

@@ -48,38 +48,22 @@ public class QuizItemArrayAdapter extends ArrayAdapter<FilmLocation> {
 
 		// build new bundle with combined attributes
 		quizIntent.putExtra("position", values.get(position).getPosition());
-		quizIntent.putExtra("createdAt", values.get(position).getCreatedAt());
-		quizIntent.putExtra("createdMeta", values.get(position).getCreatedMeta());
-		quizIntent.putExtra("updatedAt", values.get(position).getUpdatedAt());
-		quizIntent.putExtra("updatedMeta", values.get(position).getUpdatedMeta());
-		quizIntent.putExtra("meta", values.get(position).getMeta());
 		quizIntent.putExtra("title", values.get(position).getTitle());
-		quizIntent.putExtra("releaseYear", values.get(position).getReleaseYear());
 		quizIntent.putExtra("funFacts", values.get(position).getFunFacts());
-		quizIntent.putExtra("productionCompany", values.get(position).getProductionCompany());
-		quizIntent.putExtra("distributor", values.get(position).getDistributor());
-		quizIntent.putExtra("director", values.get(position).getDirector());
-		quizIntent.putExtra("writer", values.get(position).getWriter());
-		quizIntent.putExtra("actor1", values.get(position).getActor1());
-		quizIntent.putExtra("actor2", values.get(position).getActor2());
-		quizIntent.putExtra("actor3", values.get(position).getActor3());
-		quizIntent.putExtra("geolocation", values.get(position).getGeolocation());
 		quizIntent.putExtra("locations", values.get(position).getLocations());
-		quizIntent.putExtra("latitude", values.get(position).getLatitude());
-		quizIntent.putExtra("longitude", values.get(position).getLongitude());
 		quizIntent.putExtra("sid", values.get(position).getPosition());
 		quizIntent.putExtra("id", values.get(position).getId());
 		quizIntent.putExtra("level", values.get(position).getLevel());
 		quizIntent.putExtra("staticMapImageUrl", values.get(position).getStaticMapImageUrl());
 		
-		if (!values.get(position).getLatitude().equals("")) {
+//		if (!values.get(position).getLatitude().equals("")) {
 			rowView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 //                    notifyDataSetChanged();
 					context.startActivity(quizIntent);
 				}
 			});	
-		}
+//		}
 
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 

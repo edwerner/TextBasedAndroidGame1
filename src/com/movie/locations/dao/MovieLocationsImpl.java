@@ -18,35 +18,14 @@ public class MovieLocationsImpl {
 	private static final String COLUMN_ID = "_id";
 	public static final String COLUMN_LEVEL = "_level";
 	private final static String COLUMN_POSITION = "_position";
-	private final static String COLUMN_CREATED_AT = "_createdat";
-	private final static String COLUMN_CREATED_META = "_createdmeta";
-	private final static String COLUMN_UPDATED_AT = "_updateat";
-	private final static String COLUMN_UPDATED_META = "_updatedmeta";
-	private final static String COLUMN_META = "_meta";
 	private final static String COLUMN_TITLE = "_title";
-	private final static String COLUMN_RELEASE_YEAR = "_releaseyear";
 	private final static String COLUMN_LOCATIONS = "_locations";
 	private final static String COLUMN_FUN_FACTS = "_funfacts";
-	private final static String COLUMN_PRODUCTION_COMPANY = "_productioncompany";
-	private final static String COLUMN_DISTRIBUTOR = "_distributor";
-	private final static String COLUMN_DIRECTOR = "_director";
-	private final static String COLUMN_WRITER = "_writer";
-	private final static String COLUMN_ACTOR_1 = "_actor1";
-	private final static String COLUMN_ACTOR_2 = "_actor2";
-	private final static String COLUMN_ACTOR_3 = "_actor3";
-	private final static String COLUMN_LATITUDE = "_latitide";
-	private final static String COLUMN_LONGITUDE = "_longitude";
 	private final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
-	private static Map<String, FilmLocation> LOCATION_MAP = new HashMap<String, FilmLocation>();
 
 	// public static final String COLUMN_LOCATION = "location";
 	private String[] allColumns = { COLUMN_ID, COLUMN_SID, COLUMN_LEVEL,
-			COLUMN_POSITION, COLUMN_CREATED_AT, COLUMN_CREATED_META,
-			COLUMN_UPDATED_AT, COLUMN_UPDATED_META, COLUMN_META, COLUMN_TITLE,
-			COLUMN_RELEASE_YEAR, COLUMN_LOCATIONS, COLUMN_FUN_FACTS,
-			COLUMN_PRODUCTION_COMPANY, COLUMN_DISTRIBUTOR, COLUMN_DIRECTOR,
-			COLUMN_WRITER, COLUMN_ACTOR_1, COLUMN_ACTOR_2, COLUMN_ACTOR_3,
-			COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_STATIC_MAP_IMAGE_URL };
+			COLUMN_POSITION, COLUMN_TITLE, COLUMN_LOCATIONS, COLUMN_FUN_FACTS, COLUMN_STATIC_MAP_IMAGE_URL };
 
 	/**
 	 * 
@@ -75,24 +54,9 @@ public class MovieLocationsImpl {
 		values.put(COLUMN_SID, location.getSid());
 		values.put(COLUMN_LEVEL, location.getLevel());
 		values.put(COLUMN_POSITION, location.getPosition());
-		values.put(COLUMN_CREATED_AT, location.getCreatedAt());
-		values.put(COLUMN_CREATED_META, location.getCreatedMeta());
-		values.put(COLUMN_UPDATED_AT, location.getUpdatedAt());
-		values.put(COLUMN_UPDATED_META, location.getUpdatedMeta());
-		values.put(COLUMN_META, location.getMeta());
 		values.put(COLUMN_TITLE, location.getTitle());
-		values.put(COLUMN_RELEASE_YEAR, location.getReleaseYear());
 		values.put(COLUMN_LOCATIONS, location.getLocations());
 		values.put(COLUMN_FUN_FACTS, location.getFunFacts());
-		values.put(COLUMN_PRODUCTION_COMPANY, location.getProductionCompany());
-		values.put(COLUMN_DISTRIBUTOR, location.getDistributor());
-		values.put(COLUMN_DIRECTOR, location.getDirector());
-		values.put(COLUMN_WRITER, location.getWriter());
-		values.put(COLUMN_ACTOR_1, location.getActor1());
-		values.put(COLUMN_ACTOR_2, location.getActor2());
-		values.put(COLUMN_ACTOR_3, location.getActor3());
-		values.put(COLUMN_LATITUDE, location.getLatitude());
-		values.put(COLUMN_LONGITUDE, location.getLongitude());
 		values.put(COLUMN_STATIC_MAP_IMAGE_URL, location.getStaticMapImageUrl());
 
 		long insertId = database.insert(
@@ -183,29 +147,15 @@ public class MovieLocationsImpl {
 
 	private FilmLocation cursorToComment(Cursor cursor) {
 		FilmLocation location = new FilmLocation();
-		location.setId(cursor.getString(0));
-		location.setSid(cursor.getString(1));
-		location.setLevel(cursor.getString(2));
-		location.setPosition(cursor.getString(3));
-		location.setCreatedAt(cursor.getString(4));
-		location.setCreatedMeta(cursor.getString(5));
-		location.setUpdatedAt(cursor.getString(6));
-		location.setUpdatedMeta(cursor.getString(7));
-		location.setMeta(cursor.getString(8));
-		location.setTitle(cursor.getString(9));
-		location.setReleaseYear(cursor.getString(10));
-		location.setLocations(cursor.getString(11));
-		location.setFunFacts(cursor.getString(12));
-		location.setProductionCompany(cursor.getString(13));
-		location.setDistributor(cursor.getString(14));
-		location.setDirector(cursor.getString(15));
-		location.setWriter(cursor.getString(16));
-		location.setActor1(cursor.getString(17));
-		location.setActor2(cursor.getString(18));
-		location.setActor3(cursor.getString(19));
-		location.setLatitude(cursor.getString(20));
-		location.setLongitude(cursor.getString(21));
-		location.setStaticMapImageUrl(cursor.getString(22));
+		location.setSid(cursor.getString(0));
+		location.setLevel(cursor.getString(1));
+		location.setPosition(cursor.getString(2));
+		location.setId(cursor.getString(3));
+		location.setTitle(cursor.getString(4));
+		System.out.println("SET TITLE: " + cursor.getString(4));
+		location.setLocations(cursor.getString(5));
+		location.setFunFacts(cursor.getString(6));
+		location.setStaticMapImageUrl(cursor.getString(7));
 		return location;
 	}
 }
