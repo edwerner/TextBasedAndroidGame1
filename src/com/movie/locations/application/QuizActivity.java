@@ -406,16 +406,16 @@ public class QuizActivity extends FragmentActivity {
 					
 					// disable correct answer radio button
 					switch (Integer.parseInt(quizItem.getCorrectAnswerIndex())) {
-						case 0: radioButton1.setEnabled(false);
+						case 1: radioButton1.setEnabled(false);
 						radioButton1.setTextColor(Color.GRAY);
 						break;
-						case 1: radioButton2.setEnabled(false);
+						case 2: radioButton2.setEnabled(false);
 						radioButton2.setTextColor(Color.GRAY);
 						break;
-						case 2: radioButton3.setEnabled(false);
+						case 3: radioButton3.setEnabled(false);
 						radioButton3.setTextColor(Color.GRAY);
 						break;
-						case 3: radioButton4.setEnabled(false);
+						case 4: radioButton4.setEnabled(false);
 						radioButton4.setTextColor(Color.GRAY);
 						break;
 					}	
