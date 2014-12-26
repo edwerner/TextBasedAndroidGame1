@@ -1,5 +1,5 @@
-test,1,1,LED_01,LED 01,LED 01,test,assets://led_green.jpg
-test,1,2,LED_02,LED 02,LED 02,test,assets://led_red.jpg
-test,1,3,LED_03,LED 03,LED 03,test,assets://led_tricolor.jpg
-test,1,4,LED_04,LED 04,LED 04,test,assets://motor_vib.jpg
-test,1,5,LED_05,LED 05,LED 05,test,assets://led_green.jpg
+test,1,1,LED_01,LED 01,LED 01,Audio Ports fun fact,assets://8_bit_green/led_green_green.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,2,LED_02,LED 02,LED 02,Diode fun fact,assets://8_bit_green/led_red_green.jpg,Diode,assets://diode.jpg
+test,1,3,LED_03,LED 03,LED 03,Memory Stick fun fact,assets://8_bit_green/led_tricolor_green.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,4,LED_04,LED 04,LED 04,Piezo Buzzer fun fact,assets://8_bit_green/motor_vib_green.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
+test,1,5,LED_05,LED 05,LED 05,Motor fun fact,assets://8_bit_green/led_green_green.jpg,Motor,assets://motor_vibr.jpg

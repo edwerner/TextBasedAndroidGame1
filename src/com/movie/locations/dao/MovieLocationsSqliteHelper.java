@@ -12,25 +12,13 @@ public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
 	private final static String COLUMN_SID = "_sid";
 	private static final String COLUMN_LEVEL = "_level";
 	private final static String COLUMN_POSITION = "_position";
-	private final static String COLUMN_CREATED_AT = "_createdat";
-	private final static String COLUMN_CREATED_META = "_createdmeta";
-	private final static String COLUMN_UPDATED_AT = "_updateat";
-	private final static String COLUMN_UPDATED_META = "_updatedmeta";
-	private final static String COLUMN_META = "_meta";
 	private final static String COLUMN_TITLE = "_title";
 	private final static String COLUMN_RELEASE_YEAR = "_releaseyear";
 	private final static String COLUMN_LOCATIONS = "_locations";
 	private final static String COLUMN_FUN_FACTS = "_funfacts";
-	private final static String COLUMN_PRODUCTION_COMPANY = "_productioncompany";
-	private final static String COLUMN_DISTRIBUTOR = "_distributor";
-	private final static String COLUMN_DIRECTOR = "_director";
-	private final static String COLUMN_WRITER = "_writer";
-	private final static String COLUMN_ACTOR_1 = "_actor1";
-	private final static String COLUMN_ACTOR_2 = "_actor2";
-	private final static String COLUMN_ACTOR_3 = "_actor3";
-	private final static String COLUMN_LATITUDE = "_latitide";
-	private final static String COLUMN_LONGITUDE = "_longitude";
 	private final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
+	private final static String COLUMN_FUN_FACTS_IMAGE_URL = "_funFactsImageUrl";
+	private final static String COLUMN_FUN_FACTS_TITLE = "_funFactsTitle";
 	private static final int DATABASE_VERSION = 5;
 
 	// Database creation sql statement
@@ -39,25 +27,13 @@ public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
 			+ " text, " + COLUMN_SID
 			+ " text, " + COLUMN_LEVEL
 			+ " text, " + COLUMN_POSITION
-			+ " text, " + COLUMN_CREATED_AT
-			+ " text, " + COLUMN_CREATED_META
-			+ " text, " + COLUMN_UPDATED_AT
-			+ " text, " + COLUMN_UPDATED_META
-			+ " text, " + COLUMN_META
 			+ " text, " + COLUMN_TITLE
 			+ " text, " + COLUMN_RELEASE_YEAR
 			+ " text, " + COLUMN_LOCATIONS
 			+ " text, " + COLUMN_FUN_FACTS
-			+ " text, " + COLUMN_PRODUCTION_COMPANY
-			+ " text, " + COLUMN_DISTRIBUTOR
-			+ " text, " + COLUMN_DIRECTOR
-			+ " text, " + COLUMN_WRITER
-			+ " text, " + COLUMN_ACTOR_1
-			+ " text, " + COLUMN_ACTOR_2
-			+ " text, " + COLUMN_ACTOR_3
-			+ " text, " + COLUMN_LATITUDE
-			+ " text, " + COLUMN_LONGITUDE
 			+ " text, " + COLUMN_STATIC_MAP_IMAGE_URL
+			+ " text, " + COLUMN_FUN_FACTS_IMAGE_URL
+			+ " text, " + COLUMN_FUN_FACTS_TITLE
 			+ " text);";
 
 	public MovieLocationsSqliteHelper(Context context) {

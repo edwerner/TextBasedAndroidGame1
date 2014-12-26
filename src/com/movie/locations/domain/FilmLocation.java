@@ -31,6 +31,10 @@ public class FilmLocation implements Parcelable {
 	
 	public String staticMapImageUrl;
 
+	public String funFactsImageUrl;
+
+	private String funFactsTitle;
+	
 	// empty constructor
 	public FilmLocation() {
 		
@@ -51,6 +55,8 @@ public class FilmLocation implements Parcelable {
 		pc.writeString(locations);
 		pc.writeString(funFacts);
 		pc.writeString(staticMapImageUrl);
+		pc.writeString(funFactsTitle);
+		pc.writeString(funFactsImageUrl);
 	}	
 	
 	public FilmLocation(Parcel pc) {
@@ -62,6 +68,8 @@ public class FilmLocation implements Parcelable {
 		locations = pc.readString();
 		funFacts = pc.readString();
 		staticMapImageUrl = pc.readString();
+		funFactsTitle = pc.readString();
+		funFactsImageUrl = pc.readString();
 	}
 
 	public static final Parcelable.Creator<FilmLocation> CREATOR = new Parcelable.Creator<FilmLocation>() {
@@ -73,6 +81,22 @@ public class FilmLocation implements Parcelable {
 			return new FilmLocation[size];
 		}
 	};
+	
+	public void setFunFactsTitle(String funFactsTitle) {
+		this.funFactsTitle = funFactsTitle;
+	}
+	
+	public String getFunFactsTitle() {
+		return funFactsTitle;
+	}
+	
+	public void setFunFactsImageUrl(String funFactsImageUrl) {
+		this.funFactsImageUrl = funFactsImageUrl;
+	}
+	
+	public String getFunFactsImageUrl() {
+		return funFactsImageUrl;
+	}
 	
 	public String getStaticMapImageUrl() {
 		return staticMapImageUrl;

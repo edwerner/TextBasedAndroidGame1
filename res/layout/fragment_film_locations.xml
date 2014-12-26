@@ -20,8 +20,7 @@
             android:paddingBottom="20dp"
             android:text="Pull down to refresh"
             android:textSize="18sp"
-            android:textStyle="italic" /> -->
-        -->
+            android:textStyle="italic" /> -->
 
         <ImageView
             android:id="@+id/gameWorldsImage"
@@ -30,7 +29,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/filmlist_icon_desc"
             android:scaleType="centerCrop"
-            android:src="@drawable/circuitboard_005" >
+            android:src="@drawable/breadboard_lg_green" >
         </ImageView>
 
         <TextView

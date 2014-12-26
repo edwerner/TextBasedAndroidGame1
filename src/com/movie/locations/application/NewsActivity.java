@@ -615,146 +615,146 @@ public class NewsActivity extends ActionBarActivity {
 				}	
 			}
 			final Intent intent = getActivity().getIntent();
-			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
-			if (gameTitleList.size() > 0) {
-				restoreListView.setAdapter(levelRestoreListAdapter);
-			}
-			ListView commentView = (ListView) rootView.findViewById(R.id.commentView);
-			newsUpdateList = new ArrayList<NewsItem>();
-			NewsItemAdapter newsItemAdapter = new NewsItemAdapter();
+//			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
+//			if (gameTitleList.size() > 0) {
+//				restoreListView.setAdapter(levelRestoreListAdapter);
+//			}
+//			ListView commentView = (ListView) rootView.findViewById(R.id.commentView);
+//			newsUpdateList = new ArrayList<NewsItem>();
+//			NewsItemAdapter newsItemAdapter = new NewsItemAdapter();
 			
-			BagItem latestBagItem = null;
-			final Context bagContext = getActivity().getApplicationContext();
-			BagItemImpl bagItemImpl = new BagItemImpl(bagContext);
-			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
-			if (bagItemList.size() > 0) {
-				int latestBagItemIndex = bagItemList.size() - 1;
-				latestBagItem = bagItemList.get(latestBagItemIndex);
-				newsItemAdapter.setLatestBagItem(latestBagItem);	
-			}
-			// CONCLUSION CARD NEWS ITEM
-			final Context cardContext = getActivity().getApplicationContext();
-			ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
-			ArrayList<ConclusionCard> localConclusionCardList = conclusionCardImpl.selectRecords();
-			ConclusionCard latestConclusionCard = null;
-			if (localConclusionCardList.size() > 0) {
-				int latestConclusionCardIndex = localConclusionCardList.size() - 1;
-				latestConclusionCard = localConclusionCardList.get(latestConclusionCardIndex);
-				newsItemAdapter.setLatestConclusionCard(latestConclusionCard);	
-			}
-			// QUIZ ITEM NEWS ITEM
-			QuizItemImpl quizItemImpl = new QuizItemImpl(context);
-			ArrayList<QuizItem> quizItemList = quizItemImpl.selectRecords();
-			NewsItem bagItemNewsItem = new NewsItem();
-			bagItemNewsItem.setNewsType("BagItem");
+//			BagItem latestBagItem = null;
+//			final Context bagContext = getActivity().getApplicationContext();
+//			BagItemImpl bagItemImpl = new BagItemImpl(bagContext);
+//			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
+//			if (bagItemList.size() > 0) {
+//				int latestBagItemIndex = bagItemList.size() - 1;
+//				latestBagItem = bagItemList.get(latestBagItemIndex);
+//				newsItemAdapter.setLatestBagItem(latestBagItem);	
+//			}
+//			// CONCLUSION CARD NEWS ITEM
+//			final Context cardContext = getActivity().getApplicationContext();
+//			ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
+//			ArrayList<ConclusionCard> localConclusionCardList = conclusionCardImpl.selectRecords();
+//			ConclusionCard latestConclusionCard = null;
+//			if (localConclusionCardList.size() > 0) {
+//				int latestConclusionCardIndex = localConclusionCardList.size() - 1;
+//				latestConclusionCard = localConclusionCardList.get(latestConclusionCardIndex);
+//				newsItemAdapter.setLatestConclusionCard(latestConclusionCard);	
+//			}
+//			// QUIZ ITEM NEWS ITEM
+//			QuizItemImpl quizItemImpl = new QuizItemImpl(context);
+//			ArrayList<QuizItem> quizItemList = quizItemImpl.selectRecords();
+//			NewsItem bagItemNewsItem = new NewsItem();
+//			bagItemNewsItem.setNewsType("BagItem");
+//			
+//			if (latestBagItem != null) {
+//				String bagItemNewsItemTitle = latestBagItem.getItemTitle();
+//				String bagItemNewsItemText = latestBagItem.getDescription();
+//				String bagItemNewsItemImageUrl = latestBagItem.getImageUrl();
+//				bagItemNewsItem.setTitle(bagItemNewsItemTitle);
+//				bagItemNewsItem.setText(bagItemNewsItemText);
+//				bagItemNewsItem.setImageUrl(bagItemNewsItemImageUrl);	
+//			}
+//			
+//			// CONCLUSION CARD NEWS ITEM
+//			NewsItem conclusionCardNewsItem = new NewsItem();
+//			conclusionCardNewsItem.setNewsType("ConclusionCard");
+//			
+//			if (latestConclusionCard != null) {
+//				String conclusionCardNewsItemTitle = latestConclusionCard.getTitle();
+//				String conclusionCardNewsItemText = latestConclusionCard.getCopy();
+//				String conclusionCardImageUrl = latestConclusionCard.getImageUrl();
+//				conclusionCardNewsItem.setTitle(conclusionCardNewsItemTitle);
+//				conclusionCardNewsItem.setText(conclusionCardNewsItemText);
+//				conclusionCardNewsItem.setImageUrl(conclusionCardImageUrl);
+//			}
+//			
+//			// QUIZ ITEM NEWS ITEM
+//			NewsItem quizItemNewsItem = new NewsItem();
+//			quizItemNewsItem.setNewsType("QuizItem");
+//
+//			// ITERATE THROUGH BAG ITEMS AND
+//			// GET THE CORRECT ANSWER INDEX OFF THE
+//			// LATEST CORRECTLY ANSWERED QUIZ ITEM
+//			
+//			ArrayList<QuizItem> correctlyAnsweredQuizItems = new ArrayList<QuizItem>(); 
+//			for (QuizItem item : quizItemList) {
+//				if (item.getAnswered().equals("true")) {
+//					correctlyAnsweredQuizItems.add(item);
+//				}
+//			}
+//			int correctlyAnsweredQuizItemIndex = correctlyAnsweredQuizItems.size() - 1;
+//			QuizItem lastCorrectlyAnsweredQuizItem = null;
+//			String quizItemNewsItemTitle = null;
+//			NewsItem locationNewsItem = null;
+//			if (correctlyAnsweredQuizItems.size() > 0) {
+//				lastCorrectlyAnsweredQuizItem = correctlyAnsweredQuizItems.get(correctlyAnsweredQuizItemIndex);
+//				quizItemNewsItemTitle = lastCorrectlyAnsweredQuizItem.getQuestionText();
+//				int correctAnswerIndex = Integer.parseInt(lastCorrectlyAnsweredQuizItem.getCorrectAnswerIndex());
+//				String[] answers = new String[4];
+//				answers[0] = lastCorrectlyAnsweredQuizItem.getAnswer1();
+//				answers[1] = lastCorrectlyAnsweredQuizItem.getAnswer2();
+//				answers[2] = lastCorrectlyAnsweredQuizItem.getAnswer3();
+//				answers[3] = lastCorrectlyAnsweredQuizItem.getAnswer4();
+//				String finalCorrectAnswer = answers[correctAnswerIndex];
+//				String quizItemNewsItemText = finalCorrectAnswer;
+//				String latestActiveItemTitle = lastCorrectlyAnsweredQuizItem.getActiveItem();
+//				String quizItemNewsItemImageUrl = QUIZ_ITEM_NEWS_ITEM_IMAGE_URL;
+//				if (lastCorrectlyAnsweredQuizItem != null) {
+//					newsItemAdapter.setLatestQuizItem(lastCorrectlyAnsweredQuizItem);
+//
+//					// LOCATION NEWS ITEM
+//					MovieLocationsImpl locationsImpl = new MovieLocationsImpl(context);
+//					String latestLocationId = lastCorrectlyAnsweredQuizItem.getWorldId();
+//					FilmLocation latestLocation = locationsImpl.selectRecordById(latestLocationId);
+//					if (latestLocation != null) {
+//						newsItemAdapter.setLatestLocation(latestLocation);	
+//					}
+//					// LOCATION NEWS ITEM
+//					locationNewsItem = new NewsItem();
+//					locationNewsItem.setNewsType("Location");
+//					if (latestLocation != null) {
+//						String locationNewsItemTitle = latestLocation.getTitle();
+//						String latestLocationText = latestLocation.getLocations();
+//						String latestLocationImageUrl = latestLocation.getStaticMapImageUrl();
+//						locationNewsItem.setTitle(locationNewsItemTitle);
+//						locationNewsItem.setText(latestLocationText);
+//						locationNewsItem.setImageUrl(latestLocationImageUrl);	
+//					}
+//					// ITERATE THROUGH BAG ITEMS AND GET URL
+//					// FOR THE LATEST QUIZ ITEM SOLVE
+//					for (BagItem item : bagItemList) {
+//						if (item.getItemTitle().equals(latestActiveItemTitle)) {
+//							quizItemNewsItemImageUrl = item.getImageUrl();
+//						}
+//					}
+//					if (quizItemNewsItem != null) {
+//						quizItemNewsItem.setTitle(quizItemNewsItemTitle);
+//						quizItemNewsItem.setText(quizItemNewsItemText);
+//						quizItemNewsItem.setImageUrl(quizItemNewsItemImageUrl);	
+//					}
+//				}
+//			}
 			
-			if (latestBagItem != null) {
-				String bagItemNewsItemTitle = latestBagItem.getItemTitle();
-				String bagItemNewsItemText = latestBagItem.getDescription();
-				String bagItemNewsItemImageUrl = latestBagItem.getImageUrl();
-				bagItemNewsItem.setTitle(bagItemNewsItemTitle);
-				bagItemNewsItem.setText(bagItemNewsItemText);
-				bagItemNewsItem.setImageUrl(bagItemNewsItemImageUrl);	
-			}
 			
-			// CONCLUSION CARD NEWS ITEM
-			NewsItem conclusionCardNewsItem = new NewsItem();
-			conclusionCardNewsItem.setNewsType("ConclusionCard");
-			
-			if (latestConclusionCard != null) {
-				String conclusionCardNewsItemTitle = latestConclusionCard.getTitle();
-				String conclusionCardNewsItemText = latestConclusionCard.getCopy();
-				String conclusionCardImageUrl = latestConclusionCard.getImageUrl();
-				conclusionCardNewsItem.setTitle(conclusionCardNewsItemTitle);
-				conclusionCardNewsItem.setText(conclusionCardNewsItemText);
-				conclusionCardNewsItem.setImageUrl(conclusionCardImageUrl);
-			}
-			
-			// QUIZ ITEM NEWS ITEM
-			NewsItem quizItemNewsItem = new NewsItem();
-			quizItemNewsItem.setNewsType("QuizItem");
-
-			// ITERATE THROUGH BAG ITEMS AND
-			// GET THE CORRECT ANSWER INDEX OFF THE
-			// LATEST CORRECTLY ANSWERED QUIZ ITEM
-			
-			ArrayList<QuizItem> correctlyAnsweredQuizItems = new ArrayList<QuizItem>(); 
-			for (QuizItem item : quizItemList) {
-				if (item.getAnswered().equals("true")) {
-					correctlyAnsweredQuizItems.add(item);
-				}
-			}
-			int correctlyAnsweredQuizItemIndex = correctlyAnsweredQuizItems.size() - 1;
-			QuizItem lastCorrectlyAnsweredQuizItem = null;
-			String quizItemNewsItemTitle = null;
-			NewsItem locationNewsItem = null;
-			if (correctlyAnsweredQuizItems.size() > 0) {
-				lastCorrectlyAnsweredQuizItem = correctlyAnsweredQuizItems.get(correctlyAnsweredQuizItemIndex);
-				quizItemNewsItemTitle = lastCorrectlyAnsweredQuizItem.getQuestionText();
-				int correctAnswerIndex = Integer.parseInt(lastCorrectlyAnsweredQuizItem.getCorrectAnswerIndex());
-				String[] answers = new String[4];
-				answers[0] = lastCorrectlyAnsweredQuizItem.getAnswer1();
-				answers[1] = lastCorrectlyAnsweredQuizItem.getAnswer2();
-				answers[2] = lastCorrectlyAnsweredQuizItem.getAnswer3();
-				answers[3] = lastCorrectlyAnsweredQuizItem.getAnswer4();
-				String finalCorrectAnswer = answers[correctAnswerIndex];
-				String quizItemNewsItemText = finalCorrectAnswer;
-				String latestActiveItemTitle = lastCorrectlyAnsweredQuizItem.getActiveItem();
-				String quizItemNewsItemImageUrl = QUIZ_ITEM_NEWS_ITEM_IMAGE_URL;
-				if (lastCorrectlyAnsweredQuizItem != null) {
-					newsItemAdapter.setLatestQuizItem(lastCorrectlyAnsweredQuizItem);
-
-					// LOCATION NEWS ITEM
-					MovieLocationsImpl locationsImpl = new MovieLocationsImpl(context);
-					String latestLocationId = lastCorrectlyAnsweredQuizItem.getWorldId();
-					FilmLocation latestLocation = locationsImpl.selectRecordById(latestLocationId);
-					if (latestLocation != null) {
-						newsItemAdapter.setLatestLocation(latestLocation);	
-					}
-					// LOCATION NEWS ITEM
-					locationNewsItem = new NewsItem();
-					locationNewsItem.setNewsType("Location");
-					if (latestLocation != null) {
-						String locationNewsItemTitle = latestLocation.getTitle();
-						String latestLocationText = latestLocation.getLocations();
-						String latestLocationImageUrl = latestLocation.getStaticMapImageUrl();
-						locationNewsItem.setTitle(locationNewsItemTitle);
-						locationNewsItem.setText(latestLocationText);
-						locationNewsItem.setImageUrl(latestLocationImageUrl);	
-					}
-					// ITERATE THROUGH BAG ITEMS AND GET URL
-					// FOR THE LATEST QUIZ ITEM SOLVE
-					for (BagItem item : bagItemList) {
-						if (item.getItemTitle().equals(latestActiveItemTitle)) {
-							quizItemNewsItemImageUrl = item.getImageUrl();
-						}
-					}
-					if (quizItemNewsItem != null) {
-						quizItemNewsItem.setTitle(quizItemNewsItemTitle);
-						quizItemNewsItem.setText(quizItemNewsItemText);
-						quizItemNewsItem.setImageUrl(quizItemNewsItemImageUrl);	
-					}
-				}
-			}
-			
-			
-			// ADD COMPOSED QUIZ ITEMS TO THE NEWS UPDATE LIST
-			if (conclusionCardNewsItem != null) {
-				newsUpdateList.add(conclusionCardNewsItem);	
-			}
-			if (bagItemNewsItem != null) {
-				newsUpdateList.add(bagItemNewsItem);	
-			}
-			if (quizItemNewsItem != null) {
-				newsUpdateList.add(quizItemNewsItem);	
-			}
-			if (locationNewsItem != null) {
-				newsUpdateList.add(locationNewsItem);	
-			}
-			NewsArrayAdapter adapter = new NewsArrayAdapter(getActivity(), intent, newsUpdateList);
-			if (newsUpdateList.size() > 0) {
-				commentView.setAdapter(adapter);
-			}
+//			// ADD COMPOSED QUIZ ITEMS TO THE NEWS UPDATE LIST
+//			if (conclusionCardNewsItem != null) {
+//				newsUpdateList.add(conclusionCardNewsItem);	
+//			}
+//			if (bagItemNewsItem != null) {
+//				newsUpdateList.add(bagItemNewsItem);	
+//			}
+//			if (quizItemNewsItem != null) {
+//				newsUpdateList.add(quizItemNewsItem);	
+//			}
+//			if (locationNewsItem != null) {
+//				newsUpdateList.add(locationNewsItem);	
+//			}
+//			NewsArrayAdapter adapter = new NewsArrayAdapter(getActivity(), intent, newsUpdateList);
+//			if (newsUpdateList.size() > 0) {
+//				commentView.setAdapter(adapter);
+//			}
 			return rootView;
 		}
 	}

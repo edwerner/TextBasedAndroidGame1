@@ -54,7 +54,7 @@ public class FilmLocationMapTileArrayAdapter extends ArrayAdapter<FilmLocation> 
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);	
 		UNIQUE_MAP_IMAGE_URL = values.get(position).getStaticMapImageUrl();
-		imageView.setImageAlpha(25);
+//		imageView.setImageAlpha(25);
 		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView);
 		textView.setText(values.get(position).getLocations());
 		return rowView;

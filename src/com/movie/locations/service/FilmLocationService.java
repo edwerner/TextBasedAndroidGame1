@@ -79,11 +79,13 @@ public class FilmLocationService {
 			location.setLocations(LOCATION_ID);
 			location.setFunFacts(removeDoubleQuotes(result[6].toString()));
 			location.setStaticMapImageUrl(removeDoubleQuotes(result[7].toString()));
+			location.setFunFactsTitle(removeDoubleQuotes(result[8].toString()));
+			location.setFunFactsImageUrl(removeDoubleQuotes(result[9].toString()));
 			locationArrayList.add(location);
 			System.out.println("OUTPUT LIST LOCATIONS: " + location.getId());
 		}
 		
-		MovieLocationsImpl datasource = new MovieLocationsImpl(context);
+		MovieLocationsImpl datasource = new MovieLocationsImpl(context); 
 			
 		// create database connection and store
 		// location objects in sqlite database

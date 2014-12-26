@@ -49,6 +49,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -464,9 +465,9 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 			switch (position) {
 			case 0:
-				return "world";
+				return "fun fact";
 			case 1:
-				return "levels";
+				return "quiz";
 				// case 2:
 				// return "quiz";
 				// case 3:
@@ -711,9 +712,9 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			// TODO: SET USER LEVEL
 			// TODO: SET WORLD COUNT
 			
-			achievementIntent.putExtra("conclusionTitle", "Conclusion Title");
-			achievementIntent.putExtra("conclusionCopy", "Conclusion copy");
-			achievementIntent.putExtra("conclusionImageUrl", "conclusionImageUrl");
+//			achievementIntent.putExtra("conclusionTitle", "Conclusion Title");
+//			achievementIntent.putExtra("conclusionCopy", "Conclusion copy");
+//			achievementIntent.putExtra("conclusionImageUrl", "conclusionImageUrl");
 			
 			// TODO: GET THIS CARD DATA FROM GCM MESSAGE
 //			ConclusionCard conclusionCard = new ConclucsionCard();
@@ -783,129 +784,31 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			// rootView.findViewById(R.id.title1);
 			TextView locationsTagText1 = (TextView) rootView
 					.findViewById(R.id.locationsTag1);
-			TextView locationsText1 = (TextView) rootView
-					.findViewById(R.id.locations1);
-			TextView latitudeTagText1 = (TextView) rootView
-					.findViewById(R.id.latitudeTag1);
-			TextView latitudeText1 = (TextView) rootView
-					.findViewById(R.id.latitude1);
-			TextView longitudeTagText1 = (TextView) rootView
-					.findViewById(R.id.longitudeTag1);
-			TextView longitudeText1 = (TextView) rootView
-					.findViewById(R.id.longitude1);
+//			TextView locationsText1 = (TextView) rootView
+//					.findViewById(R.id.locations1);
+//			TextView latitudeTagText1 = (TextView) rootView
+//					.findViewById(R.id.latitudeTag1);
+//			TextView latitudeText1 = (TextView) rootView
+//					.findViewById(R.id.latitude1);
+//			TextView longitudeTagText1 = (TextView) rootView
+//					.findViewById(R.id.longitudeTag1);
+//			TextView longitudeText1 = (TextView) rootView
+//					.findViewById(R.id.longitude1);
 
 			TextView titleTagText2 = (TextView) rootView
 					.findViewById(R.id.titleTag2);
 			TextView titleText2 = (TextView) rootView.findViewById(R.id.title2);
-			TextView releaseYearTagText2 = (TextView) rootView
-					.findViewById(R.id.releaseYearTag2);
-			TextView releaseYearText2 = (TextView) rootView
-					.findViewById(R.id.releaseYear2);
+//			TextView releaseYearTagText2 = (TextView) rootView
+//					.findViewById(R.id.releaseYearTag2);
+//			TextView releaseYearText2 = (TextView) rootView
+//					.findViewById(R.id.releaseYear2);
 			TextView locationsTagText2 = (TextView) rootView
 					.findViewById(R.id.locationsTag2);
 			TextView locationsText2 = (TextView) rootView
 					.findViewById(R.id.locations2);
-			TextView productionCompanyTagText2 = (TextView) rootView
-					.findViewById(R.id.productionCompanyTag2);
-			TextView productionCompanyText2 = (TextView) rootView
-					.findViewById(R.id.productionCompany2);
-			TextView distributorTagText2 = (TextView) rootView
-					.findViewById(R.id.distributorTag2);
-			TextView distributorText2 = (TextView) rootView
-					.findViewById(R.id.distributor2);
-			TextView directorTagText2 = (TextView) rootView
-					.findViewById(R.id.directorTag2);
-			TextView directorText2 = (TextView) rootView
-					.findViewById(R.id.director2);
-			TextView writerTagText2 = (TextView) rootView
-					.findViewById(R.id.writerTag2);
-			TextView writerText2 = (TextView) rootView
-					.findViewById(R.id.writer2);
-			TextView actorsTagText2 = (TextView) rootView
-					.findViewById(R.id.actorsTag2);
-			TextView actorsText2 = (TextView) rootView
-					.findViewById(R.id.actors2);
 
-			// TextView panelTitle = (TextView) rootView
-			// .findViewById(R.id.panelTitle1);
-			// TextView quizTitle = (TextView)
-			// rootView.findViewById(R.id.quizTitle1);
-			TextView quizText = (TextView) rootView
-					.findViewById(R.id.quizText1);
-
-			// LinearLayout commentListViewLayout = (LinearLayout)
-			// rootView.findViewById(R.id.commentListLinearLayout);
-
-			// TextView titleTagText3 = (TextView)
-			// rootView.findViewById(R.id.titleTag3);
-			// TextView titleText3 = (TextView)
-			// rootView.findViewById(R.id.title3);
-			// TextView locationsTagText3 = (TextView)
-			// rootView.findViewById(R.id.locationsTag3);
-			// TextView locationsText3 = (TextView)
-			// rootView.findViewById(R.id.locations3);
-			// TextView funFactsTagText3 = (TextView)
-			// rootView.findViewById(R.id.funFactsTag3);
-			// TextView funFactsText3 = (TextView)
-			// rootView.findViewById(R.id.funFacts3);
-
-			// ImageView filmImage = (ImageView) rootView
-			// .findViewById(R.id.filmImage1);
-			// Button bookmarkButton = (Button)
-			// rootView.findViewById(R.id.bookmark_button);
-
-			
-			// TODO: CREATE WORLD MAP
-			//
-			// bookmarkButton.setOnClickListener(new View.OnClickListener() {
-			// public void onClick(View v) {
-			//
-			// // print out film id
-			// System.out.println("MOVIE title: " + title);
-			// // Intent intent = new Intent(getActivity(),
-			// // MoviePosterActivity.class);
-			// // intent.putExtra("imageUrl", MOVIE_POSTER_URL);
-			// // startActivity(intent);
-			//
-			// // TODO: write persistence for bookmarks
-			// }
-			// });
-
-			// ImageView mapThumb = (ImageView) rootView
-			// .findViewById(R.id.mapView1);
-			// ImageView defaultMapThumb = (ImageView) rootView
-			// .findViewById(R.id.defaultMapView1);
-
-			// Create pojo that returns image url map
-
-			// initializeMoviePostersHash();
-
-			// MoviePostersHashMap map = new MoviePostersHashMap();
-			// TODO: create support for empty urls
-			// MOVIE_POSTER_URL =
-			// MoviePostersHashMap.createHashMap().get(title);
-
-			// moviePosterThumb.setOnClickListener(new View.OnClickListener() {
-			// public void onClick(View v) {
-			// Intent intent = new Intent(getActivity(),
-			// MoviePosterActivity.class);
-			// intent.putExtra("imageUrl", MOVIE_POSTER_URL);
-			// startActivity(intent);
-			// }
-			// });
-
-			// mapThumb.setOnClickListener(new View.OnClickListener() {
-			// public void onClick(View v) {
-			// Intent intent = new Intent(getActivity(),
-			// MapDetailActivity.class);
-			// intent.putExtra("title", title);
-			// intent.putExtra("latitude", latitude);
-			// intent.putExtra("longitude", longitude);
-			// intent.putExtra("location", location);
-			// intent.putExtra("funFacts", funFacts);
-			// startActivity(intent);
-			// }
-			// });
+			ImageView locationImage = (ImageView) rootView.findViewById(R.id.locationImage1);
+			imageLoader.displayImage(localCurrentLocation.getFunFactsImageUrl(), locationImage);
 
 			LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -931,6 +834,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
 
 			case 1: // MOVIE TAB
+				locationImage.setVisibility(ImageView.VISIBLE);
 				// restoreLevelDataButton.setVisibility(Button.VISIBLE);
 
 				// commentListViewLayout.setVisibility(LinearLayout.GONE);
@@ -944,68 +848,22 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				// final String movieTitleText = "Movie";
 				// panelTitle.setText(movieTitleText);
 
-				titleTagText2.setText("Title");
-				titleText2.setText(localCurrentLocation.getTitle());
+				titleTagText2.setText("Game Item");
+				titleText2.setText(localCurrentLocation.getFunFactsTitle());
 				System.out.println("Title: " + localCurrentLocation.getTitle());
 
-				locationsTagText2.setText("Location");
-				locationsText2.setText(localCurrentLocation.getLocations());
+				locationsTagText2.setText("Random Fun Fact");
+				locationsText2.setText(localCurrentLocation.getFunFacts());
 				System.out.println("Locations: "
 						+ localCurrentLocation.getLocations());
-
-//				releaseYearTagText2.setText("Release Year");
-//				releaseYearText2.setText(localCurrentLocation.getReleaseYear());
-//				System.out.println("Release Year: "
-//						+ localCurrentLocation.getReleaseYear());
-
-//				productionCompanyTagText2.setText("Production Company");
-//				productionCompanyText2.setText(localCurrentLocation
-//						.getProductionCompany());
-//				System.out.println("ProductionCompany: "
-//						+ localCurrentLocation.getProductionCompany());
-
-//				distributorTagText2.setText("Distributor");
-//				distributorText2.setText(localCurrentLocation.getDistributor());
-//				System.out.println("Distributor: "
-//						+ localCurrentLocation.getDistributor());
-//
-//				directorTagText2.setText("Director");
-//				directorText2.setText(localCurrentLocation.getDirector());
-//				System.out.println("Director: "
-//						+ localCurrentLocation.getDirector());
-//
-//				actorsTagText2.setText("Actor 1");
-//				actorsText2.setText(localCurrentLocation.getActor1());
-//				System.out.println("Actor 1: "
-//						+ localCurrentLocation.getActor1());
-//
-//				actorsTagText2.setText("Actor 2");
-//				actorsText2.setText(localCurrentLocation.getActor2());
-//				System.out.println("Actor 2: "
-//						+ localCurrentLocation.getActor2());
-//
-//				actorsTagText2.setText("Actor 3");
-//				actorsText2.setText(localCurrentLocation.getActor3());
-//				System.out.println("Actor 3: "
-//						+ localCurrentLocation.getActor3());
-//
-//				writerTagText2.setText("Writer");
-//				writerText2.setText(localCurrentLocation.getWriter());
-//				System.out.println("Writer: "
-//						+ localCurrentLocation.getWriter());
 
 				break;
 
 			case 2: // LOCATIONS TAB
 
-				// restoreLevelDataButton.setVisibility(Button.GONE);
-				// reloadArrayAdapterData(rootView);
 
-				// locationQuizItemAdapter = new WorldLocationArrayAdapter(this,
-				// intent, worldLocationList.getWorldLocationList());
-				// locationsList.setAdapter(locationQuizItemAdapter);
-
-				// commentListViewLayout.setVisibility(LinearLayout.GONE);
+				locationImage.setVisibility(ImageView.GONE);
+				
 				quizButton.setVisibility(Button.GONE);
 				locationsList.setVisibility(ListView.VISIBLE);
 

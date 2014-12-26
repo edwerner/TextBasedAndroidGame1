@@ -721,6 +721,9 @@ public class QuizActivity extends FragmentActivity {
 			// CREATING A NEW VIEW PAGER BAG
 			createData();
 			
+			
+			TextView equipItemText = (TextView) rootView.findViewById(R.id.equipItemMessage1);
+//			equipItemText.setA
 			System.out.println("ARGS POSITION: " + position);
 			
 			List<BagItem> localBagItemList = bagItemSparseArray.get(0).itemList;

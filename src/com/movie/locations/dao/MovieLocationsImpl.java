@@ -22,10 +22,12 @@ public class MovieLocationsImpl {
 	private final static String COLUMN_LOCATIONS = "_locations";
 	private final static String COLUMN_FUN_FACTS = "_funfacts";
 	private final static String COLUMN_STATIC_MAP_IMAGE_URL = "_staticmapimageurl";
+	private final static String COLUMN_FUN_FACTS_IMAGE_URL = "_funFactsImageUrl";
+	private final static String COLUMN_FUN_FACTS_TITLE = "_funFactsTitle";
 
 	// public static final String COLUMN_LOCATION = "location";
 	private String[] allColumns = { COLUMN_ID, COLUMN_SID, COLUMN_LEVEL,
-			COLUMN_POSITION, COLUMN_TITLE, COLUMN_LOCATIONS, COLUMN_FUN_FACTS, COLUMN_STATIC_MAP_IMAGE_URL };
+			COLUMN_POSITION, COLUMN_TITLE, COLUMN_LOCATIONS, COLUMN_FUN_FACTS, COLUMN_STATIC_MAP_IMAGE_URL, COLUMN_FUN_FACTS_IMAGE_URL, COLUMN_FUN_FACTS_TITLE };
 
 	/**
 	 * 
@@ -58,6 +60,8 @@ public class MovieLocationsImpl {
 		values.put(COLUMN_LOCATIONS, location.getLocations());
 		values.put(COLUMN_FUN_FACTS, location.getFunFacts());
 		values.put(COLUMN_STATIC_MAP_IMAGE_URL, location.getStaticMapImageUrl());
+		values.put(COLUMN_FUN_FACTS_IMAGE_URL, location.getFunFactsImageUrl());
+		values.put(COLUMN_FUN_FACTS_TITLE, location.getFunFactsTitle());
 
 		long insertId = database.insert(
 				MovieLocationsSqliteHelper.TABLE_LOCATIONS, null, values);
@@ -152,10 +156,12 @@ public class MovieLocationsImpl {
 		location.setPosition(cursor.getString(2));
 		location.setId(cursor.getString(3));
 		location.setTitle(cursor.getString(4));
-		System.out.println("SET TITLE: " + cursor.getString(4));
+//		System.out.println("SET TITLE: " + cursor.getString(4));
 		location.setLocations(cursor.getString(5));
 		location.setFunFacts(cursor.getString(6));
 		location.setStaticMapImageUrl(cursor.getString(7));
+		location.setFunFactsImageUrl(cursor.getString(8));
+		location.setFunFactsTitle(cursor.getString(9));
 		return location;
 	}
 }

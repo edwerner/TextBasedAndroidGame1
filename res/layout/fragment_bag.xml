@@ -9,24 +9,6 @@
     android:orientation="vertical"
     tools:context="com.movie.locations.QuizActivity$BagFragment" >
 
-    <!--
-         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open bag" />
-    -->
-
-
-    <!--
-         <ExpandableListView
-        android:id="@+id/bagView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#CCCCCC" >
-    </ExpandableListView>
-    -->
-
     <ImageView
         android:id="@+id/bag_icon"
         android:layout_width="100dp"
