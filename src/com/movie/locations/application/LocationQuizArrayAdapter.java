@@ -1,8 +1,12 @@
 package com.movie.locations.application;
 import java.util.ArrayList;
+import java.util.Random;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
 import com.movie.locations.domain.BagItem;
@@ -73,11 +77,30 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 		// ImageView mapThumb = (ImageView) rowView.findViewById(R.id.mapView1);
 		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView);
 		textView.setText(titles[position]);
+
+//		final int randomFilterColor = colors[getRandomColor()];
+		imageView.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+		imageView.setImageAlpha(50);
+		
 		// imageView.setImageResource(R.drawable.film_reel_sm);
 
 		return rowView;
 	}
 	
+
+	public int[] colors = {
+			Color.BLUE,
+			Color.CYAN,
+			Color.GRAY,
+			Color.MAGENTA,
+			Color.RED,
+			Color.YELLOW
+	};
+	public int getRandomColor() {
+	    Random rand = new Random();
+	    int randomNum = rand.nextInt(colors.length);
+	    return randomNum;
+	}
     @Override
     public int getCount() {
         int size = getListItemTitles().length;

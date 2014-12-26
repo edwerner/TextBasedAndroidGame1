@@ -2,6 +2,8 @@ package com.movie.locations.application;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
+import java.util.Random;
+
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.R;
 import com.movie.locations.dao.AchievementImpl;
@@ -55,6 +57,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 
 @SuppressWarnings("deprecation")
 public class WorldLocationDetailActivity extends ActionBarActivity implements TabListener {
@@ -699,7 +704,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		//
 		// super.onResume();
 		// }
-
 		private void generateConclusionCard(QuizItem quizItem, String currentUserPoints) {
 			
 			System.out.println("GENERATE QUIZ POINTS: " + quizItem.getQuestionId());
@@ -834,7 +838,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
 
 			case 1: // MOVIE TAB
-				locationImage.setVisibility(ImageView.VISIBLE);
+//				locationImage.getDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+//				locationImage.setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
 				// restoreLevelDataButton.setVisibility(Button.VISIBLE);
 
 				// commentListViewLayout.setVisibility(LinearLayout.GONE);

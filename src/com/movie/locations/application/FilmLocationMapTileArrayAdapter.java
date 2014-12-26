@@ -1,7 +1,11 @@
 package com.movie.locations.application;
 import java.util.ArrayList;
+import java.util.Random;
+
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
 import com.movie.locations.domain.FilmLocation;

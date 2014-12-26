@@ -46,7 +46,6 @@
                         android:layout_height="300dp"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/content_desc"
-                        android:paddingLeft="10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_launcher" />
 
@@ -55,6 +54,7 @@
                         style="@style/CodeFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -70,6 +70,7 @@
                         style="@style/CodeFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
