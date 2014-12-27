@@ -15,8 +15,7 @@
             android:layout_height="300dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/filmlist_icon_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher" >
+            android:scaleType="centerCrop" >
         </ImageView>
 
         <ImageView

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:background="@drawable/circuitboard_005_green"
     tools:context=".MainActivity" >
 
     <LinearLayout
@@ -11,73 +11,14 @@
         android:orientation="horizontal"
         android:padding="2dip" >
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dip"
-            android:enabled="false" />
-
-        <Button
-            android:id="@+id/sign_out_button"
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/sign_out_button_name" />
-
-        <Button
-            android:id="@+id/revoke_access_button"
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/revoke_access_button_name" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/sign_in_status"
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dip"
-            android:text="@string/status_signed_out" />
-
-        <TextView
-            android:id="@+id/circles_title"
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/circles_title" />
-
-        <ListView
-            android:id="@+id/circles_list"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="0dip" />
-    </LinearLayout>
-
-    <!--
-         <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:contentDescription="@string/imageview_1_desc"
-        android:scaleType="centerCrop" />
-    -->
-
+    
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="225dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="#FFFFFF"
         android:orientation="vertical" >
 
         <TextView
@@ -96,15 +37,41 @@
             android:text="A puzzle game about circuits"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/entry_button"
+        <TextView
+            android:id="@+id/sign_in_status"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="Enter" />
-    </LinearLayout>
+            android:text="@string/status_signed_out" />
 
-    <!-- style="@style/DropShadowText" -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false" >
+            </com.google.android.gms.common.SignInButton>
+
+            <Button
+                android:id="@+id/sign_out_button"
+                style="@style/CodeFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/sign_out_button_name" />
+
+            <Button
+                android:id="@+id/entry_button"
+                style="@style/CodeFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="Enter" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

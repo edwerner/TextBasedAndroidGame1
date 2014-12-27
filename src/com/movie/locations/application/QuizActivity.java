@@ -376,7 +376,8 @@ public class QuizActivity extends FragmentActivity {
 			if (currentBagItem != null) {
 				updateBagItems(currentBagItem, 0);
 			} else {
-				imageLoader.displayImage(NO_ITEM_EQUIPPED_IMAGE_ICON, currentEquippedItemImage);
+//				imageLoader.displayImage(R.d.x_button, currentEquippedItemImage);
+				currentEquippedItemImage.setBackgroundResource(R.drawable.x_button);
 				currentEquippedItemText.setText(NO_ITEM_EQUIPPED_MESSAGE_TEXT);
 			}
 			
