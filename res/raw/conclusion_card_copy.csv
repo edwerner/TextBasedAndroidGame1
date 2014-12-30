@@ -1,5 +1,10 @@
 QuestionId_01,Power Switch,Power Switch copy,power_switch,1
 QuestionId_02,Tricolor LED,Tricolor LED copy,led_tricolor,1
 QuestionId_03,Red LED,Red LED copy,led_red,1
-QuestionId_04,Green LED,Green LED copy,led_green,1
+QuestionId_04,Green LED, copy,led_green,1
 QuestionId_05,Tricolor LED,Tricolor LED copy,led_tricolor,1
+QuestionId_06,Capacitor Lg 001,Capacitor Lg 001 copy,capacitor_lg_001,1
+QuestionId_07,Trim Potentiometer,Trim Potentiometer copy,potentiometer_trim,1
+QuestionId_08,Transformer,Transformer copy,transformer,1
+QuestionId_09,Servomotor,Servomotor copy,servomotor_micro,1
+QuestionId_10,Transformer,Transformer copy,transformer,1

@@ -3,3 +3,8 @@ test,1,2,LED_02,LED 02,LED 02,Diode fun fact,assets://8_bit_green/led_red_green.
 test,1,3,LED_03,LED 03,LED 03,Memory Stick fun fact,assets://8_bit_green/led_tricolor_green.jpg,Memory Stick,assets://memory_stick.jpg
 test,1,4,LED_04,LED 04,LED 04,Piezo Buzzer fun fact,assets://8_bit_green/motor_vib_green.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
 test,1,5,LED_05,LED 05,LED 05,Motor fun fact,assets://8_bit_green/led_green_green.jpg,Motor,assets://motor_vibr.jpg
+test,1,6,Breadboard_06,Breadboard 06,Breadboard 06,Power Switch fun fact,assets://8_bit_green/potentiometer_trim_green.jpg,Power Switch,assets://power_switch.jpg
+test,1,7,Breadboard_07,Breadboard 07,Breadboard 07,VGA Connector fun fact,assets://8_bit_green/capacitor_lg_001_green.jpg,VGA Connector,assets://vga_connector.jpg
+test,1,8,Breadboard_08,Breadboard 08,Breadboard 08,Audio Speaker fun fact,assets://8_bit_green/potentiometer_trim_green.jpg,Audio Speaker,assets://speaker.jpg
+test,1,9,Breadboard_09,Breadboard 09,Breadboard 09,Protoboard fun fact,assets://8_bit_green/transformer_green.jpg,Protoboard,assets://protoboard.jpg
+test,1,10,Breadboard_10,Breadboard 10,Breadboard 10,Oscillator fun fact,assets://8_bit_green/servomotor_micro_green.jpg,Oscillator 001,assets://oscillator_001.jpg

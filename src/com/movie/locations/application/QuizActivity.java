@@ -1,5 +1,6 @@
 package com.movie.locations.application;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.movie.locations.R;
 import com.movie.locations.dao.UserImpl;
@@ -629,10 +630,10 @@ public class QuizActivity extends FragmentActivity {
 		}
 		
 		String reactionMessage = reactions[selectedRadioButtonIndex];
-		final String FULL_CLEAR_BONUS_POINTS = "5";
+//		final String FULL_CLEAR_BONUS_POINTS = "5";
 		
 		// append bonus message
-		String bonusMessage = "+" + FULL_CLEAR_BONUS_POINTS + " XP (Full clear)";
+//		String bonusMessage = " (Full clear)";
 		
 		boolean fullClear = true;
 		for (int i = 0; i < answeredCount.length; i++) {
@@ -644,10 +645,10 @@ public class QuizActivity extends FragmentActivity {
 			}
 		}			
 		
-		if (fullClear == true) {
-			reactionMessage = reactionMessage.concat(bonusMessage);
-			System.out.println("GET ANSWERED COUNT: " + getAnsweredCount());
-		}
+//		if (fullClear == true) {
+//			reactionMessage = reactionMessage.concat(bonusMessage);
+//			System.out.println("GET ANSWERED COUNT: " + getAnsweredCount());
+//		}
 	//	setAnsweredCount(0);
 	
 		Toast.makeText(context, reactionMessage, Toast.LENGTH_LONG).show();
@@ -728,6 +729,10 @@ public class QuizActivity extends FragmentActivity {
 			System.out.println("ARGS POSITION: " + position);
 			
 			List<BagItem> localBagItemList = bagItemSparseArray.get(0).itemList;
+
+			// sort the list
+			Collections.sort(localBagItemList, StaticSortingUtilities.BAG_ITEMS_ALPHABETICAL_ORDER);
+			
 	    	final BagItem localBagItem = localBagItemList.get(position);
 			// SEND STRING PARCELS TO SET ATTRIBUTES
 

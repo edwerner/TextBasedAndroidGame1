@@ -1058,8 +1058,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 				ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
 
-//				Collections.sort(finalQuizList,
-//						StaticSortingUtilities.QUIZ_ITEMS_ALPHABETICAL_ORDER);
+				Collections.sort(newQuizList, StaticSortingUtilities.QUIZ_ITEMS_ALPHABETICAL_ORDER);
 				
 				boolean answered = true;
 				QuizItem replayQuizItem = null;
@@ -1068,6 +1067,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					System.out.println("LOCATION TITLE 2:" + quizItem.getWorldTitle());
 					System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
 					if (quizItem.getWorldTitle().equals(localCurrentLocation.getTitle())) {
+						System.out.println("TITLES EQUAL");
 						finalQuizList.add(quizItem);
 //						System.out.println("QUIZ ITEM GET ANSWERED:" + quizItem.getAnswered());
 						if (quizItem.getAnswered().equals("FALSE")) {
@@ -1076,6 +1076,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						replayQuizItem = quizItem;
 					}
 				}
+				System.out.println("FINAL QUIZ LIST LENGTH: " + finalQuizList.size());
 				if (answered == true) {
 					System.out.println("QUIZ ITEM ANSWERED: " + replayQuizItem.getAnswered());
 					initializeReplayWorld(replayQuizItem);
