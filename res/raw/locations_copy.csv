@@ -8,3 +8,8 @@ test,1,7,Breadboard_07,Breadboard 07,Breadboard 07,VGA Connector fun fact,assets
 test,1,8,Breadboard_08,Breadboard 08,Breadboard 08,Audio Speaker fun fact,assets://8_bit_green/potentiometer_trim_green.jpg,Audio Speaker,assets://speaker.jpg
 test,1,9,Breadboard_09,Breadboard 09,Breadboard 09,Protoboard fun fact,assets://8_bit_green/transformer_green.jpg,Protoboard,assets://protoboard.jpg
 test,1,10,Breadboard_10,Breadboard 10,Breadboard 10,Oscillator fun fact,assets://8_bit_green/servomotor_micro_green.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,11,Motherboard_11,Motherboard 11,Motherboard 11,Hard Disk Drive Headers fun fact,assets://8_bit_green/pci_slots_green.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,12,Motherboard_12,Motherboard 12,Motherboard 12,9V Battery Case fun fact,assets://8_bit_green/ps_2_ports_green.jpg,9V Battery Case,assets://9v_battery_case.jpg
+test,1,13,Motherboard_13,Motherboard 13,Motherboard 13,Power Supply Unit fun fact,assets://8_bit_green/memory_stick_green.jpg,Power Supply Unit,assets://power_supply_unit.jpg
+test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Ribbon Cable fun fact,assets://8_bit_green/vga_connector_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Switch (DPDT) fun fact,assets://8_bit_green/pci_slots_green.jpg,Switch (DPDT),assets://switch_dpdt.jpg

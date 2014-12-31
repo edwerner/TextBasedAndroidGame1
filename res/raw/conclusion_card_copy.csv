@@ -8,3 +8,8 @@ QuestionId_07,Trim Potentiometer,Trim Potentiometer copy,potentiometer_trim,1
 QuestionId_08,Transformer,Transformer copy,transformer,1
 QuestionId_09,Servomotor,Servomotor copy,servomotor_micro,1
 QuestionId_10,Transformer,Transformer copy,transformer,1
+QuestionId_11,PCI Slots,PCI Slots copy,pci_slots,1
+QuestionId_12,PS/2 Ports,PS/2 Ports copy,ps_2_ports,1
+QuestionId_13,VGA Connector,VGA Connector copy,vga_connector,1
+QuestionId_14,PCI Slots,PCI Slots copy,pci_slots,1
+QuestionId_15,RAM,RAM copy,memory_stick,1

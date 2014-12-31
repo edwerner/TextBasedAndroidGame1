@@ -4,21 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/circuitboard_005_green"
     tools:context=".MainActivity" >
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="2dip" >
-
-    </LinearLayout>
     
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="#FFFFFF"
+        android:background="@color/white_overlay"
         android:orientation="vertical" >
 
         <TextView

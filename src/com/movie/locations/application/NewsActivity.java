@@ -36,6 +36,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -99,10 +101,10 @@ public class NewsActivity extends ActionBarActivity {
 //		navArray[2] = "Friends";
 		navArray[2] = "Worlds";
 //		navArray[3] = "Restore";
-		navArray[3] = "Cards";
-		navArray[4] = "Items";
-		navArray[5] = "About";
-		navArray[6] = "Settings";
+//		navArray[3] = "Cards";
+		navArray[3] = "Items";
+		navArray[4] = "About";
+		navArray[5] = "Settings";
 //		navArray[6] = "Help";
 		
 		String[] navImageUrl = new String[navArray.length];
@@ -111,10 +113,10 @@ public class NewsActivity extends ActionBarActivity {
 		navImageUrl[1] = userImageUrl;
 		navImageUrl[2] = "http://icons.iconarchive.com/icons/fasticon/freestyle/128/tree-icon.png";
 //		navImageUrl[3] = "http://www.softwarecrew.com/wp-content/uploads/2012/04/wise_data_recovery_icon1.png";
-		navImageUrl[3] = "http://d1hwvnnkb0v1bo.cloudfront.net/content/art/app/icons/key_ring_reward_cards_icon.jpg";
-		navImageUrl[4] = "https://d13yacurqjgara.cloudfront.net/users/114243/screenshots/1272737/screen_shot_2013-10-15_at_2.44.14_am_teaser.png";
-		navImageUrl[5] = "http://png-1.findicons.com/files/icons/552/aqua_candy_revolution/128/get_info.png";
-		navImageUrl[6] = "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/matte-blue-and-white-square-icons-business/116957-matte-blue-and-white-square-icon-business-gear11.png";
+//		navImageUrl[3] = "http://d1hwvnnkb0v1bo.cloudfront.net/content/art/app/icons/key_ring_reward_cards_icon.jpg";
+		navImageUrl[3] = "https://d13yacurqjgara.cloudfront.net/users/114243/screenshots/1272737/screen_shot_2013-10-15_at_2.44.14_am_teaser.png";
+		navImageUrl[4] = "http://png-1.findicons.com/files/icons/552/aqua_candy_revolution/128/get_info.png";
+		navImageUrl[5] = "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/matte-blue-and-white-square-icons-business/116957-matte-blue-and-white-square-icon-business-gear11.png";
 		
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -348,16 +350,16 @@ public class NewsActivity extends ActionBarActivity {
 			locationsFragment.setArguments(locationsBundle);
 			ft.replace(R.id.content_frame, locationsFragment);
 			break;
+//		case 3:
+//			ft.replace(R.id.content_frame, new ConclusionCardFragment());
+//			break;
 		case 3:
-			ft.replace(R.id.content_frame, new ConclusionCardFragment());
-			break;
-		case 4:
 			ft.replace(R.id.content_frame, new BagItemListFragment());
 			break;
-		case 5:
+		case 4:
 			ft.replace(R.id.content_frame, new AboutFragment());
 			break;
-		case 6:
+		case 5:
 			ft.replace(R.id.content_frame, new SettingsFragment());
 			break;
 		}
@@ -575,7 +577,7 @@ public class NewsActivity extends ActionBarActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_news, container, false);
-			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreNewsItemDataListView1);
+//			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreNewsItemDataListView1);
 			final Context context = getActivity().getApplicationContext();
 			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 			String NEWS_ITEM_TITLE = "NEWS_ITEM_TITLE";
@@ -615,6 +617,13 @@ public class NewsActivity extends ActionBarActivity {
 				}	
 			}
 			final Intent intent = getActivity().getIntent();
+			
+//			ImageView gameImage1 = (ImageView) getActivity().findViewById(R.id.gameWorldsImage1);
+			ImageView gameImage2 = (ImageView) rootView.findViewById(R.id.gameWorldsImage2);
+			
+			gameImage2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+			gameImage2.setImageAlpha(90);
+			
 //			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 //			if (gameTitleList.size() > 0) {
 //				restoreListView.setAdapter(levelRestoreListAdapter);
@@ -909,17 +918,17 @@ public class NewsActivity extends ActionBarActivity {
 					}
 				});	
 			}
-			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreLevelDataListView);
-			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-			String WORLD_TITLE = "WORLD_TITLE";
-			final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
-			System.out.println("REFRESHED DATA");
-			final Intent intent = getActivity().getIntent();
-			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
-			if (gameTitleList.size() > 0) {
-				restoreListView.setAdapter(levelRestoreListAdapter);
-//				levelRestoreListAdapter.notifyDataSetChanged();
-			}
+//			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreLevelDataListView);
+//			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
+//			String WORLD_TITLE = "WORLD_TITLE";
+//			final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
+//			System.out.println("REFRESHED DATA");
+//			final Intent intent = getActivity().getIntent();
+//			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
+//			if (gameTitleList.size() > 0) {
+//				restoreListView.setAdapter(levelRestoreListAdapter);
+////				levelRestoreListAdapter.notifyDataSetChanged();
+//			}
 			return rootView;
 		}
 	}

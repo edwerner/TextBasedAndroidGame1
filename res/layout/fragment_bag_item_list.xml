@@ -16,7 +16,7 @@
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quest Items"
+            android:text="Game Items"
             android:textSize="24sp"
             android:textStyle="bold" />
 

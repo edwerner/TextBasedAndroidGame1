@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/user_profile_title_tag"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/userAvatar1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/imageview_1_desc"
         android:scaleType="fitXY" />
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/user_full_name_tag_1"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -39,17 +39,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp" />
-
-<!--     <TextView
-        android:id="@+id/achievementsTitleTag1"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/achievements_title_tag"
-        android:textSize="18sp"
-        android:textStyle="bold" /> -->
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/levelTitleTag1"
@@ -57,7 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Level"
-        android:textSize="14sp"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
         android:textStyle="bold" />
 
     <TextView
@@ -65,7 +56,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/miscTitleTag1"
@@ -74,31 +65,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Points"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
-
-    <!-- <TextView
-        android:id="@+id/pointsTagText1"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Current XP"
-        android:textSize="14sp"
-        android:textStyle="bold" /> -->
 
     <TextView
         android:id="@+id/pointsText1"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp" />
-
-    <!--
-         <Button
-        android:id="@+id/get_started_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/get_started_button_text" />
-    -->
+        android:textSize="20sp" />
 
 </LinearLayout>

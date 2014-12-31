@@ -1,62 +1,57 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_news"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context="com.movie.locations.NewsActivity$NewsFragment" >
+    tools:context="com.movie.locations.NewsActivity$UserDetailFragment" >
 
-    <TextView
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Conclusion Cards"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-<!--     <TextView
-        android:id="@+id/pullToRefreshText1"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:text="Pull down to refresh"
-        android:textSize="18sp"
-        android:textStyle="italic" /> -->
-
-    <!--
-                 <ListView
-                android:id="@+id/conclusionCardListView1"
-                style="@style/listViewDivider"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="10dp"
-                android:clickable="true" />
-    -->
-
-    <ListView
-        android:id="@+id/restoreNewsItemDataListView1"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="20dp"
-        android:clickable="true" />
+        android:orientation="vertical" >
 
-    <TextView
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recent Activity"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/gameWorldsImage1"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/filmlist_icon_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/circuitboard_004_green" >
+        </ImageView>
 
-    <ListView
-        android:id="@+id/commentView"
-        style="@style/listViewDivider"
+        <ImageView
+            android:id="@+id/gameWorldsImage2"
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/filmlist_icon_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/circuitboard_004_green" >
+        </ImageView>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="10dp"
-        android:clickable="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false" />
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/white_overlay"
+        android:orientation="vertical" >
 
-</LinearLayout>
+        <TextView
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MakerQuest"
+            android:textSize="24sp" />
+
+        <TextView
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visit &apos;Worlds&apos; tab to get started"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</RelativeLayout>

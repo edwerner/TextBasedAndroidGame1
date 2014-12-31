@@ -1,25 +1,27 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.movie.locations.NewsActivity$FilmLocationsFragment" >
 
-    <LinearLayout
-        android:id="@+id/fragment_film_locations"
+    <ImageView
+        android:id="@+id/gameWorldsImage"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="fill_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/breadboard_lg_green" >
+    </ImageView>
 
-        <ImageView
-            android:id="@+id/gameWorldsImage"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/filmlist_icon_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/breadboard_lg_green" >
-        </ImageView>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/white_overlay"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/locationsTag1"
@@ -27,21 +29,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Game Worlds"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/locationsText"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp" />
-
-        <ListView
-            android:id="@+id/restoreLevelDataListView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="20dp"
-            android:clickable="true" />
+            android:text="Tap image to begin"
+            android:textSize="12sp"
+            android:textStyle="italic" />
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>
