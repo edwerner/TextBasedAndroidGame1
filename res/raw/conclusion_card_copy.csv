@@ -13,3 +13,8 @@ QuestionId_12,PS/2 Ports,PS/2 Ports copy,ps_2_ports,1
 QuestionId_13,VGA Connector,VGA Connector copy,vga_connector,1
 QuestionId_14,PCI Slots,PCI Slots copy,pci_slots,1
 QuestionId_15,RAM,RAM copy,memory_stick,1
+QuestionId_16,Switch (DPDT),Switch (DPDT) copy,switch_dpdt,1
+QuestionId_17,Power Switch,Power Switch copy,power_switch,1
+QuestionId_18,Switch (SPST),Switch (SPST) copy,switch_spst,1
+QuestionId_19,Sleep Switch Display,Sleep Switch Display copy,sleep_switch_display,1
+QuestionId_20,Switch (SPST),Switch (SPST) copy,switch_spst,1

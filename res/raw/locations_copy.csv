@@ -13,3 +13,8 @@ test,1,12,Motherboard_12,Motherboard 12,Motherboard 12,9V Battery Case fun fact,
 test,1,13,Motherboard_13,Motherboard 13,Motherboard 13,Power Supply Unit fun fact,assets://8_bit_green/memory_stick_green.jpg,Power Supply Unit,assets://power_supply_unit.jpg
 test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Ribbon Cable fun fact,assets://8_bit_green/vga_connector_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
 test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Switch (DPDT) fun fact,assets://8_bit_green/pci_slots_green.jpg,Switch (DPDT),assets://switch_dpdt.jpg
+test,1,16,Switches_16,Switches 16,Switches 16,Jumper Cable Lg fun fact,assets://8_bit_green/power_switch_green.jpg,Jumper Cable Lg,assets://jumper_cable_lg.jpg
+test,1,17,Switches_17,Switches 17,Switches 17,Tilt Sensor fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Tilt Sensor,assets://tilt_sensor.jpg
+test,1,18,Switches_18,Switches 18,Switches 18,Resistor fun fact,assets://8_bit_green/switch_dpdt_green.jpg,Resistor,assets://resistor_001.jpg
+test,1,19,Switches_19,Switches 19,Switches 19,Headers (male) 5-Pin fun fact,assets://8_bit_green/switch_spst_green.jpg,Headers (male) 5-Pin,assets://headers_male_5_pin.jpg
+test,1,20,Switches_20,Switches 20,Switches 20,Printer Connector fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Printer Connector,assets://printer_connector_002.jpg

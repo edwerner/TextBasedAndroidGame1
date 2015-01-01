@@ -41,7 +41,7 @@ memory_stick,RAM,BAG_ITEM_TITLE,1,start,assets://memory_stick.jpg
 motor_vibr,Motor,BAG_ITEM_TITLE,1,start,assets://motor_vibr.jpg
 oscillator_001,Oscillator 001,BAG_ITEM_TITLE,1,start,assets://oscillator_001.jpg
 oscillator_002,Oscillator 002,BAG_ITEM_TITLE,1,start,assets://oscillator_002.jpg
-photoresistor,Photo Resistor,BAG_ITEM_TITLE,1,start,assets://photoresistor.jpg
+photoresistor,Photoresistor,BAG_ITEM_TITLE,1,start,assets://photoresistor.jpg
 piezo_buzzer_001,Piezo Buzzer 001,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_001.jpg
 piezo_buzzer_002,Piezo Buzzer,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_002.jpg
 potentiometer_rotary,Rotary Potentiometer,BAG_ITEM_TITLE,1,start,assets://potentiometer_rotary.jpg
@@ -49,7 +49,6 @@ potentiometer_trim,Trim Potentiometer,BAG_ITEM_TITLE,1,start,assets://potentiome
 power_supply_unit,Power Supply Unit,BAG_ITEM_TITLE,1,start,assets://power_supply_unit.jpg
 power_switch,Power Switch,BAG_ITEM_TITLE,1,start,assets://power_switch.jpg
 pressure_sensor,Pressure Sensor,BAG_ITEM_TITLE,1,start,assets://pressure_sensor.jpg
-printer_connector_001,Printer Connector 001,BAG_ITEM_TITLE,1,start,assets://printer_connector_001.jpg
 printer_connector_002,Printer Connector 001,BAG_ITEM_TITLE,1,start,assets://printer_connector_002.jpg
 protoboard,Protoboard,BAG_ITEM_TITLE,1,start,assets://protoboard.jpg
 ps_2_ports,PS/2 Ports,BAG_ITEM_TITLE,1,start,assets://ps_2_ports.jpg
