@@ -249,7 +249,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		private ArrayList<String> localWorldTitles;
 		private LocationMapParcel localMapParcel;
 		private String currentTitle;
-		private FilmLocationMapTileArrayAdapter commentAdapter;
+		private FilmLocationArrayAdapter commentAdapter;
 		private ListView commentView;
 		private String fragmentTitle;
 		private FilmArrayList filmArrayList;
@@ -376,7 +376,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);
 			intent.putExtra("localUser", localCurrentUser);
 			System.out.println("PAGER ACTIVITY CURRENT USER POINTS: " + localCurrentUser.getCurrentPoints());
-			commentAdapter = new FilmLocationMapTileArrayAdapter(getActivity(), intent, finalList);
+			commentAdapter = new FilmLocationArrayAdapter(getActivity(), intent, finalList);
 			commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
 			commentView.setAdapter(commentAdapter);
 			commentAdapter.notifyDataSetChanged();

@@ -16,5 +16,10 @@ test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Switch (DPDT) fun fact,as
 test,1,16,Switches_16,Switches 16,Switches 16,Jumper Cable Lg fun fact,assets://8_bit_green/power_switch_green.jpg,Jumper Cable Lg,assets://jumper_cable_lg.jpg
 test,1,17,Switches_17,Switches 17,Switches 17,Tilt Sensor fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Tilt Sensor,assets://tilt_sensor.jpg
 test,1,18,Switches_18,Switches 18,Switches 18,Resistor fun fact,assets://8_bit_green/switch_dpdt_green.jpg,Resistor,assets://resistor_001.jpg
-test,1,19,Switches_19,Switches 19,Switches 19,Headers (male) 5-Pin fun fact,assets://8_bit_green/switch_spst_green.jpg,Headers (male) 5-Pin,assets://headers_male_5_pin.jpg
+test,1,19,Switches_19,Switches 19,Switches 19,Pressure Sensor,assets://8_bit_green/switch_spst_green.jpg,Pressure Sensor,assets://pressure_sensor.jpg
 test,1,20,Switches_20,Switches 20,Switches 20,Printer Connector fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Printer Connector,assets://printer_connector_002.jpg
+test,1,21,Connectors_21,Connectors 21,Connectors 21,Memory Stick fun fact,assets://8_bit_green/micro_usb_green.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,22,Connectors_22,Connectors 22,Connectors 22,Auxiliary Connector (6-pin) fun fact,assets://8_bit_green/ethernet_green.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
+test,1,23,Connectors_23,Connectors 23,Connectors 23,Ribbon Cable fun fact,assets://8_bit_green/usb_connector_type_b_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,24,Connectors_24,Connectors 24,Connectors 24,Oscillator 002 fun fact,assets://8_bit_green/usb_connector_type_a_green.jpg,Oscillator 002,assets://oscillator_002.jpg
+test,1,25,Connectors_25,Connectors 25,Connectors 25,Power Supply Unit (PSU) Plug fun fact,assets://8_bit_green/micro_usb_green.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg

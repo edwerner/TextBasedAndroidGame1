@@ -622,7 +622,7 @@ public class NewsActivity extends ActionBarActivity {
 			ImageView gameImage2 = (ImageView) rootView.findViewById(R.id.gameWorldsImage2);
 			
 			gameImage2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-			gameImage2.setImageAlpha(90);
+//			gameImage2.setImageAlpha(90);
 			
 //			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 //			if (gameTitleList.size() > 0) {

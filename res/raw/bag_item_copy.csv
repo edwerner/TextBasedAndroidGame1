@@ -22,16 +22,6 @@ BAG_ITEM_TITLE,circuitboard_008,Circuit Board 008,Bag Item,assets://circuitboard
 BAG_ITEM_TITLE,diode,Diode,Bag Item,assets://diode.jpg,1
 BAG_ITEM_TITLE,floppy_drive,"3.5"" Floppy Drive",Bag Item,assets://floppy_drive.jpg,1
 BAG_ITEM_TITLE,hard_disk_drive_headers,Hard Disk Drive Headers,Bag Item,assets://hard_disk_drive_headers.jpg,1
-BAG_ITEM_TITLE,headers_female_8_pin_lg,Headers (female) 8-Pin Lg,Bag Item,assets://headers_female_8_pin_lg.jpg,1
-BAG_ITEM_TITLE,headers_female_8_pin_sm,Headers (female) 8-Pin Sm,Bag Item,assets://headers_female_8_pin_sm.jpg,1
-BAG_ITEM_TITLE,headers_male_5_pin,Headers (male) 5-Pin,Bag Item,assets://headers_male_5_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_8_pin,Headers (male) 8-pin,Bag Item,assets://headers_male_8_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_19_pin,Headers (male) 19-Pin,Bag Item,assets://headers_male_19_pin.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_5_pin_lg,Headers (male) Dual 5-Pin Lg,Bag Item,assets://headers_male_dual_5_pin_lg.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_8_pin_lg,Headers (male) Dual 8-Pin Lg,Bag Item,assets://headers_male_dual_8_pin_lg.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_27_pin_lg,Headers (male) Dual 27-Pin Lg,Bag Item,assets://headers_male_dual_27_pin_lg.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_lg,Headers (male) Dual Lg,Bag Item,assets://headers_male_dual_lg.jpg,1
-BAG_ITEM_TITLE,headers_male_dual_med,Headers (male) Dual Med,Bag Item,assets://headers_male_dual_med.jpg,1
 BAG_ITEM_TITLE,jumper_cable_lg,Jumper Cable Lg,Bag Item,assets://jumper_cable_lg.jpg,1
 BAG_ITEM_TITLE,jumper_cable_sm,Jumper Cable Med,Bag Item,assets://jumper_cable_sm.jpg,1
 BAG_ITEM_TITLE,led_green,Green LED,Bag Item,assets://led_green.jpg,1
@@ -64,3 +54,10 @@ BAG_ITEM_TITLE,tilt_sensor,Tilt Sensor,Bag Item,assets://tilt_sensor.jpg,1
 BAG_ITEM_TITLE,transformer,Transformer,Bag Item,assets://transformer.jpg,1
 BAG_ITEM_TITLE,transistor_npn,Transistor (NPN),Bag Item,assets://transistor_npn.jpg,1
 BAG_ITEM_TITLE,vga_connector,VGA Connector,Bag Item,assets://vga_connector.jpg,1
+BAG_ITEM_TITLE,auxillary_connector_6_pin,Auxiliary Connector (6-pin),Bag Item,assets://auxillary_connector_6_pin.jpg,1
+BAG_ITEM_TITLE,auxillary_connector_berg_4_pin,Auxiliary Connector (Berg 4-pin),Bag Item,assets://auxillary_connector_berg_4_pin.jpg,1
+BAG_ITEM_TITLE,ethernet,Ethernet Connector,Bag Item,assets://ethernet.jpg,1
+BAG_ITEM_TITLE,micro_usb,USB Connector (Mini B),Bag Item,assets://micro_usb.jpg,1
+BAG_ITEM_TITLE,peripheral_connector_4_pin,Peripheral Connector (4-pin),Bag Item,assets://peripheral_connector_4_pin.jpg,1
+BAG_ITEM_TITLE,usb_connector_type_a,USB Connector (Type A),Bag Item,assets://usb_connector_type_a.jpg,1
+BAG_ITEM_TITLE,usb_connector_type_b,USB Connector (Type B),Bag Item,assets://usb_connector_type_b.jpg,1

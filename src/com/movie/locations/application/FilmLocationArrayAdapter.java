@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FilmLocationMapTileArrayAdapter extends ArrayAdapter<FilmLocation> {
+public class FilmLocationArrayAdapter extends ArrayAdapter<FilmLocation> {
 	private Context context;
 	private ArrayList<FilmLocation> values;
 	private ImageLoader imageLoader = ImageLoader.getInstance();
@@ -27,7 +27,7 @@ public class FilmLocationMapTileArrayAdapter extends ArrayAdapter<FilmLocation> 
 	private String SETTINGS = "&zoom=16&size=1200x1200&sensor=true";
 	private Intent intent;
 
-	public FilmLocationMapTileArrayAdapter(Context context, Intent intent,
+	public FilmLocationArrayAdapter(Context context, Intent intent,
 			ArrayList<FilmLocation> values) {
 		super(context, R.layout.film_list_map_tile_array_adapter, values);
 		this.context = context;
@@ -56,10 +56,13 @@ public class FilmLocationMapTileArrayAdapter extends ArrayAdapter<FilmLocation> 
 		});	
 
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);	
+		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
+//		ImageView imageView2 = (ImageView) rowView.findViewById(R.id.logo2);
 		UNIQUE_MAP_IMAGE_URL = values.get(position).getStaticMapImageUrl();
 //		imageView.setImageAlpha(25);
 		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView);
+//		imageView2.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
+//		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView2);
 		textView.setText(values.get(position).getLocations());
 		return rowView;
 	}
