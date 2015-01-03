@@ -23,3 +23,8 @@ test,1,22,Connectors_22,Connectors 22,Connectors 22,Auxiliary Connector (6-pin) 
 test,1,23,Connectors_23,Connectors 23,Connectors 23,Ribbon Cable fun fact,assets://8_bit_green/usb_connector_type_b_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
 test,1,24,Connectors_24,Connectors 24,Connectors 24,Oscillator 002 fun fact,assets://8_bit_green/usb_connector_type_a_green.jpg,Oscillator 002,assets://oscillator_002.jpg
 test,1,25,Connectors_25,Connectors 25,Connectors 25,Power Supply Unit (PSU) Plug fun fact,assets://8_bit_green/micro_usb_green.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
+test,1,26,Resistors_26,Resistors 26,Resistors 26,Transformer fun fact,assets://8_bit_green/capacitor_electrolytic_green.jpg,Transformer,assets://transformer.jpg
+test,1,27,Resistors_27,Resistors 27,Resistors 27,Servomotor fun fact,assets://8_bit_green/resistor_green.jpg,Servomotor,assets://servomotor_micro.jpg
+test,1,28,Resistors_28,Resistors 28,Resistors 28,Auxiliary Connector (Berg 4-pin) fun fact,assets://8_bit_green/photoresistor_green.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
+test,1,29,Resistors_29,Resistors 29,Resistors 29,USB Connector (Type A),assets://8_bit_green/potentiometer_rotary_green.jpg,USB Connector (Type A) fun fact,assets://usb_connector_type_a.jpg
+test,1,30,Resistors_30,Resistors 30,Resistors 30,Ethernet Connector,assets://8_bit_green/photoresistor_green.jpg,Ethernet Connector fun fact,assets://ethernet.jpg

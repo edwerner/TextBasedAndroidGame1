@@ -10,7 +10,6 @@ capacitor_electrolytic_lg_003,Capacitor (ceramic) Lg 003,BAG_ITEM_TITLE,1,start,
 capacitor_lg_001,Capacitor Lg 001,BAG_ITEM_TITLE,1,start,assets://capacitor_lg_001.jpg
 capacitor_lg_002,Capacitor Lg 002,BAG_ITEM_TITLE,1,start,assets://capacitor_lg_002.jpg
 capacitor_lg_003,Capacitor Lg 003,BAG_ITEM_TITLE,1,start,assets://capacitor_lg_003.jpg
-capacitor_lg_004,Capacitor Lg 004,BAG_ITEM_TITLE,1,start,assets://capacitor_lg_004.jpg
 circuitboard_001,Circuit Board 001,BAG_ITEM_TITLE,1,start,assets://circuitboard_001.jpg
 circuitboard_002,Circuit Board 002,BAG_ITEM_TITLE,1,start,assets://circuitboard_002.jpg
 circuitboard_003,Circuit Board 003,BAG_ITEM_TITLE,1,start,assets://circuitboard_003.jpg
@@ -61,3 +60,4 @@ micro_usb,USB Connector (Mini B),BAG_ITEM_TITLE,1,start,assets://micro_usb.jpg
 peripheral_connector_4_pin,Peripheral Connector (4-pin),BAG_ITEM_TITLE,1,start,assets://peripheral_connector_4_pin.jpg
 usb_connector_type_a,USB Connector (Type A),BAG_ITEM_TITLE,1,start,assets://usb_connector_type_a.jpg
 usb_connector_type_b,USB Connector (Type B),BAG_ITEM_TITLE,1,start,assets://usb_connector_type_b.jpg
+resistor,Resistor,BAG_ITEM_TITLE,1,start,assets://resistor.jpg

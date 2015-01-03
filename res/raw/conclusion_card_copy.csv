@@ -28,3 +28,8 @@ QuestionId_27,USB Connector (Type A),USB Connector (Type A) copy,usb_connector_t
 QuestionId_28,Ethernet Connector,Ethernet Connector copy,ethernet,1
 QuestionId_29,USB Connector (Type B),USB Connector (Type B) copy,usb_connector_type_b,1
 QuestionId_30,Ethernet Connector,Ethernet Connector copy,ethernet,1
+QuestionId_31,Capacitor (electrolytic),Capacitor (electrolytic) copy,capacitor_electrolytic,1
+QuestionId_32,Resistor,Resistor copy,resistor,1
+QuestionId_33,Photoresistor,Photoresistor copy,photoresistor,1
+QuestionId_34,Rotary Potentiometer,Rotary Potentiometer copy,potentiometer_rotary,1
+QuestionId_35,Photoresistor,Photoresistor copy,photoresistor,1
