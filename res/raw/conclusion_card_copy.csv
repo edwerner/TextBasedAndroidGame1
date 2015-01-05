@@ -38,3 +38,8 @@ QuestionId_37,Tilt Sensor,Tilt Sensor copy,tilt_sensor,1
 QuestionId_38,Pressure Sensor,Pressure Sensor copy,pressure_sensor,1
 QuestionId_39,Pressure Sensor,Pressure Sensor copy,pressure_sensor,1
 QuestionId_40,Jumper Cable Sm,Jumper Wire Sm copy,jumper_cable_lg,1
+QuestionId_41,Power Supply Unit (PSU) Plug,Power Supply Unit (PSU) Plug copy,power_supply_unit,1
+QuestionId_42,Resistor,Resistor copy,resistor,1
+QuestionId_43,Transistor (NPN),Transistor (NPN) copy,transistor_npn,1
+QuestionId_44,Transformer,Transformer copy,transformer,1
+QuestionId_45,Transformer,Transformer copy,transformer,1
