@@ -102,7 +102,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 	private static Dialog dialog;
 	private static LocationQuizArrayAdapter locationQuizArrayAdapter;
 	private static ListView locationsList;
-//	private static QuizItemService quizItemService;
+	public static QuizItemService quizItemService;
+
 
 
 	@Override
@@ -167,6 +168,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		newQuizList = quizitemsource.selectRecords();
 		System.out.println("QUIZ LIST SIZE: " + newQuizList.size());
 
+		quizItemService = new QuizItemService();
 		// newQuizList = quizitemsource.selectRecordsByWorldTitle(title);
 		localQuizItemArrayList = new QuizItemArrayList();
 		localQuizItemArrayList.setQuizList(newQuizList);
@@ -301,7 +303,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			   unregisterReceiver(this);
 		   }
 		};
-		
+
 		public static class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
 
 			private String resp;
@@ -341,8 +343,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					message = "Level data reset.";
 					
 					System.out.println("ANSWERED QUIZ ID: " + result);
-					QuizItemService quizItemService;
-					quizItemService = new QuizItemService();
 					quizItemService.resetAnsweredQuestion(result, context);
 				}
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
