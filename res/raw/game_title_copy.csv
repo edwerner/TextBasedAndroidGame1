@@ -1,7 +1,7 @@
 9v_battery_case,9V Battery Case,BAG_ITEM_TITLE,1,start,assets://9v_battery_case.jpg
 audio_ports,Audio Ports,BAG_ITEM_TITLE,1,start,assets://audio_ports.jpg
-breadboard_lg,Large Breadboard,BAG_ITEM_TITLE,1,start,assets://breadboard_lg.jpg
-breadboard_sm,Small Breadboard,BAG_ITEM_TITLE,1,start,assets://breadboard_sm.jpg
+breadboard_lg,Breadboard Lg,BAG_ITEM_TITLE,1,start,assets://breadboard_lg.jpg
+breadboard_sm,Breadboard Sm,BAG_ITEM_TITLE,1,start,assets://breadboard_sm.jpg
 capacitor_ceramic_001,Capacitor (ceramic) 001,BAG_ITEM_TITLE,1,start,assets://capacitor_ceramic_001.jpg
 capacitor_ceramic_002,Capacitor (ceramic) 002,BAG_ITEM_TITLE,1,start,assets://capacitor_ceramic_002.jpg
 thermistor,Thermistor,BAG_ITEM_TITLE,1,start,assets://thermistor.jpg
@@ -21,8 +21,8 @@ circuitboard_008,Circuit Board 008,BAG_ITEM_TITLE,1,start,assets://circuitboard_
 diode,Diode,BAG_ITEM_TITLE,1,start,assets://diode.jpg
 floppy_drive,"3.5"" Floppy Drive",BAG_ITEM_TITLE,1,start,assets://floppy_drive.jpg
 hard_disk_drive_headers,Hard Disk Drive Headers,BAG_ITEM_TITLE,1,start,assets://hard_disk_drive_headers.jpg
-jumper_cable_lg,Jumper Cable Lg,BAG_ITEM_TITLE,1,start,assets://jumper_cable_lg.jpg
-jumper_cable_sm,Jumper Cable Med,BAG_ITEM_TITLE,1,start,assets://jumper_cable_sm.jpg
+jumper_cable_lg,Jumper Wire Lg,BAG_ITEM_TITLE,1,start,assets://jumper_cable_lg.jpg
+jumper_cable_sm,Jumper Wire Sm,BAG_ITEM_TITLE,1,start,assets://jumper_cable_sm.jpg
 led_green,Green LED,BAG_ITEM_TITLE,1,start,assets://led_green.jpg
 led_red,Red LED,BAG_ITEM_TITLE,1,start,assets://led_red.jpg
 led_tricolor,Tricolor LED,BAG_ITEM_TITLE,1,start,assets://led_tricolor.jpg
@@ -32,7 +32,7 @@ oscillator_001,Oscillator 001,BAG_ITEM_TITLE,1,start,assets://oscillator_001.jpg
 oscillator_002,Oscillator 002,BAG_ITEM_TITLE,1,start,assets://oscillator_002.jpg
 photoresistor,Photoresistor,BAG_ITEM_TITLE,1,start,assets://photoresistor.jpg
 piezo_buzzer_001,Piezo Buzzer 001,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_001.jpg
-piezo_buzzer_002,Piezo Buzzer,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_002.jpg
+piezo_buzzer_002,Piezo Buzzer 002,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_002.jpg
 potentiometer_rotary,Rotary Potentiometer,BAG_ITEM_TITLE,1,start,assets://potentiometer_rotary.jpg
 potentiometer_trim,Trim Potentiometer,BAG_ITEM_TITLE,1,start,assets://potentiometer_trim.jpg
 power_supply_unit,Power Supply Unit,BAG_ITEM_TITLE,1,start,assets://power_supply_unit.jpg

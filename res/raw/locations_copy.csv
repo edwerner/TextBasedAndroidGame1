@@ -13,18 +13,28 @@ test,1,12,Motherboard_12,Motherboard 12,Motherboard 12,9V Battery Case fun fact,
 test,1,13,Motherboard_13,Motherboard 13,Motherboard 13,Power Supply Unit fun fact,assets://8_bit_green/memory_stick_green.jpg,Power Supply Unit,assets://power_supply_unit.jpg
 test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Ribbon Cable fun fact,assets://8_bit_green/vga_connector_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
 test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Switch (DPDT) fun fact,assets://8_bit_green/pci_slots_green.jpg,Switch (DPDT),assets://switch_dpdt.jpg
-test,1,16,Switches_16,Switches 16,Switches 16,Jumper Cable Lg fun fact,assets://8_bit_green/power_switch_green.jpg,Jumper Cable Lg,assets://jumper_cable_lg.jpg
+test,1,16,Switches_16,Switches 16,Switches 16,Jumper Wire Lg fun fact,assets://8_bit_green/power_switch_green.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
 test,1,17,Switches_17,Switches 17,Switches 17,Tilt Sensor fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Tilt Sensor,assets://tilt_sensor.jpg
 test,1,18,Switches_18,Switches 18,Switches 18,Resistor fun fact,assets://8_bit_green/switch_dpdt_green.jpg,Resistor,assets://resistor_001.jpg
 test,1,19,Switches_19,Switches 19,Switches 19,Pressure Sensor,assets://8_bit_green/switch_spst_green.jpg,Pressure Sensor,assets://pressure_sensor.jpg
 test,1,20,Switches_20,Switches 20,Switches 20,Printer Connector fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Printer Connector,assets://printer_connector_002.jpg
-test,1,21,Connectors_21,Connectors 21,Connectors 21,Memory Stick fun fact,assets://8_bit_green/micro_usb_green.jpg,Memory Stick,assets://memory_stick.jpg
-test,1,22,Connectors_22,Connectors 22,Connectors 22,Auxiliary Connector (6-pin) fun fact,assets://8_bit_green/ethernet_green.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
-test,1,23,Connectors_23,Connectors 23,Connectors 23,Ribbon Cable fun fact,assets://8_bit_green/usb_connector_type_b_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,24,Connectors_24,Connectors 24,Connectors 24,Oscillator 002 fun fact,assets://8_bit_green/usb_connector_type_a_green.jpg,Oscillator 002,assets://oscillator_002.jpg
-test,1,25,Connectors_25,Connectors 25,Connectors 25,Power Supply Unit (PSU) Plug fun fact,assets://8_bit_green/micro_usb_green.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
-test,1,26,Resistors_26,Resistors 26,Resistors 26,Transformer fun fact,assets://8_bit_green/capacitor_electrolytic_green.jpg,Transformer,assets://transformer.jpg
-test,1,27,Resistors_27,Resistors 27,Resistors 27,Servomotor fun fact,assets://8_bit_green/resistor_green.jpg,Servomotor,assets://servomotor_micro.jpg
-test,1,28,Resistors_28,Resistors 28,Resistors 28,Auxiliary Connector (Berg 4-pin) fun fact,assets://8_bit_green/photoresistor_green.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
-test,1,29,Resistors_29,Resistors 29,Resistors 29,USB Connector (Type A),assets://8_bit_green/potentiometer_rotary_green.jpg,USB Connector (Type A) fun fact,assets://usb_connector_type_a.jpg
-test,1,30,Resistors_30,Resistors 30,Resistors 30,Ethernet Connector,assets://8_bit_green/photoresistor_green.jpg,Ethernet Connector fun fact,assets://ethernet.jpg
+test,1,21,Breadboard_21,Breadboard 21,Breadboard 21,Thermistor fun fact,assets://8_bit_green/speaker_green.jpg,Thermistor,assets://thermistor.jpg
+test,1,22,Breadboard_22,Breadboard 22,Breadboard 22,Oscillator 001 fun fact,assets://8_bit_green/capacitor_ceramic_001_green.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,23,Breadboard_23,Breadboard 23,Breadboard 23,Breadboard Sm fun fact,assets://8_bit_green/switch_dpdt_green.jpg,Breadboard Sm,assets://breadboard_sm.jpg
+test,1,24,Breadboard_24,Breadboard 24,Breadboard 24,PCI Slots fun fact,assets://8_bit_green/transistor_npn_green.jpg,PCI Slots,assets://pci_slots.jpg
+test,1,25,Breadboard_25,Breadboard 25,Breadboard 25,Sleep Switch Display fun fact,assets://8_bit_green/speaker_green.jpg,Sleep Switch Display,assets://sleep_switch_display.jpg
+test,1,21,Connectors_26,Connectors 26,Connectors 26,Memory Stick fun fact,assets://8_bit_green/micro_usb_green.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,22,Connectors_27,Connectors 27,Connectors 27,Auxiliary Connector (6-pin) fun fact,assets://8_bit_green/ethernet_green.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
+test,1,23,Connectors_28,Connectors 28,Connectors 28,Ribbon Cable fun fact,assets://8_bit_green/usb_connector_type_b_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,24,Connectors_29,Connectors 29,Connectors 29,Oscillator 002 fun fact,assets://8_bit_green/usb_connector_type_a_green.jpg,Oscillator 002,assets://oscillator_002.jpg
+test,1,25,Connectors_30,Connectors 30,Connectors 30,Power Supply Unit (PSU) Plug fun fact,assets://8_bit_green/micro_usb_green.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
+test,1,26,Resistors_31,Resistors 31,Resistors 31,Transformer fun fact,assets://8_bit_green/capacitor_electrolytic_green.jpg,Transformer,assets://transformer.jpg
+test,1,27,Resistors_32,Resistors 32,Resistors 32,Servomotor fun fact,assets://8_bit_green/resistor_green.jpg,Servomotor,assets://servomotor_micro.jpg
+test,1,28,Resistors_34,Resistors 33,Resistors 33,Auxiliary Connector (Berg 4-pin) fun fact,assets://8_bit_green/photoresistor_green.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
+test,1,29,Resistors_35,Resistors 34,Resistors 34,USB Connector (Type A) fun fact,assets://8_bit_green/potentiometer_rotary_green.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
+test,1,30,Resistors_36,Resistors 35,Resistors 35,Ethernet Connector fun fact,assets://8_bit_green/photoresistor_green.jpg,Ethernet Connector,assets://ethernet.jpg
+test,1,31,Breadboard_36,Breadboard 36,Breadboard 36,Rotary Potentiometer fun fact,assets://8_bit_green/jumper_cable_sm_green.jpg,Peripheral Connector (4-pin),assets://peripheral_connector_4_pin.jpg
+test,1,32,Breadboard_37,Breadboard 37,Breadboard 37,"3.5"" Floppy Drive fun fact",assets://8_bit_green/piezo_buzzer_green.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
+test,1,33,Breadboard_38,Breadboard 38,Breadboard 38,Capacitor (ceramic) Lg 003 fun fact,assets://8_bit_green/pressure_sensor_green.jpg,Capacitor (ceramic) Lg 003,assets://capacitor_electrolytic_lg_003.jpg
+test,1,34,Breadboard_39,Breadboard 39,Breadboard 39,Hard Disk Drive Headers fun fact,assets://8_bit_green/tilt_sensor_green.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,35,Breadboard_40,Breadboard 40,Breadboard 40,Diode fun fact,assets://8_bit_green/jumper_cable_sm_green.jpg,Diode,assets://diode.jpg

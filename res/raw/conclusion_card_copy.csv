@@ -33,3 +33,8 @@ QuestionId_32,Resistor,Resistor copy,resistor,1
 QuestionId_33,Photoresistor,Photoresistor copy,photoresistor,1
 QuestionId_34,Rotary Potentiometer,Rotary Potentiometer copy,potentiometer_rotary,1
 QuestionId_35,Photoresistor,Photoresistor copy,photoresistor,1
+QuestionId_36,Piezo Buzzer 001,Piezo Buzzer 001 copy,piezo_buzzer_001,1
+QuestionId_37,Tilt Sensor,Tilt Sensor copy,tilt_sensor,1
+QuestionId_38,Pressure Sensor,Pressure Sensor copy,pressure_sensor,1
+QuestionId_39,Pressure Sensor,Pressure Sensor copy,pressure_sensor,1
+QuestionId_40,Jumper Cable Sm,Jumper Wire Sm copy,jumper_cable_lg,1
