@@ -15,7 +15,7 @@ test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Ribbon Cable fun fact,ass
 test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Switch (DPDT) fun fact,assets://8_bit_green/pci_slots_green.jpg,Switch (DPDT),assets://switch_dpdt.jpg
 test,1,16,Switches_16,Switches 16,Switches 16,Jumper Wire Lg fun fact,assets://8_bit_green/power_switch_green.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
 test,1,17,Switches_17,Switches 17,Switches 17,Tilt Sensor fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Tilt Sensor,assets://tilt_sensor.jpg
-test,1,18,Switches_18,Switches 18,Switches 18,Resistor fun fact,assets://8_bit_green/switch_dpdt_green.jpg,Resistor,assets://resistor_001.jpg
+test,1,18,Switches_18,Switches 18,Switches 18,Resistor fun fact,assets://8_bit_green/switch_dpdt_green.jpg,Resistor,assets://resistor.jpg
 test,1,19,Switches_19,Switches 19,Switches 19,Pressure Sensor,assets://8_bit_green/switch_spst_green.jpg,Pressure Sensor,assets://pressure_sensor.jpg
 test,1,20,Switches_20,Switches 20,Switches 20,Printer Connector fun fact,assets://8_bit_green/sleep_switch_display_green.jpg,Printer Connector,assets://printer_connector_002.jpg
 test,1,21,Breadboard_21,Breadboard 21,Breadboard 21,Thermistor fun fact,assets://8_bit_green/speaker_green.jpg,Thermistor,assets://thermistor.jpg

@@ -153,7 +153,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		currentUser = bundle.getParcelable("localUser");
 		
 		// UPDATE USER SCORE/LEVEL
-		userSource = new UserImpl(this);
+		userSource = new UserImpl(context);
 		System.out.println("WORLD LOCATION DETAIL CURRENT USER TOTAL POINTS: " + currentUser.getCurrentPoints());
 		currentLocation = bundle.getParcelable("currentLocation");
 		title = currentLocation.getTitle();
@@ -220,6 +220,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			 if (answered == true) {
 				 initializeReplayWorld(replayQuizItem);
 			 }
+			 System.out.println("CURRENT USER: " + currentUser);
+			 System.out.println("SRC USER: " + userSource);
 			 if (currentUser != null) {
 				 // RELOAD USER HERE TO UPDATE POINTS
 				 final String CURRENT_USER_ID = currentUser.getUserId();
@@ -566,18 +568,12 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						
 //						final String FINAL_MOBILE_NOTIFICATIONS = currentUser.getEmailNotifications();
 ////						FINAL_MOBILE_NOTIFICATIONS.equals("true")
-//						System.out.println("MOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
-						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT && fragmentUser.getMobileNotifications().equals("true")) {
+//						System.out.println("CURRENT USER LEVEL UPDATEDMOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
+						
+						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+							System.out.println("TIME TO LEVEL UP");
 							final String currentLevelString = Integer.toString(currentLevel);
-							if (userSource != null) {
-								userSource.updateCurrentUserLevel(currentUserId, currentLevelString);	
-							}
-							
-//							// SEND LEVEL UP NOTIFICATION
-							
-							if (levelAchievement != null) {
-								sendLevelUpNotification();	
-							}
+							levelUpCurrentUser(currentUserId, currentLevelString);
 						}
 						
 					} else {
@@ -638,6 +634,19 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		}// onActivityResult
 
 
+		private void levelUpCurrentUser(String currentUserId, String currentLevelString) {
+			System.out.println("USER SOURCE: " + userSource);
+			if (userSource != null) {
+				userSource.updateCurrentUserLevel(currentUserId, currentLevelString);
+				System.out.println("CURRENT USER LEVEL UPDATED");
+			}
+			
+//			// SEND LEVEL UP NOTIFICATION
+			
+			if (levelAchievement != null && fragmentUser.getMobileNotifications().equals("true")) {
+				sendLevelUpNotification();
+			}
+		}
 		private void sendLevelUpNotification() {
 			int NOTIFICATION_ID = 1;
 			NotificationManager mNotificationManager;
@@ -767,6 +776,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			System.out.println("FRAGMENT USER MOBILE NOTIFICATIONS: " + FINAL_USER_MOBILE_NOTIFICATIONS);
 			pointsItemImpl = new PointsItemImpl(context);
 			quizitemsource = new QuizItemImpl(context);
+			userSource = new UserImpl(context);
 			
 			localQuizItemArrayList = getArguments().getParcelable(
 					"localQuizItemArrayList");
