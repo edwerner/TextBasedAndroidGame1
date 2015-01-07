@@ -61,3 +61,7 @@ BAG_ITEM_TITLE,peripheral_connector_4_pin,Peripheral Connector (4-pin),Bag Item,
 BAG_ITEM_TITLE,usb_connector_type_a,USB Connector (Type A),Bag Item,assets://usb_connector_type_a.jpg,1
 BAG_ITEM_TITLE,usb_connector_type_b,USB Connector (Type B),Bag Item,assets://usb_connector_type_b.jpg,1
 BAG_ITEM_TITLE,resistor,Resistor,Bag Item,assets://resistor.jpg,1
+BAG_ITEM_TITLE,9_v_battery_001,9V Battery,Bag Item,assets://9_v_battery_001.jpg,1
+BAG_ITEM_TITLE,jumper_wire_bungle,Jumper Wire Bundle,Bag Item,assets://solderless_cables.jpg,1
+BAG_ITEM_TITLE,breadboard_sm_jumper_wire_bundle,Breadboard Sm/Jumper Wire Bundle,Bag Item,assets://solderless_cables_breadboard_001.jpg,1
+BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Bag Item,assets://solderless_cables_breadboard_002.jpg,1
