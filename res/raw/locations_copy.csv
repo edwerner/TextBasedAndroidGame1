@@ -48,3 +48,8 @@ test,1,47,Bonus_47,Bonus 47,Bonus 47,Printer Connector fun fact,assets://8_bit_g
 test,1,48,Bonus_48,Bonus 48,Bonus 48,PCI Slots fun fact,assets://8_bit_green/protoboard_green.jpg,PCI Slots,assets://pci_slots.jpg
 test,1,49,Bonus_49,Bonus 49,Bonus 49,Ethernet Connector fun fact,assets://8_bit_green/memory_stick_green.jpg,Ethernet Connector,assets://ethernet.jpg
 test,1,50,Bonus_50,Bonus 50,Bonus 50,Ribbon Cable fun fact,assets://8_bit_green/9_v_battery_001_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,51,Circuits_51,Circuits 51,Circuits 51,Resistor,assets://8_bit_green/switch_spst_green.jpg,Resistor,assets://resistor.jpg
+test,1,52,Circuits_52,Circuits 52,Circuits 52,Audio Speaker fun fact,assets://8_bit_green/led_green_green.jpg,Audio Speaker,assets://speaker.jpg
+test,1,53,Circuits_53,Circuits 53,Circuits 53,Switch (SPST),assets://8_bit_green/resistor_green.jpg,Switch (SPST),assets://switch_spst.jpg
+test,1,54,Circuits_54,Circuits 54,Circuits 54,Green LED,assets://8_bit_green/switch_spst_green.jpg,Green LED,assets://led_green.jpg
+test,1,55,Circuits_55,Circuits 55,Circuits 55,Transistor (NPN) fun fact,assets://8_bit_green/9_v_battery_001_green.jpg,Transistor (NPN) fun fact,assets://transistor_npn.jpg
