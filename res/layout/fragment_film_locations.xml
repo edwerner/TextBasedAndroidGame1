@@ -1,35 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$FilmLocationsFragment" >
 
-    <ImageView
-        android:id="@+id/gameWorldsImage"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/filmlist_icon_desc"
-        android:scaleType="centerCrop"
-        android:src="@drawable/breadboard_lg_green" >
-    </ImageView>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@color/white_overlay"
         android:orientation="vertical" >
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/locationsTag1"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Game Worlds"
-            android:textSize="30sp" />
+            android:textSize="30sp" /> -->
 
         <TextView
             android:id="@+id/locationsText"
@@ -40,5 +32,72 @@
             android:textSize="12sp"
             android:textStyle="italic" />
     </LinearLayout>
+    <ImageView
+        android:id="@+id/gameWorldsImage1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/breadboard_sm_green" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/worldText1"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="World One"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/gameWorldsImage2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nine_v_battery_001_green" />
+
+    <TextView
+        android:id="@+id/worldText2"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="World Two"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/gameWorldsImage3"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/jumper_cable_sm_green" />
+
+    <TextView
+        android:id="@+id/worldText3"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="World Three"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/gameWorldsImage4"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="centerCrop"
+        android:src="@drawable/led_green_green" />
+
+    <TextView
+        android:id="@+id/worldText4"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="World Four"
+        android:textSize="20sp" />
+
+</LinearLayout>

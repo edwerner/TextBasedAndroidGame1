@@ -153,19 +153,19 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	@Override
 	 public void onResume() {
 		System.out.println("******* RESUME PAGER ACTIVITY ********");
-		if (locationList != null) {
-			locationList = datasource.selectRecords();
-			locationArrayList.setFilmList(locationList);
-			Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
-			System.out.println("ON RESUME LOCATION LIST LENGTH: " + locationList.size());
-			for (FilmLocation loc : locationList) {
-				if (!worldTitles.contains(loc.getTitle())) {
-					worldTitles.add(loc.getTitle());
-					localWorldImageUrls.add(loc.getStaticMapImageUrl());
-				}
-			}
-			mSectionsPagerAdapter.notifyDataSetChanged();
-		}
+//		if (locationList != null) {
+//			locationList = datasource.selectRecords();
+//			locationArrayList.setFilmList(locationList);
+//			Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
+//			System.out.println("ON RESUME LOCATION LIST LENGTH: " + locationList.size());
+//			for (FilmLocation loc : locationList) {
+//				if (!worldTitles.contains(loc.getTitle())) {
+//					worldTitles.add(loc.getTitle());
+//					localWorldImageUrls.add(loc.getStaticMapImageUrl());
+//				}
+//			}
+//			mSectionsPagerAdapter.notifyDataSetChanged();
+//		}
 		 super.onResume();
 	 }
 

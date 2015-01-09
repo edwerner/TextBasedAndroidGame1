@@ -863,61 +863,146 @@ public class NewsActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_film_locations,
 					container, false);
 			final User localUser = getArguments().getParcelable("localUser");
-			TextView locationsTitle = (TextView) rootView.findViewById(R.id.locationsTag1);
+//			TextView locationsTitle = (TextView) rootView.findViewById(R.id.locationsTag1);
 //			TextView locationsText = (TextView) rootView.findViewById(R.id.locationsText);
 
 //			locationsTitle.setText("Film Locations");
 //			locationsText.setText("Get started!");
 			
 //			Button getStartedButton = (Button) rootView.findViewById(R.id.get_started_button);
-			ImageView gameWorldsImage = (ImageView) rootView.findViewById(R.id.gameWorldsImage);
+			ImageView gameWorldsImage1 = (ImageView) rootView.findViewById(R.id.gameWorldsImage1);
+			ImageView gameWorldsImage2 = (ImageView) rootView.findViewById(R.id.gameWorldsImage2);
+			ImageView gameWorldsImage3 = (ImageView) rootView.findViewById(R.id.gameWorldsImage3);
+			ImageView gameWorldsImage4 = (ImageView) rootView.findViewById(R.id.gameWorldsImage4);
 			final Context context = getActivity().getApplicationContext();
 			final MovieLocationsImpl datasource = new MovieLocationsImpl(context);
 			final ArrayList<FilmLocation> defaultLocationList = datasource.selectRecords();
+			
 			System.out.println("DEFAULT LOCATION LIST :" +  defaultLocationList);
 			final FilmArrayList defaultLocationArrayList = new FilmArrayList();
-			defaultLocationArrayList.setFilmList(defaultLocationList);
+//			defaultLocationArrayList.setFilmList(defaultLocationList);
 			
-			// TURN OFF BUTTON VISIBILITY
-			if (defaultLocationList.size() == 0) {
-				gameWorldsImage.setVisibility(Button.GONE);
+			final ArrayList<FilmLocation> worldLocationList1 = new ArrayList<FilmLocation>();
+			final ArrayList<FilmLocation> worldLocationList2 = new ArrayList<FilmLocation>();
+			final ArrayList<FilmLocation> worldLocationList3 = new ArrayList<FilmLocation>();
+			final ArrayList<FilmLocation> worldLocationList4 = new ArrayList<FilmLocation>();
+			
+			for (int i = 0; i < defaultLocationList.size(); i++) {
+				FilmLocation tempLocation = defaultLocationList.get(i);
+				if (i <= 24) {
+					worldLocationList1.add(tempLocation);
+				} else if (i > 24 && i <= 49) {
+					worldLocationList2.add(tempLocation);
+				} else if (i > 49 && i <= 74) {
+					worldLocationList3.add(tempLocation);
+				} else if (i > 74 && i <= 99) {
+					worldLocationList4.add(tempLocation);
+				}
+			}
+			
+			ArrayList<ArrayList<FilmLocation>> worldLocationArrayList = new ArrayList<ArrayList<FilmLocation>>();		
+			worldLocationArrayList.add(worldLocationList1);
+			worldLocationArrayList.add(worldLocationList2);
+			worldLocationArrayList.add(worldLocationList3);
+			worldLocationArrayList.add(worldLocationList4);
+			
+//			ImageView[] worldImageArray = {
+//					gameWorldsImage1,
+//					gameWorldsImage2,
+//					gameWorldsImage3,
+//					gameWorldsImage4
+//			};
+			
+//			for (int i = 0; i < worldImageArray.length; i++) {
+//				final ArrayList<FilmLocation> currentArrayList = worldLocationArrayList.get(i);
 				
-				// LAUNCH DIALOG
-		    	String CONFIRM_MESSAGE = "Okay";
-		    	String DIALOG_TITLE = "Your level queue is empty.";
-		    	String DIALOG_MESSAGE = "Pull down menu to refresh list. Confirm and restore world data.";
-				
-		    	// CREATE CONFIRMATION DIALOG
-		    	AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		    	
-		    	builder.setMessage(DIALOG_MESSAGE).setTitle(DIALOG_TITLE);
-		    	
-				// Add the buttons
-		    	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-//		        	   getActivity().finish();
-		        	   dialog.dismiss();
-		           }
-		    	});
-		    	final AlertDialog emptyLevelQueueDialog = builder.create();
-		    	emptyLevelQueueDialog.show();
-			} else {
-				gameWorldsImage.setOnClickListener(new View.OnClickListener() {
+//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+				gameWorldsImage1.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
+						
+						defaultLocationArrayList.setFilmList(worldLocationList1);
+						System.out.println("WORLD LOCATION LIST LENGTH: " + worldLocationList1.size());
+						
 						// start new intent
 						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
-						
-//						FilmArrayList finalList = getUpdatedNewsData();
+//							FilmArrayList finalList = getUpdatedNewsData();
 						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
 						pagerActivityIntent.putExtra("localUser", localUser);
 						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
 						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
 						startActivity(pagerActivityIntent);
-//						System.out.println("clicked button");
+//							System.out.println("clicked button");
 					}
-				});	
-			}
+				});
+//			}
+			
+				
+				
+//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+				gameWorldsImage2.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						
+						defaultLocationArrayList.setFilmList(worldLocationList2);
+						
+						
+						// start new intent
+						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+//							FilmArrayList finalList = getUpdatedNewsData();
+//						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+						pagerActivityIntent.putExtra("localUser", localUser);
+						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						startActivity(pagerActivityIntent);
+//							System.out.println("clicked button");
+					}
+				});
+				
+				
+				
+//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+				gameWorldsImage3.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						
+						
+						defaultLocationArrayList.setFilmList(worldLocationList3);
+						
+						
+						// start new intent
+						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+//							FilmArrayList finalList = getUpdatedNewsData();
+//						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+						pagerActivityIntent.putExtra("localUser", localUser);
+						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						startActivity(pagerActivityIntent);
+//							System.out.println("clicked button");
+					}
+				});
+				
+				
+				
+//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+				gameWorldsImage4.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						
+						defaultLocationArrayList.setFilmList(worldLocationList4);
+						
+						// start new intent
+						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+//							FilmArrayList finalList = getUpdatedNewsData();
+//						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+						pagerActivityIntent.putExtra("localUser", localUser);
+						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						startActivity(pagerActivityIntent);
+//							System.out.println("clicked button");
+					}
+				});
+				
 //			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreLevelDataListView);
 //			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 //			String WORLD_TITLE = "WORLD_TITLE";

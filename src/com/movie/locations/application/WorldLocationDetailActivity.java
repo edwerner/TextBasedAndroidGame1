@@ -796,8 +796,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			// rootView.findViewById(R.id.titleTag1);
 			// TextView titleText1 = (TextView)
 			// rootView.findViewById(R.id.title1);
-			TextView locationsTagText1 = (TextView) rootView
-					.findViewById(R.id.locationsTag1);
+//			TextView locationsTagText1 = (TextView) rootView
+//					.findViewById(R.id.locationsTag1);
 //			TextView locationsText1 = (TextView) rootView
 //					.findViewById(R.id.locations1);
 //			TextView latitudeTagText1 = (TextView) rootView
@@ -912,10 +912,10 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					// defaultMapThumb.setVisibility(ImageView.VISIBLE);
 				}
 
-				// check for null location to set visibility
-				if (localCurrentLocation.getLocations().equals("null")) {
-					locationsTagText1.setText("No locations available.");
-				}
+//				// check for null location to set visibility
+//				if (localCurrentLocation.getLocations().equals("null")) {
+//					locationsTagText1.setText("No locations available.");
+//				}
 
 				// // check for null location to set visibility
 				// if (!location.equals("null")) {

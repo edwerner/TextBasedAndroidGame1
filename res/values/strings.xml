@@ -7,7 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Film Locations App</string>
     <string name="title_activity_film_sort">Worlds</string>
-    <string name="title_activity_home">SF Film Locations</string>
+    <string name="title_activity_home">Circuitquest</string>
     <string name="button_send">Get started</string>
     <string name="imageview_1_desc">Film locations app icon</string>
     <string name="filmlist_icon_desc">Film list icon</string>
