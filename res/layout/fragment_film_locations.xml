@@ -46,7 +46,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="World One"
+        android:text="Inventory One"
         android:textSize="20sp" />
 
     <ImageView
@@ -63,7 +63,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="World Two"
+        android:text="Inventory Two"
         android:textSize="20sp" />
 
     <ImageView
@@ -80,7 +80,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="World Three"
+        android:text="Circuits Three"
         android:textSize="20sp" />
 
     <ImageView
@@ -97,7 +97,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="World Four"
+        android:text="Circuits Four"
         android:textSize="20sp" />
 
 </LinearLayout>
