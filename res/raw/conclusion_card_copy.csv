@@ -53,3 +53,48 @@ QuestionId_52,9V Battery,9V Battery copy,9_v_battery_001,1
 QuestionId_53,Switch (SPST),Switch (SPST) copy,switch_spst,1
 QuestionId_54,Green LED,Green LED copy,led_green,1
 QuestionId_55,Resistor,Resistor copy,resistor,1
+QuestionId_56,Piezo Buzzer 001,Piezo Buzzer 001 copy,piezo_buzzer_001,1
+QuestionId_57,Resistor,Resistor copy,resistor,1
+QuestionId_58,Jumper Wire Bundle,Jumper Wire Bundle copy,jumper_wire_bundle,1
+QuestionId_59,Piezo Buzzer 001,Piezo Buzzer 001 copy,piezo_buzzer_001,1
+QuestionId_60,9V Battery,9V Battery copy,9_v_battery_001,1
+QuestionId_61,Transistor (NPN),Transistor (NPN),transistor_npn,1
+QuestionId_62,Diode,Diode,diode,1
+QuestionId_63,Mini Motor,Mini Motor,motor_mini,1
+QuestionId_64,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_65,Transistor (NPN),Transistor (NPN),transistor_npn,1
+QuestionId_66,Thermistor,Thermistor,thermistor,1
+QuestionId_67,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_68,Thermistor,Thermistor,thermistor,1
+QuestionId_69,Transistor (NPN),Transistor (NPN),transistor_npn,1
+QuestionId_70,Resistor,Resistor,resistor,1
+QuestionId_71,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_72,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
+QuestionId_73,Resistor,Resistor,resistor,1
+QuestionId_74,Tilt Sensor,Tilt Sensor,tilt_sensor,1
+QuestionId_75,Tilt Sensor,Tilt Sensor,tilt_sensor,1
+QuestionId_76,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_77,Transistor (NPN),Transistor (NPN),transistor_npn,1
+QuestionId_78,Audio Speaker,Audio Speaker,speaker,1
+QuestionId_79,Audio Speaker,Audio Speaker,speaker,1
+QuestionId_80,Resistor,Resistor,resistor,1
+QuestionId_81,Resistor,Resistor,resistor,1
+QuestionId_82,Photoresistor,Photoresistor,photoresistor,1
+QuestionId_83,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_84,Photoresistor,Photoresistor,photoresistor,1
+QuestionId_85,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
+QuestionId_86,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
+QuestionId_87,Pressure Sensor,Pressure Sensor,pressure_sensor,1
+QuestionId_88,Resistor,Resistor,resistor,1
+QuestionId_89,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_90,Pressure Sensor,Pressure Sensor,pressure_sensor,1
+QuestionId_91,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_92,Potentiometer,Potentiometer,potentiometer_rotary,1
+QuestionId_93,Servomotor,Servomotor,servomotor_micro,1
+QuestionId_94,Potentiometer,Potentiometer,potentiometer_rotary,1
+QuestionId_95,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
+QuestionId_96,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
+QuestionId_97,9V Battery,9V Battery,9_v_battery_001,1
+QuestionId_98,Buzz Motor,Buzz Motor,motor_vibr,1
+QuestionId_99,Buzz Motor,Buzz Motor,motor_vibr,1
+QuestionId_100,Switch (SPST),Switch (SPST),switch_spst,1

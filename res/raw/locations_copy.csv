@@ -48,8 +48,53 @@ test,1,47,Bonus_47,Bonus 47,Bonus 47,Printer Connector fun fact,assets://8_bit_g
 test,1,48,Bonus_48,Bonus 48,Bonus 48,PCI Slots fun fact,assets://8_bit_green/protoboard_green.jpg,PCI Slots,assets://pci_slots.jpg
 test,1,49,Bonus_49,Bonus 49,Bonus 49,Ethernet Connector fun fact,assets://8_bit_green/memory_stick_green.jpg,Ethernet Connector,assets://ethernet.jpg
 test,1,50,Bonus_50,Bonus 50,Bonus 50,Ribbon Cable fun fact,assets://8_bit_green/9_v_battery_001_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,51,Circuits_51,Circuits 51,Circuits 51,Resistor,assets://8_bit_green/switch_spst_green.jpg,Resistor,assets://resistor.jpg
-test,1,52,Circuits_52,Circuits 52,Circuits 52,Audio Speaker fun fact,assets://8_bit_green/led_green_green.jpg,Audio Speaker,assets://speaker.jpg
-test,1,53,Circuits_53,Circuits 53,Circuits 53,Switch (SPST),assets://8_bit_green/resistor_green.jpg,Switch (SPST),assets://switch_spst.jpg
-test,1,54,Circuits_54,Circuits 54,Circuits 54,Green LED,assets://8_bit_green/switch_spst_green.jpg,Green LED,assets://led_green.jpg
-test,1,55,Circuits_55,Circuits 55,Circuits 55,Transistor (NPN) fun fact,assets://8_bit_green/9_v_battery_001_green.jpg,Transistor (NPN) fun fact,assets://transistor_npn.jpg
+test,1,51,LED_Circuit_51,LED Circuit 51,LED Circuit 51,Audio Ports fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,52,LED_Circuit_52,LED Circuit 52,LED Circuit 52,Diode fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Diode,assets://diode.jpg
+test,1,53,LED_Circuit_53,LED Circuit 53,LED Circuit 53,Memory Stick fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,54,LED_Circuit_54,LED Circuit 54,LED Circuit 54,Piezo Buzzer fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
+test,1,55,LED_Circuit_55,LED Circuit 55,LED Circuit 55,Motor fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Motor,assets://motor_vibr.jpg
+test,1,56,Buzzer_Circuit_56,Buzzer Circuit 56,Buzzer Circuit 56,Power Switch fun fact,assets://8_bit_green/breadboard_lg_green.jpg,Power Switch,assets://power_switch.jpg
+test,1,57,Buzzer_Circuit_57,Buzzer Circuit 57,Buzzer Circuit 57,VGA Connector fun fact,assets://8_bit_green/breadboard_lg_green.jpg,VGA Connector,assets://vga_connector.jpg
+test,1,58,Buzzer_Circuit_58,Buzzer Circuit 58,Buzzer Circuit 58,Audio Speaker fun fact,assets://8_bit_green/breadboard_lg_green.jpg,Audio Speaker,assets://speaker.jpg
+test,1,59,Buzzer_Circuit_59,Buzzer Circuit 59,Buzzer Circuit 59,Protoboard fun fact,assets://8_bit_green/breadboard_lg_green.jpg,Protoboard,assets://protoboard.jpg
+test,1,60,Buzzer_Circuit_60,Buzzer Circuit 60,Buzzer Circuit 60,Oscillator fun fact,assets://8_bit_green/breadboard_lg_green.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,61,Motor_Circuit_61,Motor Circuit 61,Motor Circuit 61,Audio Ports,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,62,Motor_Circuit_62,Motor Circuit 62,Motor Circuit 62,Diode,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Diode,assets://diode.jpg
+test,1,63,Motor_Circuit_63,Motor Circuit 63,Motor Circuit 63,Memory Stick,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,64,Motor_Circuit_64,Motor Circuit 64,Motor Circuit 64,Piezo Buzzer,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
+test,1,65,Motor_Circuit_65,Motor Circuit 65,Motor Circuit 65,Motor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Motor,assets://motor_vibr.jpg
+test,1,66,Thermistor_Circuit_66,Thermistor Circuit 66,Thermistor Circuit 66,Power Switch,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Power Switch,assets://power_switch.jpg
+test,1,67,Thermistor_Circuit_67,Thermistor Circuit 67,Thermistor Circuit 67,VGA Connector,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,VGA Connector,assets://vga_connector.jpg
+test,1,68,Thermistor_Circuit_68,Thermistor Circuit 68,Thermistor Circuit 68,Audio Speaker,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Audio Speaker,assets://speaker.jpg
+test,1,69,Thermistor_Circuit_69,Thermistor Circuit 69,Thermistor Circuit 69,Protoboard,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Protoboard,assets://protoboard.jpg
+test,1,70,Thermistor_Circuit_70,Thermistor Circuit 70,Thermistor Circuit 70,Oscillator 001,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,71,Tilt_Sensor_Circuit_71,Tilt Sensor Circuit 71,Tilt Sensor Circuit 71,Hard Disk Drive Headers,assets://8_bit_green/breadboard_lg_green.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,72,Tilt_Sensor_Circuit_72,Tilt Sensor Circuit 72,Tilt Sensor Circuit 72,9V Battery Case,assets://8_bit_green/breadboard_lg_green.jpg,9V Battery Case,assets://9v_battery_case.jpg
+test,1,73,Tilt_Sensor_Circuit_73,Tilt Sensor Circuit 73,Tilt Sensor Circuit 73,Power Supply Unit,assets://8_bit_green/breadboard_lg_green.jpg,Power Supply Unit,assets://power_supply_unit.jpg
+test,1,74,Tilt_Sensor_Circuit_74,Tilt Sensor Circuit 74,Tilt Sensor Circuit 74,Ribbon Cable,assets://8_bit_green/breadboard_lg_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,75,Tilt_Sensor_Circuit_75,Tilt Sensor Circuit 75,Tilt Sensor Circuit 75,Switch (DPDT),assets://8_bit_green/breadboard_lg_green.jpg,Switch (DPDT),assets://switch_dpdt.jpg
+test,1,76,Speaker_Circuit_76,Speaker Circuit 76,Speaker Circuit 76,Jumper Wire Lg,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
+test,1,77,Speaker_Circuit_77,Speaker Circuit 77,Speaker Circuit 77,Tilt Sensor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Tilt Sensor,assets://tilt_sensor.jpg
+test,1,78,Speaker_Circuit_78,Speaker Circuit 78,Speaker Circuit 78,Resistor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Resistor,assets://resistor.jpg
+test,1,79,Speaker_Circuit_79,Speaker Circuit 79,Speaker Circuit 79,Pressure Sensor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Pressure Sensor,assets://pressure_sensor.jpg
+test,1,80,Speaker_Circuit_80,Speaker Circuit 80,Speaker Circuit 80,Printer Connector,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_green.jpg,Printer Connector,assets://printer_connector_002.jpg
+test,1,81,Photoresistor_Circuit_81,Photoresistor Circuit 81,Photoresistor Circuit 81,Thermistor,assets://8_bit_green/breadboard_lg_green.jpg,Thermistor,assets://thermistor.jpg
+test,1,82,Photoresistor_Circuit_82,Photoresistor Circuit 82,Photoresistor Circuit 82,Oscillator 001,assets://8_bit_green/breadboard_lg_green.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,83,Photoresistor_Circuit_83,Photoresistor Circuit 83,Photoresistor Circuit 83,Breadboard Sm,assets://8_bit_green/breadboard_lg_green.jpg,Breadboard Sm,assets://breadboard_sm.jpg
+test,1,84,Photoresistor_Circuit_84,Photoresistor Circuit 84,Photoresistor Circuit 84,PCI Slots,assets://8_bit_green/breadboard_lg_green.jpg,PCI Slots,assets://pci_slots.jpg
+test,1,85,Photoresistor_Circuit_85,Photoresistor Circuit 85,Photoresistor Circuit 85,Sleep Switch Display,assets://8_bit_green/breadboard_lg_green.jpg,Sleep Switch Display,assets://sleep_switch_display.jpg
+test,1,86,Pressure_Sensor_Circuit_86,Pressure Sensor Circuit 86,Pressure Sensor Circuit 86,Memory Stick,assets://8_bit_green/breadboard_lg_green.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,87,Pressure_Sensor_Circuit_87,Pressure Sensor Circuit 87,Pressure Sensor Circuit 87,Auxiliary Connector (6-pin),assets://8_bit_green/breadboard_lg_green.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
+test,1,88,Pressure_Sensor_Circuit_88,Pressure Sensor Circuit 88,Pressure Sensor Circuit 88,Ribbon Cable,assets://8_bit_green/breadboard_lg_green.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,89,Pressure_Sensor_Circuit_89,Pressure Sensor Circuit 89,Pressure Sensor Circuit 89,Oscillator 002,assets://8_bit_green/breadboard_lg_green.jpg,Oscillator 002,assets://oscillator_002.jpg
+test,1,90,Pressure_Sensor_Circuit_90,Pressure Sensor Circuit 90,Pressure Sensor Circuit 90,Power Supply Unit (PSU) Plug,assets://8_bit_green/breadboard_lg_green.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
+test,1,91,Servomotor Circuit 91,Servomotor Circuit 91,Servomotor Circuit 91,Transformer,assets://8_bit_green/breadboard_lg_green.jpg,Transformer,assets://transformer.jpg
+test,1,92,Servomotor Circuit 92,Servomotor Circuit 92,Servomotor Circuit 92,Servomotor,assets://8_bit_green/breadboard_lg_green.jpg,Servomotor,assets://servomotor_micro.jpg
+test,1,93,Servomotor Circuit 93,Servomotor Circuit 93,Servomotor Circuit 93,Auxiliary Connector (Berg 4-pin),assets://8_bit_green/breadboard_lg_green.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
+test,1,94,Servomotor Circuit 94,Servomotor Circuit 94,Servomotor Circuit 94,USB Connector (Type A),assets://8_bit_green/breadboard_lg_green.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
+test,1,95,Servomotor Circuit 95,Servomotor Circuit 95,Servomotor Circuit 95,Ethernet Connector,assets://8_bit_green/breadboard_lg_green.jpg,Ethernet Connector,assets://ethernet.jpg
+test,1,96,Buzz_Motor_Circuit_96,Buzz Motor Circuit 96,Buzz Motor Circuit 96,Peripheral Connector (4-pin),assets://8_bit_green/breadboard_lg_green.jpg,Peripheral Connector (4-pin),assets://peripheral_connector_4_pin.jpg
+test,1,97,Buzz_Motor_Circuit_97,Buzz Motor Circuit 97,Buzz Motor Circuit 97,"3.5"" Floppy Drive",assets://8_bit_green/breadboard_lg_green.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
+test,1,98,Buzz_Motor_Circuit_98,Buzz Motor Circuit 98,Buzz Motor Circuit 98,Capacitor (ceramic) Lg 003,assets://8_bit_green/breadboard_lg_green.jpg,Capacitor (ceramic) Lg 003,assets://capacitor_electrolytic_lg_003.jpg
+test,1,99,Buzz_Motor_Circuit_99,Buzz Motor Circuit 99,Buzz Motor Circuit 99,Hard Disk Drive Headers,assets://8_bit_green/breadboard_lg_green.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,100,Buzz_Motor_Circuit_100,Buzz Motor Circuit 100,Buzz Motor Circuit 100,Diode,assets://8_bit_green/breadboard_lg_green.jpg,Diode,assets://diode.jpg

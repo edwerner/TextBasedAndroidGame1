@@ -27,7 +27,8 @@ led_green,Green LED,BAG_ITEM_TITLE,1,start,assets://led_green.jpg
 led_red,Red LED,BAG_ITEM_TITLE,1,start,assets://led_red.jpg
 led_tricolor,Tricolor LED,BAG_ITEM_TITLE,1,start,assets://led_tricolor.jpg
 memory_stick,RAM,BAG_ITEM_TITLE,1,start,assets://memory_stick.jpg
-motor_vibr,Motor,BAG_ITEM_TITLE,1,start,assets://motor_vibr.jpg
+motor_mini,Mini Motor,BAG_ITEM_TITLE,1,start,assets://motor_mini_dc.jpg
+motor_vibr,Buzz Motor,BAG_ITEM_TITLE,1,start,assets://motor_vibr.jpg
 oscillator_001,Oscillator 001,BAG_ITEM_TITLE,1,start,assets://oscillator_001.jpg
 oscillator_002,Oscillator 002,BAG_ITEM_TITLE,1,start,assets://oscillator_002.jpg
 photoresistor,Photoresistor,BAG_ITEM_TITLE,1,start,assets://photoresistor.jpg
@@ -62,6 +63,6 @@ usb_connector_type_a,USB Connector (Type A),BAG_ITEM_TITLE,1,start,assets://usb_
 usb_connector_type_b,USB Connector (Type B),BAG_ITEM_TITLE,1,start,assets://usb_connector_type_b.jpg
 resistor,Resistor,BAG_ITEM_TITLE,1,start,assets://resistor.jpg
 9_v_battery_001,9V Battery,BAG_ITEM_TITLE,1,start,assets://9_v_battery_001.jpg
-jumper_wire_bungle,Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://solderless_cables.jpg
-breadboard_sm_jumper_wire_bundle,Breadboard Sm/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://solderless_cables_breadboard_001.jpg
-breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://solderless_cables_breadboard_002.jpg
+jumper_wire_bundle,Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://jumper_wire_bundle.jpg
+breadboard_sm_jumper_wire_bundle,Breadboard Sm/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://8_bit_green/breadboard_sm_jumper_wire_bundle.jpg
+breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://8_bit_green/breadboard_lg_jumper_wire_bundle.jpg

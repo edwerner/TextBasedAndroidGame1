@@ -4,7 +4,7 @@ BAG_ITEM_TITLE,breadboard_lg,Breadboard Lg,Bag Item,assets://breadboard_lg.jpg,1
 BAG_ITEM_TITLE,breadboard_sm,Breadboard Sm,Bag Item,assets://breadboard_sm.jpg,1
 BAG_ITEM_TITLE,capacitor_ceramic_001,Capacitor (ceramic) 001,Bag Item,assets://capacitor_ceramic_001.jpg,1
 BAG_ITEM_TITLE,capacitor_ceramic_002,Capacitor (ceramic) 002,Bag Item,assets://capacitor_ceramic_002.jpg,1
-BAG_ITEM_TITLE,capacitor_ceramic_003,Capacitor (ceramic) 003,Bag Item,assets://capacitor_ceramic_003.jpg,1
+BAG_ITEM_TITLE,thermistor,Thermistor,Bag Item,assets://capacitor_ceramic_003.jpg,1
 BAG_ITEM_TITLE,capacitor_electrolytic,Capacitor (electrolytic),Bag Item,assets://capacitor_electrolytic.jpg,1
 BAG_ITEM_TITLE,capacitor_electrolytic_lg_003,Capacitor (ceramic) Lg 003,Bag Item,assets://capacitor_electrolytic_lg_003.jpg,1
 BAG_ITEM_TITLE,capacitor_lg_001,Capacitor Lg 001,Bag Item,assets://capacitor_lg_001.jpg,1
@@ -27,7 +27,8 @@ BAG_ITEM_TITLE,led_green,Green LED,Bag Item,assets://led_green.jpg,1
 BAG_ITEM_TITLE,led_red,Red LED,Bag Item,assets://led_red.jpg,1
 BAG_ITEM_TITLE,led_tricolor,Tricolor LED,Bag Item,assets://led_tricolor.jpg,1
 BAG_ITEM_TITLE,memory_stick,RAM,Bag Item,assets://memory_stick.jpg,1
-BAG_ITEM_TITLE,motor_vibr,Motor,Bag Item,assets://motor_vibr.jpg,1
+BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Bag Item,assets://motor_vibr.jpg,1
+BAG_ITEM_TITLE,motor_mini,Mini Motor,Bag Item,assets://motor_mini_dc.jpg,1
 BAG_ITEM_TITLE,oscillator_001,Oscillator 001,Bag Item,assets://oscillator_001.jpg,1
 BAG_ITEM_TITLE,oscillator_002,Oscillator 002,Bag Item,assets://oscillator_002.jpg,1
 BAG_ITEM_TITLE,photoresistor,Photoresistor,Bag Item,assets://photoresistor.jpg,1
@@ -38,7 +39,7 @@ BAG_ITEM_TITLE,potentiometer_trim,Trim Potentiometer,Bag Item,assets://potentiom
 BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Bag Item,assets://power_supply_unit.jpg,1
 BAG_ITEM_TITLE,power_switch,Power Switch,Bag Item,assets://power_switch.jpg,1
 BAG_ITEM_TITLE,pressure_sensor,Pressure Sensor,Bag Item,assets://pressure_sensor.jpg,1
-BAG_ITEM_TITLE,printer_connector_002,Printer Connector,Bag Item,assets://printer_connector_002.jpg,1
+BAG_ITEM_TITLE,printer_connector_002,Printer Connector 001,Bag Item,assets://printer_connector_002.jpg,1
 BAG_ITEM_TITLE,protoboard,Protoboard,Bag Item,assets://protoboard.jpg,1
 BAG_ITEM_TITLE,ps_2_ports,PS/2 Ports,Bag Item,assets://ps_2_ports.jpg,1
 BAG_ITEM_TITLE,psu_plug,Power Supply Unit (PSU) Plug,Bag Item,assets://psu_plug.jpg,1
@@ -62,6 +63,6 @@ BAG_ITEM_TITLE,usb_connector_type_a,USB Connector (Type A),Bag Item,assets://usb
 BAG_ITEM_TITLE,usb_connector_type_b,USB Connector (Type B),Bag Item,assets://usb_connector_type_b.jpg,1
 BAG_ITEM_TITLE,resistor,Resistor,Bag Item,assets://resistor.jpg,1
 BAG_ITEM_TITLE,9_v_battery_001,9V Battery,Bag Item,assets://9_v_battery_001.jpg,1
-BAG_ITEM_TITLE,jumper_wire_bungle,Jumper Wire Bundle,Bag Item,assets://solderless_cables.jpg,1
-BAG_ITEM_TITLE,breadboard_sm_jumper_wire_bundle,Breadboard Sm/Jumper Wire Bundle,Bag Item,assets://solderless_cables_breadboard_001.jpg,1
-BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Bag Item,assets://solderless_cables_breadboard_002.jpg,1
+BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Bag Item,assets://jumper_wire_bundle.jpg,1
+BAG_ITEM_TITLE,breadboard_sm_jumper_wire_bundle,Breadboard Sm/Jumper Wire Bundle,Bag Item,assets://8_bit_green/breadboard_sm_jumper_wire_bundle.jpg,1
+BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Bag Item,assets://8_bit_green/breadboard_lg_jumper_wire_bundle.jpg,1
