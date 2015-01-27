@@ -225,6 +225,7 @@ public class ConclusionActivity extends ActionBarActivity {
 			final ConclusionCard conclusionCard = getArguments().getParcelable("conclusionCard");
 			final String conclusionTitle = conclusionCard.getTitle();
 			final String conclusionCopy = conclusionCard.getCopy();
+			final String conclusionLevel = conclusionCard.getLevel();
 			final String conclusionImageUrl = conclusionCard.getImageUrl();
 			final PointsItem pointsItem = getArguments().getParcelable("pointsItem");
 //			final String pointsText = pointsItem.getPoints();
@@ -241,8 +242,11 @@ public class ConclusionActivity extends ActionBarActivity {
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);
 //			conclusionImageUrlText.setText(conclusionImageUrl);
-			pointsDataText.setText("Points Earned: " + pointValue);
-			bonusPointsDataText.setText("Total Points: " + currentUserPoints);
+			
+			if (conclusionCard.getLevel() != null) {
+				pointsDataText.setText("Points Earned: " + pointValue);
+				bonusPointsDataText.setText("Total Points: " + currentUserPoints);	
+			}
 			
 //			if (conclusionCard != null) {
 //				conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);

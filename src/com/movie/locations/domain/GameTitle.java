@@ -7,6 +7,8 @@ public class GameTitle {
 	private String level;
 	private String phase;
 	private String imageUrl;
+	private String description;
+	
 	public String getId() {
 		return id;
 	}
@@ -42,5 +44,11 @@ public class GameTitle {
 	}
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

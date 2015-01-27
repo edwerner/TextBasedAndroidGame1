@@ -52,6 +52,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 		
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.bagItemImage1);
 		TextView bagItemTitle = (TextView) rowView.findViewById(R.id.bagItemTitle1);
+		TextView bagItemDesc = (TextView) rowView.findViewById(R.id.bagItemDescription1);
 		String tempPhase = values.get(position).getPhase();
 		String gameTitleText = values.get(position).getTitle();
 		String missingWorldText = " (missing)";
@@ -117,8 +118,9 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			final Intent conclusionIntent = new Intent(context, ConclusionActivity.class);
 			ConclusionCard tempCard = new ConclusionCard();
 			tempCard.setTitle(values.get(position).getTitle());
-			tempCard.setLevel(values.get(position).getLevel());
+			tempCard.setLevel(null);
 			tempCard.setImageUrl(values.get(position).getId());
+			tempCard.setCopy(values.get(position).getDescription());
 			
 			System.out.println("TEMP CARD IMAGE URL: " + values.get(position).getImageUrl());
 			// get intent string attributes
@@ -136,6 +138,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 	    		    }
 	    		});
 			}
+			bagItemDesc.setText(values.get(position).getDescription());
 		} else if (tempPhase.equals("EXISTS") && values.get(position).getType().equals("WORLD_TITLE")) {
 			// SET INTENT TO RESTORE CONTENT
 	    	// CREATE CONFIRMATION DIALOG

@@ -545,6 +545,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					newPointsItem.setPoints(quizItemPointValue);
 					
 					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+					pointsItemImpl.open();
 //					User localDatabaseUser = userSource.selectRecordById(currentUserId);
 					
 					if (updatedUserDatabasePointsItem != null) {
@@ -619,6 +620,9 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 							break;
 						}
 					}
+					
+					pointsItemImpl.close();
+					quizitemsource.close();
 					
 					generateConclusionCard(currentQuizItem, updatedUserPointsString);
 					locationQuizArrayAdapter.notifyDataSetChanged();

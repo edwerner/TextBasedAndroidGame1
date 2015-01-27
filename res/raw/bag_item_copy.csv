@@ -26,7 +26,7 @@ BAG_ITEM_TITLE,oscillator_001,Oscillator 001,Bag Item,assets://oscillator_001.jp
 BAG_ITEM_TITLE,protoboard,Protoboard,Bag Item,assets://protoboard.jpg,1
 BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Bag Item,assets://jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,diode,Diode,Bag Item,assets://diode.jpg,1
-BAG_ITEM_TITLE,motor_mini,Mini Motor,Bag Item,assets://motor_mini_dc.jpg,1
+BAG_ITEM_TITLE,motor_mini,Mini Motor,Bag Item,assets://motor_mini.jpg,1
 BAG_ITEM_TITLE,thermistor,Thermistor,Bag Item,assets://thermistor.jpg,1
 BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Bag Item,assets://motor_vibr.jpg,1
 BAG_ITEM_TITLE,speaker,Audio Speaker,Bag Item,assets://speaker.jpg,1
