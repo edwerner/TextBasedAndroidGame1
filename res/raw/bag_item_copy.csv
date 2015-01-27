@@ -13,7 +13,6 @@ BAG_ITEM_TITLE,sleep_switch_display,Sleep Switch Display,Bag Item,assets://sleep
 BAG_ITEM_TITLE,switch_dpdt,Switch (DPDT),Bag Item,assets://switch_dpdt.jpg,1
 BAG_ITEM_TITLE,switch_spst,Switch (SPST),Bag Item,assets://switch_spst.jpg,1
 BAG_ITEM_TITLE,audio_ports,Audio Ports,Bag Item,assets://audio_ports.jpg,1
-BAG_ITEM_TITLE,capacitor_ceramic_001,Capacitor (ceramic) 001,Bag Item,assets://capacitor_ceramic_001.jpg,1
 BAG_ITEM_TITLE,transistor_npn,Transistor (NPN),Bag Item,assets://transistor_npn.jpg,1
 BAG_ITEM_TITLE,ethernet,Ethernet Connector,Bag Item,assets://ethernet.jpg,1
 BAG_ITEM_TITLE,micro_usb,USB Connector (Mini B),Bag Item,assets://micro_usb.jpg,1
@@ -28,7 +27,7 @@ BAG_ITEM_TITLE,protoboard,Protoboard,Bag Item,assets://protoboard.jpg,1
 BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Bag Item,assets://jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,diode,Diode,Bag Item,assets://diode.jpg,1
 BAG_ITEM_TITLE,motor_mini,Mini Motor,Bag Item,assets://motor_mini_dc.jpg,1
-BAG_ITEM_TITLE,thermistor,Thermistor,Bag Item,assets://capacitor_ceramic_003.jpg,1
+BAG_ITEM_TITLE,thermistor,Thermistor,Bag Item,assets://thermistor.jpg,1
 BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Bag Item,assets://motor_vibr.jpg,1
 BAG_ITEM_TITLE,speaker,Audio Speaker,Bag Item,assets://speaker.jpg,1
 BAG_ITEM_TITLE,hard_disk_drive_headers,Hard Disk Drive Headers,Bag Item,assets://hard_disk_drive_headers.jpg,1
@@ -40,11 +39,11 @@ BAG_ITEM_TITLE,printer_connector_002,Printer Connector 001,Bag Item,assets://pri
 BAG_ITEM_TITLE,breadboard_sm,Breadboard Sm,Bag Item,assets://breadboard_sm.jpg,1
 BAG_ITEM_TITLE,breadboard_lg,Breadboard Lg,Bag Item,assets://breadboard_lg.jpg,1
 BAG_ITEM_TITLE,jumper_cable_sm,Jumper Wire Sm,Bag Item,assets://jumper_cable_sm.jpg,1
-BAG_ITEM_TITLE,auxillary_connector_6_pin,Auxiliary Connector (6-pin),Bag Item,assets://auxillary_connector_6_pin.jpg,1
-BAG_ITEM_TITLE,auxillary_connector_berg_4_pin,Auxiliary Connector (Berg 4-pin),Bag Item,assets://auxillary_connector_berg_4_pin.jpg,1
-BAG_ITEM_TITLE,peripheral_connector_4_pin,Peripheral Connector (4-pin),Bag Item,assets://peripheral_connector_4_pin.jpg,1
+BAG_ITEM_TITLE,auxiliary_connector_6_pin,Auxiliary Connector (6-pin),Bag Item,assets://auxiliary_connector_6_pin.jpg,1
+BAG_ITEM_TITLE,auxiliary_connector_berg_4_pin,Auxiliary Connector (Berg 4-pin),Bag Item,assets://auxiliary_connector_berg_4_pin.jpg,1
+BAG_ITEM_TITLE,auxiliary_connector_4_pin,Auxiliary Connector (4-pin),Bag Item,assets://auxiliary_connector_4_pin.jpg,1
 BAG_ITEM_TITLE,tilt_sensor,Tilt Sensor,Bag Item,assets://tilt_sensor.jpg,1
-BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Bag Item,assets://8_bit_green/breadboard_lg_jumper_wire_bundle.jpg,1
+BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Bag Item,assets://breadboard_lg_jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,psu_plug,Power Supply Unit (PSU) Plug,Bag Item,assets://psu_plug.jpg,1
 BAG_ITEM_TITLE,pressure_sensor,Pressure Sensor,Bag Item,assets://pressure_sensor.jpg,1
 BAG_ITEM_TITLE,potentiometer_rotary,Rotary Potentiometer,Bag Item,assets://potentiometer_rotary.jpg,1

@@ -39,7 +39,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/filmlist_icon_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/breadboard_sm_green" />
+        android:src="@drawable/capacitor_lg_001"/>
 
     <TextView
         android:id="@+id/worldText1"
@@ -56,7 +56,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/filmlist_icon_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/nine_v_battery_001_green" />
+        android:src="@drawable/photoresistor" />
 
     <TextView
         android:id="@+id/worldText2"
@@ -73,7 +73,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/filmlist_icon_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/jumper_cable_sm_green" />
+        android:src="@drawable/speaker" />
 
     <TextView
         android:id="@+id/worldText3"
@@ -90,7 +90,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/filmlist_icon_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/led_green_green" />
+        android:src="@drawable/breadboard_lg" />
 
     <TextView
         android:id="@+id/worldText4"

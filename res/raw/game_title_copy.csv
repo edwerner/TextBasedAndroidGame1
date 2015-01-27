@@ -13,7 +13,6 @@ sleep_switch_display,Sleep Switch Display,BAG_ITEM_TITLE,1,start,assets://sleep_
 switch_dpdt,Switch (DPDT),BAG_ITEM_TITLE,1,start,assets://switch_dpdt.jpg
 switch_spst,Switch (SPST),BAG_ITEM_TITLE,1,start,assets://switch_spst.jpg
 audio_ports,Audio Ports,BAG_ITEM_TITLE,1,start,assets://audio_ports.jpg
-capacitor_ceramic_001,Capacitor (ceramic) 001,BAG_ITEM_TITLE,1,start,assets://capacitor_ceramic_001.jpg
 transistor_npn,Transistor (NPN),BAG_ITEM_TITLE,1,start,assets://transistor_npn.jpg
 ethernet,Ethernet Connector,BAG_ITEM_TITLE,1,start,assets://ethernet.jpg
 micro_usb,USB Connector (Mini B),BAG_ITEM_TITLE,1,start,assets://micro_usb.jpg
@@ -40,9 +39,9 @@ printer_connector_002,Printer Connector 001,BAG_ITEM_TITLE,1,start,assets://prin
 breadboard_sm,Breadboard Sm,BAG_ITEM_TITLE,1,start,assets://breadboard_sm.jpg
 breadboard_lg,Breadboard Lg,BAG_ITEM_TITLE,1,start,assets://breadboard_lg.jpg
 jumper_cable_sm,Jumper Wire Sm,BAG_ITEM_TITLE,1,start,assets://jumper_cable_sm.jpg
-auxillary_connector_6_pin,Auxiliary Connector (6-pin),BAG_ITEM_TITLE,1,start,assets://auxillary_connector_6_pin.jpg
-auxillary_connector_berg_4_pin,Auxiliary Connector (Berg 4-pin),BAG_ITEM_TITLE,1,start,assets://auxillary_connector_berg_4_pin.jpg
-peripheral_connector_4_pin,Peripheral Connector (4-pin),BAG_ITEM_TITLE,1,start,assets://peripheral_connector_4_pin.jpg
+auxiliary_connector_6_pin,Auxiliary Connector (6-pin),BAG_ITEM_TITLE,1,start,assets://auxillary_connector_6_pin.jpg
+auxiliary_connector_berg_4_pin,Auxiliary Connector (Berg 4-pin),BAG_ITEM_TITLE,1,start,assets://auxillary_connector_berg_4_pin.jpg
+auxiliary_connector_4_pin,Auxiliary Connector (4-pin),BAG_ITEM_TITLE,1,start,assets://peripheral_connector_4_pin.jpg
 tilt_sensor,Tilt Sensor,BAG_ITEM_TITLE,1,start,assets://tilt_sensor.jpg
 breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://breadboard_lg_jumper_wire_bundle.jpg
 psu_plug,Power Supply Unit (PSU) Plug,BAG_ITEM_TITLE,1,start,assets://psu_plug.jpg

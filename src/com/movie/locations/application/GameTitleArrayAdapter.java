@@ -98,7 +98,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
     		});
 	    		
 		} else if (tempPhase.equals("EXISTS") && !values.get(position).getType().equals("WORLD_TITLE")) {
-			gameTitleText += itemLevelText;
+//			gameTitleText += itemLevelText;
 			String existingImageUrl = values.get(position).getImageUrl();
 			if (existingImageUrl != null) {
 //				final String finalImageUrl = "assets://" + existingImageUrl + ".jpg";
