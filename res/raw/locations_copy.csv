@@ -1,100 +1,100 @@
-test,1,1,LED_01,LED 01,LED 01,Audio Ports fun fact,assets://8_bit_green/led_green_landing.jpg,Audio Ports,assets://audio_ports.jpg
-test,1,2,LED_02,LED 02,LED 02,Diode fun fact,assets://8_bit_green/led_red_landing.jpg,Diode,assets://diode.jpg
-test,1,3,LED_03,LED 03,LED 03,Memory Stick fun fact,assets://8_bit_green/led_tricolor_landing.jpg,Memory Stick,assets://memory_stick.jpg
-test,1,4,LED_04,LED 04,LED 04,Piezo Buzzer fun fact,assets://8_bit_green/power_switch_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
-test,1,5,LED_05,LED 05,LED 05,Motor fun fact,assets://8_bit_green/led_green_landing.jpg,Motor,assets://motor_vibr.jpg
-test,1,6,Breadboard_06,Breadboard 06,Breadboard 06,Power Switch fun fact,assets://8_bit_green/potentiometer_rotary_landing.jpg,Power Switch,assets://power_switch.jpg
-test,1,7,Breadboard_07,Breadboard 07,Breadboard 07,VGA Connector fun fact,assets://8_bit_green/capacitor_electrolytic_landing.jpg,VGA Connector,assets://vga_connector.jpg
-test,1,8,Breadboard_08,Breadboard 08,Breadboard 08,Audio Speaker fun fact,assets://8_bit_green/power_switch_landing.jpg,Audio Speaker,assets://speaker.jpg
-test,1,9,Breadboard_09,Breadboard 09,Breadboard 09,Protoboard fun fact,assets://8_bit_green/transformer_landing.jpg,Protoboard,assets://protoboard.jpg
-test,1,10,Breadboard_10,Breadboard 10,Breadboard 10,Oscillator fun fact,assets://8_bit_green/servomotor_micro_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
-test,1,11,Motherboard_11,Motherboard 11,Motherboard 11,Hard Disk Drive Headers fun fact,assets://8_bit_green/pci_slots_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
-test,1,12,Motherboard_12,Motherboard 12,Motherboard 12,9V Battery Case fun fact,assets://8_bit_green/ps_2_ports_landing.jpg,9V Battery Case,assets://9v_battery_case.jpg
-test,1,13,Motherboard_13,Motherboard 13,Motherboard 13,Power Supply Unit fun fact,assets://8_bit_green/memory_stick_landing.jpg,Power Supply Unit,assets://power_supply_unit.jpg
-test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Ribbon Cable fun fact,assets://8_bit_green/vga_connector_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Switch (DPDT) fun fact,assets://8_bit_green/9_v_battery_001_landing.jpg,Switch (DPDT),assets://switch_dpdt.jpg
-test,1,16,Switches_16,Switches 16,Switches 16,Jumper Wire Lg fun fact,assets://8_bit_green/power_switch_landing.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
-test,1,17,Switches_17,Switches 17,Switches 17,Tilt Sensor fun fact,assets://8_bit_green/sleep_switch_display_landing.jpg,Tilt Sensor,assets://tilt_sensor.jpg
-test,1,18,Switches_18,Switches 18,Switches 18,Resistor fun fact,assets://8_bit_green/switch_dpdt_landing.jpg,Resistor,assets://resistor.jpg
-test,1,19,Switches_19,Switches 19,Switches 19,Pressure Sensor,assets://8_bit_green/switch_spst_landing.jpg,Pressure Sensor,assets://pressure_sensor.jpg
-test,1,20,Switches_20,Switches 20,Switches 20,Printer Connector fun fact,assets://8_bit_green/sleep_switch_display_landing.jpg,Printer Connector,assets://printer_connector_002.jpg
-test,1,21,Breadboard_21,Breadboard 21,Breadboard 21,Thermistor fun fact,assets://8_bit_green/speaker_landing.jpg,Thermistor,assets://thermistor.jpg
-test,1,22,Breadboard_22,Breadboard 22,Breadboard 22,Oscillator 001 fun fact,assets://8_bit_green/capacitor_lg_001_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
-test,1,23,Breadboard_23,Breadboard 23,Breadboard 23,Breadboard Sm fun fact,assets://8_bit_green/switch_dpdt_landing.jpg,Breadboard Sm,assets://breadboard_sm.jpg
-test,1,24,Breadboard_24,Breadboard 24,Breadboard 24,PCI Slots fun fact,assets://8_bit_green/transistor_npn_landing.jpg,PCI Slots,assets://pci_slots.jpg
-test,1,25,Breadboard_25,Breadboard 25,Breadboard 25,Sleep Switch Display fun fact,assets://8_bit_green/speaker_landing.jpg,Sleep Switch Display,assets://sleep_switch_display.jpg
-test,1,26,Connectors_26,Connectors 26,Connectors 26,Memory Stick fun fact,assets://8_bit_green/micro_usb_landing.jpg,Memory Stick,assets://memory_stick.jpg
-test,1,27,Connectors_27,Connectors 27,Connectors 27,Auxiliary Connector (6-pin) fun fact,assets://8_bit_green/ethernet_landing.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
-test,1,28,Connectors_28,Connectors 28,Connectors 28,Ribbon Cable fun fact,assets://8_bit_green/usb_connector_type_b_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,29,Connectors_29,Connectors 29,Connectors 29,Oscillator 001 fun fact,assets://8_bit_green/usb_connector_type_a_landing.jpg,Oscillator 002,assets://oscillator_001.jpg
-test,1,30,Connectors_30,Connectors 30,Connectors 30,Power Supply Unit (PSU) Plug fun fact,assets://8_bit_green/micro_usb_landing.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
-test,1,31,Resistors_31,Resistors 31,Resistors 31,Transformer fun fact,assets://8_bit_green/capacitor_electrolytic_landing.jpg,Transformer,assets://transformer.jpg
-test,1,32,Resistors_32,Resistors 32,Resistors 32,Servomotor fun fact,assets://8_bit_green/resistor_landing.jpg,Servomotor,assets://servomotor_micro.jpg
-test,1,33,Resistors_34,Resistors 33,Resistors 33,Auxiliary Connector (Berg 4-pin) fun fact,assets://8_bit_green/photoresistor_landing.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
-test,1,34,Resistors_35,Resistors 34,Resistors 34,USB Connector (Type A) fun fact,assets://8_bit_green/potentiometer_rotary_landing.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
-test,1,35,Resistors_36,Resistors 35,Resistors 35,Ethernet Connector fun fact,assets://8_bit_green/photoresistor_landing.jpg,Ethernet Connector,assets://ethernet.jpg
-test,1,36,Breadboard_36,Breadboard 36,Breadboard 36,Rotary Potentiometer fun fact,assets://8_bit_green/jumper_cable_sm_landing.jpg,Peripheral Connector (4-pin),assets://peripheral_connector_4_pin.jpg
-test,1,37,Breadboard_37,Breadboard 37,Breadboard 37,"3.5"" Floppy Drive fun fact",assets://8_bit_green/piezo_buzzer_001_landing.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
-test,1,38,Breadboard_38,Breadboard 38,Breadboard 38,Capacitor (ceramic) Lg 003 fun fact,assets://8_bit_green/pressure_sensor_landing.jpg,Capacitor (ceramic) Lg 003,assets://capacitor_electrolytic_lg_003.jpg
-test,1,39,Breadboard_39,Breadboard 39,Breadboard 39,Hard Disk Drive Headers fun fact,assets://8_bit_green/tilt_sensor_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
-test,1,40,Breadboard_40,Breadboard 40,Breadboard 40,Diode fun fact,assets://8_bit_green/jumper_cable_sm_landing.jpg,Diode,assets://diode.jpg
-test,1,41,Current_41,Current 41,Current 41,PS/2 Ports fun fact,assets://8_bit_green/power_supply_unit_landing.jpg,PS/2 Ports,assets://ps_2_ports.jpg
-test,1,42,Current_42,Current 42,Current 42,RAM fun fact,assets://8_bit_green/resistor_landing.jpg,RAM,assets://memory_stick.jpg
-test,1,43,Current_43,Current 43,Current 43,9V Battery Case fun fact,assets://8_bit_green/transformer_landing.jpg,9V Battery Case,assets://9v_battery_case.jpg
-test,1,44,Current_44,Current 44,Current 44,Green LED fun fact,assets://8_bit_green/transistor_npn_landing.jpg,Green LED,assets://led_landing.jpg
-test,1,45,Current_45,Current 45,Current 45,Servomotor fun fact,assets://8_bit_green/power_supply_unit_landing.jpg,Servomotor,assets://servomotor_micro.jpg
-test,1,46,Bonus_46,Bonus 46,Bonus 46,USB Connector (Mini B) fun fact,assets://8_bit_green/9_v_battery_001_landing.jpg,USB Connector (Mini B),assets://micro_usb.jpg
-test,1,47,Bonus_47,Bonus 47,Bonus 47,Printer Connector fun fact,assets://8_bit_green/oscillator_001_landing.jpg,Printer Connector,assets://printer_connector_002.jpg
-test,1,48,Bonus_48,Bonus 48,Bonus 48,PCI Slots fun fact,assets://8_bit_green/protoboard_landing.jpg,PCI Slots,assets://pci_slots.jpg
-test,1,49,Bonus_49,Bonus 49,Bonus 49,Ethernet Connector fun fact,assets://8_bit_green/memory_stick_landing.jpg,Ethernet Connector,assets://ethernet.jpg
-test,1,50,Bonus_50,Bonus 50,Bonus 50,Ribbon Cable fun fact,assets://8_bit_green/9_v_battery_001_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,51,LED_Circuit_51,LED Circuit 51,LED Circuit 51,Audio Ports fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Audio Ports,assets://audio_ports.jpg
-test,1,52,LED_Circuit_52,LED Circuit 52,LED Circuit 52,Diode fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Diode,assets://diode.jpg
-test,1,53,LED_Circuit_53,LED Circuit 53,LED Circuit 53,Memory Stick fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Memory Stick,assets://memory_stick.jpg
-test,1,54,LED_Circuit_54,LED Circuit 54,LED Circuit 54,Piezo Buzzer fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
-test,1,55,LED_Circuit_55,LED Circuit 55,LED Circuit 55,Buzz Motor fun fact,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Buzz Motor,assets://motor_vibr.jpg
-test,1,56,Buzzer_Circuit_56,Buzzer Circuit 56,Buzzer Circuit 56,Power Switch fun fact,assets://8_bit_green/breadboard_lg_landing.jpg,Power Switch,assets://power_switch.jpg
-test,1,57,Buzzer_Circuit_57,Buzzer Circuit 57,Buzzer Circuit 57,VGA Connector fun fact,assets://8_bit_green/breadboard_lg_landing.jpg,VGA Connector,assets://vga_connector.jpg
-test,1,58,Buzzer_Circuit_58,Buzzer Circuit 58,Buzzer Circuit 58,Audio Speaker fun fact,assets://8_bit_green/breadboard_lg_landing.jpg,Audio Speaker,assets://speaker.jpg
-test,1,59,Buzzer_Circuit_59,Buzzer Circuit 59,Buzzer Circuit 59,Protoboard fun fact,assets://8_bit_green/breadboard_lg_landing.jpg,Protoboard,assets://protoboard.jpg
-test,1,60,Buzzer_Circuit_60,Buzzer Circuit 60,Buzzer Circuit 60,Oscillator fun fact,assets://8_bit_green/breadboard_lg_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
-test,1,61,Motor_Circuit_61,Motor Circuit 61,Motor Circuit 61,Audio Ports,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Audio Ports,assets://audio_ports.jpg
-test,1,62,Motor_Circuit_62,Motor Circuit 62,Motor Circuit 62,Diode,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Diode,assets://diode.jpg
-test,1,63,Motor_Circuit_63,Motor Circuit 63,Motor Circuit 63,Memory Stick,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Memory Stick,assets://memory_stick.jpg
-test,1,64,Motor_Circuit_64,Motor Circuit 64,Motor Circuit 64,Piezo Buzzer,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
-test,1,65,Motor_Circuit_65,Motor Circuit 65,Motor Circuit 65,Motor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Motor,assets://motor_vibr.jpg
-test,1,66,Thermistor_Circuit_66,Thermistor Circuit 66,Thermistor Circuit 66,Power Switch,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Power Switch,assets://power_switch.jpg
-test,1,67,Thermistor_Circuit_67,Thermistor Circuit 67,Thermistor Circuit 67,VGA Connector,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,VGA Connector,assets://vga_connector.jpg
-test,1,68,Thermistor_Circuit_68,Thermistor Circuit 68,Thermistor Circuit 68,Audio Speaker,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Audio Speaker,assets://speaker.jpg
-test,1,69,Thermistor_Circuit_69,Thermistor Circuit 69,Thermistor Circuit 69,Protoboard,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Protoboard,assets://protoboard.jpg
-test,1,70,Thermistor_Circuit_70,Thermistor Circuit 70,Thermistor Circuit 70,Oscillator 001,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
-test,1,71,Tilt_Sensor_Circuit_71,Tilt Sensor Circuit 71,Tilt Sensor Circuit 71,Hard Disk Drive Headers,assets://8_bit_green/breadboard_lg_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
-test,1,72,Tilt_Sensor_Circuit_72,Tilt Sensor Circuit 72,Tilt Sensor Circuit 72,9V Battery Case,assets://8_bit_green/breadboard_lg_landing.jpg,9V Battery Case,assets://9v_battery_case.jpg
-test,1,73,Tilt_Sensor_Circuit_73,Tilt Sensor Circuit 73,Tilt Sensor Circuit 73,Power Supply Unit,assets://8_bit_green/breadboard_lg_landing.jpg,Power Supply Unit,assets://power_supply_unit.jpg
-test,1,74,Tilt_Sensor_Circuit_74,Tilt Sensor Circuit 74,Tilt Sensor Circuit 74,Ribbon Cable,assets://8_bit_green/breadboard_lg_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,75,Tilt_Sensor_Circuit_75,Tilt Sensor Circuit 75,Tilt Sensor Circuit 75,Switch (DPDT),assets://8_bit_green/breadboard_lg_landing.jpg,Switch (DPDT),assets://switch_dpdt.jpg
-test,1,76,Speaker_Circuit_76,Speaker Circuit 76,Speaker Circuit 76,Jumper Wire Lg,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
-test,1,77,Speaker_Circuit_77,Speaker Circuit 77,Speaker Circuit 77,Tilt Sensor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Tilt Sensor,assets://tilt_sensor.jpg
-test,1,78,Speaker_Circuit_78,Speaker Circuit 78,Speaker Circuit 78,Resistor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Resistor,assets://resistor.jpg
-test,1,79,Speaker_Circuit_79,Speaker Circuit 79,Speaker Circuit 79,Pressure Sensor,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Pressure Sensor,assets://pressure_sensor.jpg
-test,1,80,Speaker_Circuit_80,Speaker Circuit 80,Speaker Circuit 80,Printer Connector,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Printer Connector,assets://printer_connector_002.jpg
-test,1,81,Photoresistor_Circuit_81,Photoresistor Circuit 81,Photoresistor Circuit 81,Thermistor,assets://8_bit_green/breadboard_lg_landing.jpg,Thermistor,assets://thermistor.jpg
-test,1,82,Photoresistor_Circuit_82,Photoresistor Circuit 82,Photoresistor Circuit 82,Oscillator 001,assets://8_bit_green/breadboard_lg_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
-test,1,83,Photoresistor_Circuit_83,Photoresistor Circuit 83,Photoresistor Circuit 83,Breadboard Sm,assets://8_bit_green/breadboard_lg_landing.jpg,Breadboard Sm,assets://breadboard_sm.jpg
-test,1,84,Photoresistor_Circuit_84,Photoresistor Circuit 84,Photoresistor Circuit 84,PCI Slots,assets://8_bit_green/breadboard_lg_landing.jpg,PCI Slots,assets://pci_slots.jpg
-test,1,85,Photoresistor_Circuit_85,Photoresistor Circuit 85,Photoresistor Circuit 85,Sleep Switch Display,assets://8_bit_green/breadboard_lg_landing.jpg,Sleep Switch Display,assets://sleep_switch_display.jpg
-test,1,86,Pressure_Sensor_Circuit_86,Pressure Sensor Circuit 86,Pressure Sensor Circuit 86,Memory Stick,assets://8_bit_green/breadboard_lg_landing.jpg,Memory Stick,assets://memory_stick.jpg
-test,1,87,Pressure_Sensor_Circuit_87,Pressure Sensor Circuit 87,Pressure Sensor Circuit 87,Auxiliary Connector (6-pin),assets://8_bit_green/breadboard_lg_landing.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
-test,1,88,Pressure_Sensor_Circuit_88,Pressure Sensor Circuit 88,Pressure Sensor Circuit 88,Ribbon Cable,assets://8_bit_green/breadboard_lg_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,89,Pressure_Sensor_Circuit_89,Pressure Sensor Circuit 89,Pressure Sensor Circuit 89,Oscillator 002,assets://8_bit_green/breadboard_lg_landing.jpg,Oscillator 002,assets://oscillator_002.jpg
-test,1,90,Pressure_Sensor_Circuit_90,Pressure Sensor Circuit 90,Pressure Sensor Circuit 90,Power Supply Unit (PSU) Plug,assets://8_bit_green/breadboard_lg_landing.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
-test,1,91,Servomotor Circuit 91,Servomotor Circuit 91,Servomotor Circuit 91,Transformer,assets://8_bit_green/breadboard_lg_landing.jpg,Transformer,assets://transformer.jpg
-test,1,92,Servomotor Circuit 92,Servomotor Circuit 92,Servomotor Circuit 92,Servomotor,assets://8_bit_green/breadboard_lg_landing.jpg,Servomotor,assets://servomotor_micro.jpg
-test,1,93,Servomotor Circuit 93,Servomotor Circuit 93,Servomotor Circuit 93,Auxiliary Connector (Berg 4-pin),assets://8_bit_green/breadboard_lg_landing.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
-test,1,94,Servomotor Circuit 94,Servomotor Circuit 94,Servomotor Circuit 94,USB Connector (Type A),assets://8_bit_green/breadboard_lg_landing.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
-test,1,95,Servomotor Circuit 95,Servomotor Circuit 95,Servomotor Circuit 95,Ethernet Connector,assets://8_bit_green/breadboard_lg_landing.jpg,Ethernet Connector,assets://ethernet.jpg
-test,1,96,Buzz_Motor_Circuit_96,Buzz Motor Circuit 96,Buzz Motor Circuit 96,Peripheral Connector (4-pin),assets://8_bit_green/breadboard_lg_landing.jpg,Peripheral Connector (4-pin),assets://peripheral_connector_4_pin.jpg
-test,1,97,Buzz_Motor_Circuit_97,Buzz Motor Circuit 97,Buzz Motor Circuit 97,"3.5"" Floppy Drive",assets://8_bit_green/breadboard_lg_landing.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
-test,1,98,Buzz_Motor_Circuit_98,Buzz Motor Circuit 98,Buzz Motor Circuit 98,Capacitor (ceramic) Lg 003,assets://8_bit_green/breadboard_lg_landing.jpg,Capacitor (ceramic) Lg 003,assets://capacitor_electrolytic_lg_003.jpg
-test,1,99,Buzz_Motor_Circuit_99,Buzz Motor Circuit 99,Buzz Motor Circuit 99,Hard Disk Drive Headers,assets://8_bit_green/breadboard_lg_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
-test,1,100,Buzz_Motor_Circuit_100,Buzz Motor Circuit 100,Buzz Motor Circuit 100,Diode,assets://8_bit_green/breadboard_lg_landing.jpg,Diode,assets://diode.jpg
+test,1,1,LED_01,LED 01,LED 01,Headphone and microphone connectors.,assets://8_bit_green/led_green_landing.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,2,LED_02,LED 02,LED 02,Low resistance in one direction and high resistance in the other.,assets://8_bit_green/led_red_landing.jpg,Diode,assets://diode.jpg
+test,1,3,LED_03,LED 03,LED 03,Its two main forms are static and dynamic.,assets://8_bit_green/led_tricolor_landing.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,4,LED_04,LED 04,LED 04,Pressure by electrical potential applied across material produces sound.,assets://8_bit_green/power_switch_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
+test,1,5,LED_05,LED 05,LED 05,Spins at 16K RPM.,assets://8_bit_green/led_green_landing.jpg,Motor,assets://motor_vibr.jpg
+test,1,6,Breadboard_06,Breadboard 06,Breadboard 06,Controls flow of voltage to the power supply.,assets://8_bit_green/potentiometer_rotary_landing.jpg,Power Switch,assets://power_switch.jpg
+test,1,7,Breadboard_07,Breadboard 07,Breadboard 07,D-subminiature connector.,assets://8_bit_green/capacitor_electrolytic_landing.jpg,VGA Connector,assets://vga_connector.jpg
+test,1,8,Breadboard_08,Breadboard 08,Breadboard 08,Signal converted from analogous electrical signal to sound.,assets://8_bit_green/power_switch_landing.jpg,Audio Speaker,assets://speaker.jpg
+test,1,9,Breadboard_09,Breadboard 09,Breadboard 09,Holes plated through PCB.,assets://8_bit_green/transformer_landing.jpg,Protoboard,assets://protoboard.jpg
+test,1,10,Breadboard_10,Breadboard 10,Breadboard 10,Produces a periodic signal; often a square or sine wave.,assets://8_bit_green/servomotor_micro_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,11,Motherboard_11,Motherboard 11,Motherboard 11,Connects to hard drive.,assets://8_bit_green/pci_slots_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,12,Motherboard_12,Motherboard 12,Motherboard 12,Has DPDT switch to control power supply.,assets://8_bit_green/ps_2_ports_landing.jpg,9V Battery Case,assets://9v_battery_case.jpg
+test,1,13,Motherboard_13,Motherboard 13,Motherboard 13,Controls flow of voltage to the power supply.,assets://8_bit_green/memory_stick_landing.jpg,Power Supply Unit,assets://power_supply_unit.jpg
+test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Also called multi-wire planar cable.,assets://8_bit_green/vga_connector_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Two inputs and four outputs.,assets://8_bit_green/9_v_battery_001_landing.jpg,Switch (DPDT),assets://switch_dpdt.jpg
+test,1,16,Switches_16,Switches 16,Switches 16,Connects components on solderless breadboards.,assets://8_bit_green/power_switch_landing.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
+test,1,17,Switches_17,Switches 17,Switches 17,Commonly found in game controllers for indicating pitch and roll.,assets://8_bit_green/sleep_switch_display_landing.jpg,Tilt Sensor,assets://tilt_sensor.jpg
+test,1,18,Switches_18,Switches 18,Switches 18,Drives current to power LED.,assets://8_bit_green/switch_dpdt_landing.jpg,Resistor,assets://resistor.jpg
+test,1,19,Switches_19,Switches 19,Switches 19,Usually acts as a transducer generating a signal as a function of the pressure applied.,assets://8_bit_green/switch_spst_landing.jpg,Pressure Sensor,assets://pressure_sensor.jpg
+test,1,20,Switches_20,Switches 20,Switches 20,Parallel computer printer port.,assets://8_bit_green/sleep_switch_display_landing.jpg,Printer Connector,assets://printer_connector_002.jpg
+test,1,21,Breadboard_21,Breadboard 21,Breadboard 21,Usually more precise within a limited temperature range.,assets://8_bit_green/speaker_landing.jpg,Thermistor,assets://thermistor.jpg
+test,1,22,Breadboard_22,Breadboard 22,Breadboard 22,Produces a periodic signal; often a square or sine wave.,assets://8_bit_green/capacitor_lg_001_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,23,Breadboard_23,Breadboard 23,Breadboard 23,Breakout board provides extra room for connecting circuit components.,assets://8_bit_green/switch_dpdt_landing.jpg,Breadboard Sm,assets://breadboard_sm.jpg
+test,1,24,Breadboard_24,Breadboard 24,Breadboard 24,Local parallel computer bus for attaching hardware devices.,assets://8_bit_green/transistor_npn_landing.jpg,PCI Slots,assets://pci_slots.jpg
+test,1,25,Breadboard_25,Breadboard 25,Breadboard 25,Has a SPST Switch on its circuit board.,assets://8_bit_green/speaker_landing.jpg,Sleep Switch Display,assets://sleep_switch_display.jpg
+test,1,26,Connectors_26,Connectors 26,Connectors 26,Volatile memory; stored information lost if power removed.,assets://8_bit_green/micro_usb_landing.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,27,Connectors_27,Connectors 27,Connectors 27,PC main power cable connector.,assets://8_bit_green/ethernet_landing.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
+test,1,28,Connectors_28,Connectors 28,Connectors 28,Connects to forked contacts on IDC connectors.,assets://8_bit_green/usb_connector_type_b_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,29,Connectors_29,Connectors 29,Connectors 29,Produces a periodic signal; often a square or sine wave.,assets://8_bit_green/usb_connector_type_a_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,30,Connectors_30,Connectors 30,Connectors 30,Connects to mains electricity supply.,assets://8_bit_green/micro_usb_landing.jpg,Power Supply Unit (PSU) Plug,assets://psu_plug.jpg
+test,1,31,Resistors_31,Resistors 31,Resistors 31,All magnetic flux passes through both primary and secondary windings.,assets://8_bit_green/capacitor_electrolytic_landing.jpg,Transformer,assets://transformer.jpg
+test,1,32,Resistors_32,Resistors 32,Resistors 32,Rotary actuator controlling angular position as well as velocity and acceleration.,assets://8_bit_green/resistor_landing.jpg,Servomotor,assets://servomotor_micro.jpg
+test,1,33,Resistors_34,Resistors 33,Resistors 33,Floppy drive power connector.,assets://8_bit_green/photoresistor_landing.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
+test,1,34,Resistors_35,Resistors 34,Resistors 34,The most common type of USB plug.,assets://8_bit_green/potentiometer_rotary_landing.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
+test,1,35,Resistors_36,Resistors 35,Resistors 35,Provides services up to and including the data link layer.,assets://8_bit_green/photoresistor_landing.jpg,Ethernet Connector,assets://ethernet.jpg
+test,1,36,Breadboard_36,Breadboard 36,Breadboard 36,Connects floppy drives and hard disks.,assets://8_bit_green/jumper_cable_sm_landing.jpg,Peripheral Connector (4-pin),assets://peripheral_connector_4_pin.jpg
+test,1,37,Breadboard_37,Breadboard 37,Breadboard 37,Accepts high-capacity disk media.,assets://8_bit_green/piezo_buzzer_001_landing.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
+test,1,38,Breadboard_38,Breadboard 38,Breadboard 38,Characterized by single constant value – capacitance.,assets://8_bit_green/pressure_sensor_landing.jpg,Capacitor (ceramic) Lg 003,assets://capacitor_electrolytic_lg_003.jpg
+test,1,39,Breadboard_39,Breadboard 39,Breadboard 39,Connects to hard drive.,assets://8_bit_green/tilt_sensor_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,40,Breadboard_40,Breadboard 40,Breadboard 40,Has low resistance in one direction and high resistance in the other.,assets://8_bit_green/jumper_cable_sm_landing.jpg,Diode,assets://diode.jpg
+test,1,41,Current_41,Current 41,Current 41,Keyboard and mouse data connectors.,assets://8_bit_green/power_supply_unit_landing.jpg,PS/2 Ports,assets://ps_2_ports.jpg
+test,1,42,Current_42,Current 42,Current 42,Volatile memory; stored information lost if power removed.,assets://8_bit_green/resistor_landing.jpg,RAM,assets://memory_stick.jpg
+test,1,43,Current_43,Current 43,Current 43,Has DPDT switch to control power supply.,assets://8_bit_green/transformer_landing.jpg,9V Battery Case,assets://9v_battery_case.jpg
+test,1,44,Current_44,Current 44,Current 44,Has lowest typical efficiency (W/W).,assets://8_bit_green/transistor_npn_landing.jpg,Green LED,assets://led_green.jpg
+test,1,45,Current_45,Current 45,Current 45,Consumes power while rotating to specified position then stops.,assets://8_bit_green/power_supply_unit_landing.jpg,Servomotor,assets://servomotor_micro.jpg
+test,1,46,Bonus_46,Bonus 46,Bonus 46,Commonly used to connect external hard drives and smart phones.,assets://8_bit_green/9_v_battery_001_landing.jpg,USB Connector (Mini B),assets://micro_usb.jpg
+test,1,47,Bonus_47,Bonus 47,Bonus 47,Parallel computer printer port.,assets://8_bit_green/oscillator_001_landing.jpg,Printer Connector,assets://printer_connector_002.jpg
+test,1,48,Bonus_48,Bonus 48,Bonus 48,Local parallel computer bus for attaching hardware devices.,assets://8_bit_green/protoboard_landing.jpg,PCI Slots,assets://pci_slots.jpg
+test,1,49,Bonus_49,Bonus 49,Bonus 49,Connects to network interface card (NIC).,assets://8_bit_green/memory_stick_landing.jpg,Ethernet Connector,assets://ethernet.jpg
+test,1,50,Bonus_50,Bonus 50,Bonus 50,Powered early transistor radios.,assets://8_bit_green/9_v_battery_001_landing.jpg,9V Battery,assets://9_v_battery_001.jpg
+test,1,51,LED_Circuit_51,LED Circuit 51,LED Circuit 51,Headphone and microphone connectors.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,52,LED_Circuit_52,LED Circuit 52,LED Circuit 52,First commercially used for mechanical indicators.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Red LED,assets://led_red.jpg
+test,1,53,LED_Circuit_53,LED Circuit 53,LED Circuit 53,Volatile memory; stored information lost if power removed.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,54,LED_Circuit_54,LED Circuit 54,LED Circuit 54,Most product sound within a range of 2-4 kHz.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
+test,1,55,LED_Circuit_55,LED Circuit 55,LED Circuit 55,Found in cell phones.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Buzz Motor,assets://motor_vibr.jpg
+test,1,56,Buzzer_Circuit_56,Buzzer Circuit 56,Buzzer Circuit 56,Controls flow of voltage to the power supply.,assets://8_bit_green/breadboard_lg_landing.jpg,Power Switch,assets://power_switch.jpg
+test,1,57,Buzzer_Circuit_57,Buzzer Circuit 57,Buzzer Circuit 57,D-subminiature connector.,assets://8_bit_green/breadboard_lg_landing.jpg,VGA Connector,assets://vga_connector.jpg
+test,1,58,Buzzer_Circuit_58,Buzzer Circuit 58,Buzzer Circuit 58,Power rating of 0.5 W.,assets://8_bit_green/breadboard_lg_landing.jpg,Audio Speaker,assets://speaker.jpg
+test,1,59,Buzzer_Circuit_59,Buzzer Circuit 59,Buzzer Circuit 59,Surface accepts solder for connecting pins to copper pour.,assets://8_bit_green/breadboard_lg_landing.jpg,Protoboard,assets://protoboard.jpg
+test,1,60,Buzzer_Circuit_60,Buzzer Circuit 60,Buzzer Circuit 60,Produces a periodic signal; often a square or sine wave.,assets://8_bit_green/breadboard_lg_landing.jpg,Oscillator 001,assets://oscillator_001.jpg
+test,1,61,Motor_Circuit_61,Motor Circuit 61,Motor Circuit 61,Headphone and microphone connectors.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,62,Motor_Circuit_62,Motor Circuit 62,Motor Circuit 62,Low resistance in one direction and high resistance in the other.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Diode,assets://diode.jpg
+test,1,63,Motor_Circuit_63,Motor Circuit 63,Motor Circuit 63,Switches and amplifies electronic signals and power.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Transistor (NPN),assets://transistor_npn.jpg
+test,1,64,Motor_Circuit_64,Motor Circuit 64,Motor Circuit 64,Pushing and pulling of conductors create sound when voltage applied.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
+test,1,65,Motor_Circuit_65,Motor Circuit 65,Motor Circuit 65,Draws no more than 250 mA.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Motor,assets://motor_vibr.jpg
+test,1,66,Thermistor_Circuit_66,Thermistor Circuit 66,Thermistor Circuit 66,Controls flow of voltage to the power supply.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Power Switch,assets://power_switch.jpg
+test,1,67,Thermistor_Circuit_67,Thermistor Circuit 67,Thermistor Circuit 67,Requires electronic circuits to render different colors.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Tricolor LED,assets://led_tricolor.jpg
+test,1,68,Thermistor_Circuit_68,Thermistor Circuit 68,Thermistor Circuit 68,Signal converted from analogous electrical signal to sound.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Audio Speaker,assets://speaker.jpg
+test,1,69,Thermistor_Circuit_69,Thermistor Circuit 69,Thermistor Circuit 69,Surface accepts solder for connecting pins to copper pour.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Protoboard,assets://protoboard.jpg
+test,1,70,Thermistor_Circuit_70,Thermistor Circuit 70,Thermistor Circuit 70,Provides additional power supply to the processor.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Auxiliary Connector (4-pin),assets://auxillary_connector_4_pin.jpg
+test,1,71,Tilt_Sensor_Circuit_71,Tilt Sensor Circuit 71,Tilt Sensor Circuit 71,Connects to hard drive.,assets://8_bit_green/breadboard_lg_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,72,Tilt_Sensor_Circuit_72,Tilt Sensor Circuit 72,Tilt Sensor Circuit 72,Greater latency occurs when transitioning from lighter to darker conditions.,assets://8_bit_green/breadboard_lg_landing.jpg,Photoresistor,assets://photoresistor.jpg
+test,1,73,Tilt_Sensor_Circuit_73,Tilt Sensor Circuit 73,Tilt Sensor Circuit 73,Converts mains AC to DC power.,assets://8_bit_green/breadboard_lg_landing.jpg,Power Supply Unit,assets://power_supply_unit.jpg
+test,1,74,Tilt_Sensor_Circuit_74,Tilt Sensor Circuit 74,Tilt Sensor Circuit 74,Connects to forked contacts on IDC connectors.,assets://8_bit_green/breadboard_lg_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,75,Tilt_Sensor_Circuit_75,Tilt Sensor Circuit 75,Tilt Sensor Circuit 75,Double pole/double throw switch.,assets://8_bit_green/breadboard_lg_landing.jpg,Switch (DPDT),assets://switch_dpdt.jpg
+test,1,76,Speaker_Circuit_76,Speaker Circuit 76,Speaker Circuit 76,Each one has a molded barrel and stripped end.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
+test,1,77,Speaker_Circuit_77,Speaker Circuit 77,Speaker Circuit 77,Commonly found in game controllers for indicating pitch and roll.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Tilt Sensor,assets://tilt_sensor.jpg
+test,1,78,Speaker_Circuit_78,Speaker Circuit 78,Speaker Circuit 78,Relationship specified by Ohm's law dictates behavior.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Resistor,assets://resistor.jpg
+test,1,79,Speaker_Circuit_79,Speaker Circuit 79,Speaker Circuit 79,Found in game controllers for measuring pad input.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Pressure Sensor,assets://pressure_sensor.jpg
+test,1,80,Speaker_Circuit_80,Speaker Circuit 80,Speaker Circuit 80,Connects to forked contacts on IDC connectors.,assets://8_bit_green/breadboard_lg_jumper_wire_bundle_landing.jpg,Printer Connector,assets://printer_connector_002.jpg
+test,1,81,Photoresistor_Circuit_81,Photoresistor Circuit 81,Photoresistor Circuit 81,Material used is usually ceramic or polymer.,assets://8_bit_green/breadboard_lg_landing.jpg,Thermistor,assets://thermistor.jpg
+test,1,82,Photoresistor_Circuit_82,Photoresistor Circuit 82,Photoresistor Circuit 82,Switches and amplifies electronic signals and power.,assets://8_bit_green/breadboard_lg_landing.jpg,Transistor (NPN),assets://transistor_npn.jpg
+test,1,83,Photoresistor_Circuit_83,Photoresistor Circuit 83,Photoresistor Circuit 83,Breakout board provides extra room for connecting circuit components.,assets://8_bit_green/breadboard_lg_landing.jpg,Breadboard Sm,assets://breadboard_sm.jpg
+test,1,84,Photoresistor_Circuit_84,Photoresistor Circuit 84,Photoresistor Circuit 84,Compatible with ethernet cards.,assets://8_bit_green/breadboard_lg_landing.jpg,PCI Slots,assets://pci_slots.jpg
+test,1,85,Photoresistor_Circuit_85,Photoresistor Circuit 85,Photoresistor Circuit 85,Has a SPST Switch on its circuit board.,assets://8_bit_green/breadboard_lg_landing.jpg,Sleep Switch Display,assets://sleep_switch_display.jpg
+test,1,86,Pressure_Sensor_Circuit_86,Pressure Sensor Circuit 86,Pressure Sensor Circuit 86,Its two main forms are static and dynamic.,assets://8_bit_green/breadboard_lg_landing.jpg,Memory Stick,assets://memory_stick.jpg
+test,1,87,Pressure_Sensor_Circuit_87,Pressure Sensor Circuit 87,Pressure Sensor Circuit 87,PC main power cable connector.,assets://8_bit_green/breadboard_lg_landing.jpg,Auxiliary Connector (6-pin),assets://auxillary_connector_6_pin.jpg
+test,1,88,Pressure_Sensor_Circuit_88,Pressure Sensor Circuit 88,Pressure Sensor Circuit 88,Connects to forked contacts on IDC connectors.,assets://8_bit_green/breadboard_lg_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
+test,1,89,Pressure_Sensor_Circuit_89,Pressure Sensor Circuit 89,Pressure Sensor Circuit 89,Produces a periodic signal; often a square or sine wave.,assets://8_bit_green/breadboard_lg_landing.jpg,Oscillator 001,assets://oscillator_002.jpg
+test,1,90,Pressure_Sensor_Circuit_90,Pressure Sensor Circuit 90,Pressure Sensor Circuit 90,Less sensitive to light than photodiodes or photo transistors.,assets://8_bit_green/breadboard_lg_landing.jpg,Photoresistor,assets://photoresistor.jpg
+test,1,91,Servomotor Circuit 91,Servomotor Circuit 91,Servomotor Circuit 91,Transforms energy between circuits through electromagnetic induction.,assets://8_bit_green/breadboard_lg_landing.jpg,Transformer,assets://transformer.jpg
+test,1,92,Servomotor Circuit 92,Servomotor Circuit 92,Servomotor Circuit 92,Rotary actuator controlling angular position as well as velocity and acceleration.,assets://8_bit_green/breadboard_lg_landing.jpg,Servomotor,assets://servomotor_micro.jpg
+test,1,93,Servomotor Circuit 93,Servomotor Circuit 93,Servomotor Circuit 93,Floppy drive power connector.,assets://8_bit_green/breadboard_lg_landing.jpg,Auxiliary Connector (Berg 4-pin),assets://auxillary_connector_berg_4_pin.jpg
+test,1,94,Servomotor Circuit 94,Servomotor Circuit 94,Servomotor Circuit 94,The most common type of USB plug.,assets://8_bit_green/breadboard_lg_landing.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
+test,1,95,Servomotor Circuit 95,Servomotor Circuit 95,Servomotor Circuit 95,Connects to network interface card (NIC).,assets://8_bit_green/breadboard_lg_landing.jpg,Ethernet Connector,assets://ethernet.jpg
+test,1,96,Buzz_Motor_Circuit_96,Buzz Motor Circuit 96,Buzz Motor Circuit 96,Connects floppy drives and hard disks.,assets://8_bit_green/breadboard_lg_landing.jpg,Peripheral Connector (4-pin),assets://peripheral_connector_4_pin.jpg
+test,1,97,Buzz_Motor_Circuit_97,Buzz Motor Circuit 97,Buzz Motor Circuit 97,Reads high-capacity disk media.,assets://8_bit_green/breadboard_lg_landing.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
+test,1,98,Buzz_Motor_Circuit_98,Buzz Motor Circuit 98,Buzz Motor Circuit 98,Also known as a condenser.,assets://8_bit_green/breadboard_lg_landing.jpg,Capacitor (ceramic) Lg 003,assets://capacitor_electrolytic_lg_003.jpg
+test,1,99,Buzz_Motor_Circuit_99,Buzz Motor Circuit 99,Buzz Motor Circuit 99,Connects to hard drive.,assets://8_bit_green/breadboard_lg_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
+test,1,100,Buzz_Motor_Circuit_100,Buzz Motor Circuit 100,Buzz Motor Circuit 100,Low resistance in one direction and high resistance in the other.,assets://8_bit_green/breadboard_lg_landing.jpg,Diode,assets://diode.jpg

@@ -1,100 +1,100 @@
-QuestionId_01,Power Switch,Power Switch copy,power_switch,1
-QuestionId_02,Tricolor LED,Tricolor LED copy,led_tricolor,1
-QuestionId_03,Red LED,Red LED copy,led_red,1
-QuestionId_04,Green LED, copy,led_green,1
-QuestionId_05,Tricolor LED,Tricolor LED copy,led_tricolor,1
-QuestionId_06,Capacitor Lg 001,Capacitor Lg 001 copy,capacitor_lg_001,1
-QuestionId_07,Trim Potentiometer,Trim Potentiometer copy,potentiometer_trim,1
-QuestionId_08,Transformer,Transformer copy,transformer,1
-QuestionId_09,Servomotor,Servomotor copy,servomotor_micro,1
-QuestionId_10,Transformer,Transformer copy,transformer,1
-QuestionId_11,PCI Slots,PCI Slots copy,pci_slots,1
-QuestionId_12,PS/2 Ports,PS/2 Ports copy,ps_2_ports,1
-QuestionId_13,VGA Connector,VGA Connector copy,vga_connector,1
-QuestionId_14,PCI Slots,PCI Slots copy,pci_slots,1
-QuestionId_15,RAM,RAM copy,memory_stick,1
-QuestionId_16,Switch (DPDT),Switch (DPDT) copy,switch_dpdt,1
-QuestionId_17,Power Switch,Power Switch copy,power_switch,1
-QuestionId_18,Switch (SPST),Switch (SPST) copy,switch_spst,1
-QuestionId_19,Sleep Switch Display,Sleep Switch Display copy,sleep_switch_display,1
-QuestionId_20,Switch (SPST),Switch (SPST) copy,switch_spst,1
-QuestionId_21,Audio Speaker,Audio Speaker copy,speaker,1
-QuestionId_22,Transistor (NPN),Transistor (NPN) copy,transistor_npn,1
-QuestionId_23,Capacitor (ceramic) 001,Capacitor (ceramic) 001 copy,capacitor_ceramic_001,1
-QuestionId_24,Switch (DPDT),Switch (DPDT) copy,switch_dpdt,1
-QuestionId_25,Capacitor (ceramic) 001,Capacitor (ceramic) 001 copy,capacitor_ceramic_001,1
-QuestionId_26,USB Connector (Mini B),USB Connector (Mini B) copy,micro_usb,1
-QuestionId_27,USB Connector (Type A),USB Connector (Type A) copy,usb_connector_type_a,1
-QuestionId_28,Ethernet Connector,Ethernet Connector copy,ethernet,1
-QuestionId_29,USB Connector (Type B),USB Connector (Type B) copy,usb_connector_type_b,1
-QuestionId_30,Ethernet Connector,Ethernet Connector copy,ethernet,1
-QuestionId_31,Capacitor (electrolytic),Capacitor (electrolytic) copy,capacitor_electrolytic,1
-QuestionId_32,Resistor,Resistor copy,resistor,1
-QuestionId_33,Photoresistor,Photoresistor copy,photoresistor,1
-QuestionId_34,Rotary Potentiometer,Rotary Potentiometer copy,potentiometer_rotary,1
-QuestionId_35,Photoresistor,Photoresistor copy,photoresistor,1
-QuestionId_36,Piezo Buzzer 001,Piezo Buzzer 001 copy,piezo_buzzer_001,1
-QuestionId_37,Tilt Sensor,Tilt Sensor copy,tilt_sensor,1
-QuestionId_38,Pressure Sensor,Pressure Sensor copy,pressure_sensor,1
-QuestionId_39,Pressure Sensor,Pressure Sensor copy,pressure_sensor,1
-QuestionId_40,Jumper Cable Sm,Jumper Wire Sm copy,jumper_cable_lg,1
-QuestionId_41,Power Supply Unit (PSU) Plug,Power Supply Unit (PSU) Plug copy,power_supply_unit,1
-QuestionId_42,Resistor,Resistor copy,resistor,1
-QuestionId_43,Transistor (NPN),Transistor (NPN) copy,transistor_npn,1
-QuestionId_44,Transformer,Transformer copy,transformer,1
-QuestionId_45,Transformer,Transformer copy,transformer,1
-QuestionId_46,9V Battery,9V Battery copy,9_v_battery_001,1
-QuestionId_47,RAM,RAM copy,memory_stick,1
-QuestionId_48,Protoboard,Protoboard copy,protoboard,1
-QuestionId_49,Oscillator 001,Oscillator 001 copy,Oscillator_001,1
-QuestionId_50,9V Battery,9V Battery copy,9_v_battery_001,1
-QuestionId_51,Resistor,Resistor copy,resistor,1
-QuestionId_52,9V Battery,9V Battery copy,9_v_battery_001,1
-QuestionId_53,Switch (SPST),Switch (SPST) copy,switch_spst,1
-QuestionId_54,Green LED,Green LED copy,led_green,1
-QuestionId_55,Resistor,Resistor copy,resistor,1
-QuestionId_56,Piezo Buzzer 001,Piezo Buzzer 001 copy,piezo_buzzer_001,1
-QuestionId_57,Resistor,Resistor copy,resistor,1
-QuestionId_58,Jumper Wire Bundle,Jumper Wire Bundle copy,jumper_wire_bundle,1
-QuestionId_59,Piezo Buzzer 001,Piezo Buzzer 001 copy,piezo_buzzer_001,1
-QuestionId_60,9V Battery,9V Battery copy,9_v_battery_001,1
-QuestionId_61,Transistor (NPN),Transistor (NPN),transistor_npn,1
-QuestionId_62,Diode,Diode,diode,1
-QuestionId_63,Mini Motor,Mini Motor,motor_mini,1
-QuestionId_64,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_65,Transistor (NPN),Transistor (NPN),transistor_npn,1
-QuestionId_66,Thermistor,Thermistor,thermistor,1
-QuestionId_67,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_68,Thermistor,Thermistor,thermistor,1
-QuestionId_69,Transistor (NPN),Transistor (NPN),transistor_npn,1
-QuestionId_70,Resistor,Resistor,resistor,1
-QuestionId_71,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_72,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
-QuestionId_73,Resistor,Resistor,resistor,1
-QuestionId_74,Tilt Sensor,Tilt Sensor,tilt_sensor,1
-QuestionId_75,Tilt Sensor,Tilt Sensor,tilt_sensor,1
-QuestionId_76,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_77,Transistor (NPN),Transistor (NPN),transistor_npn,1
-QuestionId_78,Audio Speaker,Audio Speaker,speaker,1
-QuestionId_79,Audio Speaker,Audio Speaker,speaker,1
-QuestionId_80,Resistor,Resistor,resistor,1
-QuestionId_81,Resistor,Resistor,resistor,1
-QuestionId_82,Photoresistor,Photoresistor,photoresistor,1
-QuestionId_83,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_84,Photoresistor,Photoresistor,photoresistor,1
-QuestionId_85,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
-QuestionId_86,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
-QuestionId_87,Pressure Sensor,Pressure Sensor,pressure_sensor,1
-QuestionId_88,Resistor,Resistor,resistor,1
-QuestionId_89,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_90,Pressure Sensor,Pressure Sensor,pressure_sensor,1
-QuestionId_91,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_92,Potentiometer,Potentiometer,potentiometer_rotary,1
-QuestionId_93,Servomotor,Servomotor,servomotor_micro,1
-QuestionId_94,Potentiometer,Potentiometer,potentiometer_rotary,1
-QuestionId_95,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
-QuestionId_96,Jumper Wire Bundle,Jumper Wire Bundle,jumper_wire_bundle,1
-QuestionId_97,9V Battery,9V Battery,9_v_battery_001,1
-QuestionId_98,Buzz Motor,Buzz Motor,motor_vibr,1
-QuestionId_99,Buzz Motor,Buzz Motor,motor_vibr,1
-QuestionId_100,Switch (SPST),Switch (SPST),switch_spst,1
+QuestionId_01,Power Switch,Not a LED.,power_switch,1
+QuestionId_02,Tricolor LED,Requires electronic circuits to render different colors.,led_tricolor,1
+QuestionId_03,Red LED,First commercially used for mechanical indicators.,led_red,1
+QuestionId_04,Green LED,Has lowest typical efficiency (W/W).,led_green,1
+QuestionId_05,Tricolor LED,Uses a four-wire connection.,led_tricolor,1
+QuestionId_06,Capacitor Lg 001,Also known as a condenser.,capacitor_lg_001,1
+QuestionId_07,Rotary Potentiometer,Used for tuning and circuit calibration.,potentiometer_rotary,1
+QuestionId_08,Transformer,Transforms energy between circuits through electromagnetic induction.,transformer,1
+QuestionId_09,Servomotor,Rotary actuator controlling angular position as well as velocity and acceleration.,servomotor_micro,1
+QuestionId_10,Transformer,Flux confined within its magnetic core.,transformer,1
+QuestionId_11,PCI Slots,Compatible with ethernet cards.,pci_slots,1
+QuestionId_12,PS/2 Ports,Keyboard and mouse data connectors.,ps_2_ports,1
+QuestionId_13,VGA Connector,D-subminiature connector.,vga_connector,1
+QuestionId_14,PCI Slots,Local parallel computer bus for attaching hardware devices.,pci_slots,1
+QuestionId_15,RAM,Volatile memory; stored information lost if power removed.,memory_stick,1
+QuestionId_16,Switch (DPDT),Double pole/double throw switch.,switch_dpdt,1
+QuestionId_17,Power Switch,Controls flow of voltage to the power supply.,power_switch,1
+QuestionId_18,Switch (SPST),Single pole/single throw switch.,switch_spst,1
+QuestionId_19,Sleep Switch Display,Has a SPST Switch on its circuit board.,sleep_switch_display,1
+QuestionId_20,Switch (SPST),Simple on-off switch.,switch_spst,1
+QuestionId_21,Audio Speaker,An electroacoustic transducer.,speaker,1
+QuestionId_22,Transistor (NPN),Switches and amplifies electronic signals and power.,transistor_npn,1
+QuestionId_23,Capacitor (ceramic) 001,Characterized by single constant value – capacitance.,capacitor_ceramic_001,1
+QuestionId_24,Switch (DPDT),Has two inputs and four outputs.,switch_dpdt,1
+QuestionId_25,Capacitor (ceramic) 001,Stores energy electrostatically in an electric field.,capacitor_ceramic_001,1
+QuestionId_26,USB Connector (Mini B),Commonly used to connect external hard drives and smart phones.,micro_usb,1
+QuestionId_27,USB Connector (Type A),The most common type of USB plug.,usb_connector_type_a,1
+QuestionId_28,Ethernet Connector,Provides services up to and including the data link layer.,ethernet,1
+QuestionId_29,USB Connector (Type B),Two-connector scheme prevents accidental electrical loop.,usb_connector_type_b,1
+QuestionId_30,Ethernet Connector,Connects to network interface card (NIC).,ethernet,1
+QuestionId_31,Capacitor (electrolytic),Blocks direct current (DC) while allowing alternate current (AC) to pass.,capacitor_electrolytic,1
+QuestionId_32,Resistor,Reduces current flow within circuit.,resistor,1
+QuestionId_33,Photoresistor,Increase in light intensity decreases resistance.,photoresistor,1
+QuestionId_34,Rotary Potentiometer,Most have a switch operating at counterclockwise rotation extreme.,potentiometer_rotary,1
+QuestionId_35,Photoresistor,Exhibits a certain degree of latency before resistance drops.,photoresistor,1
+QuestionId_36,Piezo Buzzer 001,Pushing and pulling of conductors create sound when voltage applied.,piezo_buzzer_001,1
+QuestionId_37,Tilt Sensor,Commonly found in game controllers for indicating pitch and roll.,tilt_sensor,1
+QuestionId_38,Pressure Sensor,Usually acts as a transducer generating a signal as a function of the pressure applied.,pressure_sensor,1
+QuestionId_39,Pressure Sensor,Found in game controllers for measuring pad input.,pressure_sensor,1
+QuestionId_40,Jumper Cable Sm,Used to connect components on solderless breadboards.,jumper_cable_lg,1
+QuestionId_41,Power Supply Unit (PSU) Plug,Connects to mains electricity supply.,power_supply_unit,1
+QuestionId_42,Resistor,Can be used to terminate transmission lines carrying alternate current (AC) of radio frequency.,resistor,1
+QuestionId_43,Transistor (NPN),Voltage applied to its terminals changes current through another pair of terminals.,transistor_npn,1
+QuestionId_44,Transformer,All magnetic flux passes through both primary and secondary windings.,transformer,1
+QuestionId_45,Transformer,Ideally lossless (no energy losses) and perfectly coupled.,transformer,1
+QuestionId_46,9V Battery,Powered early transistor radios.,9_v_battery_001,1
+QuestionId_47,RAM,Its two main forms are static and dynamic.,memory_stick,1
+QuestionId_48,Protoboard,Surface accepts solder for connecting pins to copper pour.,protoboard,1
+QuestionId_49,Oscillator 001,Produces a periodic signal; often a square or sine wave.,Oscillator_001,1
+QuestionId_50,9V Battery,Most consist of six individual cells within a wrapper.,9_v_battery_001,1
+QuestionId_51,Resistor,Drives current to power LED.,resistor,1
+QuestionId_52,9V Battery,Supplies voltage to power LED.,9_v_battery_001,1
+QuestionId_53,Switch (SPST),Turns circuit on/off.,switch_spst,1
+QuestionId_54,Green LED,Diode with +/- leads.,led_green,1
+QuestionId_55,Resistor,Implements electrical resistance within the circuit.,resistor,1
+QuestionId_56,Piezo Buzzer 001,Pressure by electrical potential applied across material produces sound.,piezo_buzzer_001,1
+QuestionId_57,Resistor,Relationship specified by Ohm's law dictates behavior.,resistor,1
+QuestionId_58,Jumper Wire Bundle,Connect to breadboard power rails.,jumper_wire_bundle,1
+QuestionId_59,Piezo Buzzer 001,Most product sound within a range of 2-4 kHz.,piezo_buzzer_001,1
+QuestionId_60,9V Battery,Several of these may be connected to provide higher levels of voltage.,9_v_battery_001,1
+QuestionId_61,Transistor (NPN),Often used as electronic switches for logic gates.,transistor_npn,1
+QuestionId_62,Diode,Low resistance in one direction and high resistance in the other.,diode,1
+QuestionId_63,Mini Motor,Draws no more than 250 mA.,motor_mini,1
+QuestionId_64,9V Battery,Polarized snap connector at the top.,9_v_battery_001,1
+QuestionId_65,Transistor (NPN),Able to use smaller signal to control larger signal through pairs of terminals.,transistor_npn,1
+QuestionId_66,Thermistor,Usually more precise within a limited temperature range.,thermistor,1
+QuestionId_67,9V Battery,Commonly used to power radios and electronic devices.,9_v_battery_001,1
+QuestionId_68,Thermistor,Material used is usually ceramic or polymer.,thermistor,1
+QuestionId_69,Transistor (NPN),Sometimes embedded within integrated circuits.,transistor_npn,1
+QuestionId_70,Resistor,Apparent value of resistance falls within a manufacturing tolerance.,resistor,1
+QuestionId_71,9V Battery,Often utilized as backup power within electronic devices.,9_v_battery_001,1
+QuestionId_72,Jumper Wire Bundle,Each one has a molded barrel and stripped end.,jumper_wire_bundle,1
+QuestionId_73,Resistor,Lowers voltage levels within circuit.,resistor,1
+QuestionId_74,Tilt Sensor,Used in the measurement of angles.,tilt_sensor,1
+QuestionId_75,Tilt Sensor,Measures within two axes of a reference plane.,tilt_sensor,1
+QuestionId_76,9V Battery,Some manufacturers use welded tabs or foil strips to connects cells.,9_v_battery_001,1
+QuestionId_77,Transistor (NPN),Can produce a stronger output signal proportional to a weaker input signal.,transistor_npn,1
+QuestionId_78,Audio Speaker,Signal converted from analogous electrical signal to sound.,speaker,1
+QuestionId_79,Audio Speaker,Power rating of 0.5 W.,speaker,1
+QuestionId_80,Resistor,High-powered components of this type can dissipate watts of electrical power as heat.,resistor,1
+QuestionId_81,Resistor,Surface mounted components of this type are printed with a numerical code.,resistor,1
+QuestionId_82,Photoresistor,Less sensitive to light than photodiodes or photo transistors.,photoresistor,1
+QuestionId_83,9V Battery,Electrochemical cells convert stored chemical energy into electrical energy.,9_v_battery_001,1
+QuestionId_84,Photoresistor,Greater latency occurs when transitioning from lighter to darker conditions.,photoresistor,1
+QuestionId_85,Jumper Wire Bundle,Connects circuit components to ground.,jumper_wire_bundle,1
+QuestionId_86,Jumper Wire Bundle,Leads make contact with terminal strips to connect components on breadboard.,jumper_wire_bundle,1
+QuestionId_87,Pressure Sensor,Variable resistors decrease in resistance with force applied.,pressure_sensor,1
+QuestionId_88,Resistor,Total resistance connected in series equals sum of individual resistance values.,resistor,1
+QuestionId_89,9V Battery,Rectangular prism.,9_v_battery_001,1
+QuestionId_90,Pressure Sensor,Comprised of conductive polymer that changes resistance.,pressure_sensor,1
+QuestionId_91,9V Battery,Not manufactured with mercury oxide anymore.,9_v_battery_001,1
+QuestionId_92,Potentiometer,Rotating contact creates adjustable voltage divider.,potentiometer_rotary,1
+QuestionId_93,Servomotor,Consumes power while rotating to specified position then stops.,servomotor_micro,1
+QuestionId_94,Potentiometer,Linear version of component; also known as a 'fader'.,potentiometer_rotary,1
+QuestionId_95,Jumper Wire Bundle,Connects voltage and ground directly to servomotor.,jumper_wire_bundle,1
+QuestionId_96,Jumper Wire Bundle,Connects components to power rails on breadboard.,jumper_wire_bundle,1
+QuestionId_97,9V Battery,Alkaline commonly found within this circuit component.,9_v_battery_001,1
+QuestionId_98,Buzz Motor,Found in cell phones.,motor_vibr,1
+QuestionId_99,Buzz Motor,Component connected to both switch and power rail.,motor_vibr,1
+QuestionId_100,Switch (SPST),Two terminals are either connected or disconnected.,switch_spst,1
