@@ -3,9 +3,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.movie.locations.R;
+import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
+import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.util.StaticSortingUtilities;
@@ -63,7 +65,8 @@ public class QuizActivity extends FragmentActivity {
 	private User currentUser;
 	private String currentPoints;
 	private String currentBonusPoints;
-	private int currentTotalPoints;
+	private String currentTotalPoints;
+	private PointsItemImpl pointsItemImpl;
 
     /**
      * The number of pages (wizard steps) to show in this demo.
@@ -102,7 +105,7 @@ public class QuizActivity extends FragmentActivity {
 			System.out.println("PARCEL QUIZ ITEM TEXT: " + quizItem.getQuestionText());
 			bagItemArrayList = extras.getParcelable("bagItemArrayList");
 			quizItemSid = extras.getString("quizItemSid");
-			currentUserId = extras.getString("currentUserId");
+//			currentUserId = extras.getString("currentUserId");
 			
 			// select current user so we can update current xp
 			userSource = new UserImpl(context);
@@ -111,14 +114,28 @@ public class QuizActivity extends FragmentActivity {
 			
 //			currentUser = userSource.selectRecordById(currentUserId);
 			currentUser = extras.getParcelable("currentUser");
-			currentPoints = currentUser.getCurrentPoints();
-			currentBonusPoints = currentUser.getBonusPoints();
-			currentTotalPoints = Integer.parseInt(currentPoints) + Integer.parseInt(currentBonusPoints);
+			currentUserId = currentUser.getUserId();
+//			currentPoints = currentUser.getCurrentPoints();
+//			currentBonusPoints = currentUser.getBonusPoints();
+//			currentTotalPoints = Integer.parseInt(currentPoints) + Integer.parseInt(currentBonusPoints);
 			
+			pointsItemImpl = new PointsItemImpl(context);
+			PointsItem currentPointsItem = pointsItemImpl.selectRecordById(currentUserId);
+
+			if (currentPointsItem != null) {
+				final String currentPoints = currentPointsItem.getPoints();
+				if (currentPoints != null) {
+					currentTotalPoints = currentPointsItem.getPoints();
+				}
+			}else {
+				currentTotalPoints = "0";
+			}
+			
+			currentUser.setCurrentPoints(currentTotalPoints);
 			System.out.println("CURRENT TOTAL POINTS: " + currentPoints);
 			
-			setCurrentTotalPoints(currentTotalPoints);
-			setCurrentLevel(currentUser.getCurrentLevel());
+//			setCurrentTotalPoints(currentTotalPoints);
+//			setCurrentLevel(currentUser.getCurrentLevel());
 			
 			setTitle(quizItem.getWorldId());
 			
@@ -161,9 +178,9 @@ public class QuizActivity extends FragmentActivity {
 		}
 	}
 
-	public void setCurrentTotalPoints(int currentTotalPoints) {
-		this.currentTotalPoints = currentTotalPoints;
-	}
+//	public void setCurrentTotalPoints(int currentTotalPoints) {
+//		this.currentTotalPoints = currentTotalPoints;
+//	}
 	
 	public int getCurrentLevelCap(String currentLevel) {
 		int[] levelRange = StaticSortingUtilities.getLevelRange();
@@ -172,17 +189,17 @@ public class QuizActivity extends FragmentActivity {
 		return finalLevelCap;
 	}
 	
-	public int getCurrentTotalPoints() {
-		return currentTotalPoints;
-	}
-	
-	public String getCurrentLevel() {
-		return currentLevel;
-	}
-	
-	public void setCurrentLevel(String currentLevel) {
-		this.currentLevel = currentLevel;
-	}
+//	public int getCurrentTotalPoints() {
+//		return currentTotalPoints;
+//	}
+//	
+//	public String getCurrentLevel() {
+//		return currentLevel;
+//	}
+//	
+//	public void setCurrentLevel(String currentLevel) {
+//		this.currentLevel = currentLevel;
+//	}
 
 	/**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in

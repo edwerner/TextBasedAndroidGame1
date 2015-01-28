@@ -23,43 +23,89 @@
         android:textSize="20sp"
         style="@style/CodeFont"
         android:visibility="gone" >
-    </TextView>
+    </TextView>
     -->
+
+    <TextView
+        android:id="@+id/conclusionTitle"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Item"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/conclusionTitleText"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/conclusionCopyTitle"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Description"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/conclusionCopyText"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
-    <TextView
+    <!--
+         <TextView
         android:id="@+id/conclusionImageUrlText"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
+    -->
+
+    <TextView
+        android:id="@+id/pointsDataTitle"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Points Awarded"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/pointsDataText"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/bonusPointsDataTextTitle"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Total Points"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/bonusPointsDataText"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp" />
+        android:textSize="18dp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,6 +129,7 @@
             android:text="Share on Google+" />
     </LinearLayout>
 
+    <!--
     <TextView
         android:id="@+id/bagItemTitleHeadline1"
         style="@style/CodeFont"
@@ -92,6 +139,7 @@
         android:textSize="20dp"
         android:visibility="gone" >
     </TextView>
+    -->
 
     <ListView
         android:id="@+id/cardListView"

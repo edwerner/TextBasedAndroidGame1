@@ -635,6 +635,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					System.out.println("RESULT_CANCELED");
 				}
 			}
+			getActivity().finish();
 		}// onActivityResult
 
 
@@ -1128,17 +1129,17 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 												+ item.getAnswered());
 
 								final Intent quizIntent = new Intent(context, QuizActivity.class);
-								final String CURRENT_USER_ID = fragmentUser.getUserId();
+//								final String CURRENT_USER_ID = fragmentUser.getUserId();
 								final String QUIZ_ITEM_SID = fragmentUser.getUserSid();
-								final PointsItem currentPointsItem = pointsItemImpl.selectRecordById(CURRENT_USER_ID);
-								if (currentPointsItem != null) {
-									final String currentPoints = currentPointsItem.getPoints();
-									if (currentPoints != null) {
-										fragmentUser.setCurrentPoints(currentPoints);
-									} 
-								}else {
-									fragmentUser.setCurrentPoints("0");
-								}
+//								final PointsItem currentPointsItem = pointsItemImpl.selectRecordById(CURRENT_USER_ID);
+//								if (currentPointsItem != null) {
+//									final String currentPoints = currentPointsItem.getPoints();
+//									if (currentPoints != null) {
+//										fragmentUser.setCurrentPoints(currentPoints);
+//									} 
+//								}else {
+//									fragmentUser.setCurrentPoints("0");
+//								}
 								System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + fragmentUser.getCurrentPoints());
 								quizIntent.putExtra("currentUser", fragmentUser);
 								quizIntent.putExtra("quizItemSid", QUIZ_ITEM_SID);

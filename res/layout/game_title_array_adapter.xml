@@ -33,13 +33,13 @@
             android:textSize="18sp" >
         </TextView>
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/bagItemLevel1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp" >
-        </TextView>
+        </TextView> -->
 
         <TextView
             android:id="@+id/bagItemDescription1"

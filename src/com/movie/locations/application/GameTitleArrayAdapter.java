@@ -53,6 +53,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.bagItemImage1);
 		TextView bagItemTitle = (TextView) rowView.findViewById(R.id.bagItemTitle1);
 		TextView bagItemDesc = (TextView) rowView.findViewById(R.id.bagItemDescription1);
+		
 		String tempPhase = values.get(position).getPhase();
 		String gameTitleText = values.get(position).getTitle();
 		String missingWorldText = " (missing)";

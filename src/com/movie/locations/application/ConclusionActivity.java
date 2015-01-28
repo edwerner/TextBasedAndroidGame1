@@ -208,12 +208,10 @@ public class ConclusionActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_conclusion,
 					container, false);
-			TextView newBagItemTitleText = (TextView) rootView.findViewById(R.id.bagItemTitleHeadline1);
+//			TextView newBagItemTitleText = (TextView) rootView.findViewById(R.id.bagItemTitleHeadline1);
 			TextView conclusionTitleText = (TextView) rootView.findViewById(R.id.conclusionTitleText);
 			TextView conclusionCopyText = (TextView) rootView.findViewById(R.id.conclusionCopyText);
-			TextView conclusionImageUrlText = (TextView) rootView.findViewById(R.id.conclusionImageUrlText);
-			TextView pointsDataText = (TextView) rootView.findViewById(R.id.pointsDataText);
-			TextView bonusPointsDataText = (TextView) rootView.findViewById(R.id.bonusPointsDataText);
+//			TextView conclusionImageUrlText = (TextView) rootView.findViewById(R.id.conclusionImageUrlText);
 //			TextView conclusionCardTitleHeadlineText = (TextView) rootView.findViewById(R.id.conclusionCardTitleHeadline1);
 			ImageView conclusionImage = (ImageView) rootView.findViewById(R.id.conclusionImage);
 //			conclusionTitleText.setText(conclusionTitle);
@@ -244,8 +242,19 @@ public class ConclusionActivity extends ActionBarActivity {
 //			conclusionImageUrlText.setText(conclusionImageUrl);
 			
 			if (conclusionCard.getLevel() != null) {
-				pointsDataText.setText("Points Earned: " + pointValue);
-				bonusPointsDataText.setText("Total Points: " + currentUserPoints);	
+				
+				TextView pointsDataText = (TextView) rootView.findViewById(R.id.pointsDataText);
+				TextView bonusPointsDataText = (TextView) rootView.findViewById(R.id.bonusPointsDataText);
+				TextView pointsDataTitle = (TextView) rootView.findViewById(R.id.pointsDataTitle);
+				TextView bonusPointsDataTextTitle = (TextView) rootView.findViewById(R.id.bonusPointsDataTextTitle);
+				
+				pointsDataText.setVisibility(TextView.VISIBLE);
+				bonusPointsDataText.setVisibility(TextView.VISIBLE);
+				pointsDataTitle.setVisibility(TextView.VISIBLE);
+				bonusPointsDataTextTitle.setVisibility(TextView.VISIBLE);
+				pointsDataText.setText(pointValue);
+				bonusPointsDataText.setText(currentUserPoints);
+				
 			}
 			
 //			if (conclusionCard != null) {

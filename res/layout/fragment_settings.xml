@@ -6,9 +6,28 @@
     tools:context="com.movie.locations.NewsActivity$SettingsFragment" >
 
     <TextView
+        android:id="@+id/settingsTitleTag1"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Settings"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/notificationText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Turn on/off mobile notifications each time you level up."
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/notificationText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Notifications"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -17,36 +36,42 @@
         android:id="@+id/checkboxNotifications1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onCheckboxClicked"
         android:checked="false"
+        android:onClick="onCheckboxClicked"
         android:text="Mobile" />
 
-    <!-- <CheckBox
+    <!--
+         <CheckBox
         android:id="@+id/emailNotifications1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onCheckboxClicked"
         android:checked="false"
-        android:text="Email" /> -->
+        android:text="Email" />
+    -->
 
-<!--     <TextView
+
+    <!--
+         <TextView
         android:id="@+id/updateUserPreferencesButtonText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Notification Preferences"
         android:textSize="20sp"
-        android:textStyle="bold" /> -->
+        android:textStyle="bold" />
+    -->
 
     <Button
         android:id="@+id/updateUserPreferencesButton1"
         style="@style/CodeFont"
-        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/star"
         android:text="Update" />
 
-<!--     <TextView
+    <!--
+         <TextView
         android:id="@+id/settingsTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,6 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/star"
-        android:text="Delete" /> -->
+        android:text="Delete" />
+    -->
 
 </LinearLayout>
