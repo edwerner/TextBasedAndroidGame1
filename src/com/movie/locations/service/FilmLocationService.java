@@ -12,7 +12,8 @@ import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import android.content.Context;
-import com.movie.locations.dao.MovieLocationsImpl;
+
+import com.movie.locations.dao.LocationsImpl;
 import com.movie.locations.domain.FilmLocationDataObject;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.util.CSVFile;
@@ -85,7 +86,7 @@ public class FilmLocationService {
 			System.out.println("OUTPUT LIST LOCATIONS: " + location.getId());
 		}
 		
-		MovieLocationsImpl datasource = new MovieLocationsImpl(context); 
+		LocationsImpl datasource = new LocationsImpl(context); 
 			
 		// create database connection and store
 		// location objects in sqlite database

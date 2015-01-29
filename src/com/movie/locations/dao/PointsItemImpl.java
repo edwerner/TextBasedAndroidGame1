@@ -27,7 +27,7 @@ public class PointsItemImpl {
 	 */
 	public PointsItemImpl(Context context) {
 		dbHelper = new PointsItemSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

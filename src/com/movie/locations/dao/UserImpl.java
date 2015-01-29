@@ -43,7 +43,7 @@ public class UserImpl {
 	 */
 	public UserImpl(Context context) {
 		dbHelper = new UserSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

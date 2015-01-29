@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import com.movie.locations.R;
 import com.movie.locations.dao.BagItemImpl;
-import com.movie.locations.dao.MovieLocationsImpl;
+import com.movie.locations.dao.LocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
@@ -48,7 +48,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	private static ViewPager mViewPager;
-	private MovieLocationsImpl datasource;
+//	private LocationsImpl locationsImpl;
 	private HashMap<String, ArrayList<FilmLocation>> filmMap;
 	private User currentUser;
 	private Context context;
@@ -59,7 +59,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 	private FilmArrayList locationArrayList;
 	private BagItemArrayList bagItemArrayList;
 	private FilmLocation currentLocation;
-	private QuizItemImpl quizitemsource;
+	private QuizItemImpl quizItemImpl;
 	private ArrayList<QuizItem> newQuizList;
 	
 	@Override
@@ -71,13 +71,15 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		Bundle bundle = getIntent().getExtras();
 		
 		// query database for records
-		BagItemImpl bagitemsource = new BagItemImpl(this); // bagItemArrayList
-		ArrayList<BagItem> bagItemList = bagitemsource.selectRecords();
-
+		BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
+		bagItemImpl.open();
+		ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
+		bagItemImpl.close();
+		
 		// set parcelable array list
 		bagItemArrayList = new BagItemArrayList(); 
 		bagItemArrayList.setBagItemArrayList(bagItemList);
-		datasource = new MovieLocationsImpl(this);
+//		locationsImpl = new LocationsImpl(this);
 		locationArrayList = bundle.getParcelable("locationArrayList");
 		locationList = locationArrayList.getFilmList();
 		System.out.println("STARTED INTENT LIST LENGTH: " + locationList.size());
@@ -105,7 +107,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		}
 		for (int i = 0; i < arraylength; i++) {
 			tempList.clear();
-			System.out.println("datasource: " + datasource);
+//			System.out.println("datasource: " + datasource);
 			final String CURRENT_TITLE = worldTitles.get(i);
 			System.out.println("CURRENT_TITLE: " + CURRENT_TITLE);
 			System.out.println("SELECT RECORDS BY TITLE COUNT: " + locationList.size());
@@ -127,8 +129,11 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		quizitemsource = new QuizItemImpl(context);
-		newQuizList = quizitemsource.selectRecords();
+		
+		quizItemImpl = new QuizItemImpl(context);
+		quizItemImpl.open();
+		newQuizList = quizItemImpl.selectRecords();
+		quizItemImpl.close();
 		
 		System.out.println("QUIZ LIST SIZE:" + newQuizList.size());
 	}

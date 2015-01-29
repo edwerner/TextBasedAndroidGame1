@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
+public class LocationsSqliteHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "locations.db";
 	public static final String TABLE_LOCATIONS = "locations";
 	private static final String COLUMN_ID = "_id";
@@ -36,7 +36,7 @@ public class MovieLocationsSqliteHelper extends SQLiteOpenHelper {
 			+ " text, " + COLUMN_FUN_FACTS_TITLE
 			+ " text);";
 
-	public MovieLocationsSqliteHelper(Context context) {
+	public LocationsSqliteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 

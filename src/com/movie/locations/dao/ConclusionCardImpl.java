@@ -29,7 +29,7 @@ public class ConclusionCardImpl {
 	 */
 	public ConclusionCardImpl(Context context) {
 		dbHelper = new ConclusionCardSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

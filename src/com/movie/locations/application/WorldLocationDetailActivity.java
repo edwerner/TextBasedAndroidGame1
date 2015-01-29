@@ -88,9 +88,9 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 	private BagItemArrayList bagItemArrayList;
 	private FilmArrayList locationArrayList;
 	private FilmLocation currentLocation;
-	private QuizItemImpl quizitemsource;
+	private QuizItemImpl quizItemImpl;
 	private QuizItemArrayList localQuizItemArrayList;
-	private UserImpl userSource;
+//	private UserImpl userSource;
 	private IntentFilter filter;
 	private PointsItemImpl pointsItemImpl;
 	private AchievementImpl achievementImpl;
@@ -154,8 +154,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		currentUser = bundle.getParcelable("localUser");
 		
 		// UPDATE USER SCORE/LEVEL
-		userSource = new UserImpl(context);
-		System.out.println("WORLD LOCATION DETAIL CURRENT USER TOTAL POINTS: " + currentUser.getCurrentPoints());
+//		userSource = new UserImpl(context);
+		// System.out.println("WORLD LOCATION DETAIL CURRENT USER TOTAL POINTS: " + currentUser.getCurrentPoints());
 		currentLocation = bundle.getParcelable("currentLocation");
 		title = currentLocation.getTitle();
 		intent.putExtra("quizItemSid", currentUser.getUserSid());
@@ -164,9 +164,12 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 //		userImpl = new UserImpl(context);
 
 		// initialize database connection
-		quizitemsource = new QuizItemImpl(context);
-		newQuizList = quizitemsource.selectRecords();
-		System.out.println("QUIZ LIST SIZE: " + newQuizList.size());
+		quizItemImpl = new QuizItemImpl(context);
+		quizItemImpl.open();
+		newQuizList = quizItemImpl.selectRecords();
+		quizItemImpl.close();
+		
+		// System.out.println("QUIZ LIST SIZE: " + newQuizList.size());
 
 		quizItemService = new QuizItemService();
 		// newQuizList = quizitemsource.selectRecordsByWorldTitle(title);
@@ -183,15 +186,19 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		int currentLevelInt = Integer.parseInt(currentUserLevelString);
 		int nextLevel = currentLevelInt + 1;
 		final String NEXT_ACHIEVEMENT_LEVEL = Integer.toString(nextLevel);
-		levelAchievement = achievementImpl.selectRecordByLevel(NEXT_ACHIEVEMENT_LEVEL);
-		System.out.println("LEVEL ACHIEVEMENT: " + levelAchievement.getLevel());
-		System.out.println("LEVEL ACHIEVEMENT IMAGE URL: " + levelAchievement.getLevel());
 		
-		System.out.println("CURRENT USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
+		achievementImpl.open();
+		levelAchievement = achievementImpl.selectRecordByLevel(NEXT_ACHIEVEMENT_LEVEL);
+		achievementImpl.close();
+		
+		// System.out.println("LEVEL ACHIEVEMENT: " + levelAchievement.getLevel());
+		// System.out.println("LEVEL ACHIEVEMENT IMAGE URL: " + levelAchievement.getLevel());
+		
+		// System.out.println("CURRENT USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
 
 		// set world title
 		setTitle(currentLocation.getTitle());
-		System.out.println("UNIQUE_MAP_IMAGE_URL" + UNIQUE_MAP_IMAGE_URL);
+		// System.out.println("UNIQUE_MAP_IMAGE_URL" + UNIQUE_MAP_IMAGE_URL);
 		dialog = new Dialog(context,android.R.style.Theme_Translucent_NoTitleBar);
 	 	dialog.setContentView(R.layout.replay_level_overlay);
 	 	filter = new IntentFilter();
@@ -208,8 +215,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
     
 	 @Override
 	 public void onResume() {
-		 System.out.println("******* RESUME ********");
-		 registerReceiver(mReceiver, filter);
+		 // System.out.println("******* RESUME ********");
+//		 registerReceiver(mReceiver, filter);
 		 if (locationQuizArrayAdapter != null) {
 			 QuizItem replayQuizItem = null;
 			 boolean answered = true;
@@ -222,14 +229,14 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			 if (answered == true) {
 				 initializeReplayWorld(replayQuizItem);
 			 }
-			 System.out.println("CURRENT USER: " + currentUser);
-			 System.out.println("SRC USER: " + userSource);
-			 if (currentUser != null) {
-				 // RELOAD USER HERE TO UPDATE POINTS
-				 final String CURRENT_USER_ID = currentUser.getUserId();
-				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
-				 System.out.println("ON RESUME USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
-			 }
+//			 // System.out.println("CURRENT USER: " + currentUser);
+//			 // System.out.println("SRC USER: " + userSource);
+//			 if (currentUser != null) {
+//				 // RELOAD USER HERE TO UPDATE POINTS
+//				 final String CURRENT_USER_ID = currentUser.getUserId();
+//				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
+//				 // System.out.println("ON RESUME USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
+//			 }
 		 }
 		 super.onResume();
 	 }
@@ -240,10 +247,10 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 	 	layout.setOnClickListener(new OnClickListener() {
 		 	@Override
 	 		public void onClick(View arg0) {
-		 		System.out.println("CLICKED REPLAY MODAL: " + updatedQuizItem.getAnswered());
+		 		// System.out.println("CLICKED REPLAY MODAL: " + updatedQuizItem.getAnswered());
 			 		if (updatedQuizItem.getAnswered().equals("true")) {
-			 			System.out.println("RESETTING QUIZ ITEM: " + updatedQuizItem.getWorldId());
-			 			System.out.println("CURRENT QUIZ ITEM ID: "+ updatedQuizItem.getQuestionId());
+			 			// System.out.println("RESETTING QUIZ ITEM: " + updatedQuizItem.getWorldId());
+			 			// System.out.println("CURRENT QUIZ ITEM ID: "+ updatedQuizItem.getQuestionId());
 			 			final String updatedQuizItemId = updatedQuizItem.getQuestionId();
 			 			
 			 			// RESET AND PERSIST QUIZ STATE
@@ -264,15 +271,19 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				// update your list
 				Bundle extras = intent.getExtras();
 				QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
-				System.out.println("DATABASE_CHANGED: " + quizArrayList);
+				// System.out.println("DATABASE_CHANGED: " + quizArrayList);
 				newQuizList = quizArrayList.getQuizList();
 				String currentUserId = currentUser.getUserId();
 				String updatedUserPointsString = null;
+
+				pointsItemImpl.open();
+				
 				for (int i = 0; i < newQuizList.size(); i++) {
 					QuizItem tempQuizItem = newQuizList.get(i);
 					if (getTitle().equals(tempQuizItem.getWorldTitle())) {
 						locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
 						locationQuizArrayAdapter.insert(tempQuizItem, 0);
+						
 						final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
 						
 						// UPDATE USER POINTS
@@ -281,24 +292,26 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						
 						if (updatedUserDatabasePointsItem != null) {
 							String databasePoints = updatedUserDatabasePointsItem.getPoints();
-							System.out.println("USER DATABASE POINTS: " + databasePoints);
+							// System.out.println("USER DATABASE POINTS: " + databasePoints);
 							int databasePointsInt = Integer.parseInt(databasePoints);
 							
 							int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
 							updatedUserPointsString = Integer.toString(updatedUserPointsInt);
 							pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
 							
-							System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+							// System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
 						} else {
 							updatedUserPointsString = currentUser.getPoints();
 						}
 					}
 				}
+				
+				pointsItemImpl.close();
 
 				// REDRAW VIEW WITH UPDATED COLLECTION
 				locationQuizArrayAdapter.notifyDataSetChanged();
 				
-			   System.out.println("UPDATED DATA FROM RECEIVER");
+			   // System.out.println("UPDATED DATA FROM RECEIVER");
 			   
 			   unregisterReceiver(this);
 		   }
@@ -317,7 +330,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					resp = params[0];
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("ERROR STACK TRACE");
+					// System.out.println("ERROR STACK TRACE");
 					resp = e.getMessage();
 				}
 				return resp;
@@ -342,7 +355,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				} else {
 					message = "Level data reset.";
 					
-					System.out.println("ANSWERED QUIZ ID: " + result);
+					// System.out.println("ANSWERED QUIZ ID: " + result);
 					quizItemService.resetAnsweredQuestion(result, context);
 				}
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
@@ -502,7 +515,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		private QuizItemArrayList localQuizItemArrayList;
 		private FilmLocation localCurrentLocation;
 		private PointsItemImpl pointsItemImpl;
-		private UserImpl userSource;
+		private UserImpl userImpl;
 		private User fragmentUser;
 		private Achievement levelAchievement;
 		private String title = "title";
@@ -512,7 +525,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 //		private Context context;
 		private String UNIQUE_MAP_IMAGE_URL = "UNIQUE_MAP_IMAGE_URL";
 		private BagItemArrayList bagItemArrayList;
-		private QuizItemImpl quizitemsource;
+		private QuizItemImpl quizItemImpl;
 		private FilmArrayList locationArrayList;
 		private ConclusionCardImpl conclusionCardImpl;
 		
@@ -522,7 +535,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		public void onActivityResult(int requestCode, int resultCode,
 				Intent data) {
 
-			System.out.println("******* RESULT ********");
+			// System.out.println("******* RESULT ********");
 
 			if (requestCode == 1) {
 
@@ -530,13 +543,13 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				
 				if (resultCode == RESULT_OK) {
 					currentQuizItem = data.getExtras().getParcelable("quizItem");
-					System.out.println("RESULT_OK: " + currentQuizItem.getAnswered());
+					// System.out.println("RESULT_OK: " + currentQuizItem.getAnswered());
 					
 					// UPDATE USER POINTS
 					String quizItemPointValue = currentQuizItem.getPointValue();
 					int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
 					
-					System.out.println("POINT VALUE: " + quizItemPointValue);
+					// System.out.println("POINT VALUE: " + quizItemPointValue);
 					String currentUserId = fragmentUser.getUserId();
 					
 					PointsItem newPointsItem = new PointsItem();
@@ -544,13 +557,15 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					newPointsItem.setPointsUserId(currentUserId);
 					newPointsItem.setPoints(quizItemPointValue);
 					
-					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
 					pointsItemImpl.open();
+					quizItemImpl.open();
+					
+					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
 //					User localDatabaseUser = userSource.selectRecordById(currentUserId);
 					
 					if (updatedUserDatabasePointsItem != null) {
 						String databasePoints = updatedUserDatabasePointsItem.getPoints();
-						System.out.println("USER DATABASE POINTS: " + databasePoints);
+						// System.out.println("USER DATABASE POINTS: " + databasePoints);
 						int databasePointsInt = Integer.parseInt(databasePoints);
 						int updatedUserPointsInt = quizItemPointValueInt + databasePointsInt;
 						updatedUserPointsString = Integer.toString(updatedUserPointsInt);
@@ -563,16 +578,16 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
 						final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
 						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
-						System.out.println("CURRENT LEVEL **: " + currentLevel);
-						System.out.println("CURRENT LEVEL FINAL **: " + FINAL_CURRENT_USER_LEVEL_INT);
-						System.out.println("RESULT MOBILE NOTIFICATIONS: " + fragmentUser.getMobileNotifications());
+						// System.out.println("CURRENT LEVEL **: " + currentLevel);
+						// System.out.println("CURRENT LEVEL FINAL **: " + FINAL_CURRENT_USER_LEVEL_INT);
+						// System.out.println("RESULT MOBILE NOTIFICATIONS: " + fragmentUser.getMobileNotifications());
 						
 //						final String FINAL_MOBILE_NOTIFICATIONS = currentUser.getEmailNotifications();
 ////						FINAL_MOBILE_NOTIFICATIONS.equals("true")
-//						System.out.println("CURRENT USER LEVEL UPDATEDMOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
+//						// System.out.println("CURRENT USER LEVEL UPDATEDMOBILE NOTIFICATIONS FINAL: " + FINAL_MOBILE_NOTIFICATIONS);
 						
 						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
-							System.out.println("TIME TO LEVEL UP");
+							// System.out.println("TIME TO LEVEL UP");
 							final String currentLevelString = Integer.toString(currentLevel);
 							levelUpCurrentUser(currentUserId, currentLevelString);
 						}
@@ -584,10 +599,10 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					
 					
 					// update database record
-					quizitemsource.updateRecordAnswered(
+					quizItemImpl.updateRecordAnswered(
 							currentQuizItem.getQuestionId(),
 							currentQuizItem.getAnswered());
-					quizitemsource.updateRecordCorrectAnswerIndex(
+					quizItemImpl.updateRecordCorrectAnswerIndex(
 							currentQuizItem.getQuestionId(),
 							currentQuizItem.getCorrectAnswerIndex());
 
@@ -622,7 +637,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					}
 					
 					pointsItemImpl.close();
-					quizitemsource.close();
+					quizItemImpl.close();
 					
 					generateConclusionCard(currentQuizItem, updatedUserPointsString);
 					locationQuizArrayAdapter.notifyDataSetChanged();
@@ -632,7 +647,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					currentQuizItem = null;
 
 					// Write your code if there's no result
-					System.out.println("RESULT_CANCELED");
+					// System.out.println("RESULT_CANCELED");
 				}
 			}
 			getActivity().finish();
@@ -640,10 +655,12 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 
 		private void levelUpCurrentUser(String currentUserId, String currentLevelString) {
-			System.out.println("USER SOURCE: " + userSource);
-			if (userSource != null) {
-				userSource.updateCurrentUserLevel(currentUserId, currentLevelString);
-				System.out.println("CURRENT USER LEVEL UPDATED");
+			// System.out.println("USER SOURCE: " + userSource);
+			if (userImpl != null) {
+				userImpl.open();
+				userImpl.updateCurrentUserLevel(currentUserId, currentLevelString);
+				userImpl.close();
+				// System.out.println("CURRENT USER LEVEL UPDATED");
 			}
 			
 //			// SEND LEVEL UP NOTIFICATION
@@ -676,8 +693,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 						.setContentTitle("Duchamp's Puzzle")
 						.setContentText(msg)
 						.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
-//				System.out.println("TITLE: " + title);
-//				System.out.println("COPY: " + copy);
+//				// System.out.println("TITLE: " + title);
+//				// System.out.println("COPY: " + copy);
 
 				// create and start achievement activity
 				mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -693,7 +710,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				
 //				String ACHIEVEMENT_IMAGE_URL = "http://mymoneybox.mfsa.com.mt/Files/Blue-SRT-4.png";
 				achievementIntent.putExtra("achievementImageUrl", achievementImageUrl);
-				System.out.println("achievementImageUrl: " + achievementImageUrl);
+				// System.out.println("achievementImageUrl: " + achievementImageUrl);
 
 				PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -704,7 +721,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		
 		// @Override
 		// public void onResume() {
-		// System.out.println("******* RESUME ********");
+		// // System.out.println("******* RESUME ********");
 		// // View rootView = getView();
 		// // View rootView = inflater.inflate(R.layout.fragment_film_detail,
 		// // container, false);
@@ -720,7 +737,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 		// }
 		private void generateConclusionCard(QuizItem quizItem, String currentUserPoints) {
 			
-			System.out.println("GENERATE QUIZ POINTS: " + quizItem.getQuestionId());
+			// System.out.println("GENERATE QUIZ POINTS: " + quizItem.getQuestionId());
 			
 			Intent achievementIntent = new Intent(context, ConclusionActivity.class);
 			achievementIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -737,7 +754,11 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			// TODO: GET THIS CARD DATA FROM GCM MESSAGE
 //			ConclusionCard conclusionCard = new ConclucsionCard();
 			final String questionId = quizItem.getQuestionId();
+			
+			conclusionCardImpl.open();
 			ConclusionCard conclusionCard = conclusionCardImpl.selectRecordById(questionId);
+			conclusionCardImpl.close();
+			
 			conclusionCard.setId(questionId);
 			conclusionCard.setTitle(conclusionCard.getTitle());
 			conclusionCard.setCopy(conclusionCard.getCopy());
@@ -746,7 +767,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			
 			achievementIntent.putExtra("conclusionCard", conclusionCard);
 			achievementIntent.putExtra("currentUserPoints", currentUserPoints);
-//			System.out.println("CURRENT USER POINTS: " + fragmentUser.getPoints());
+//			// System.out.println("CURRENT USER POINTS: " + fragmentUser.getPoints());
 			achievementIntent.putExtra("pointValue", quizItem.getPointValue());
 //			achievementIntent.putExtra("bagItemArrayList", bagItemArrayList);
 			startActivity(achievementIntent);
@@ -778,10 +799,10 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
 			locationArrayList = getArguments().getParcelable("locationArrayList");
 			final String FINAL_USER_MOBILE_NOTIFICATIONS = fragmentUser.getMobileNotifications();
-			System.out.println("FRAGMENT USER MOBILE NOTIFICATIONS: " + FINAL_USER_MOBILE_NOTIFICATIONS);
+			// System.out.println("FRAGMENT USER MOBILE NOTIFICATIONS: " + FINAL_USER_MOBILE_NOTIFICATIONS);
 			pointsItemImpl = new PointsItemImpl(context);
-			quizitemsource = new QuizItemImpl(context);
-			userSource = new UserImpl(context);
+			quizItemImpl = new QuizItemImpl(context);
+			userImpl = new UserImpl(context);
 			
 			localQuizItemArrayList = getArguments().getParcelable(
 					"localQuizItemArrayList");
@@ -870,12 +891,12 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 				titleTagText2.setText("Game Item");
 				titleText2.setText(localCurrentLocation.getFunFactsTitle());
-				System.out.println("Title: " + localCurrentLocation.getTitle());
+				// System.out.println("Title: " + localCurrentLocation.getTitle());
 
 				locationsTagText2.setText("Random Fun Fact");
 				locationsText2.setText(localCurrentLocation.getFunFacts());
-				System.out.println("Locations: "
-						+ localCurrentLocation.getLocations());
+				// System.out.println("Locations: "
+//						+ localCurrentLocation.getLocations());
 
 				break;
 
@@ -892,8 +913,8 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 				// panelTitle.setText(filmLocationsText);
 
-				System.out.println("Fun facts: "
-						+ localCurrentLocation.getFunFacts());
+				// System.out.println("Fun facts: "
+//						+ localCurrentLocation.getFunFacts());
 
 				if (localCurrentLocation.getLocations() != null) {
 					String formattedLocation = removeParenthesis(location);
@@ -995,7 +1016,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				//
 				// titleTagText2.setText("Title");
 				// titleText2.setText(title);
-				// System.out.println("Title: " + title);
+				// // System.out.println("Title: " + title);
 				//
 				//
 				// // <!-- Put listview here -->
@@ -1067,7 +1088,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					listItemImageTiles[counter] = location
 							.getStaticMapImageUrl();
 
-					System.out.println("FINAL LOCATION LIST COUNT: " + counter);
+					// System.out.println("FINAL LOCATION LIST COUNT: " + counter);
 					counter++;
 				}
 
@@ -1078,27 +1099,27 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				boolean answered = true;
 				QuizItem replayQuizItem = null;
 				for (QuizItem quizItem : newQuizList) {
-					System.out.println("LOCATION TITLE 1:" + localCurrentLocation.getTitle());
-					System.out.println("LOCATION TITLE 2:" + quizItem.getWorldTitle());
-					System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
+					// System.out.println("LOCATION TITLE 1:" + localCurrentLocation.getTitle());
+					// System.out.println("LOCATION TITLE 2:" + quizItem.getWorldTitle());
+					// System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
 					if (quizItem.getWorldTitle().equals(localCurrentLocation.getTitle())) {
-						System.out.println("TITLES EQUAL");
+						// System.out.println("TITLES EQUAL");
 						finalQuizList.add(quizItem);
-//						System.out.println("QUIZ ITEM GET ANSWERED:" + quizItem.getAnswered());
+//						// System.out.println("QUIZ ITEM GET ANSWERED:" + quizItem.getAnswered());
 						if (quizItem.getAnswered().equals("FALSE")) {
 							answered = false;
 						}
 						replayQuizItem = quizItem;
 					}
 				}
-				System.out.println("FINAL QUIZ LIST LENGTH: " + finalQuizList.size());
+				// System.out.println("FINAL QUIZ LIST LENGTH: " + finalQuizList.size());
 				if (answered == true) {
-					System.out.println("QUIZ ITEM ANSWERED: " + replayQuizItem.getAnswered());
+					// System.out.println("QUIZ ITEM ANSWERED: " + replayQuizItem.getAnswered());
 					initializeReplayWorld(replayQuizItem);
 				}
 
 				final Intent intent = getActivity().getIntent();
-				System.out.println("FINAL QUIZ LIST SIZE: " + finalQuizList.size());
+				// System.out.println("FINAL QUIZ LIST SIZE: " + finalQuizList.size());
 				// create new location quiz array adapter
 				locationQuizArrayAdapter = new LocationQuizArrayAdapter(
 						getActivity(), context, intent, finalQuizList);
@@ -1110,9 +1131,9 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				locationQuizArrayAdapter
 						.setListItemImageTiles(listItemImageTiles);
 
-				System.out.println("LOGGING locationQuizArrayAdapter: "
-						+ locationQuizArrayAdapter);
-				System.out.println("LOGGING locationsList: " + locationsList);
+				// System.out.println("LOGGING locationQuizArrayAdapter: "
+//						+ locationQuizArrayAdapter);
+				// System.out.println("LOGGING locationsList: " + locationsList);
 				
 				locationsList.setAdapter(locationQuizArrayAdapter);
 				
@@ -1140,7 +1161,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 //								}else {
 //									fragmentUser.setCurrentPoints("0");
 //								}
-								System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + fragmentUser.getCurrentPoints());
+								// System.out.println("QUIZ ITEM PARCEL CURRENT POINTS: " + fragmentUser.getCurrentPoints());
 								quizIntent.putExtra("currentUser", fragmentUser);
 								quizIntent.putExtra("quizItemSid", QUIZ_ITEM_SID);
 								quizIntent.putExtra("bagItemArrayList", bagItemArrayList);

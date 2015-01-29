@@ -116,11 +116,13 @@ public class QuizItemService {
 	}
 	
 	public void resetAnsweredQuestion(String result, Context context) {
-		QuizItemImpl datasource = new QuizItemImpl(context);
-		datasource.updateRecordAnswered(result, "FALSE");
 		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		QuizItemImpl datasource = new QuizItemImpl(context);
+		datasource.open();
+		datasource.updateRecordAnswered(result, "FALSE");
 		ArrayList<QuizItem> currentTitleLocations = datasource.selectRecords();
+		datasource.close();
 		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
 		tempQuizItemArrayList.setQuizList(currentTitleLocations);
 		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);

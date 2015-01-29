@@ -9,9 +9,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-public class MovieLocationsImpl {
+public class LocationsImpl {
 
-	private MovieLocationsSqliteHelper dbHelper;
+	private LocationsSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private final static String COLUMN_TABLE = "locations"; // name of table
 	private final static String COLUMN_SID = "_sid";
@@ -33,9 +33,9 @@ public class MovieLocationsImpl {
 	 * 
 	 * @param context
 	 */
-	public MovieLocationsImpl(Context context) {
-		dbHelper = new MovieLocationsSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+	public LocationsImpl(Context context) {
+		dbHelper = new LocationsSqliteHelper(context);
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {
@@ -64,9 +64,9 @@ public class MovieLocationsImpl {
 		values.put(COLUMN_FUN_FACTS_TITLE, location.getFunFactsTitle());
 
 		long insertId = database.insert(
-				MovieLocationsSqliteHelper.TABLE_LOCATIONS, null, values);
+				LocationsSqliteHelper.TABLE_LOCATIONS, null, values);
 		Cursor cursor = database.query(
-				MovieLocationsSqliteHelper.TABLE_LOCATIONS, allColumns,
+				LocationsSqliteHelper.TABLE_LOCATIONS, allColumns,
 				COLUMN_ID + " = " + insertId, null, null, null, null);
 
 		FilmLocation locationCursor = null;

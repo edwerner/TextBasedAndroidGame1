@@ -120,8 +120,10 @@ public class QuizActivity extends FragmentActivity {
 //			currentTotalPoints = Integer.parseInt(currentPoints) + Integer.parseInt(currentBonusPoints);
 			
 			pointsItemImpl = new PointsItemImpl(context);
+			pointsItemImpl.open();
 			PointsItem currentPointsItem = pointsItemImpl.selectRecordById(currentUserId);
-
+			pointsItemImpl.close();
+			
 			if (currentPointsItem != null) {
 				final String currentPoints = currentPointsItem.getPoints();
 				if (currentPoints != null) {

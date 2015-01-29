@@ -32,7 +32,7 @@ public class GameTitleImpl {
 	 */
 	public GameTitleImpl(Context context) {
 		dbHelper = new GameTitleSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

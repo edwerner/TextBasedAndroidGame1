@@ -5,7 +5,7 @@ import com.movie.locations.R;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.GameTitleImpl;
-import com.movie.locations.dao.MovieLocationsImpl;
+import com.movie.locations.dao.LocationsImpl;
 import com.movie.locations.dao.NewsItemImpl;
 import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
@@ -69,14 +69,7 @@ public class NewsActivity extends ActionBarActivity {
 	private FragmentTransaction ft;
 	private Intent intent;
 	private Context context;
-	private ConclusionCardImpl conclusionCardImpl;
-	private MovieLocationsImpl datasource;
-	private ArrayList<ConclusionCard> cardList;
-	private ConclusionCardArrayAdapter conclusionCardAdapter;
-	private BagItemImpl bagItemImpl;
-	private UserImpl userSource;
-	private PointsItemImpl pointsItemImpl;
-	private ArrayList<BagItem> bagItemList;
+	private UserImpl userImpl;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +79,21 @@ public class NewsActivity extends ActionBarActivity {
 		context = this;
 
 //		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction().add(R.id.content_frame, new NewsFragment()).commit();
-			Bundle bundle = getIntent().getExtras();
-			localUser = bundle.getParcelable("localUser");
-			System.out.println("NEWS ACTIVITY LOCAL USER PARCEL CURRENT POINTS: " + localUser.getCurrentPoints());
 			intent = getIntent();
+			Bundle bundle = intent.getExtras();
+			localUser = bundle.getParcelable("localUser");
+			// System.out.println("NEWS ACTIVITY LOCAL USER PARCEL CURRENT POINTS: " + localUser.getCurrentPoints());
+
+			Fragment locationsFragment = new FilmLocationsFragment();
+			Bundle locationsBundle = new Bundle();
+			locationsBundle.putParcelable("localUser", localUser);
+			locationsFragment.setArguments(locationsBundle);
+//			ft.replace(R.id.content_frame, locationsFragment);
+			
+			getSupportFragmentManager().beginTransaction().add(R.id.content_frame, locationsFragment).commit();
+
+			
+			userImpl = new UserImpl(context);
 //		}
 		
 		
@@ -174,52 +177,16 @@ public class NewsActivity extends ActionBarActivity {
 //		}
 		
 		if (localUser != null) {
-			System.out.println("WORLD COUNT NEWS ACTIVITY" + localUser.getWorldCount());
-			System.out.println("WORLD COUNT");
+			// System.out.println("WORLD COUNT NEWS ACTIVITY" + localUser.getWorldCount());
+			// System.out.println("WORLD COUNT");
 			if (localUser.getWorldCount().equals("1")) {
 				// display help fragment
 				selectItem(5);
-//				System.out.println("CURRENT LEVEL: " + localUser.getCurrentLevel());
+//				// System.out.println("CURRENT LEVEL: " + localUser.getCurrentLevel());
 			}
 		} else {
 			selectItem(0);
 		}
-		userSource = new UserImpl(this);
-		pointsItemImpl = new PointsItemImpl(this);
-		final String FINAL_USER_ID = localUser.getUserId();
-		final String FINAL_USER_CURRENT_LEVEL = localUser.getCurrentLevel();
-//		final String FINAL_USER_POINTS = localUser.getCurrentPoints();
-		final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
-		final String FINAL_USER_POINTS;
-		if (FINAL_USER_POINTS_ITEM != null) {
-			FINAL_USER_POINTS = FINAL_USER_POINTS_ITEM.getPoints();
-			System.out.println("FINAL_USER_POINTS: " + FINAL_USER_POINTS);
-			localUser.setCurrentPoints(FINAL_USER_POINTS);
-		} else {
-			FINAL_USER_POINTS = "0";
-			localUser.setCurrentPoints(FINAL_USER_POINTS);
-		}
-		
-		final String FINAL_USER_WORLD_COUNT = localUser.getWorldCount();
-		userSource = new UserImpl(this);
-		userSource.updateWorldCount(FINAL_USER_ID, FINAL_USER_WORLD_COUNT);
-		System.out.println("WORLD COUNT LOGGING: " + FINAL_USER_WORLD_COUNT);
-		userSource.updateCurrentUserLevel(FINAL_USER_ID, FINAL_USER_CURRENT_LEVEL);
-		datasource = new MovieLocationsImpl(this);
-		conclusionCardImpl = new ConclusionCardImpl(this);
-		cardList = conclusionCardImpl.selectRecords();
-
-		// DEFAULTS TO NEWS PAGE
-		bagItemImpl = new BagItemImpl(this);
-
-		// BAG ITEM NEWS ITEM
-		bagItemList = bagItemImpl.selectRecords();
-		System.out.println("BAG ITEM LIST SIZE: " + bagItemList.size());
-		ArrayList<FilmLocation> tempLocationList = datasource.selectRecords();
-		System.out.println("START NEWS ACTIVITY LOCATION LIST LENGTH: " + tempLocationList.size());
-//		FilmArrayList tempLocationArrayList = new FilmArrayList();
-//		tempLocationArrayList.setFilmList(tempLocationList);
-//		setUpdatedNewsData(tempLocationArrayList);
 	}
 
     @Override
@@ -236,7 +203,7 @@ public class NewsActivity extends ActionBarActivity {
         int id = view.getId();
 		if (id == R.id.checkboxNotifications1) {
 			if (checked) {
-				System.out.println("Mobile notifications checked");
+				// System.out.println("Mobile notifications checked");
 				localUser.setMobileNotifications("true");
 			} else {
 				localUser.setMobileNotifications("false");
@@ -301,28 +268,28 @@ public class NewsActivity extends ActionBarActivity {
 		}
 	}
 
-	@Override
-	public void onResume() {
-		System.out.println("******* NEWS RESUME ********");
-		super.onResume();
-		
-//		System.out.println("CONCLUSION CARD EMPTY:" + conclusionCardAdapter.isEmpty());
-		if (conclusionCardAdapter != null) {
-			cardList = conclusionCardImpl.selectRecords();
-			System.out.println("CONCLUSION CARD COUNT:" + cardList.size());
-			conclusionCardAdapter.notifyDataSetChanged();	
-		}
-		
-		if (localUser != null) {
-			localUser = userSource.selectRecordById(localUser.getUserId());
-		}
-		
-//		quizItemList = quizItemImpl.selectRecords();
-		cardList = conclusionCardImpl.selectRecords();
-
-		// BAG ITEM NEWS ITEM
-		bagItemList = bagItemImpl.selectRecords();
-	}
+//	@Override
+//	public void onResume() {
+//		// System.out.println("******* NEWS RESUME ********");
+//		super.onResume();
+//		
+////		// System.out.println("CONCLUSION CARD EMPTY:" + conclusionCardAdapter.isEmpty());
+//		if (conclusionCardAdapter != null) {
+//			cardList = conclusionCardImpl.selectRecords();
+//			// System.out.println("CONCLUSION CARD COUNT:" + cardList.size());
+//			conclusionCardAdapter.notifyDataSetChanged();	
+//		}
+//		
+//		if (localUser != null) {
+//			localUser = userSource.selectRecordById(localUser.getUserId());
+//		}
+//		
+////		quizItemList = quizItemImpl.selectRecords();
+//		cardList = conclusionCardImpl.selectRecords();
+//
+//		// BAG ITEM NEWS ITEM
+//		bagItemList = bagItemImpl.selectRecords();
+//	}
 	 
 	private void selectItem(int position) {
 
@@ -375,7 +342,7 @@ public class NewsActivity extends ActionBarActivity {
 		}
 		ft.commit();
 
-		System.out.println("nav item " + position + " clicked");
+		// System.out.println("nav item " + position + " clicked");
 	}
 
 	@Override
@@ -425,25 +392,32 @@ public class NewsActivity extends ActionBarActivity {
 //					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
 
 					String WORLD_TITLE = "BAG_ITEM_TITLE";
+					
+					gameTitleImpl.open();
 					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
+					gameTitleImpl.close();
 					
 					int counter = 0;
 					for (GameTitle tempTitle : gameTitleList) {
 						counter++;
-						System.out.println("CARD DATABASE TITLE COUNTER: " + counter);
+						// System.out.println("CARD DATABASE TITLE COUNTER: " + counter);
 					}
 					final Context bagContext = getActivity().getApplicationContext();
+					
 					bagItemImpl = new BagItemImpl(bagContext);
+					bagItemImpl.open();
 					bagItemList = bagItemImpl.selectRecords();
-					System.out.println("REFRESHED DATA");
+					bagItemImpl.close();
+					
+					// System.out.println("REFRESHED DATA");
 					
 					// sort the list
 					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
 					Collections.sort(bagItemList, StaticSortingUtilities.BAG_ITEMS_ALPHABETICAL_ORDER);
 					
 					// ITERATE THROUGH NODES AND UPDATE NON-MISSING STATES
-					System.out.println("GAME TITLE LENGTH: " + gameTitleList.size());
-					System.out.println("BAG ITEM LENGTH: " + bagItemList.size());
+					// System.out.println("GAME TITLE LENGTH: " + gameTitleList.size());
+					// System.out.println("BAG ITEM LENGTH: " + bagItemList.size());
 					
 //					if (gameTitleList.size() > 0) {
 //						if (bagItemList.size() > 0) {
@@ -452,7 +426,7 @@ public class NewsActivity extends ActionBarActivity {
 //								BagItem existingBagItem = bagItemList.get(i);
 //								tempTitle.setPhase("EXISTS");
 //								String tempImageUrl = existingBagItem.getItemId();
-//								System.out.println("CURRENT BAG ITEM URL: " + tempImageUrl);
+//								// System.out.println("CURRENT BAG ITEM URL: " + tempImageUrl);
 //								tempTitle.setImageUrl(tempImageUrl);
 //								tempTitle.setLevel(existingBagItem.getLevel());
 //								gameTitleList.set(i, tempTitle);
@@ -465,22 +439,22 @@ public class NewsActivity extends ActionBarActivity {
 								GameTitle tempTitle = gameTitleList.get(i);
 								String currentTitleString = tempTitle.getTitle();
 //								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-//								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
-								System.out.println("TEMP TITLE ID: " + tempTitle.getId());
+//								// System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
+								// System.out.println("TEMP TITLE ID: " + tempTitle.getId());
 								BagItem existingBagItem = bagItemList.get(i);
 								String currentCardTitle = existingBagItem.getItemTitle();
-								System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
-								System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
+								// System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
+								// System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
 								if (currentTitleString.equals(currentCardTitle)) {
-									System.out.println("CARD EXISTS");
+									// System.out.println("CARD EXISTS");
 									tempTitle.setPhase("EXISTS");
 									String tempImageUrl = existingBagItem.getImageUrl();
-									System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
+									// System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
 									tempTitle.setImageUrl(tempImageUrl);
 									tempTitle.setLevel(existingBagItem.getLevel());
 									tempTitle.setDescription(existingBagItem.getDescription());
 								} else {
-									System.out.println("CARD DOESN'T EXIST");
+									// System.out.println("CARD DOESN'T EXIST");
 									tempTitle.setPhase("MISSING");
 								}
 								gameTitleList.set(i, tempTitle);
@@ -511,17 +485,25 @@ public class NewsActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_conclusion_card, container, false);
 
 					final Context cardContext = getActivity().getApplicationContext();
+					
 					ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
+					conclusionCardImpl.open();
 					cardList = conclusionCardImpl.selectRecords();
+					conclusionCardImpl.close();
+					
 					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreConclusionCardDataListView1);
 					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
 					String CARD_TITLE = "CARD_TITLE";
+					
+					gameTitleImpl.open();
 					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(CARD_TITLE);
+					gameTitleImpl.close();
+					
 					for (GameTitle tempTitle : gameTitleList) {
-						System.out.println("CARD DATABASE TITLE: " + tempTitle.getTitle());
+						// System.out.println("CARD DATABASE TITLE: " + tempTitle.getTitle());
 					}
-					System.out.println("REFRESHED DATA");
+					// System.out.println("REFRESHED DATA");
 
 					final Context quizContext = getActivity().getApplicationContext();
 					QuizItemImpl quizItemImpl = new QuizItemImpl(quizContext);
@@ -530,26 +512,26 @@ public class NewsActivity extends ActionBarActivity {
 					Collections.sort(cardList, StaticSortingUtilities.CARD_TITLES_ALPHABETICAL_ORDER);
 					
 
-					System.out.println("CARD TITLES LENGTH: " + gameTitleList.size());
+					// System.out.println("CARD TITLES LENGTH: " + gameTitleList.size());
 					if (gameTitleList.size() > 0) {
 						if (cardList.size() > 0) {
 							for (int i = 0; i < cardList.size(); i++) {
 								GameTitle tempTitle = gameTitleList.get(i);
 								String currentTitleString = tempTitle.getTitle();
 //								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-								System.out.println("TEMP QUIZ ITEM: " + tempTitle.getId());
-//								System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
-								System.out.println("TEMP TITLE ID: " + tempTitle.getId());
+								// System.out.println("TEMP QUIZ ITEM: " + tempTitle.getId());
+//								// System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
+								// System.out.println("TEMP TITLE ID: " + tempTitle.getId());
 								ConclusionCard existingCard = cardList.get(i);
 								String currentCardTitle = existingCard.getTitle();
-								System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
-								System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
+								// System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
+								// System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
 								if (currentTitleString.equals(currentCardTitle)) {
 									// SET THE IMAGE
-									System.out.println("CARD EXISTS");
+									// System.out.println("CARD EXISTS");
 									tempTitle.setPhase("EXISTS");
 									String tempImageUrl = existingCard.getImageUrl();
-									System.out.println("TEMP IMAGE URL*: " + tempImageUrl);
+									// System.out.println("TEMP IMAGE URL*: " + tempImageUrl);
 									final String finalImageUrl = "assets://" + tempImageUrl + ".jpg";
 									tempTitle.setImageUrl(finalImageUrl);
 									tempTitle.setLevel(existingCard.getLevel());
@@ -572,219 +554,11 @@ public class NewsActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-		
-	// /**
-	// * A placeholder fragment containing a simple view.
-	// */
-	public class NewsFragment extends Fragment {
-		
-		private ArrayList<NewsItem> newsUpdateList;
-		private String QUIZ_ITEM_NEWS_ITEM_IMAGE_URL = "http://www.phonandroid.com/forum/download/file.php?avatar=218224_1342902645.jpg";
-		
-		public NewsFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_news, container, false);
-//			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreNewsItemDataListView1);
-			final Context context = getActivity().getApplicationContext();
-			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-			String NEWS_ITEM_TITLE = "NEWS_ITEM_TITLE";
-			final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(NEWS_ITEM_TITLE);
-			for (GameTitle tempTitle : gameTitleList) {
-				System.out.println("CARD DATABASE TITLE: " + tempTitle.getTitle());
-			}
-			System.out.println("REFRESHED DATA");
-			NewsItemImpl newsItemImpl = new NewsItemImpl(context);
-			ArrayList<NewsItem> tempNewsItemList = newsItemImpl.selectRecords();
-			
-			// sort the list
-			Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
-			Collections.sort(tempNewsItemList, StaticSortingUtilities.NEWS_ITEM_TITLES_ALPHABETICAL_ORDER);
-			
-			if (gameTitleList.size() > 0) {				
-				// ITERATE THROUGH COLLECTION AND GATHER
-				// ALL TITLES AND HIDE EXISTING TITLE RESTORE
-				for (int i = 0; i < tempNewsItemList.size(); i++) {
-					GameTitle tempTitle = gameTitleList.get(i);
-					String currentTitleString = tempTitle.getTitle();
-					NewsItem existingBagItem = tempNewsItemList.get(i);
-					String currentCardTitle = existingBagItem.getTitle();
-					if (!currentTitleString.equals(currentCardTitle)) {
-						System.out.println("LOGGING CURRENT TITLE TYPE: " + tempTitle.getType() + " " + i);
-						System.out.println("LOGGING NEWS ITEM TITLE TYPE: " + existingBagItem.getNewsType() + " " + i);
-						// CARD IS MISSING
-						tempTitle.setPhase("MISSING");
-					} else {
-						// SET THE IMAGE
-						tempTitle.setPhase("EXISTS");
-						String tempImageUrl = existingBagItem.getImageUrl();
-						tempTitle.setImageUrl(tempImageUrl);
-						tempTitle.setLevel("1");
-					}
-					gameTitleList.set(i, tempTitle);
-				}	
-			}
-			final Intent intent = getActivity().getIntent();
-			
-//			ImageView gameImage1 = (ImageView) getActivity().findViewById(R.id.gameWorldsImage1);
-			ImageView gameImage2 = (ImageView) rootView.findViewById(R.id.gameWorldsImage2);
-			
-			gameImage2.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-//			gameImage2.setImageAlpha(90);
-			
-//			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
-//			if (gameTitleList.size() > 0) {
-//				restoreListView.setAdapter(levelRestoreListAdapter);
-//			}
-//			ListView commentView = (ListView) rootView.findViewById(R.id.commentView);
-//			newsUpdateList = new ArrayList<NewsItem>();
-//			NewsItemAdapter newsItemAdapter = new NewsItemAdapter();
-			
-//			BagItem latestBagItem = null;
-//			final Context bagContext = getActivity().getApplicationContext();
-//			BagItemImpl bagItemImpl = new BagItemImpl(bagContext);
-//			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
-//			if (bagItemList.size() > 0) {
-//				int latestBagItemIndex = bagItemList.size() - 1;
-//				latestBagItem = bagItemList.get(latestBagItemIndex);
-//				newsItemAdapter.setLatestBagItem(latestBagItem);	
-//			}
-//			// CONCLUSION CARD NEWS ITEM
-//			final Context cardContext = getActivity().getApplicationContext();
-//			ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
-//			ArrayList<ConclusionCard> localConclusionCardList = conclusionCardImpl.selectRecords();
-//			ConclusionCard latestConclusionCard = null;
-//			if (localConclusionCardList.size() > 0) {
-//				int latestConclusionCardIndex = localConclusionCardList.size() - 1;
-//				latestConclusionCard = localConclusionCardList.get(latestConclusionCardIndex);
-//				newsItemAdapter.setLatestConclusionCard(latestConclusionCard);	
-//			}
-//			// QUIZ ITEM NEWS ITEM
-//			QuizItemImpl quizItemImpl = new QuizItemImpl(context);
-//			ArrayList<QuizItem> quizItemList = quizItemImpl.selectRecords();
-//			NewsItem bagItemNewsItem = new NewsItem();
-//			bagItemNewsItem.setNewsType("BagItem");
-//			
-//			if (latestBagItem != null) {
-//				String bagItemNewsItemTitle = latestBagItem.getItemTitle();
-//				String bagItemNewsItemText = latestBagItem.getDescription();
-//				String bagItemNewsItemImageUrl = latestBagItem.getImageUrl();
-//				bagItemNewsItem.setTitle(bagItemNewsItemTitle);
-//				bagItemNewsItem.setText(bagItemNewsItemText);
-//				bagItemNewsItem.setImageUrl(bagItemNewsItemImageUrl);	
-//			}
-//			
-//			// CONCLUSION CARD NEWS ITEM
-//			NewsItem conclusionCardNewsItem = new NewsItem();
-//			conclusionCardNewsItem.setNewsType("ConclusionCard");
-//			
-//			if (latestConclusionCard != null) {
-//				String conclusionCardNewsItemTitle = latestConclusionCard.getTitle();
-//				String conclusionCardNewsItemText = latestConclusionCard.getCopy();
-//				String conclusionCardImageUrl = latestConclusionCard.getImageUrl();
-//				conclusionCardNewsItem.setTitle(conclusionCardNewsItemTitle);
-//				conclusionCardNewsItem.setText(conclusionCardNewsItemText);
-//				conclusionCardNewsItem.setImageUrl(conclusionCardImageUrl);
-//			}
-//			
-//			// QUIZ ITEM NEWS ITEM
-//			NewsItem quizItemNewsItem = new NewsItem();
-//			quizItemNewsItem.setNewsType("QuizItem");
-//
-//			// ITERATE THROUGH BAG ITEMS AND
-//			// GET THE CORRECT ANSWER INDEX OFF THE
-//			// LATEST CORRECTLY ANSWERED QUIZ ITEM
-//			
-//			ArrayList<QuizItem> correctlyAnsweredQuizItems = new ArrayList<QuizItem>(); 
-//			for (QuizItem item : quizItemList) {
-//				if (item.getAnswered().equals("true")) {
-//					correctlyAnsweredQuizItems.add(item);
-//				}
-//			}
-//			int correctlyAnsweredQuizItemIndex = correctlyAnsweredQuizItems.size() - 1;
-//			QuizItem lastCorrectlyAnsweredQuizItem = null;
-//			String quizItemNewsItemTitle = null;
-//			NewsItem locationNewsItem = null;
-//			if (correctlyAnsweredQuizItems.size() > 0) {
-//				lastCorrectlyAnsweredQuizItem = correctlyAnsweredQuizItems.get(correctlyAnsweredQuizItemIndex);
-//				quizItemNewsItemTitle = lastCorrectlyAnsweredQuizItem.getQuestionText();
-//				int correctAnswerIndex = Integer.parseInt(lastCorrectlyAnsweredQuizItem.getCorrectAnswerIndex());
-//				String[] answers = new String[4];
-//				answers[0] = lastCorrectlyAnsweredQuizItem.getAnswer1();
-//				answers[1] = lastCorrectlyAnsweredQuizItem.getAnswer2();
-//				answers[2] = lastCorrectlyAnsweredQuizItem.getAnswer3();
-//				answers[3] = lastCorrectlyAnsweredQuizItem.getAnswer4();
-//				String finalCorrectAnswer = answers[correctAnswerIndex];
-//				String quizItemNewsItemText = finalCorrectAnswer;
-//				String latestActiveItemTitle = lastCorrectlyAnsweredQuizItem.getActiveItem();
-//				String quizItemNewsItemImageUrl = QUIZ_ITEM_NEWS_ITEM_IMAGE_URL;
-//				if (lastCorrectlyAnsweredQuizItem != null) {
-//					newsItemAdapter.setLatestQuizItem(lastCorrectlyAnsweredQuizItem);
-//
-//					// LOCATION NEWS ITEM
-//					MovieLocationsImpl locationsImpl = new MovieLocationsImpl(context);
-//					String latestLocationId = lastCorrectlyAnsweredQuizItem.getWorldId();
-//					FilmLocation latestLocation = locationsImpl.selectRecordById(latestLocationId);
-//					if (latestLocation != null) {
-//						newsItemAdapter.setLatestLocation(latestLocation);	
-//					}
-//					// LOCATION NEWS ITEM
-//					locationNewsItem = new NewsItem();
-//					locationNewsItem.setNewsType("Location");
-//					if (latestLocation != null) {
-//						String locationNewsItemTitle = latestLocation.getTitle();
-//						String latestLocationText = latestLocation.getLocations();
-//						String latestLocationImageUrl = latestLocation.getStaticMapImageUrl();
-//						locationNewsItem.setTitle(locationNewsItemTitle);
-//						locationNewsItem.setText(latestLocationText);
-//						locationNewsItem.setImageUrl(latestLocationImageUrl);	
-//					}
-//					// ITERATE THROUGH BAG ITEMS AND GET URL
-//					// FOR THE LATEST QUIZ ITEM SOLVE
-//					for (BagItem item : bagItemList) {
-//						if (item.getItemTitle().equals(latestActiveItemTitle)) {
-//							quizItemNewsItemImageUrl = item.getImageUrl();
-//						}
-//					}
-//					if (quizItemNewsItem != null) {
-//						quizItemNewsItem.setTitle(quizItemNewsItemTitle);
-//						quizItemNewsItem.setText(quizItemNewsItemText);
-//						quizItemNewsItem.setImageUrl(quizItemNewsItemImageUrl);	
-//					}
-//				}
-//			}
-			
-			
-//			// ADD COMPOSED QUIZ ITEMS TO THE NEWS UPDATE LIST
-//			if (conclusionCardNewsItem != null) {
-//				newsUpdateList.add(conclusionCardNewsItem);	
-//			}
-//			if (bagItemNewsItem != null) {
-//				newsUpdateList.add(bagItemNewsItem);	
-//			}
-//			if (quizItemNewsItem != null) {
-//				newsUpdateList.add(quizItemNewsItem);	
-//			}
-//			if (locationNewsItem != null) {
-//				newsUpdateList.add(locationNewsItem);	
-//			}
-//			NewsArrayAdapter adapter = new NewsArrayAdapter(getActivity(), intent, newsUpdateList);
-//			if (newsUpdateList.size() > 0) {
-//				commentView.setAdapter(adapter);
-//			}
-			return rootView;
-		}
-	}
 	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
 	public class UserDetailFragment extends Fragment {
-
-		private PointsItemImpl pointsItemImpl;
 		
 		public UserDetailFragment() {
 		}
@@ -820,25 +594,28 @@ public class NewsActivity extends ActionBarActivity {
 			TextView pointsText = (TextView) rootView.findViewById(R.id.pointsText1);
 
 			// set text values
-			System.out.println("localUser.getDisplayName(): " + localUser.getDisplayName());
-			System.out.println("userText: " + userText);
+			// System.out.println("localUser.getDisplayName(): " + localUser.getDisplayName());
+			// System.out.println("userText: " + userText);
 			userText.setText(localUser.getDisplayName());
 			
 //			currentLevelText.setText(localUser.getCurrentLevel());
 			
 			String currentPoints = localUser.getPoints();
-			System.out.println("localUser.getPoints: " + currentPoints);			
+			// System.out.println("localUser.getPoints: " + currentPoints);			
 			final String FINAL_USER_ID = localUser.getUserId();
 			final String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
 			
 			final Context pointsContext = getActivity().getApplicationContext();
-			pointsItemImpl = new PointsItemImpl(pointsContext);
-
+			
+			final PointsItemImpl pointsItemImpl = new PointsItemImpl(pointsContext);
+			pointsItemImpl.open();
 			final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
+			pointsItemImpl.close();
+			
 			final String FINAL_USER_POINTS;
 			if (FINAL_USER_POINTS_ITEM != null) {
 				FINAL_USER_POINTS = FINAL_USER_POINTS_ITEM.getPoints();
-				System.out.println("FINAL_USER_POINTS: " + FINAL_USER_POINTS);
+				// System.out.println("FINAL_USER_POINTS: " + FINAL_USER_POINTS);
 				localUser.setCurrentPoints(FINAL_USER_POINTS);
 			} else {
 				FINAL_USER_POINTS = "0";
@@ -886,10 +663,13 @@ public class NewsActivity extends ActionBarActivity {
 			ImageView gameWorldsImage3 = (ImageView) rootView.findViewById(R.id.gameWorldsImage3);
 			ImageView gameWorldsImage4 = (ImageView) rootView.findViewById(R.id.gameWorldsImage4);
 			final Context context = getActivity().getApplicationContext();
-			final MovieLocationsImpl datasource = new MovieLocationsImpl(context);
-			final ArrayList<FilmLocation> defaultLocationList = datasource.selectRecords();
 			
-			System.out.println("DEFAULT LOCATION LIST :" +  defaultLocationList);
+			final LocationsImpl locationsImpl = new LocationsImpl(context);
+			locationsImpl.open();
+			final ArrayList<FilmLocation> defaultLocationList = locationsImpl.selectRecords();
+			locationsImpl.close();
+			
+			// System.out.println("DEFAULT LOCATION LIST :" +  defaultLocationList);
 			final FilmArrayList defaultLocationArrayList = new FilmArrayList();
 //			defaultLocationArrayList.setFilmList(defaultLocationList);
 			
@@ -927,30 +707,30 @@ public class NewsActivity extends ActionBarActivity {
 //			for (int i = 0; i < worldImageArray.length; i++) {
 //				final ArrayList<FilmLocation> currentArrayList = worldLocationArrayList.get(i);
 				
-//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
 				gameWorldsImage1.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						
 						defaultLocationArrayList.setFilmList(worldLocationList1);
-						System.out.println("WORLD LOCATION LIST LENGTH: " + worldLocationList1.size());
+						// System.out.println("WORLD LOCATION LIST LENGTH: " + worldLocationList1.size());
 						
 						// start new intent
 						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
-						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
 						pagerActivityIntent.putExtra("localUser", localUser);
-						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
 						startActivity(pagerActivityIntent);
-//							System.out.println("clicked button");
+//							// System.out.println("clicked button");
 					}
 				});
 //			}
 			
 				
 				
-//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
 				gameWorldsImage2.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						
@@ -960,19 +740,19 @@ public class NewsActivity extends ActionBarActivity {
 						// start new intent
 						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
-//						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+//						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
 						pagerActivityIntent.putExtra("localUser", localUser);
-						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
 						startActivity(pagerActivityIntent);
-//							System.out.println("clicked button");
+//							// System.out.println("clicked button");
 					}
 				});
 				
 				
 				
-//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
 				gameWorldsImage3.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						
@@ -983,19 +763,19 @@ public class NewsActivity extends ActionBarActivity {
 						// start new intent
 						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
-//						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+//						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
 						pagerActivityIntent.putExtra("localUser", localUser);
-						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
 						startActivity(pagerActivityIntent);
-//							System.out.println("clicked button");
+//							// System.out.println("clicked button");
 					}
 				});
 				
 				
 				
-//				System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
+//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
 				gameWorldsImage4.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
 						
@@ -1004,68 +784,20 @@ public class NewsActivity extends ActionBarActivity {
 						// start new intent
 						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
-//						System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
+//						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
 						pagerActivityIntent.putExtra("localUser", localUser);
-						System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
+						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
+						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
 						startActivity(pagerActivityIntent);
-//							System.out.println("clicked button");
+//							// System.out.println("clicked button");
 					}
 				});
-				
-//			final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreLevelDataListView);
-//			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-//			String WORLD_TITLE = "WORLD_TITLE";
-//			final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
-//			System.out.println("REFRESHED DATA");
-//			final Intent intent = getActivity().getIntent();
-//			final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
-//			if (gameTitleList.size() > 0) {
-//				restoreListView.setAdapter(levelRestoreListAdapter);
-////				levelRestoreListAdapter.notifyDataSetChanged();
-//			}
+
 			return rootView;
 		}
 	}
 	
-
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public class AchievementsFragment extends Fragment {
-
-		private ArrayList<Achievement> achievementList;
-		
-		public AchievementsFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_achievements,
-					container, false);
-			ListView commentView = (ListView) rootView.findViewById(R.id.commentView);
-			achievementList = new ArrayList<Achievement>();
-			Achievement comment = new Achievement();		
-			for (int i = 0; i < 10; i++) {
-				comment.setAchievementId("achievementId");
-				comment.setTitle("title");
-//				comment.setCatchPhrase("catchPhrase");
-				comment.setUserId("userId");
-				comment.setDateTime("dateTime");
-				achievementList.add(comment);	
-			}
-			final Intent intent = getActivity().getIntent();
-			AchievementArrayAdapter adapter = new AchievementArrayAdapter(
-					getActivity(), intent, achievementList);
-			if (achievementList.size() >= 0) {
-				commentView.setAdapter(adapter);
-			} 
-			return rootView;
-		}
-	}
-
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
@@ -1157,7 +889,7 @@ public class NewsActivity extends ActionBarActivity {
 //					localUser.setEmailNotifications(FINAL_MOBILE_NOTIFICATIONS);
 					final UpdateUserPreferencesTaskRunner runner = new UpdateUserPreferencesTaskRunner();
 					runner.execute(FINAL_MOBILE_NOTIFICATIONS);
-					System.out.println("MOBILE NOTIFICTIONS BEFORE: " + FINAL_MOBILE_NOTIFICATIONS);
+					// System.out.println("MOBILE NOTIFICTIONS BEFORE: " + FINAL_MOBILE_NOTIFICATIONS);
 				}
 			});
 			return rootView;
@@ -1175,10 +907,10 @@ public class NewsActivity extends ActionBarActivity {
 				try {
 						String url = params[0];
 						resp = url;
-						System.out.println("NEW USER REGISTERED: " + resp);
+						// System.out.println("NEW USER REGISTERED: " + resp);
 				} catch (Exception e) {
 					e.printStackTrace();
-					System.out.println("ERROR STACK TRACE");
+					// System.out.println("ERROR STACK TRACE");
 					resp = e.getMessage();
 				}
 				return resp;
@@ -1195,17 +927,21 @@ public class NewsActivity extends ActionBarActivity {
 				if (dialog != null) {
 					dialog.dismiss();
 				}
+				
+				userImpl.open();
 				final String FINAL_USER_ID = localUser.getUserId();
 				String message = "Something went wrong";
 				if (result.equals("true")) {
-					userSource.updateUserNotificationPreferences(FINAL_USER_ID, "false", result);
+					userImpl.updateUserNotificationPreferences(FINAL_USER_ID, "false", result);
 					message = "Notifications on";
 				} else {
-					userSource.updateUserNotificationPreferences(FINAL_USER_ID, "false", "false");
+					userImpl.updateUserNotificationPreferences(FINAL_USER_ID, "false", "false");
 					message = "Notifications off";
 				}
+				userImpl.close();
+				
 //				settingsUser = userSource.selectRecordById(FINAL_USER_ID);
-				System.out.println("MOBILE NOTIFICATIONS POST EXECUTE: " + localUser.getMobileNotifications());
+				// System.out.println("MOBILE NOTIFICATIONS POST EXECUTE: " + localUser.getMobileNotifications());
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 			}
 

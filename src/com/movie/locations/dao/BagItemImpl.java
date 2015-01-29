@@ -30,7 +30,7 @@ public class BagItemImpl {
 	 */
 	public BagItemImpl(Context context) {
 		dbHelper = new BagItemSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

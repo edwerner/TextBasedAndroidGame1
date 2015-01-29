@@ -33,7 +33,7 @@ public class AchievementImpl {
 	 */
 	public AchievementImpl(Context context) {
 		dbHelper = new AchievementSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

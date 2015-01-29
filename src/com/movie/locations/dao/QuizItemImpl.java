@@ -55,7 +55,7 @@ public class QuizItemImpl {
 	 */
 	public QuizItemImpl(Context context) {
 		dbHelper = new QuizItemSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
+//		database = dbHelper.getWritableDatabase();
 	}
 
 	public void delete() {

@@ -39,7 +39,7 @@ import com.movie.locations.dao.AchievementImpl;
 import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.GameTitleImpl;
-import com.movie.locations.dao.MovieLocationsImpl;
+import com.movie.locations.dao.LocationsImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;
 import com.movie.locations.domain.User;
@@ -123,7 +123,7 @@ public class MainActivity extends FragmentActivity implements
 	private ArrayAdapter<String> mCirclesAdapter;
 	private ArrayList<String> mCirclesList;
 	private Context context;
-	private MovieLocationsImpl datasource;
+	private LocationsImpl datasource;
 	private QuizItemImpl quizitemsource;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	private BagItemImpl bagitemsource;
@@ -183,7 +183,7 @@ public class MainActivity extends FragmentActivity implements
 
 		// to re-initialize database uncomment async task here
 		usersource = new UserImpl(this);
-		datasource = new MovieLocationsImpl(this);
+		datasource = new LocationsImpl(this);
 		quizitemsource = new QuizItemImpl(this);
 		bagitemsource = new BagItemImpl(this);
 		conclusioncardsource = new ConclusionCardImpl(this);
@@ -502,7 +502,7 @@ public class MainActivity extends FragmentActivity implements
 		mSignInClicked = false;
 		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 		
-		createDataServices();
+//		createDataServices();
 		
 		// open user database connection
 		usersource.open();
@@ -519,6 +519,7 @@ public class MainActivity extends FragmentActivity implements
 		String currentUserSid = currentUser.getId();
 		
 		if (existingUser == null) {
+			createDataServices();
 			// create new user with attributes
 			localUser = new User();
 			localUser.setUserId(currentUserSid);
@@ -570,36 +571,36 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void createDataServices() {
-		if (datasource.selectRecords().isEmpty()) {
+//		if (datasource.selectRecords().isEmpty()) {
 			FilmLocationService locationService = new FilmLocationService();
 			InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
 			locationService.createContentValues(locationStream, context);
-		}
-		if (quizitemsource.selectRecords().isEmpty()) {
+//		}
+//		if (quizitemsource.selectRecords().isEmpty()) {
 			QuizItemService quizService = new QuizItemService();
 			InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
 			quizService.createContentValues(quizStream, context);
-		}
-		if (bagitemsource.selectRecords().isEmpty()) {
+//		}
+//		if (bagitemsource.selectRecords().isEmpty()) {
 			BagItemService bagService = new BagItemService();
 			InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
 			bagService.createContentValues(bagStream, context);
-		}
-		if (conclusioncardsource.selectRecords().isEmpty()) {
+//		}
+//		if (conclusioncardsource.selectRecords().isEmpty()) {
 			ConclusionCardService cardService = new ConclusionCardService();
 			InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
 			cardService.createContentValues(cardStream, context);
-		}
-		if (gametitlesource.selectRecords().isEmpty()) {
+//		}
+//		if (gametitlesource.selectRecords().isEmpty()) {
 			GameTitleService titleService = new GameTitleService();
 			InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
 			titleService.createContentValues(titleStream, context);
-		}
-		if (achievementsource.selectRecords().isEmpty()) {
+//		}
+//		if (achievementsource.selectRecords().isEmpty()) {
 			AchievementService achievementService = new AchievementService();
 			InputStream achievementStream = getResources().openRawResource(R.raw.achievement_copy);
 			achievementService.createContentValues(achievementStream, context);
-		}
+//		}
 	}
 
 	/*
