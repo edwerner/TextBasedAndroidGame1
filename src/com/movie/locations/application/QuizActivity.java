@@ -101,8 +101,8 @@ public class QuizActivity extends FragmentActivity {
 			Bundle extras = intent.getExtras();
 
 			quizItem = extras.getParcelable("quizItem");
-			System.out.println("PARCEL QUIZ ITEM CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
-			System.out.println("PARCEL QUIZ ITEM TEXT: " + quizItem.getQuestionText());
+			// System.out.println("PARCEL QUIZ ITEM CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
+			// System.out.println("PARCEL QUIZ ITEM TEXT: " + quizItem.getQuestionText());
 			bagItemArrayList = extras.getParcelable("bagItemArrayList");
 			quizItemSid = extras.getString("quizItemSid");
 //			currentUserId = extras.getString("currentUserId");
@@ -134,7 +134,7 @@ public class QuizActivity extends FragmentActivity {
 			}
 			
 			currentUser.setCurrentPoints(currentTotalPoints);
-			System.out.println("CURRENT TOTAL POINTS: " + currentPoints);
+			// System.out.println("CURRENT TOTAL POINTS: " + currentPoints);
 			
 //			setCurrentTotalPoints(currentTotalPoints);
 //			setCurrentLevel(currentUser.getCurrentLevel());
@@ -148,10 +148,10 @@ public class QuizActivity extends FragmentActivity {
 			requiredItems[3] = quizItem.getActiveItem4();
 			
 			for (int a = 0; a < requiredItems.length; a++) {
-				System.out.println("REQUIRED ITEMS ARRAY "+ a + " : " + requiredItems[a]);
+				// System.out.println("REQUIRED ITEMS ARRAY "+ a + " : " + requiredItems[a]);
 			}
 			
-			System.out.println("LOGGING QUIZ ITEM ANSWERED: " + quizItem.getAnswered());
+			// System.out.println("LOGGING QUIZ ITEM ANSWERED: " + quizItem.getAnswered());
 			
 			reactions = new String[4];
 			reactions[0] = quizItem.getReaction1();
@@ -268,16 +268,16 @@ public class QuizActivity extends FragmentActivity {
 
 		// switch (item.getItemId()) {
 		// case MENU_ONE:
-		// System.out.println("MENU_ONE");
+		// // System.out.println("MENU_ONE");
 		// break;
 		// case MENU_TWO:
-		// System.out.println("MENU_ONE");
+		// // System.out.println("MENU_ONE");
 		// break;
 		// case MENU_THREE:
-		// System.out.println("MENU_THREE");
+		// // System.out.println("MENU_THREE");
 		// break;
 		// case MENU_FOUR:
-		// System.out.println("MENU_FOUR");
+		// // System.out.println("MENU_FOUR");
 		// break;
 		// }
 		//
@@ -325,7 +325,7 @@ public class QuizActivity extends FragmentActivity {
 			reactions = getArguments().getStringArray("reactions");
 			requiredItems = getArguments().getStringArray("requiredItems");
 			
-//			System.out.println("ANSWERED COUNT ARRAY BEFORE: " + answeredCount);
+//			// System.out.println("ANSWERED COUNT ARRAY BEFORE: " + answeredCount);
 			
 			answeredCount = new int[ANSWERED_COUNT_MAX];
 			resetAnsweredCountArray();
@@ -353,16 +353,16 @@ public class QuizActivity extends FragmentActivity {
 					Toast.makeText(context, "No items equipped", Toast.LENGTH_SHORT).show();
 				} else {
 					// check for correct item
-					System.out.println("REQUIRED ITEMS: " + getCurrentBagItem().getItemTitle());
-					System.out.println("REQUIRED ITEMS: " + requiredItems[index]);
+					// System.out.println("REQUIRED ITEMS: " + getCurrentBagItem().getItemTitle());
+					// System.out.println("REQUIRED ITEMS: " + requiredItems[index]);
 					
 					if (!getCurrentBagItem().getItemTitle().equals(requiredItems[index])) {
 						Toast.makeText(context, requiredItems[index] + " must be equipped", Toast.LENGTH_SHORT).show();
 					}
 				}
 				
-				System.out.println("getSubmittedAnswerIndex: "
-						+ index);
+				// System.out.println("getSubmittedAnswerIndex: "
+//						+ index);
 				String indexString = Integer.toString(index);
 				quizItem.setSubmittedAnswerIndex(indexString);
 				}
@@ -389,9 +389,9 @@ public class QuizActivity extends FragmentActivity {
 			levelText.setText(bagTitle);
 
 			// set quizitem attributes
-			System.out.println("QUIZ ITEM ANSWERED: " + quizItem.getAnswered());
-			System.out.println("QUIZ ITEM AT ALL: " + quizItem);
-			System.out.println("HAVEN'T ANSWERED BEFORE");
+			// System.out.println("QUIZ ITEM ANSWERED: " + quizItem.getAnswered());
+			// System.out.println("QUIZ ITEM AT ALL: " + quizItem);
+			// System.out.println("HAVEN'T ANSWERED BEFORE");
 			
 			if (currentBagItem != null) {
 				updateBagItems(currentBagItem, 0);
@@ -420,8 +420,8 @@ public class QuizActivity extends FragmentActivity {
 			radioButton4.setText(quizItem.getAnswer4());
 			
 			if (quizItem.getAnswered().equals("true")) {
-				System.out.println("QUIZ ITEM GET CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
-				System.out.println("QUIZ ITEM GET CORRECT ANSWER INDEX CLASS: " + quizItem.getCorrectAnswerIndex().getClass());
+				// System.out.println("QUIZ ITEM GET CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
+				// System.out.println("QUIZ ITEM GET CORRECT ANSWER INDEX CLASS: " + quizItem.getCorrectAnswerIndex().getClass());
 				
 				if (quizItem.getCorrectAnswerIndex() != null) {
 					
@@ -445,14 +445,14 @@ public class QuizActivity extends FragmentActivity {
 //				radioGroup.setVisibility(RadioGroup.GONE);
 //				submitQuizButton.setVisibility(Button.GONE);
 				quizQuestionText.setText(quizItem.getQuestionText());
-//				System.out.println("ALREADY ANSWERED THIS QUESTION");
+//				// System.out.println("ALREADY ANSWERED THIS QUESTION");
 			}
 			
 			submitQuizButton.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					System.out.println("CLICKED SUBMIT BUTTON");
+					// System.out.println("CLICKED SUBMIT BUTTON");
 					
 					if (quizItem.getSubmittedAnswerIndex() != null) {
 						if (getCurrentBagItem() != null && getCurrentBagItem().getItemTitle().equals(requiredItems[selectedRadioButtonIndex])) {
@@ -469,7 +469,7 @@ public class QuizActivity extends FragmentActivity {
 								String ANSWER_SUBMIT_COUNT = Integer.toString(getAnsweredCount());
 								quizItem.setAnswerSubmitCount(ANSWER_SUBMIT_COUNT);
 								
-								System.out.println("LOGGING CURRENT BAG ITEM: " + getCurrentBagItem().getItemTitle());
+								// System.out.println("LOGGING CURRENT BAG ITEM: " + getCurrentBagItem().getItemTitle());
 								
 								// all quiz submissions are outgoing server requests
 								QuizSubmissionAsyncTaskRunner runner = new QuizSubmissionAsyncTaskRunner();
@@ -554,7 +554,7 @@ public class QuizActivity extends FragmentActivity {
 				resp = "true";
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("ERROR STACK TRACE");
+				// System.out.println("ERROR STACK TRACE");
 				resp = e.getMessage();
 			}
 			return resp;
@@ -656,7 +656,7 @@ public class QuizActivity extends FragmentActivity {
 		
 		boolean fullClear = true;
 		for (int i = 0; i < answeredCount.length; i++) {
-			System.out.println("ANSWERED COUNT ARRAY BEFORE: " + answeredCount[i]);
+			// System.out.println("ANSWERED COUNT ARRAY BEFORE: " + answeredCount[i]);
 			
 			if (answeredCount[i] == nullValue) {
 				fullClear = false;
@@ -666,7 +666,7 @@ public class QuizActivity extends FragmentActivity {
 		
 //		if (fullClear == true) {
 //			reactionMessage = reactionMessage.concat(bonusMessage);
-//			System.out.println("GET ANSWERED COUNT: " + getAnsweredCount());
+//			// System.out.println("GET ANSWERED COUNT: " + getAnsweredCount());
 //		}
 	//	setAnsweredCount(0);
 	
@@ -695,11 +695,11 @@ public class QuizActivity extends FragmentActivity {
 			
 			for (BagItem item : bagList) {
 				
-				System.out.println("BAG LOG requiredItems[0]: " + requiredItems[0]);
-				System.out.println("BAG LOG requiredItems[1]: " + requiredItems[1]);
-				System.out.println("BAG LOG requiredItems[2]: " + requiredItems[2]);
-				System.out.println("BAG LOG requiredItems[3]: " + requiredItems[3]);
-				System.out.println("BAG LOG item.getItemTitle(): " + item.getItemTitle());
+				// System.out.println("BAG LOG requiredItems[0]: " + requiredItems[0]);
+				// System.out.println("BAG LOG requiredItems[1]: " + requiredItems[1]);
+				// System.out.println("BAG LOG requiredItems[2]: " + requiredItems[2]);
+				// System.out.println("BAG LOG requiredItems[3]: " + requiredItems[3]);
+				// System.out.println("BAG LOG item.getItemTitle(): " + item.getItemTitle());
 				
 				for (int i = 0; i < requiredItems.length; i++) {
 					if (requiredItems[i] == null) {
@@ -709,7 +709,7 @@ public class QuizActivity extends FragmentActivity {
 				
 				String currentTitle = item.getItemTitle();
 				
-				System.out.println("CURRENT BAG ITEM TITLE: " + currentTitle);
+				// System.out.println("CURRENT BAG ITEM TITLE: " + currentTitle);
 				
 				if (requiredItems[0].equals(currentTitle)
 						|| requiredItems[1].equals(currentTitle)
@@ -721,7 +721,7 @@ public class QuizActivity extends FragmentActivity {
 //				bagItem.itemList.add(item);
 			}
 			
-			System.out.println("BAG ITEM LIST LENGTH: " + bagItem.itemList.size());
+			// System.out.println("BAG ITEM LIST LENGTH: " + bagItem.itemList.size());
 			
 			// more efficient than HashMap for mapping integers to objects
 			bagItemSparseArray = new SparseArray<BagItem>();
@@ -737,7 +737,7 @@ public class QuizActivity extends FragmentActivity {
 			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
 			requiredItems = getArguments().getStringArray("requiredItems");
 			
-			System.out.println("BAG ITEM ARRAY LIST: " + bagItemArrayList);
+			// System.out.println("BAG ITEM ARRAY LIST: " + bagItemArrayList);
 
 			// CREATING A NEW VIEW PAGER BAG
 			createData();
@@ -745,7 +745,7 @@ public class QuizActivity extends FragmentActivity {
 			
 			TextView equipItemText = (TextView) rootView.findViewById(R.id.equipItemMessage1);
 //			equipItemText.setA
-			System.out.println("ARGS POSITION: " + position);
+			// System.out.println("ARGS POSITION: " + position);
 			
 			List<BagItem> localBagItemList = bagItemSparseArray.get(0).itemList;
 
@@ -796,7 +796,7 @@ public class QuizActivity extends FragmentActivity {
 //						rootView.setSelected(false);
 //						view.setSelected(true);
 					mPager.setSelected(true);
-					System.out.println("PAGER CLICKED");
+					// System.out.println("PAGER CLICKED");
 					
 					updateBagItems(localBagItem, position);
 				}
@@ -809,8 +809,8 @@ public class QuizActivity extends FragmentActivity {
 		setCurrentBagItem(item);
 
 		String currentItemText = item.getItemTitle() + " equipped";
-		System.out.println("SET CURRENT BAG ITEM: " + item);
-		System.out.println("SET CURRENT BAG ITEM: " + index);
+		// System.out.println("SET CURRENT BAG ITEM: " + item);
+		// System.out.println("SET CURRENT BAG ITEM: " + index);
 
 		// currentEquippedItemImage
 		imageLoader.displayImage(item.getImageUrl(), currentEquippedItemImage);

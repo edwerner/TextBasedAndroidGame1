@@ -80,14 +80,14 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 	    	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 	               // User clicked OK button
-	        	   System.out.println("RESTORED");
+	        	   // System.out.println("RESTORED");
 	           }
 	       });
 	    	
 	    	builder.setNegativeButton(CANCEL_MESSAGE, new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	               // User cancelled the dialog
-	        	   System.out.println("CANCELLED");
+	        	   // System.out.println("CANCELLED");
 	           }
 	       });
 			
@@ -123,7 +123,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			tempCard.setImageUrl(values.get(position).getId());
 			tempCard.setCopy(values.get(position).getDescription());
 			
-			System.out.println("TEMP CARD IMAGE URL: " + values.get(position).getImageUrl());
+			// System.out.println("TEMP CARD IMAGE URL: " + values.get(position).getImageUrl());
 			// get intent string attributes
 			Bundle bundle = intent.getExtras();
 			conclusionIntent.putExtra("conclusionCard", tempCard);
@@ -135,7 +135,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 	    		rowView.setOnClickListener(new View.OnClickListener() {
 	    		    public void onClick(View v) {
 	    		    	context.startActivity(conclusionIntent);
-	    		    	System.out.println("current image Url: " + values.get(position).getImageUrl());
+	    		    	// System.out.println("current image Url: " + values.get(position).getImageUrl());
 	    		    }
 	    		});
 			}
@@ -150,17 +150,17 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 	    	builder.setPositiveButton(CONFIRM_MESSAGE, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
 	               // User clicked OK button
-	        	   System.out.println("RESTORED");
+	        	   // System.out.println("RESTORED");
 	           }
 	       });
 	    	builder.setNegativeButton(CANCEL_MESSAGE, new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
 	               // User cancelled the dialog
-	        	   System.out.println("CANCELLED");
+	        	   // System.out.println("CANCELLED");
 	           }
 	       });
 	    	
-        	// Create the AlertDialog
+        	// Create the AlertDialogF
         	final AlertDialog dialog = builder.create();
     		rowView.setOnClickListener(new View.OnClickListener() {
     		    public void onClick(View v) {

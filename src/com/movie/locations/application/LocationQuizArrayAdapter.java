@@ -56,18 +56,18 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
 		
 		// reveal completed indicator checkmark
-		System.out.println("VALUES LENGTH: " + values.size());
+		// System.out.println("VALUES LENGTH: " + values.size());
 		if (values.get(position).getAnswered().equals("true")) {
 			ImageView checkmarkImageView = (ImageView) rowView.findViewById(R.id.green_checkmark_small);
 			checkmarkImageView.setVisibility(ImageView.VISIBLE);
-			System.out.println("GREEN CHECKMARK");
+			// System.out.println("GREEN CHECKMARK");
 			final int HALFTONE = 50;
 			imageView.setImageAlpha(HALFTONE);
 		}
 		
 		String[] titles = getListItemTitles();
 		String[] imageTiles = getListItemImageTiles();
-		System.out.println("IMAGE TILES LENGTH: " + imageTiles.length);
+		// System.out.println("IMAGE TILES LENGTH: " + imageTiles.length);
 		if (imageTiles[position] != null) {
 			UNIQUE_MAP_IMAGE_URL = imageTiles[position];
 		} else {

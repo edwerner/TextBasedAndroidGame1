@@ -82,14 +82,14 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 //		locationsImpl = new LocationsImpl(this);
 		locationArrayList = bundle.getParcelable("locationArrayList");
 		locationList = locationArrayList.getFilmList();
-		System.out.println("STARTED INTENT LIST LENGTH: " + locationList.size());
+		// System.out.println("STARTED INTENT LIST LENGTH: " + locationList.size());
 		filmMap = new LinkedHashMap<String, ArrayList<FilmLocation>>();
 		worldTitles = new ArrayList<String>();
 		localWorldImageUrls = new ArrayList<String>();
 		
 		// sort the list
 //		Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
-		System.out.println("LOCATION LIST FROM PARCEL: " + locationList.size());
+		// System.out.println("LOCATION LIST FROM PARCEL: " + locationList.size());
 		
 		for (FilmLocation loc : locationList) {
 			if (!worldTitles.contains(loc.getTitle())) {
@@ -99,18 +99,18 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		}
 		
 		int arraylength = worldTitles.size();
-		System.out.println("WORLD TITLES SIZE: " + arraylength);
+		// System.out.println("WORLD TITLES SIZE: " + arraylength);
 		ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
 		
 		for (int a = 0; a < arraylength; a++) {
-			System.out.println("WORLD TITLES SIZE: " + worldTitles.get(a));
+			// System.out.println("WORLD TITLES SIZE: " + worldTitles.get(a));
 		}
 		for (int i = 0; i < arraylength; i++) {
 			tempList.clear();
-//			System.out.println("datasource: " + datasource);
+//			// System.out.println("datasource: " + datasource);
 			final String CURRENT_TITLE = worldTitles.get(i);
-			System.out.println("CURRENT_TITLE: " + CURRENT_TITLE);
-			System.out.println("SELECT RECORDS BY TITLE COUNT: " + locationList.size());
+			// System.out.println("CURRENT_TITLE: " + CURRENT_TITLE);
+			// System.out.println("SELECT RECORDS BY TITLE COUNT: " + locationList.size());
 			
 			for (FilmLocation location : locationList) {
 				tempList.add(location);
@@ -120,9 +120,9 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		}
 		locationMap = new LocationMapParcel();
 		locationMap.setLocationHashMap(filmMap);
-		System.out.println("FILM MAP LENGTH:" + filmMap.size());
-		System.out.println("LOCATION TITLE ARRAY LENGTH ****: " + arraylength);
-		System.out.println("FILM MAP SIZE ****: " + filmMap.size());
+		// System.out.println("FILM MAP LENGTH:" + filmMap.size());
+		// System.out.println("LOCATION TITLE ARRAY LENGTH ****: " + arraylength);
+		// System.out.println("FILM MAP SIZE ****: " + filmMap.size());
 		currentUser = bundle.getParcelable("localUser");
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -135,7 +135,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		newQuizList = quizItemImpl.selectRecords();
 		quizItemImpl.close();
 		
-		System.out.println("QUIZ LIST SIZE:" + newQuizList.size());
+		// System.out.println("QUIZ LIST SIZE:" + newQuizList.size());
 	}
 
 //    @Override
@@ -150,19 +150,19 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		public void onReceive(Context context, Intent intent) {
 			// update your list
 			mSectionsPagerAdapter.notifyDataSetChanged();
-		   System.out.println("UPDATED DATA FROM RECEIVER");
+		   // System.out.println("UPDATED DATA FROM RECEIVER");
 		   unregisterReceiver(mReceiver);
 	   }
 	};
 	
 	@Override
 	 public void onResume() {
-		System.out.println("******* RESUME PAGER ACTIVITY ********");
+		// System.out.println("******* RESUME PAGER ACTIVITY ********");
 //		if (locationList != null) {
 //			locationList = datasource.selectRecords();
 //			locationArrayList.setFilmList(locationList);
 //			Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
-//			System.out.println("ON RESUME LOCATION LIST LENGTH: " + locationList.size());
+//			// System.out.println("ON RESUME LOCATION LIST LENGTH: " + locationList.size());
 //			for (FilmLocation loc : locationList) {
 //				if (!worldTitles.contains(loc.getTitle())) {
 //					worldTitles.add(loc.getTitle());
@@ -215,13 +215,13 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		public int getCount() {
 			// Show total pages.
 			int worldCount = worldTitles.size();
-			System.out.println("WORLD COUNT: " + worldCount);
+			// System.out.println("WORLD COUNT: " + worldCount);
 			return worldCount;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			System.out.println("WORLD TITLES SIZE: " + worldTitles.size());
+			// System.out.println("WORLD TITLES SIZE: " + worldTitles.size());
 			String localTitle = worldTitles.get(position);
 			return localTitle;
 		}
@@ -287,7 +287,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		// ON PAGE CHANGED UPDATE
 		@Override
 		public void onPageSelected(int position) {
-			System.out.println("PAGE INDEX CHANGED: " + position);
+			// System.out.println("PAGE INDEX CHANGED: " + position);
 		}
 
 //		@Override
@@ -309,9 +309,9 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			currentTitle = firstLocation.getWorldTitle();
 			
 			for (QuizItem quizItem : newQuizList) {
-				System.out.println("LOCATION TITLE 1:" + currentTitle);
-				System.out.println("LOCATION TITLE 2:" + quizItem.getWorldTitle());
-				System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
+				// System.out.println("LOCATION TITLE 1:" + currentTitle);
+				// System.out.println("LOCATION TITLE 2:" + quizItem.getWorldTitle());
+				// System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
 				if (quizItem.getWorldTitle().equals(currentTitle)) {
 					finalQuizList.add(quizItem);
 //					if (quizItem.getAnswered().equals("FALSE")) {
@@ -324,7 +324,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 		
 		@Override
 		public void onResume() {
-			System.out.println("Resume");
+			// System.out.println("Resume");
 			prepareArrayAdapterData(getRootView());
 			super.onResume();
 		}
@@ -362,8 +362,8 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			currentTitle = localWorldTitles.get(getArguments().getInt(ARG_SECTION_NUMBER));
 //			currentImageUrl = localWorldImageUrls.get(getArguments().getInt(ARG_SECTION_NUMBER));
 			setFragmentTitle(currentTitle);
-			System.out.println("CURRENT FRAGMENT TITLE: " + currentTitle);
-			System.out.println("LOCAL MAP PARCEL: " + localMapParcel);
+			// System.out.println("CURRENT FRAGMENT TITLE: " + currentTitle);
+			// System.out.println("LOCAL MAP PARCEL: " + localMapParcel);
 			//currentTitle
 			ArrayList<FilmLocation> finalList = new ArrayList<FilmLocation>();
 			for (FilmLocation loc : filmList) {
@@ -380,7 +380,7 @@ public class FilmLocationPagerActivity extends FragmentActivity {
 			intent.putExtra("currentLocation", localCurrentLocation);
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);
 			intent.putExtra("localUser", localCurrentUser);
-			System.out.println("PAGER ACTIVITY CURRENT USER POINTS: " + localCurrentUser.getCurrentPoints());
+			// System.out.println("PAGER ACTIVITY CURRENT USER POINTS: " + localCurrentUser.getCurrentPoints());
 			commentAdapter = new FilmLocationArrayAdapter(getActivity(), intent, finalList);
 			commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
 			commentView.setAdapter(commentAdapter);
