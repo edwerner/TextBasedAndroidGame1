@@ -8,10 +8,11 @@
     <ImageView
         android:id="@+id/conclusionImage"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/filmlist_icon_desc"
-        android:scaleType="centerCrop" >
+        android:scaleType="fitCenter"
+        android:background="@color/white_overlay" >
     </ImageView>
 
     <!--
