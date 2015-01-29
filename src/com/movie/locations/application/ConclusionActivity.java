@@ -235,6 +235,7 @@ public class ConclusionActivity extends ActionBarActivity {
 
 //			conclusionCardTitleHeadlineText.setVisibility(TextView.VISIBLE);
 			final String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
+			final String staticSiteUrl = " https://www.google.com/";
 			System.out.println("CONCLUSION IMAGE URL: " + imageUrl);
 			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
@@ -325,7 +326,7 @@ public class ConclusionActivity extends ActionBarActivity {
 					// Launch the Google+ share dialog with attribution to your app.
 					  Intent shareIntent = new PlusShare.Builder(context)
 					      .setType("text/plain")
-					      .setText("Test post")
+					      .setText(conclusionTitle + " " + staticSiteUrl) // APPEND STATIC HTML LINK HERE
 					      .setStream(Uri.parse(postImage))
 //					          .setContentUrl(Uri.parse("https://developers.google.com/+/"))
 					      .getIntent();
