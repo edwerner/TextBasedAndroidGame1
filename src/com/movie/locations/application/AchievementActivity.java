@@ -1,4 +1,8 @@
 package com.movie.locations.application;
+import java.io.IOException;
+import java.io.InputStream;
+
+import com.google.android.gms.plus.PlusShare;
 import com.movie.locations.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
@@ -6,7 +10,11 @@ import android.support.v4.app.Fragment;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore.Images;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -111,16 +119,55 @@ public class AchievementActivity extends ActionBarActivity {
 			TextView achievementCopyText = (TextView) rootView.findViewById(R.id.achievementCopyText1);
 			achievementCopyText.setText(achievementCopy);
 			ImageView achievementPoster = (ImageView) rootView.findViewById(R.id.achievementPoster1);
-			imageLoader.displayImage(achievementImageUrl, achievementPoster);
+			final String imageUrl = "assets://" + achievementImageUrl + ".jpg";
+			imageLoader.displayImage(imageUrl, achievementPoster);
 			
-			TextView currentLevelText = (TextView) rootView.findViewById(R.id.currentLevelText1);
-			currentLevelText.setText("Welcome to level" + levelUp + "!");
+//			TextView currentLevelText = (TextView) rootView.findViewById(R.id.currentLevelText1);
+//			currentLevelText.setText("Welcome to level" + levelUp + "!");
 			
 			Button dismissConclusionButton = (Button) rootView.findViewById(R.id.dismissConclusionButton1);
 			dismissConclusionButton.setOnClickListener(new Button.OnClickListener() {
 				public void onClick(View v) {
 					getActivity().finish();
 				}
+			});
+
+			Button shareButton = (Button) rootView.findViewById(R.id.share_button);
+			InputStream imageStream = null;
+			
+			try {
+				imageStream = getActivity().getAssets().open(achievementImageUrl + ".jpg");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//			InputStream inputStream = am.open(file:///android_asset/myfoldername/myfilename);
+				
+
+			final Context context = getActivity().getApplicationContext();
+			final String staticSiteUrl = " https://www.google.com/";
+	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+	    	System.out.println("Bitmap: " + bitmap);
+	    	System.out.println("Content Resolver: " + getActivity().getContentResolver());
+	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
+	    	System.out.println("Post Image: " + postImage);
+			shareButton.setOnClickListener(new Button.OnClickListener() {
+			    @Override
+			    public void onClick(View v) {
+//			    	Uri screenshotUri = Uri.parse(path);
+//			    	String image = "http://i.dailymail.co.uk/i/pix/2013/03/15/article-2293722-0294CDD8000004B0-59_306x455.jpg";
+					// Launch the Google+ share dialog with attribution to your app.
+					  Intent shareIntent = new PlusShare.Builder(context)
+					      .setType("text/plain")
+					      .setText(achievementCopy + " " + staticSiteUrl) // APPEND STATIC HTML LINK HERE
+					      .setStream(Uri.parse(postImage))
+//					          .setContentUrl(Uri.parse("https://developers.google.com/+/"))
+					      .getIntent();
+					  
+					  startActivityForResult(shareIntent, 0);
+
+			      
+			    }
 			});
 
 			return rootView;

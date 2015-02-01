@@ -682,7 +682,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				String achievementTitle = levelAchievement.getTitle();
 				String achievementCopy = levelAchievement.getDescription();
 				String achievementLevel = levelAchievement.getLevel();
-				String achievementImageUrl = levelAchievement.getImageUrl();
+				String achievementImageUrl = levelAchievement.getAchievementId();
 				
 //				String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
 				msg += " " + achievementLevel + " !";

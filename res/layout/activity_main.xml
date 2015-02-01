@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/circuitboard_005_green"
+    android:background="@drawable/breadboard_lg"
     tools:context=".MainActivity" >
     
     <LinearLayout

@@ -8,19 +8,23 @@
 
     <ImageView
         android:id="@+id/achievementPoster1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/imageview_1_desc"
-        android:scaleType="centerCrop" />
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:adjustViewBounds="true"
+        android:background="@color/white_overlay"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="fitCenter" />
 
-    <TextView
+    <!--
+         <TextView
         android:id="@+id/currentLevelText1"
         style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginTop="110dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"
+        android:text="Achievement" />
+    -->
 
     <TextView
         android:id="@+id/achievementTitleText1"
@@ -28,7 +32,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/achievementCopyText1"
@@ -36,14 +41,28 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textSize="16sp" />
-    
-     <Button
-         android:id="@+id/dismissConclusionButton1"
-         style="@style/CodeFont"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:drawableLeft="@drawable/star"
-         android:text="Dismiss" />
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dismissConclusionButton1"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Dismiss" />
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Share on Google+" />
+    </LinearLayout>
 
 </LinearLayout>

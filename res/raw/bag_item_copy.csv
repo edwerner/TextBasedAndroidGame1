@@ -26,7 +26,7 @@ BAG_ITEM_TITLE,oscillator_001,Oscillator 001,Produces a periodic signal; often a
 BAG_ITEM_TITLE,protoboard,Protoboard,Surface accepts solder for connecting pins to copper pour.,assets://protoboard.jpg,1
 BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Connects multiple components on solderless breadboards.,assets://jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,diode,Diode,Low resistance in one direction and high resistance in the other.,assets://diode.jpg,1
-BAG_ITEM_TITLE,motor_mini,Mini Motor,Draws no more than 250 mA.,assets://motor_mini.jpg,1
+BAG_ITEM_TITLE,motor_mini,Mini Motor,Draws no more than 250 mA of current.,assets://motor_mini.jpg,1
 BAG_ITEM_TITLE,thermistor,Thermistor,Usually more precise within a limited temperature range.,assets://thermistor.jpg,1
 BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Found in cell phones.,assets://motor_vibr.jpg,1
 BAG_ITEM_TITLE,speaker,Audio Speaker,Signal converted from analogous electrical signal to sound.,assets://speaker.jpg,1
@@ -36,12 +36,8 @@ BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Converts mains AC to DC power
 BAG_ITEM_TITLE,ribbon_cable,Ribbon Cable,Connects to forked contacts on IDC connectors.,assets://ribbon_cable.jpg,1
 BAG_ITEM_TITLE,jumper_cable_lg,Jumper Wire Lg,Connects components on solderless breadboards.,assets://jumper_cable_lg.jpg,1
 BAG_ITEM_TITLE,printer_connector_002,Printer Connector 001,Parallel computer printer port.,assets://printer_connector_002.jpg,1
-BAG_ITEM_TITLE,breadboard_sm,Breadboard Sm,Breakout board provides extra room for connecting circuit components.,assets://breadboard_sm.jpg,1
 BAG_ITEM_TITLE,breadboard_lg,Breadboard Lg,Power rails found along edges of solderless breadboard.,assets://breadboard_lg.jpg,1
 BAG_ITEM_TITLE,jumper_cable_sm,Jumper Wire Sm,Connects components on solderless breadboards.,assets://jumper_cable_sm.jpg,1
-BAG_ITEM_TITLE,auxiliary_connector_6_pin,Auxiliary Connector (6-pin),PC main power cable connector.,assets://auxiliary_connector_6_pin.jpg,1
-BAG_ITEM_TITLE,auxiliary_connector_berg_4_pin,Auxiliary Connector (Berg 4-pin),Floppy drive power connector.,assets://auxiliary_connector_berg_4_pin.jpg,1
-BAG_ITEM_TITLE,auxiliary_connector_4_pin,Auxiliary Connector (4-pin),Provides additional power supply to the processor.,assets://auxiliary_connector_4_pin.jpg,1
 BAG_ITEM_TITLE,tilt_sensor,Tilt Sensor,Commonly found in game controllers for indicating pitch and roll.,assets://tilt_sensor.jpg,1
 BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Connect multiple circuit components.,assets://breadboard_lg_jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,psu_plug,Power Supply Unit (PSU) Plug,Connects to mains electricity supply.,assets://psu_plug.jpg,1
