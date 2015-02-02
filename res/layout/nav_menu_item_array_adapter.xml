@@ -21,6 +21,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|left"
         android:orientation="horizontal"
         android:padding="5dp" >
 
@@ -28,19 +29,19 @@
             android:id="@+id/navMenuItemTitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical|left"
+            android:text="Menu Item"
             android:textSize="20sp" >
         </TextView>
 
-        <!-- <Button
+        <!--
+             <Button
             android:id="@+id/restoreLevelData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|right"
             android:text="Restore"
-            android:visibility="gone" /> -->
+            android:visibility="gone" />
+        -->
     </LinearLayout>
-    
-    
 
 </LinearLayout>

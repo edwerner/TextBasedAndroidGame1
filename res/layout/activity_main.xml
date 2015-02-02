@@ -2,15 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/breadboard_lg"
-    tools:context=".MainActivity" >
-    
+    tools:context=".MainActivity"
+    android:background="@color/white_overlay" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:scaleType="fitCenter"
+        android:src="@drawable/breadboard_lg" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="250dp"
         android:layout_alignParentRight="true"
-        android:background="@color/white_overlay"
         android:orientation="vertical" >
 
         <TextView

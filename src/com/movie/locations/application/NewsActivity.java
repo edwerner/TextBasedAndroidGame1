@@ -103,7 +103,7 @@ public class NewsActivity extends ActionBarActivity {
 		navArray = new String[5];
 //		navArray[0] = "News";
 		navArray[0] = "Worlds";
-		navArray[1] = "Profile";
+		navArray[1] = "Player";
 //		navArray[2] = "Friends";
 //		navArray[3] = "Restore";
 //		navArray[3] = "Cards";
@@ -112,17 +112,8 @@ public class NewsActivity extends ActionBarActivity {
 		navArray[4] = "Settings";
 //		navArray[6] = "Help";
 		
-		String[] navImageUrl = new String[navArray.length];
 		final String userImageUrl = localUser.getAvatarImageUrl();
-//		navImageUrl[0] = "http://www.truevalhalla.com/blog/wp-content/uploads/2013/11/icon-news.png";
-		navImageUrl[1] = userImageUrl;
-		navImageUrl[0] = "http://icons.iconarchive.com/icons/fasticon/freestyle/128/tree-icon.png";
-//		navImageUrl[3] = "http://www.softwarecrew.com/wp-content/uploads/2012/04/wise_data_recovery_icon1.png";
-//		navImageUrl[3] = "http://d1hwvnnkb0v1bo.cloudfront.net/content/art/app/icons/key_ring_reward_cards_icon.jpg";
-		navImageUrl[2] = "https://d13yacurqjgara.cloudfront.net/users/114243/screenshots/1272737/screen_shot_2013-10-15_at_2.44.14_am_teaser.png";
-		navImageUrl[3] = "http://png-1.findicons.com/files/icons/552/aqua_candy_revolution/128/get_info.png";
-		navImageUrl[4] = "http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/matte-blue-and-white-square-icons-business/116957-matte-blue-and-white-square-icon-business-gear11.png";
-		
+
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -136,9 +127,28 @@ public class NewsActivity extends ActionBarActivity {
 		ArrayList<NavMenuItem> navList = new ArrayList<NavMenuItem>();
 		
 		for (int a = 0; a < navArray.length; a++) {
+
 			NavMenuItem menuItem = new NavMenuItem();
+			String currentImageUrl = "drawable://";
+			switch(a) {
+			case 0:
+				currentImageUrl += R.drawable.breadboard_lg;
+				break;
+			case 1:
+				currentImageUrl = userImageUrl;
+				break;
+			case 2:
+				currentImageUrl += R.drawable.backpack_blue;
+				break;
+			case 3:
+				currentImageUrl += R.drawable.help;
+				break;
+			case 4:
+				currentImageUrl += R.drawable.settings;
+				break;
+			}
 			menuItem.setTitle(navArray[a]);
-			menuItem.setImageUrl(navImageUrl[a]);
+			menuItem.setImageUrl(currentImageUrl);
 			navList.add(menuItem);
 		}
 		NavMenuItemArrayAdapter menuAdapter = new NavMenuItemArrayAdapter(this, intent, navList);

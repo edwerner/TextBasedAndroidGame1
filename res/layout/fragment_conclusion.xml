@@ -12,8 +12,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/filmlist_icon_desc"
         android:scaleType="fitCenter"
-        android:background="@color/white_overlay" >
-    </ImageView>
+        android:background="@color/white_overlay" />
 
     <!--
     <TextView

@@ -35,6 +35,7 @@ BAG_ITEM_TITLE,9v_battery_case,9V Battery Case,Has DPDT switch to control power 
 BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Converts mains AC to DC power.,assets://power_supply_unit.jpg,1
 BAG_ITEM_TITLE,ribbon_cable,Ribbon Cable,Connects to forked contacts on IDC connectors.,assets://ribbon_cable.jpg,1
 BAG_ITEM_TITLE,jumper_cable_lg,Jumper Wire Lg,Connects components on solderless breadboards.,assets://jumper_cable_lg.jpg,1
+BAG_ITEM_TITLE,breadboard_sm,Breadboard Sm,Breakout breadboard to connect extra circuit components.,assets://breadboard_sm.jpg,1
 BAG_ITEM_TITLE,printer_connector_002,Printer Connector 001,Parallel computer printer port.,assets://printer_connector_002.jpg,1
 BAG_ITEM_TITLE,breadboard_lg,Breadboard Lg,Power rails found along edges of solderless breadboard.,assets://breadboard_lg.jpg,1
 BAG_ITEM_TITLE,jumper_cable_sm,Jumper Wire Sm,Connects components on solderless breadboards.,assets://jumper_cable_sm.jpg,1
