@@ -1,8 +1,5 @@
 package com.movie.locations.dao;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,8 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class UserImpl {
 
-	private UserSqliteHelper dbHelper;
+	private SQLiteDatabaseImpl dbHelper;
 	private SQLiteDatabase database;
+	private static final String DATABASE_NAME = "users.db";
 	private final static String TABLE_NAME = "users"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private static final String COLUMN_USER_SID = "_usersid";
@@ -29,7 +27,7 @@ public class UserImpl {
 	private static final String COLUMN_WORLD_COUNT = "_worldcount";
 	private static final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
 	private static final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
-	private static Map<String, QuizItem> QUIZ_ITEM_MAP = new HashMap<String, QuizItem>();
+	
 	private String[] allColumns = { COLUMN_ID, COLUMN_USER_SID,
 			COLUMN_USER_CLIENT_ID, COLUMN_DISPLAY_NAME, COLUMN_EMAIL_ADDRESS,
 			COLUMN_AVATAR_IMAGE_URL, COLUMN_CURRENT_LEVEL,
@@ -42,8 +40,10 @@ public class UserImpl {
 	 * @param context
 	 */
 	public UserImpl(Context context) {
-		dbHelper = new UserSqliteHelper(context);
-//		database = dbHelper.getWritableDatabase();
+		dbHelper = new SQLiteDatabaseImpl(context);
+		dbHelper.setDatabaseColumns(allColumns);
+		dbHelper.setTableName(TABLE_NAME);
+		dbHelper.setDatabaseName(DATABASE_NAME);
 	}
 
 	public void delete() {
