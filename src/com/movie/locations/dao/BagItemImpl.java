@@ -11,19 +11,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class BagItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
+public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "bagitems.db";
 	private static final int DATABASE_VERSION = 1;
-	private final static String TABLE_NAME = "bagitems"; // name of table
+	private final static String TABLE_NAME = "bagitems";
 	private static final String COLUMN_ID = "_id";
 	private static final String COLUMN_GROUP_TITLE = "_grouptitle";
 	private static final String COLUMN_TITLE = "_title";
 	private static final String COLUMN_DESCRIPTION = "_description";
 	private static final String COLUMN_IMAGE_URL = "_imageurl";
 	private static final String COLUMN_LEVEL = "_level";
-	private static Map<String, BagItem> BAG_ITEM_MAP = new HashMap<String, BagItem>();
+
 	private String[] allColumns = { COLUMN_ID, COLUMN_GROUP_TITLE,
 			COLUMN_TITLE, COLUMN_DESCRIPTION, COLUMN_IMAGE_URL, COLUMN_LEVEL };
 
@@ -87,9 +87,6 @@ public class BagItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
 		values.put(COLUMN_IMAGE_URL, bagItem.getImageUrl());
 		values.put(COLUMN_LEVEL, bagItem.getLevel());
 
-		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
-		// Integer.parseInt(id));
-
 		long insertId = database.insert(TABLE_NAME,
 				null, values);
 		Cursor cursor = database.query(TABLE_NAME,
@@ -132,11 +129,9 @@ public class BagItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	public ArrayList<BagItem> selectRecords() {
 		ArrayList<BagItem> bagItemList = new ArrayList<BagItem>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				BagItem bagItem = cursorToComment(mCursor);
@@ -145,7 +140,7 @@ public class BagItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
 			}
 			mCursor.close();
 		}
-		return bagItemList; // iterate to get each value.
+		return bagItemList;
 	}
 
 	private BagItem cursorToComment(Cursor cursor) {

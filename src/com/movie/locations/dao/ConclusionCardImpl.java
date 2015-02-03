@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class ConclusionCardImpl extends SQLiteOpenHelper implements DatabaseImpl {
+public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "conclusioncards.db";

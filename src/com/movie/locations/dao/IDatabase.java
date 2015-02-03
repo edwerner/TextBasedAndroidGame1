@@ -1,7 +1,7 @@
 package com.movie.locations.dao;
 import android.database.sqlite.SQLiteDatabase;
 
-interface DatabaseImpl {
+interface IDatabase {
 	public void onCreate(SQLiteDatabase database);
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion);
 	public void delete();

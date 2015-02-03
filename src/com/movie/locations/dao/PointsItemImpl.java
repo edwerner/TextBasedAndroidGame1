@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.movie.locations.domain.PointsItem;
 
-public class PointsItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
+public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "pointsitems.db";
 	private static final int DATABASE_VERSION = 1;
