@@ -12,18 +12,21 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class GameTitleImpl {
+public class GameTitleImpl extends SQLiteOpenHelper {
 
 	private GameTitleSqliteHelper dbHelper;
 	private SQLiteDatabase database;
+	private static final String DATABASE_NAME = "gametitles.db";	
+	private static final int DATABASE_VERSION = 1;
 	private final static String TABLE_NAME = "gametitles"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private static final String COLUMN_TITLE = "_title";
 	private static final String COLUMN_TYPE = "_type";
 	private static final String COLUMN_LEVEL = "_level";
 	private static final String COLUMN_PHASE = "_phase";
-	private static Map<String, GameTitle> BAG_ITEM_MAP = new HashMap<String, GameTitle>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_PHASE };
 
 	/**
@@ -31,10 +34,36 @@ public class GameTitleImpl {
 	 * @param context
 	 */
 	public GameTitleImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new GameTitleSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
 
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, " 
+			+ COLUMN_TITLE + " text, " 
+			+ COLUMN_TYPE + " text, "
+			+ COLUMN_LEVEL + " text, "
+			+ COLUMN_PHASE + " text);";
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS gametitles");
+		onCreate(database);
+	}
+	
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
@@ -99,14 +128,6 @@ public class GameTitleImpl {
 		return title;
 	}
 
-	// public void updateRecord(String recordId, String answered)
-	// throws SQLException {
-	// ContentValues quizObject = new ContentValues();
-	// quizObject.put(COLUMN_ANSWERED, answered);
-	// database.update(TABLE_NAME, quizObject, COLUMN_ID + "=" + "'"
-	// + recordId + "'", null);
-	// }
-
 	public ArrayList<GameTitle> selectRecords() {
 		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
 		// String[] cols = new String[] { COLUMN_ID };
@@ -132,8 +153,7 @@ public class GameTitleImpl {
 		gameTitle.setTitle(cursor.getString(1));
 		gameTitle.setType(cursor.getString(2));
 		gameTitle.setLevel(cursor.getString(3));
-		gameTitle.setPhase(cursor.getString(4));
-		
+		gameTitle.setPhase(cursor.getString(4));	
 
 		return gameTitle;
 	}

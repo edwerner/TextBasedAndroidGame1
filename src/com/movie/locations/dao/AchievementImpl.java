@@ -9,11 +9,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class AchievementImpl {
+public class AchievementImpl extends SQLiteOpenHelper {
 
 	private AchievementSqliteHelper dbHelper;
 	private SQLiteDatabase database;
+	private static final String DATABASE_NAME = "achievements.db";
+	private static final int DATABASE_VERSION = 1;
+	public final static String TABLE_ACHIEVEMENTS = "achievements"; // name of table
 	private static final String TABLE_NAME = "achievements"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private static final String COLUMN_TITLE = "_title";
@@ -22,18 +27,46 @@ public class AchievementImpl {
 	private static final String COLUMN_DATETIME = "_datetime";
 	private static final String COLUMN_IMAGE_URL = "_imageurl";
 	private static final String COLUMN_LEVEL = "_level";
-	private static Map<String, BagItem> BAG_ITEM_MAP = new HashMap<String, BagItem>();
+	
 	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE,
 			COLUMN_DESCRIPTION, COLUMN_USER_ID, COLUMN_DATETIME,
 			COLUMN_IMAGE_URL, COLUMN_LEVEL };
 
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_ACHIEVEMENTS + "(" 
+			+ COLUMN_ID + " text, "
+			+ COLUMN_TITLE + " text, " 
+			+ COLUMN_DESCRIPTION + " text, "
+			+ COLUMN_USER_ID + " text, "
+			+ COLUMN_DATETIME + " text, "
+			+ COLUMN_IMAGE_URL + " text, "
+			+ COLUMN_LEVEL + " text);";
+	
 	/**
 	 * 
 	 * @param context
 	 */
 	public AchievementImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new AchievementSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
+	}
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS achievements");
+		onCreate(database);
 	}
 
 	public void delete() {
@@ -102,14 +135,6 @@ public class AchievementImpl {
 		}
 		return achievement;
 	}
-
-	// public void updateRecord(String recordId, String answered)
-	// throws SQLException {
-	// ContentValues quizObject = new ContentValues();
-	// quizObject.put(COLUMN_ANSWERED, answered);
-	// database.update(TABLE_NAME, quizObject, COLUMN_ID + "=" + "'"
-	// + recordId + "'", null);
-	// }
 
 	public ArrayList<Achievement> selectRecords() {
 		ArrayList<Achievement> achievementList = new ArrayList<Achievement>();

@@ -8,11 +8,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class BagItemImpl {
+public class BagItemImpl extends SQLiteOpenHelper {
 
 	private BagItemSqliteHelper dbHelper;
 	private SQLiteDatabase database;
+	private static final String DATABASE_NAME = "bagitems.db";
+	private static final int DATABASE_VERSION = 1;
 	private final static String TABLE_NAME = "bagitems"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private static final String COLUMN_GROUP_TITLE = "_grouptitle";
@@ -29,8 +33,36 @@ public class BagItemImpl {
 	 * @param context
 	 */
 	public BagItemImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new BagItemSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
+	}
+
+
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, "
+			+ COLUMN_GROUP_TITLE + " text, " 
+			+ COLUMN_TITLE + " text, " 
+			+ COLUMN_DESCRIPTION + " text, "
+			+ COLUMN_IMAGE_URL + " text, "
+			+ COLUMN_LEVEL + " text);";
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS bagitems");
+		onCreate(database);
 	}
 
 	public void delete() {

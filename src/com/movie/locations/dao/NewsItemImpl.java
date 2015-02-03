@@ -1,5 +1,7 @@
 package com.movie.locations.dao;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,19 +10,21 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.util.Log;
 
-public class NewsItemImpl {
+public class NewsItemImpl extends SQLiteOpenHelper {
 
 	private NewsItemSqliteHelper dbHelper;
 	private SQLiteDatabase database;
-	private final static String TABLE_NAME = "newsitems"; // name of table
+	private static final String DATABASE_NAME = "newsitems.db";
+	private static final int DATABASE_VERSION = 1; 
+	final static String TABLE_NAME = "newsitems"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private final static String COLUMN_TITLE = "_title";
 	private final static String COLUMN_TEXT = "_text";
 	private final static String COLUMN_IMAGE_URL = "_imageurl";
 	private final static String COLUMN_NEWS_TYPE = "_newstype";
 	private final static String COLUMN_DATETIME = "_datetime";
-	private static Map<String, NewsItem> BAG_ITEM_MAP = new HashMap<String, NewsItem>();
 	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TEXT,
 			COLUMN_IMAGE_URL, COLUMN_NEWS_TYPE, COLUMN_DATETIME };
 
@@ -29,10 +33,36 @@ public class NewsItemImpl {
 	 * @param context
 	 */
 	public NewsItemImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new NewsItemSqliteHelper(context);
-		database = dbHelper.getWritableDatabase();
 	}
 
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, " 
+			+ COLUMN_TITLE + " text, "
+			+ COLUMN_TEXT + " text, "
+			+ COLUMN_IMAGE_URL + " text, "
+			+ COLUMN_NEWS_TYPE + " text, "
+			+ COLUMN_DATETIME + " text);";
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS newsitems");
+		onCreate(database);
+	}
+	
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}

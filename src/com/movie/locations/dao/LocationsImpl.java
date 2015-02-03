@@ -1,19 +1,21 @@
 package com.movie.locations.dao;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import com.movie.locations.domain.FilmLocation;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class LocationsImpl {
+public class LocationsImpl extends SQLiteOpenHelper {
 
 	private LocationsSqliteHelper dbHelper;
 	private SQLiteDatabase database;
-	private final static String COLUMN_TABLE = "locations"; // name of table
+	private static final String DATABASE_NAME = "locations.db";
+	private static final int DATABASE_VERSION = 5;
+	private final static String TABLE_NAME = "locations"; // name of table
 	private final static String COLUMN_SID = "_sid";
 	private static final String COLUMN_ID = "_id";
 	public static final String COLUMN_LEVEL = "_level";
@@ -34,12 +36,44 @@ public class LocationsImpl {
 	 * @param context
 	 */
 	public LocationsImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new LocationsSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
+	
+
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" + COLUMN_ID
+			+ " text, " + COLUMN_SID
+			+ " text, " + COLUMN_LEVEL
+			+ " text, " + COLUMN_POSITION
+			+ " text, " + COLUMN_TITLE
+			+ " text, " + COLUMN_LOCATIONS
+			+ " text, " + COLUMN_FUN_FACTS
+			+ " text, " + COLUMN_STATIC_MAP_IMAGE_URL
+			+ " text, " + COLUMN_FUN_FACTS_IMAGE_URL
+			+ " text, " + COLUMN_FUN_FACTS_TITLE
+			+ " text);";
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS locations");
+		onCreate(database);
+	}
 
 	public void delete() {
-		database.delete(COLUMN_TABLE, null, null);
+		database.delete(TABLE_NAME, null, null);
 	}
 
 	public void open() throws SQLException {
@@ -84,7 +118,7 @@ public class LocationsImpl {
 	public ArrayList<FilmLocation> selectRecords() {
 		ArrayList<FilmLocation> locations = new ArrayList<FilmLocation>();
 		// String[] cols = new String[] { COLUMN_ID };
-		Cursor mCursor = database.query(true, COLUMN_TABLE, allColumns, null,
+		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 		// String num;
 
@@ -102,7 +136,7 @@ public class LocationsImpl {
 	public ArrayList<FilmLocation> selectRecordsByTitle(String title) {
 		ArrayList<FilmLocation> locations = new ArrayList<FilmLocation>();
 		// String[] cols = new String[] { COLUMN_ID };
-		Cursor mCursor = database.query(true, COLUMN_TABLE, allColumns, null,
+		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 		// String num;
 
@@ -125,19 +159,19 @@ public class LocationsImpl {
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] recordTitleArray = { recordTitle };
-		database.delete(COLUMN_TABLE, COLUMN_TITLE + "=?", recordTitleArray);
+		database.delete(TABLE_NAME, COLUMN_TITLE + "=?", recordTitleArray);
 	}
 	
 	public void deleteRecordsByLevel(String level) {
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] levelArray = { level };
-		database.delete(COLUMN_TABLE, COLUMN_LEVEL + "=?", levelArray);
+		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
 	
 	public FilmLocation selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
-		Cursor cursor = database.query(COLUMN_TABLE, allColumns,
+		Cursor cursor = database.query(TABLE_NAME, allColumns,
 				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
 		FilmLocation location = null;
 		if (cursor != null) {

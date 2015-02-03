@@ -7,17 +7,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.movie.locations.domain.PointsItem;
 
-public class PointsItemImpl {
+public class PointsItemImpl extends SQLiteOpenHelper {
 	private PointsItemSqliteHelper dbHelper;
 	private SQLiteDatabase database;
-	private final static String POINTS_ITEM_TABLE = "pointsitems"; // name of table
+	private static final String DATABASE_NAME = "pointsitems.db";
+	private static final int DATABASE_VERSION = 1;
+	private final static String TABLE_NAME = "pointsitems"; // name of table
 	private static final String COLUMN_USER_ID = "_userid";
 	private static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
 	private static final String COLUMN_POINTS = "_points";
 	private static final String COLUMN_BONUS_POINTS = "_bonuspoints";
-	private static Map<String, PointsItem> POINTS_ITEM_MAP = new HashMap<String, PointsItem>();
+	
 	private String[] allColumns = { COLUMN_USER_ID, COLUMN_POINTS_USER_ID,
 			COLUMN_POINTS, COLUMN_BONUS_POINTS };
 
@@ -26,12 +31,38 @@ public class PointsItemImpl {
 	 * @param context
 	 */
 	public PointsItemImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new PointsItemSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
 
+
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_USER_ID + " text, "
+			+ COLUMN_POINTS_USER_ID + " text, " 
+			+ COLUMN_POINTS + " text, "
+			+ COLUMN_BONUS_POINTS + " text);";
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS pointsitems");
+		onCreate(database);
+	}
+
 	public void delete() {
-		database.delete(POINTS_ITEM_TABLE, null, null);
+		database.delete(TABLE_NAME, null, null);
 	}
 
 	public void open() throws SQLException {
@@ -69,7 +100,7 @@ public class PointsItemImpl {
 
 	public PointsItem selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
-		Cursor cursor = database.query(POINTS_ITEM_TABLE, allColumns,
+		Cursor cursor = database.query(TABLE_NAME, allColumns,
 				COLUMN_USER_ID + "=?", recordIdArray, null, null, null, null);
 		PointsItem pointsItem = null;
 		if (cursor != null) {
@@ -86,7 +117,7 @@ public class PointsItemImpl {
 	public void updateRecordPointsValue(String recordId, String pointsValue) {
 		ContentValues pointsObject = new ContentValues();
 		pointsObject.put(COLUMN_POINTS, pointsValue);
-		database.update(POINTS_ITEM_TABLE, pointsObject, COLUMN_POINTS_USER_ID // should be COLUMN_USER_ID
+		database.update(TABLE_NAME, pointsObject, COLUMN_POINTS_USER_ID // should be COLUMN_USER_ID
 				+ "=" + "'" + recordId + "'", null);
 	}
 
@@ -102,7 +133,7 @@ public class PointsItemImpl {
 			pointsObject.put(COLUMN_BONUS_POINTS, updatedBonusPoints);	
 		}
 		
-		database.update(POINTS_ITEM_TABLE, pointsObject, COLUMN_USER_ID
+		database.update(TABLE_NAME, pointsObject, COLUMN_USER_ID
 				+ "=" + "'" + recordId + "'", null);
 	}
 
@@ -117,7 +148,7 @@ public class PointsItemImpl {
 	public ArrayList<PointsItem> selectRecords() {
 		ArrayList<PointsItem> pointsItemList = new ArrayList<PointsItem>();
 		// String[] cols = new String[] { COLUMN_ID };
-		Cursor mCursor = database.query(true, POINTS_ITEM_TABLE, allColumns,
+		Cursor mCursor = database.query(true, TABLE_NAME, allColumns,
 				null, null, null, null, null, null);
 
 		// String num;

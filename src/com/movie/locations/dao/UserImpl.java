@@ -6,27 +6,69 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class UserImpl {
+public class UserImpl extends SQLiteOpenHelper {
 
-	private SQLiteDatabaseImpl dbHelper;
+	private UserSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "users.db";
-	private final static String TABLE_NAME = "users"; // name of table
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_USER_SID = "_usersid";
-	private static final String COLUMN_USER_CLIENT_ID = "_clientid";
-	private final static String COLUMN_DISPLAY_NAME = "_displayname";
-	private final static String COLUMN_EMAIL_ADDRESS = "_emailaddress";
-	private final static String COLUMN_AVATAR_IMAGE_URL = "_avatarimageurl";
-	private final static String COLUMN_CURRENT_LEVEL = "_currentlevel";
-	private final static String COLUMN_ANSWER_CURRENT_POINTS = "_currentpoints";
-	private static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
-	private static final String COLUMN_POINTS = "_points";
-	private static final String COLUMN_BONUS_POINTS = "_bonuspoints";
-	private static final String COLUMN_WORLD_COUNT = "_worldcount";
-	private static final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
-	private static final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
+	private static final int DATABASE_VERSION = 1;
+	private final String TABLE_USERS = "users"; // name of table
+	private final String COLUMN_ID = "_id";
+	private final String COLUMN_USER_SID = "_usersid";
+	private final String COLUMN_USER_CLIENT_ID = "_clientid";
+	private final String COLUMN_DISPLAY_NAME = "_displayname";
+	private final String COLUMN_EMAIL_ADDRESS = "_emailaddress";
+	private final String COLUMN_AVATAR_IMAGE_URL = "_avatarimageurl";
+	private final String COLUMN_CURRENT_LEVEL = "_currentlevel";
+	private final String COLUMN_ANSWER_CURRENT_POINTS = "_currentpoints";
+	private final String COLUMN_POINTS_USER_ID = "_pointsuserid";
+	private final String COLUMN_POINTS = "_points";
+	private final String COLUMN_BONUS_POINTS = "_bonuspoints";
+	private final String COLUMN_WORLD_COUNT = "_worldcount";
+	private final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
+	private final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
+	
+	// Database creation sql statement
+	private final String DATABASE_CREATE = "create table "
+			+ TABLE_USERS + "(" 
+			+ COLUMN_ID + " text, "
+			+ COLUMN_USER_SID + " text, " 
+			+ COLUMN_USER_CLIENT_ID + " text, " 
+			+ COLUMN_DISPLAY_NAME + " text, "
+			+ COLUMN_EMAIL_ADDRESS + " text, "
+			+ COLUMN_AVATAR_IMAGE_URL + " text, "
+			+ COLUMN_CURRENT_LEVEL + " text, "
+			+ COLUMN_ANSWER_CURRENT_POINTS + " text, "
+			+ COLUMN_POINTS_USER_ID + " text, "
+			+ COLUMN_POINTS + " text, "
+			+ COLUMN_BONUS_POINTS + " text, "
+			+ COLUMN_WORLD_COUNT + " text, "
+			+ COLUMN_EMAIL_NOTIFICATIONS + " text, "
+			+ COLUMN_MOBILE_NOTIFICATIONS + " text);";
+
+	public UserImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		dbHelper = new UserSqliteHelper(context);
+	}
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS users");
+		onCreate(database);
+	}
 	
 	private String[] allColumns = { COLUMN_ID, COLUMN_USER_SID,
 			COLUMN_USER_CLIENT_ID, COLUMN_DISPLAY_NAME, COLUMN_EMAIL_ADDRESS,
@@ -35,19 +77,8 @@ public class UserImpl {
 			COLUMN_BONUS_POINTS, COLUMN_WORLD_COUNT,
 			COLUMN_EMAIL_NOTIFICATIONS, COLUMN_MOBILE_NOTIFICATIONS };
 
-	/**
-	 * 
-	 * @param context
-	 */
-	public UserImpl(Context context) {
-		dbHelper = new SQLiteDatabaseImpl(context);
-		dbHelper.setDatabaseColumns(allColumns);
-		dbHelper.setTableName(TABLE_NAME);
-		dbHelper.setDatabaseName(DATABASE_NAME);
-	}
-
 	public void delete() {
-		database.delete(TABLE_NAME, null, null);
+		database.delete(TABLE_USERS, null, null);
 	}
 
 	public void open() throws SQLException {
@@ -76,9 +107,9 @@ public class UserImpl {
 		values.put(COLUMN_EMAIL_NOTIFICATIONS, user.getEmailNotifications());
 		values.put(COLUMN_MOBILE_NOTIFICATIONS, user.getMobileNotifications());
 
-		long insertId = database.insert(UserSqliteHelper.TABLE_USERS, null,
+		long insertId = database.insert(TABLE_USERS, null,
 				values);
-		Cursor cursor = database.query(UserSqliteHelper.TABLE_USERS,
+		Cursor cursor = database.query(TABLE_USERS,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
 		User userCursor = null;
@@ -106,7 +137,7 @@ public class UserImpl {
 			pointsObject.put(COLUMN_BONUS_POINTS, updatedBonusPoints);
 		}
 
-		database.update(TABLE_NAME, pointsObject, COLUMN_ID + "=" + "'"
+		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
 				+ recordId + "'", null);
 	}
 	
@@ -121,7 +152,7 @@ public class UserImpl {
 			pointsObject.put(COLUMN_MOBILE_NOTIFICATIONS, updatedMobileNotifications);
 		}
 
-		database.update(TABLE_NAME, pointsObject, COLUMN_ID + "=" + "'"
+		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
 				+ recordId + "'", null);
 	}
 
@@ -132,13 +163,13 @@ public class UserImpl {
 			pointsObject.put(COLUMN_WORLD_COUNT, updatedWorldCount);
 		}
 
-		database.update(TABLE_NAME, pointsObject, COLUMN_ID + "=" + "'"
+		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
 				+ recordId + "'", null);
 	}
 
 	public User selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
-		Cursor cursor = database.query(TABLE_NAME, allColumns,
+		Cursor cursor = database.query(TABLE_USERS, allColumns,
 				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
 		User user = null;
 		if (cursor != null) {
@@ -163,7 +194,7 @@ public class UserImpl {
 	public ArrayList<User> selectRecords() {
 		ArrayList<User> userList = new ArrayList<User>();
 		// String[] cols = new String[] { COLUMN_ID };
-		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
+		Cursor mCursor = database.query(true, TABLE_USERS, allColumns, null,
 				null, null, null, null, null);
 
 		// String num;
@@ -207,7 +238,7 @@ public class UserImpl {
 			pointsObject.put(COLUMN_CURRENT_LEVEL, currentLevelCheck);
 		}
 
-		database.update(TABLE_NAME, pointsObject, COLUMN_ID + "=" + "'"
+		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
 				+ recordId + "'", null);
 	}
 }

@@ -8,25 +8,25 @@ import android.util.Log;
 public class UserSqliteHelper extends SQLiteOpenHelper {
 
 	private static final String DATABASE_NAME = "users.db";
-	public static final String TABLE_USERS = "users";
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_USER_SID = "_usersid";
-	private static final String COLUMN_CLIENT_ID = "_clientid";
-	private final static String COLUMN_DISPLAY_NAME = "_displayname";
-	private final static String COLUMN_EMAIL_ADDRESS = "_emailaddress";
-	private final static String COLUMN_AVATAR_IMAGE_URL = "_avatarimageurl";
-	private final static String COLUMN_CURRENT_LEVEL = "_currentlevel";
-	private final static String COLUMN_ANSWER_CURRENT_POINTS = "_currentpoints";
-	private static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
-	private static final String COLUMN_POINTS = "_points";
-	private static final String COLUMN_BONUS_POINTS = "_bonuspoints";
-	private static final String COLUMN_WORLD_COUNT = "_worldcount";
-	private static final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
-	private static final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
 	private static final int DATABASE_VERSION = 1;
+	private final String TABLE_USERS = "users";
+	private final String COLUMN_ID = "_id";
+	private final String COLUMN_USER_SID = "_usersid";
+	private final String COLUMN_CLIENT_ID = "_clientid";
+	private final String COLUMN_DISPLAY_NAME = "_displayname";
+	private final String COLUMN_EMAIL_ADDRESS = "_emailaddress";
+	private final String COLUMN_AVATAR_IMAGE_URL = "_avatarimageurl";
+	private final String COLUMN_CURRENT_LEVEL = "_currentlevel";
+	private final String COLUMN_ANSWER_CURRENT_POINTS = "_currentpoints";
+	private final String COLUMN_POINTS_USER_ID = "_pointsuserid";
+	private final String COLUMN_POINTS = "_points";
+	private final String COLUMN_BONUS_POINTS = "_bonuspoints";
+	private final String COLUMN_WORLD_COUNT = "_worldcount";
+	private final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
+	private final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
 
 	// Database creation sql statement
-	private static final String DATABASE_CREATE = "create table "
+	private final String DATABASE_CREATE = "create table "
 			+ TABLE_USERS + "(" 
 			+ COLUMN_ID + " text, "
 			+ COLUMN_USER_SID + " text, " 

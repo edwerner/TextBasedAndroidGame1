@@ -8,11 +8,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
-public class QuizItemImpl {
+public class QuizItemImpl extends SQLiteOpenHelper {
 
 	private QuizItemSqliteHelper dbHelper;
 	private SQLiteDatabase database;
+	private static final String DATABASE_NAME = "quizitems.db";
+	private static final int DATABASE_VERSION = 1;
 	public final static String TABLE_NAME = "quizitems"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private final static String COLUMN_ANSWER_SUBMIT_COUNT = "_datetime";
@@ -54,10 +58,53 @@ public class QuizItemImpl {
 	 * @param context
 	 */
 	public QuizItemImpl(Context context) {
+		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		dbHelper = new QuizItemSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
 
+	// Database creation sql statement
+	private static final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, "
+			+ COLUMN_ANSWER_SUBMIT_COUNT + " text, "
+			+ COLUMN_QUESTION_TEXT + " text, "
+			+ COLUMN_ANSWER_01 + " text, "
+			+ COLUMN_ANSWER_02 + " text, "
+			+ COLUMN_ANSWER_03 + " text, "
+			+ COLUMN_ANSWER_04 + " text, "
+			+ COLUMN_REACTION_01 + " text, "
+			+ COLUMN_REACTION_02 + " text, "
+			+ COLUMN_REACTION_03 + " text, "
+			+ COLUMN_REACTION_04 + " text, "
+			+ COLUMN_WORLD_ID + " text, "
+			+ COLUMN_WORLD_TITLE + " text, "
+			+ COLUMN_ANSWERED + " text, "
+			+ COLUMN_LEVEL + " text, "
+			+ COLUMN_ACTIVE_ITEM + " text, "
+			+ COLUMN_ACTIVE_ITEM_01 + " text, "
+			+ COLUMN_ACTIVE_ITEM_02 + " text, "
+			+ COLUMN_ACTIVE_ITEM_03 + " text, "
+			+ COLUMN_ACTIVE_ITEM_04 + " text, "
+			+ COLUMN_CORRECT_ANSWER_INDEX + " text, "
+			+ COLUMN_POINT_VALUE + " text);";
+
+	// Method is called during creation of the database
+	@Override
+	public void onCreate(SQLiteDatabase database) {
+		database.execSQL(DATABASE_CREATE);
+	}
+
+	// Method is called during an upgrade of the database,
+	@Override
+	public void onUpgrade(SQLiteDatabase database, int oldVersion,
+			int newVersion) {
+		Log.w("Database", "Upgrading database from version " + oldVersion
+				+ " to " + newVersion + ", which will destroy all old data");
+		database.execSQL("DROP TABLE IF EXISTS quizitems");
+		onCreate(database);
+	}
+	
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
