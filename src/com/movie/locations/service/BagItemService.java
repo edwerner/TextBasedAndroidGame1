@@ -16,20 +16,13 @@ import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.util.CSVFile;
 
-public class BagItemService {
+public class BagItemService implements IService {
 
 	public BagItemService() {
 		// empty constructor
 	}
-	
-	public JsonNode createLocationJson(String msg) throws JsonParseException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		JsonFactory factory = mapper.getJsonFactory(); 
-		JsonParser parser = factory.createJsonParser(msg);
-		JsonNode locationJson = mapper.readTree(parser);
-		return locationJson;
-	}
 
+	@Override
 	public JsonNode createJsonNode(String msg) throws JsonParseException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonFactory factory = mapper.getJsonFactory(); 
@@ -38,6 +31,7 @@ public class BagItemService {
 		return locationJson;
 	}
 	
+	@Override
 	public void createContentValues(InputStream stream, Context context) {
 		
 		CSVFile csvFile = new CSVFile(stream);
@@ -45,9 +39,9 @@ public class BagItemService {
 		String BAG_ITEM_LEVEL = null;
 		
 		// compose world location objects
-		List locationList = csvFile.read();
+		List<?> locationList = csvFile.read();
 		ArrayList<BagItem> bagItemArrayList = new ArrayList<BagItem>();
-		Iterator iter = locationList.iterator();
+		Iterator<?> iter = locationList.iterator();
 		while (iter.hasNext()) {
 			Object[] result = (Object[]) iter.next();
 			BagItem bagItem = new BagItem();
@@ -85,45 +79,9 @@ public class BagItemService {
 		
 		datasource.close();
 	}
-	
-	public ArrayList<BagItem> buildBagItemObject(JsonNode bagData, Context context) {
 
-		JsonNode bagItems = bagData.path("bagItems");
-		System.out.println("WORLD LOCATIONS BUILD OBJECTS BAG ITEMS: " + bagData);
-		ArrayList<BagItem> bagList = new ArrayList<BagItem>();
-		BagItemImpl bagItemDatasource = new BagItemImpl(context);
-		for (JsonNode item : bagItems) {			
-			BagItem bagItem = new BagItem();
-			bagItem.setItemId(removeDoubleQuotes(item.get("id").toString()));
-			bagItem.setBagGroupTitle(removeDoubleQuotes(item.get("group").toString()));
-			bagItem.setItemTitle(removeDoubleQuotes(item.get("title").toString()));
-			bagItem.setDescription(removeDoubleQuotes(item.get("description").toString()));
-			bagItem.setImageUrl(removeDoubleQuotes(item.get("imageUrl").toString()));
-			bagItem.setLevel(removeDoubleQuotes(item.get("level").toString()));
-			bagList.add(bagItem);
-			
-			// create database connection and store
-			// location objects in sqlite database
-			bagItemDatasource.open();
-			bagItemDatasource.createRecord(bagItem);
-			ArrayList<BagItem> bagDatasourceList = bagItemDatasource.selectRecords();
-			for (BagItem localBagItem : bagDatasourceList) {
-				System.out.println("WORLD LOCATIONS BAG ITEM OBJECT: " + localBagItem.getItemTitle());	
-			}
-			bagItemDatasource.close();
-		}
-		return bagList;
-	}
-
+	@Override
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
-	}
-
-	public String removeDoubleQuotesAndParenthesis(String string) {
-		String regex = string.replaceAll("(^\")|(\"$)", "");
-		regex = regex.replaceAll("\\(", " ");
-		regex = regex.replaceAll("\\)", " ");
-		regex = regex.replaceFirst("\\s+$", "");
-		return regex;
 	}
 }

@@ -46,7 +46,7 @@
         <uses-library android:name="com.google.android.maps" />
 
         <receiver
-            android:name="com.movie.locations.service.DatabaseChangedReceiver"
+            android:name="com.movie.locations.receiver.DatabaseChangedReceiver"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="com.movie.locations.service.DATABASE_CHANGED" >

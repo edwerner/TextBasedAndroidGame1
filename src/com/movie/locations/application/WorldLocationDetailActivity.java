@@ -20,7 +20,7 @@ import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
-import com.movie.locations.service.DatabaseChangedReceiver;
+import com.movie.locations.receiver.DatabaseChangedReceiver;
 import com.movie.locations.service.QuizItemService;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;

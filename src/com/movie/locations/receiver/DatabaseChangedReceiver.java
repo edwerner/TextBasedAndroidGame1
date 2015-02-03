@@ -1,4 +1,4 @@
-package com.movie.locations.service;
+package com.movie.locations.receiver;
 import java.util.ArrayList;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;

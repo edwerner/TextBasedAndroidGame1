@@ -16,21 +16,13 @@ import com.movie.locations.dao.AchievementImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.util.CSVFile;
 
-public class AchievementService {
-	private JsonNode questionsJson;
+public class AchievementService implements IService {
 
 	public AchievementService() {
 		// empty constructor
 	}
 	
-	public JsonNode createLocationJson(String msg) throws JsonParseException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		JsonFactory factory = mapper.getJsonFactory(); 
-		JsonParser parser = factory.createJsonParser(msg);
-		JsonNode locationJson = mapper.readTree(parser);
-		return locationJson;
-	}
-
+	@Override
 	public JsonNode createJsonNode(String msg) throws JsonParseException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonFactory factory = mapper.getJsonFactory(); 
@@ -38,6 +30,8 @@ public class AchievementService {
 		JsonNode locationJson = mapper.readTree(parser);
 		return locationJson;
 	}
+	
+	@Override
 	public void createContentValues(InputStream stream, Context context) {
 		
 		CSVFile csvFile = new CSVFile(stream);
@@ -46,9 +40,9 @@ public class AchievementService {
 		String ACHIEVEMENT_LEVEL = null;
 		
 		// compose world location objects
-		List locationList = csvFile.read();
+		List<?> locationList = csvFile.read();
 		ArrayList<Achievement> achievementArrayList = new ArrayList<Achievement>();
-		Iterator iter = locationList.iterator();
+		Iterator<?> iter = locationList.iterator();
 		while (iter.hasNext()) {
 			Object[] result = (Object[]) iter.next();
 			Achievement achievement = new Achievement();
@@ -86,16 +80,9 @@ public class AchievementService {
 		
 		datasource.close();
 	}
-
+	
+	@Override
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
-	}
-
-	public String removeDoubleQuotesAndParenthesis(String string) {
-		String regex = string.replaceAll("(^\")|(\"$)", "");
-		regex = regex.replaceAll("\\(", " ");
-		regex = regex.replaceAll("\\)", " ");
-		regex = regex.replaceFirst("\\s+$", "");
-		return regex;
 	}
 }

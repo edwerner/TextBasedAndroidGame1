@@ -14,7 +14,7 @@ import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.LocationMapParcel;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
-import com.movie.locations.service.DatabaseChangedReceiver;
+import com.movie.locations.receiver.DatabaseChangedReceiver;
 import com.movie.locations.util.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.content.Context;
