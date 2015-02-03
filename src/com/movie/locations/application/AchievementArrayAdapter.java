@@ -44,15 +44,12 @@ public class AchievementArrayAdapter extends ArrayAdapter<Achievement> {
 				parent, false);
 
 		final Intent commentIntent = new Intent(context, AchievementActivity.class);
-		
-		// get intent string attributes
-		Bundle bundle = intent.getExtras();
-		User localUser = bundle.getParcelable("localUser");
+		final Bundle bundle = intent.getExtras();
+		final User localUser = bundle.getParcelable("localUser");
 		
 		commentIntent.putExtra("userId", values.get(position).getUserId());
 		commentIntent.putExtra("dateTime", values.get(position).getDateTime());
 		commentIntent.putExtra("title", values.get(position).getTitle());
-//		commentIntent.putExtra("catchPhrase", values.get(position).getCatchPhrase());
 		commentIntent.putExtra("localUser", localUser);
 	
 		if (!values.get(position).getTitle().equals(null)) {

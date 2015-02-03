@@ -112,11 +112,9 @@ public class QuizItemService implements IService {
 		QuizItemImpl datasource = new QuizItemImpl(context);
 		datasource.open();
 		datasource.updateRecordAnswered(result, "FALSE");
-		ArrayList<QuizItem> currentTitleLocations = datasource.selectRecords();
+		QuizItem tempQuizItem = datasource.selectRecordById(result);
 		datasource.close();
-		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
-		tempQuizItemArrayList.setQuizList(currentTitleLocations);
-		newsIntent.putExtra("quizArrayList", tempQuizItemArrayList);
+		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
 		context.sendBroadcast(newsIntent);
 	}
 	

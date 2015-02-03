@@ -229,14 +229,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 			 if (answered == true) {
 				 initializeReplayWorld(replayQuizItem);
 			 }
-//			 // System.out.println("CURRENT USER: " + currentUser);
-//			 // System.out.println("SRC USER: " + userSource);
-//			 if (currentUser != null) {
-//				 // RELOAD USER HERE TO UPDATE POINTS
-//				 final String CURRENT_USER_ID = currentUser.getUserId();
-//				 currentUser = userSource.selectRecordById(CURRENT_USER_ID);
-//				 // System.out.println("ON RESUME USER MOBILE NOTIFICATIONS: " + currentUser.getMobileNotifications());
-//			 }
 		 }
 		 super.onResume();
 	 }
@@ -270,40 +262,33 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 				// update your list
 				Bundle extras = intent.getExtras();
-				QuizItemArrayList quizArrayList = extras.getParcelable("quizArrayList");
-				// System.out.println("DATABASE_CHANGED: " + quizArrayList);
-				newQuizList = quizArrayList.getQuizList();
+				QuizItem updatedQuizItem = extras.getParcelable("updatedQuizItem");
 				String currentUserId = currentUser.getUserId();
 				String updatedUserPointsString = null;
 
 				pointsItemImpl.open();
 				
-				for (int i = 0; i < newQuizList.size(); i++) {
-					QuizItem tempQuizItem = newQuizList.get(i);
-					if (getTitle().equals(tempQuizItem.getWorldTitle())) {
-						locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
-						locationQuizArrayAdapter.insert(tempQuizItem, 0);
-						
-						final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
-						
-						// UPDATE USER POINTS
-						String quizItemPointValue = tempQuizItem.getPointValue();
-						int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
-						
-						if (updatedUserDatabasePointsItem != null) {
-							String databasePoints = updatedUserDatabasePointsItem.getPoints();
-							// System.out.println("USER DATABASE POINTS: " + databasePoints);
-							int databasePointsInt = Integer.parseInt(databasePoints);
-							
-							int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
-							updatedUserPointsString = Integer.toString(updatedUserPointsInt);
-							pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
-							
-							// System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
-						} else {
-							updatedUserPointsString = currentUser.getPoints();
-						}
-					}
+				locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
+				locationQuizArrayAdapter.insert(updatedQuizItem, 0);
+				
+				final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+				
+				// UPDATE USER POINTS
+				String quizItemPointValue = updatedQuizItem.getPointValue();
+				int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
+				
+				if (updatedUserDatabasePointsItem != null) {
+					String databasePoints = updatedUserDatabasePointsItem.getPoints();
+					// System.out.println("USER DATABASE POINTS: " + databasePoints);
+					int databasePointsInt = Integer.parseInt(databasePoints);
+					
+					int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
+					updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+					pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
+					
+					// System.out.println("UPDATED USER DATABASE POINTS: " + updatedUserPointsString);
+				} else {
+					updatedUserPointsString = currentUser.getPoints();
 				}
 				
 				pointsItemImpl.close();
@@ -321,16 +306,14 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 			private String resp;
 			private ProgressDialog dialog;
-			private ArrayList<FilmLocation> filmLocationList;
 			
 			@Override
 			protected String doInBackground(String... params) {
-				publishProgress("Sleeping..."); // Calls onProgressUpdate()
+				publishProgress("Sleeping...");
 				try {
 					resp = params[0];
 				} catch (Exception e) {
 					e.printStackTrace();
-					// System.out.println("ERROR STACK TRACE");
 					resp = e.getMessage();
 				}
 				return resp;
@@ -348,15 +331,11 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 					dialog.dismiss();
 				}
 				String message = "Success!";
-				if (result.equals("success")) {
-					message = "Level data restored.";
-				} else if (result.equals("error")) {
-					message = "Something went wrong.";
-				} else {
+				if (result != null) {
 					message = "Level data reset.";
-					
-					// System.out.println("ANSWERED QUIZ ID: " + result);
 					quizItemService.resetAnsweredQuestion(result, context);
+				} else {
+					message = "Something went wrong!";
 				}
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 				
