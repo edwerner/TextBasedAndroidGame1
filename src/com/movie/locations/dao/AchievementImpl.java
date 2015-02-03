@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class AchievementImpl extends SQLiteOpenHelper {
+public class AchievementImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "achievements.db";
@@ -47,7 +47,6 @@ public class AchievementImpl extends SQLiteOpenHelper {
 	 */
 	public AchievementImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//		database = dbHelper.getWritableDatabase();
 	}
 
 	// Method is called during creation of the database
@@ -66,14 +65,17 @@ public class AchievementImpl extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -110,6 +112,7 @@ public class AchievementImpl extends SQLiteOpenHelper {
 		return achievementCursor;
 	}
 
+	@Override
 	public void deleteRecordById(String level) {
 
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
@@ -151,7 +154,7 @@ public class AchievementImpl extends SQLiteOpenHelper {
 		return achievementList; // iterate to get each value.
 	}
 
-	private Achievement cursorToComment(Cursor cursor) {
+	public Achievement cursorToComment(Cursor cursor) {
 		Achievement achievement = new Achievement();
 		achievement.setAchievementId(cursor.getString(0));
 		achievement.setTitle(cursor.getString(1));
@@ -162,5 +165,17 @@ public class AchievementImpl extends SQLiteOpenHelper {
 		achievement.setLevel(cursor.getString(6));
 
 		return achievement;
+	}
+
+	@Override
+	public void deleteRecordByLevel(String level) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
+		// TODO Auto-generated method stub
+		
 	}
 }

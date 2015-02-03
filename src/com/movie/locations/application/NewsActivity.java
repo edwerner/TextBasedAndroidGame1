@@ -6,7 +6,6 @@ import com.movie.locations.dao.BagItemImpl;
 import com.movie.locations.dao.ConclusionCardImpl;
 import com.movie.locations.dao.GameTitleImpl;
 import com.movie.locations.dao.LocationsImpl;
-import com.movie.locations.dao.NewsItemImpl;
 import com.movie.locations.dao.PointsItemImpl;
 import com.movie.locations.dao.QuizItemImpl;
 import com.movie.locations.dao.UserImpl;

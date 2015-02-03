@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class BagItemImpl extends SQLiteOpenHelper {
+public class BagItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "bagitems.db";
@@ -61,15 +61,18 @@ public class BagItemImpl extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS bagitems");
 		onCreate(database);
 	}
-
+	
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
-
+	
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -104,13 +107,15 @@ public class BagItemImpl extends SQLiteOpenHelper {
 
 		return bagItemCursor;
 	}
-
-	public void deleteRecordsByLevel(String level) {
+	
+	@Override
+	public void deleteRecordByLevel(String level) {
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
+	
 	public BagItem selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
@@ -121,19 +126,9 @@ public class BagItemImpl extends SQLiteOpenHelper {
 			if (cursor.moveToFirst()) {
 				bagItem = cursorToComment(cursor);
 			}
-			// cursor.moveToFirst();
-			// user = cursorToComment(cursor);
 		}
 		return bagItem;
 	}
-
-	// public void updateRecord(String recordId, String answered)
-	// throws SQLException {
-	// ContentValues quizObject = new ContentValues();
-	// quizObject.put(COLUMN_ANSWERED, answered);
-	// database.update(TABLE_NAME, quizObject, COLUMN_ID + "=" + "'"
-	// + recordId + "'", null);
-	// }
 
 	public ArrayList<BagItem> selectRecords() {
 		ArrayList<BagItem> bagItemList = new ArrayList<BagItem>();
@@ -164,5 +159,17 @@ public class BagItemImpl extends SQLiteOpenHelper {
 		bagItem.setLevel(cursor.getString(5));
 
 		return bagItem;
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
+		// TODO Auto-generated method stub
+		
 	}
 }

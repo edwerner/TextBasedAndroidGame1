@@ -9,15 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class LocationsImpl extends SQLiteOpenHelper {
+public class LocationsImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
-	private static final String DATABASE_NAME = "locations.db";
+	private final static String DATABASE_NAME = "locations.db";
 	private static final int DATABASE_VERSION = 5;
 	private final static String TABLE_NAME = "locations"; // name of table
 	private final static String COLUMN_SID = "_sid";
 	private static final String COLUMN_ID = "_id";
-	public static final String COLUMN_LEVEL = "_level";
+	private static final String COLUMN_LEVEL = "_level";
 	private final static String COLUMN_POSITION = "_position";
 	private final static String COLUMN_TITLE = "_title";
 	private final static String COLUMN_LOCATIONS = "_locations";
@@ -36,7 +36,6 @@ public class LocationsImpl extends SQLiteOpenHelper {
 	 */
 	public LocationsImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//		database = dbHelper.getWritableDatabase();
 	}
 
 	// Database creation sql statement
@@ -69,16 +68,18 @@ public class LocationsImpl extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
-//		this.close();
 		database.close();
 	}
 
@@ -115,10 +116,8 @@ public class LocationsImpl extends SQLiteOpenHelper {
 
 	public ArrayList<FilmLocation> selectRecords() {
 		ArrayList<FilmLocation> locations = new ArrayList<FilmLocation>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
-		// String num;
 
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
@@ -128,15 +127,13 @@ public class LocationsImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return locations; // iterate to get each value.
+		return locations;
 	}
 
 	public ArrayList<FilmLocation> selectRecordsByTitle(String title) {
 		ArrayList<FilmLocation> locations = new ArrayList<FilmLocation>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
-		// String num;
 
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
@@ -150,17 +147,18 @@ public class LocationsImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return locations; // iterate to get each value.
+		return locations;
 	}
 	
-	public void deleteRecordsByTitle(String recordTitle) {
+	public void deleteRecordByTitle(String recordTitle) {
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] recordTitleArray = { recordTitle };
 		database.delete(TABLE_NAME, COLUMN_TITLE + "=?", recordTitleArray);
 	}
 	
-	public void deleteRecordsByLevel(String level) {
+	@Override
+	public void deleteRecordByLevel(String level) {
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] levelArray = { level };
@@ -188,12 +186,17 @@ public class LocationsImpl extends SQLiteOpenHelper {
 		location.setPosition(cursor.getString(2));
 		location.setId(cursor.getString(3));
 		location.setTitle(cursor.getString(4));
-//		System.out.println("SET TITLE: " + cursor.getString(4));
 		location.setLocations(cursor.getString(5));
 		location.setFunFacts(cursor.getString(6));
 		location.setStaticMapImageUrl(cursor.getString(7));
 		location.setFunFactsImageUrl(cursor.getString(8));
 		location.setFunFactsTitle(cursor.getString(9));
 		return location;
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }

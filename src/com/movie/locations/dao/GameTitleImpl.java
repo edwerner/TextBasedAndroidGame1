@@ -15,7 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class GameTitleImpl extends SQLiteOpenHelper {
+public class GameTitleImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "gametitles.db";	
@@ -34,7 +34,6 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 	 */
 	public GameTitleImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//		database = dbHelper.getWritableDatabase();
 	}
 
 	// Database creation sql statement
@@ -62,14 +61,17 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 	
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -82,9 +84,6 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 		values.put(COLUMN_TYPE, gameTitle.getType());
 		values.put(COLUMN_LEVEL, gameTitle.getLevel());
 		values.put(COLUMN_PHASE, gameTitle.getPhase());
-
-		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
-		// Integer.parseInt(id));
 
 		long insertId = database.insert(TABLE_NAME,
 				null, values);
@@ -100,16 +99,17 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 			}
 			cursor.close();
 		}
-
 		return gameTitleCursor;
 	}
 
-	public void deleteRecordsByLevel(String level) {
+	@Override
+	public void deleteRecordByLevel(String level) {
 		
-		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
+		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
+	
 	public GameTitle selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
@@ -120,19 +120,15 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 			if (cursor.moveToFirst()) {
 				title = cursorToComment(cursor);
 			}
-			// cursor.moveToFirst();
-			// user = cursorToComment(cursor);
 		}
 		return title;
 	}
 
 	public ArrayList<GameTitle> selectRecords() {
 		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				GameTitle title = cursorToComment(mCursor);
@@ -141,7 +137,7 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return gameTitleList; // iterate to get each value.
+		return gameTitleList;
 	}
 
 	private GameTitle cursorToComment(Cursor cursor) {
@@ -162,10 +158,7 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
 				COLUMN_TYPE + "=?", recordTypeArray, null, null, null, null);
-//		GameTitle title = null;
 
-
-		// String num;
 		if (cursor != null && cursor.moveToFirst()) {
 			while (!cursor.isAfterLast()) {
 				GameTitle title = cursorToComment(cursor);
@@ -175,5 +168,17 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 			cursor.close();
 		}
 		return gameTitleList;
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
+		// TODO Auto-generated method stub
+		
 	}
 }

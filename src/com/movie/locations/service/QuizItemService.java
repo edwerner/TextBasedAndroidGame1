@@ -94,7 +94,7 @@ public class QuizItemService {
 		System.out.println("DELETED QUIZ ITEMS BEFORE: " + quizList.size());
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordsByTitle(QUIZ_WORLD_ID);
+			datasource.deleteRecordByTitle(QUIZ_WORLD_ID);
 		}
 		
 		ArrayList<QuizItem> afterCurrentTitleLocations = datasource.selectRecordsByTitle(QUIZ_WORLD_ID);
@@ -175,7 +175,7 @@ public class QuizItemService {
 		System.out.println("DELETED QUIZ ITEM BEFORE: " + currentQuizItems.size());
 		
 		if (currentQuizItems != null) {
-			quizDatasource.deleteRecordsByTitle(LOCATION_WORLD_TITLE);
+			quizDatasource.deleteRecordByTitle(LOCATION_WORLD_TITLE);
 		}
 		
 		for (QuizItem item : quizList) {

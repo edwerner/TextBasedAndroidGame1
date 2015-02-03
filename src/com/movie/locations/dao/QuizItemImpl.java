@@ -1,7 +1,5 @@
 package com.movie.locations.dao;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import com.movie.locations.domain.QuizItem;
 import android.content.ContentValues;
 import android.content.Context;
@@ -11,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class QuizItemImpl extends SQLiteOpenHelper {
+public class QuizItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "quizitems.db";
@@ -39,10 +37,7 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 	private static final String COLUMN_ACTIVE_ITEM_04 = "_activeitem4";
 	private static final String COLUMN_CORRECT_ANSWER_INDEX = "_correctanswerindex";
 	private static final String COLUMN_POINT_VALUE = "_pointvalue";
-	// public final static String COLUMN_STATIC_MAP_IMAGE_URL =
-	// "_staticmapimageurl";
-
-	private static Map<String, QuizItem> QUIZ_ITEM_MAP = new HashMap<String, QuizItem>();
+	
 	private String[] allColumns = { COLUMN_ID, COLUMN_ANSWER_SUBMIT_COUNT,
 			COLUMN_QUESTION_TEXT, COLUMN_ANSWER_01, COLUMN_ANSWER_02,
 			COLUMN_ANSWER_03, COLUMN_ANSWER_04, COLUMN_REACTION_01,
@@ -102,14 +97,17 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 	
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -157,16 +155,18 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 		return quizItemCursor;
 	}
 
-	public void deleteRecordsByTitle(String recordTitle) {
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
 		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] recordTitleArray = { recordTitle };
 		database.delete(TABLE_NAME, COLUMN_WORLD_TITLE + "=?", recordTitleArray);
 	}
 	
-	public void deleteRecordsByLevel(String level) {
+	@Override
+	public void deleteRecordByLevel(String level) {
 		
-		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
+		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
@@ -185,15 +185,13 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 		return quizItem;
 	}
 
-
 	public ArrayList<QuizItem> selectRecordsByWorldTitle(String worldTitle) {
 		ArrayList<QuizItem> quizItems = new ArrayList<QuizItem>();
-		// String[] cols = new String[] { COLUMN_ID };
+
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, COLUMN_WORLD_TITLE + "=" + "'"
 				+ worldTitle + "'", null,
 				null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				QuizItem quizItem = cursorToComment(mCursor);
@@ -202,15 +200,14 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return quizItems; // iterate to get each value.
+		return quizItems;
 	}
 
 	public ArrayList<QuizItem> selectRecordsByTitle(String title) {
 		ArrayList<QuizItem> quizItemsArrayList = new ArrayList<QuizItem>();
-		// String[] cols = new String[] { COLUMN_ID };
+
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
-		// String num;
 
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
@@ -224,7 +221,7 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return quizItemsArrayList; // iterate to get each value.
+		return quizItemsArrayList;
 	}	
 
 	public void updateRecordCorrectAnswerIndex(String recordId, String correctAnswerIndex) {
@@ -244,11 +241,10 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 
 	public ArrayList<QuizItem> selectRecords() {
 		ArrayList<QuizItem> quizItems = new ArrayList<QuizItem>();
-		// String[] cols = new String[] { COLUMN_ID };
+
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				QuizItem quizItem = cursorToComment(mCursor);
@@ -257,7 +253,7 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return quizItems; // iterate to get each value.
+		return quizItems;
 	}
 
 	private QuizItem cursorToComment(Cursor cursor) {
@@ -286,5 +282,11 @@ public class QuizItemImpl extends SQLiteOpenHelper {
 		quizItem.setCorrectAnswerIndex(cursor.getString(20));
 		quizItem.setPointValue(cursor.getString(21));
 		return quizItem;
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }

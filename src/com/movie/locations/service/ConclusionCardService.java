@@ -72,7 +72,7 @@ public class ConclusionCardService {
 		ConclusionCard currentCard = datasource.selectRecordById(CARD_ID);
 		
 		if (currentCard != null) {
-			datasource.deleteRecordsByLevel(CARD_TITLE);
+			datasource.deleteRecordByLevel(CARD_TITLE);
 		}
 		
 		for (ConclusionCard card : cardArrayList) {

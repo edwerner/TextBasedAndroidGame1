@@ -72,7 +72,7 @@ public class GameTitleService {
 		GameTitle currentCard = datasource.selectRecordById(GAME_TITLE_ID);
 		
 		if (currentCard != null) {
-			datasource.deleteRecordsByLevel(GAME_TITLE);
+			datasource.deleteRecordByLevel(GAME_TITLE);
 		}
 		
 		for (GameTitle title : gameTitleList) {

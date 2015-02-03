@@ -9,12 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class UserImpl extends SQLiteOpenHelper {
+public class UserImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "users.db";
 	private static final int DATABASE_VERSION = 1;
-	private final String TABLE_USERS = "users"; // name of table
+	private final String TABLE_USERS = "users";
 	private final String COLUMN_ID = "_id";
 	private final String COLUMN_USER_SID = "_usersid";
 	private final String COLUMN_USER_CLIENT_ID = "_clientid";
@@ -75,14 +75,17 @@ public class UserImpl extends SQLiteOpenHelper {
 			COLUMN_BONUS_POINTS, COLUMN_WORLD_COUNT,
 			COLUMN_EMAIL_NOTIFICATIONS, COLUMN_MOBILE_NOTIFICATIONS };
 
+	@Override
 	public void delete() {
 		database.delete(TABLE_USERS, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -127,7 +130,6 @@ public class UserImpl extends SQLiteOpenHelper {
 		ContentValues pointsObject = new ContentValues();
 
 		if (updatedPoints != null) {
-			// pointsObject.put(COLUMN_POINTS, updatedPoints);
 			pointsObject.put(COLUMN_ANSWER_CURRENT_POINTS, updatedPoints);
 		}
 
@@ -139,7 +141,9 @@ public class UserImpl extends SQLiteOpenHelper {
 				+ recordId + "'", null);
 	}
 	
-	public void updateUserNotificationPreferences(String recordId, String updatedEmailNotifications, String updatedMobileNotifications) {
+	public void updateUserNotificationPreferences(String recordId, 
+			String updatedEmailNotifications, 
+			String updatedMobileNotifications) {
 		ContentValues pointsObject = new ContentValues();
 
 		if (updatedEmailNotifications != null) {
@@ -175,27 +179,15 @@ public class UserImpl extends SQLiteOpenHelper {
 			if (cursor.moveToFirst()) {
 				user = cursorToComment(cursor);
 			}
-			// cursor.moveToFirst();
-			// user = cursorToComment(cursor);
 		}
 		return user;
 	}
 
-	// public void updateRecord(String recordId, String answered)
-	// throws SQLException {
-	// ContentValues quizObject = new ContentValues();
-	// quizObject.put(COLUMN_ANSWERED, answered);
-	// database.update(TABLE_NAME, quizObject, COLUMN_ID + "=" + "'"
-	// + recordId + "'", null);
-	// }
-
 	public ArrayList<User> selectRecords() {
 		ArrayList<User> userList = new ArrayList<User>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_USERS, allColumns, null,
 				null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				User user = cursorToComment(mCursor);
@@ -204,7 +196,7 @@ public class UserImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return userList; // iterate to get each value.
+		return userList;
 	}
 
 	private User cursorToComment(Cursor cursor) {
@@ -238,5 +230,23 @@ public class UserImpl extends SQLiteOpenHelper {
 
 		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
 				+ recordId + "'", null);
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByLevel(String level) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
+		// TODO Auto-generated method stub
+		
 	}
 }

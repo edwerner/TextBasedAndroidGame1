@@ -96,7 +96,7 @@ public class FilmLocationService {
 		System.out.println("DELETED LOCATIONS BEFORE: " + locationList.size());
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordsByTitle(LOCATION_WORLD_TITLE);
+			datasource.deleteRecordByTitle(LOCATION_WORLD_TITLE);
 		}
 		
 		ArrayList<FilmLocation> afterCurrentTitleLocations = datasource.selectRecordsByTitle(LOCATION_WORLD_TITLE);

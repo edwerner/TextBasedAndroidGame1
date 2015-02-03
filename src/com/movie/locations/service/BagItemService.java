@@ -74,7 +74,7 @@ public class BagItemService {
 		System.out.println("DELETED LOCATIONS BEFORE: " + locationList.size());
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordsByLevel(BAG_ITEM_LEVEL);
+			datasource.deleteRecordByLevel(BAG_ITEM_LEVEL);
 		}
 		
 		for (BagItem item : bagItemArrayList) {

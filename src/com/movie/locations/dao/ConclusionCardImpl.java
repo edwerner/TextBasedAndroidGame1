@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class ConclusionCardImpl extends SQLiteOpenHelper {
+public class ConclusionCardImpl extends SQLiteOpenHelper implements DatabaseImpl {
 
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "conclusioncards.db";
@@ -59,15 +59,18 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 		database.execSQL("DROP TABLE IF EXISTS conclusioncards");
 		onCreate(database);
 	}
-
+	
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -80,9 +83,6 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 		values.put(COLUMN_COPY, card.getCopy());
 		values.put(COLUMN_IMAGE_URL, card.getImageUrl());
 		values.put(COLUMN_LEVEL, card.getLevel());
-
-		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
-		// Integer.parseInt(id));
 
 		long insertId = database.insert(TABLE_NAME,
 				null, values);
@@ -101,13 +101,15 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 
 		return cardCursor;
 	}
-
-	public void deleteRecordsByLevel(String level) {
+	
+	@Override
+	public void deleteRecordByLevel(String level) {
 		
-		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
+		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
+	
 	public ConclusionCard selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
@@ -118,27 +120,15 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 			if (cursor.moveToFirst()) {
 				card = cursorToComment(cursor);
 			}
-			// cursor.moveToFirst();
-			// user = cursorToComment(cursor);
 		}
 		return card;
 	}
 
-	// public void updateRecord(String recordId, String answered)
-	// throws SQLException {
-	// ContentValues quizObject = new ContentValues();
-	// quizObject.put(COLUMN_ANSWERED, answered);
-	// database.update(TABLE_NAME, quizObject, COLUMN_ID + "=" + "'"
-	// + recordId + "'", null);
-	// }
-
 	public ArrayList<ConclusionCard> selectRecords() {
 		ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				ConclusionCard card = cursorToComment(mCursor);
@@ -147,7 +137,7 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 			}
 			mCursor.close();
 		}
-		return cardList; // iterate to get each value.
+		return cardList;
 	}
 
 	private ConclusionCard cursorToComment(Cursor cursor) {
@@ -158,5 +148,17 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 		card.setImageUrl(cursor.getString(3));
 		card.setLevel(cursor.getString(4));
 		return card;
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
+		// TODO Auto-generated method stub
+		
 	}
 }

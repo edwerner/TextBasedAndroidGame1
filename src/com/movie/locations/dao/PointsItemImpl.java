@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.movie.locations.domain.PointsItem;
 
-public class PointsItemImpl extends SQLiteOpenHelper {
+public class PointsItemImpl extends SQLiteOpenHelper implements DatabaseImpl {
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "pointsitems.db";
 	private static final int DATABASE_VERSION = 1;
@@ -58,14 +58,17 @@ public class PointsItemImpl extends SQLiteOpenHelper {
 		onCreate(database);
 	}
 
+	@Override
 	public void delete() {
 		database.delete(TABLE_NAME, null, null);
 	}
 
+	@Override
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
 
+	@Override
 	public void close() {
 		database.close();
 	}
@@ -105,8 +108,6 @@ public class PointsItemImpl extends SQLiteOpenHelper {
 			if (cursor.moveToFirst()) {
 				pointsItem = cursorToComment(cursor);
 			}
-			// cursor.moveToFirst();
-			// user = cursorToComment(cursor);
 		}
 		return pointsItem;
 	}
@@ -168,5 +169,23 @@ public class PointsItemImpl extends SQLiteOpenHelper {
 		pointsItem.setPoints(cursor.getString(2));
 		pointsItem.setBonusPoints(cursor.getString(3));
 		return pointsItem;
+	}
+
+	@Override
+	public void deleteRecordById(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByLevel(String level) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteRecordByTitle(String recordTitle) {
+		// TODO Auto-generated method stub
+		
 	}
 }
