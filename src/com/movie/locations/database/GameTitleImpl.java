@@ -1,8 +1,12 @@
-package com.movie.locations.dao;
+package com.movie.locations.database;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import com.movie.locations.domain.BagItem;
+import com.movie.locations.domain.GameTitle;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,40 +15,35 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
+public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 
 	private SQLiteDatabase database;
-	private static final String DATABASE_NAME = "bagitems.db";
+	private static final String DATABASE_NAME = "gametitles.db";	
 	private static final int DATABASE_VERSION = 1;
-	private final static String TABLE_NAME = "bagitems";
+	private final static String TABLE_NAME = "gametitles"; // name of table
 	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_GROUP_TITLE = "_grouptitle";
 	private static final String COLUMN_TITLE = "_title";
-	private static final String COLUMN_DESCRIPTION = "_description";
-	private static final String COLUMN_IMAGE_URL = "_imageurl";
+	private static final String COLUMN_TYPE = "_type";
 	private static final String COLUMN_LEVEL = "_level";
-
-	private String[] allColumns = { COLUMN_ID, COLUMN_GROUP_TITLE,
-			COLUMN_TITLE, COLUMN_DESCRIPTION, COLUMN_IMAGE_URL, COLUMN_LEVEL };
+	private static final String COLUMN_PHASE = "_phase";
+	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_PHASE };
 
 	/**
 	 * 
 	 * @param context
 	 */
-	public BagItemImpl(Context context) {
+	public GameTitleImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
-
 
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = "create table "
 			+ TABLE_NAME + "(" 
-			+ COLUMN_ID + " text, "
-			+ COLUMN_GROUP_TITLE + " text, " 
+			+ COLUMN_ID + " text, " 
 			+ COLUMN_TITLE + " text, " 
-			+ COLUMN_DESCRIPTION + " text, "
-			+ COLUMN_IMAGE_URL + " text, "
-			+ COLUMN_LEVEL + " text);";
+			+ COLUMN_TYPE + " text, "
+			+ COLUMN_LEVEL + " text, "
+			+ COLUMN_PHASE + " text);";
 
 	// Method is called during creation of the database
 	@Override
@@ -58,7 +57,7 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 			int newVersion) {
 		Log.w("Database", "Upgrading database from version " + oldVersion
 				+ " to " + newVersion + ", which will destroy all old data");
-		database.execSQL("DROP TABLE IF EXISTS bagitems");
+		database.execSQL("DROP TABLE IF EXISTS gametitles");
 		onCreate(database);
 	}
 	
@@ -71,89 +70,104 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
-	
+
 	@Override
 	public void close() {
 		database.close();
 	}
 
-	public BagItem createRecord(BagItem bagItem) {
+	public GameTitle createRecord(GameTitle gameTitle) {
 		ContentValues values = new ContentValues();
 
-		values.put(COLUMN_ID, bagItem.getItemId());
-		values.put(COLUMN_GROUP_TITLE, bagItem.getBagGroupTitle());
-		values.put(COLUMN_TITLE, bagItem.getItemTitle());
-		values.put(COLUMN_DESCRIPTION, bagItem.getDescription());
-		values.put(COLUMN_IMAGE_URL, bagItem.getImageUrl());
-		values.put(COLUMN_LEVEL, bagItem.getLevel());
+		values.put(COLUMN_ID, gameTitle.getId());
+		values.put(COLUMN_TITLE, gameTitle.getTitle());
+		values.put(COLUMN_TYPE, gameTitle.getType());
+		values.put(COLUMN_LEVEL, gameTitle.getLevel());
+		values.put(COLUMN_PHASE, gameTitle.getPhase());
 
 		long insertId = database.insert(TABLE_NAME,
 				null, values);
 		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
-		BagItem bagItemCursor = null;
+		GameTitle gameTitleCursor = null;
 
 		if (cursor != null) {
 			// lazy evaluation
 			if (cursor.moveToFirst()) {
-				bagItemCursor = cursorToComment(cursor);
+				gameTitleCursor = cursorToComment(cursor);
 			}
 			cursor.close();
 		}
-
-		return bagItemCursor;
+		return gameTitleCursor;
 	}
-	
+
 	@Override
 	public void deleteRecordByLevel(String level) {
 		
-		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
+		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
 	
-	public BagItem selectRecordById(String string) throws SQLException {
+	public GameTitle selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
 				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
-		BagItem bagItem = null;
+		GameTitle title = null;
 		if (cursor != null) {
 			// lazy evaluation
 			if (cursor.moveToFirst()) {
-				bagItem = cursorToComment(cursor);
+				title = cursorToComment(cursor);
 			}
 		}
-		return bagItem;
+		return title;
 	}
 
-	public ArrayList<BagItem> selectRecords() {
-		ArrayList<BagItem> bagItemList = new ArrayList<BagItem>();
+	public ArrayList<GameTitle> selectRecords() {
+		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
-				BagItem bagItem = cursorToComment(mCursor);
-				bagItemList.add(bagItem);
+				GameTitle title = cursorToComment(mCursor);
+				gameTitleList.add(title);
 				mCursor.moveToNext();
 			}
 			mCursor.close();
 		}
-		return bagItemList;
+		return gameTitleList;
 	}
 
-	private BagItem cursorToComment(Cursor cursor) {
+	private GameTitle cursorToComment(Cursor cursor) {
 
-		BagItem bagItem = new BagItem();
-		bagItem.setBagGroupTitle(cursor.getString(0));
-		bagItem.setItemId(cursor.getString(1));
-		bagItem.setItemTitle(cursor.getString(2));
-		bagItem.setDescription(cursor.getString(3));
-		bagItem.setImageUrl(cursor.getString(4));
-		bagItem.setLevel(cursor.getString(5));
+		GameTitle gameTitle = new GameTitle();
+		gameTitle.setId(cursor.getString(0));
+		gameTitle.setTitle(cursor.getString(1));
+		gameTitle.setType(cursor.getString(2));
+		gameTitle.setLevel(cursor.getString(3));
+		gameTitle.setPhase(cursor.getString(4));	
 
-		return bagItem;
+		return gameTitle;
+	}
+
+
+	public ArrayList<GameTitle> selectRecordsByType(String type) throws SQLException {
+		String[] recordTypeArray = { type };
+		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
+		Cursor cursor = database.query(TABLE_NAME, allColumns,
+				COLUMN_TYPE + "=?", recordTypeArray, null, null, null, null);
+
+		if (cursor != null && cursor.moveToFirst()) {
+			while (!cursor.isAfterLast()) {
+				GameTitle title = cursorToComment(cursor);
+				gameTitleList.add(title);
+				cursor.moveToNext();
+			}
+			cursor.close();
+		}
+		return gameTitleList;
 	}
 
 	@Override

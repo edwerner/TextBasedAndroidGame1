@@ -1,4 +1,4 @@
-package com.movie.locations.util;
+package com.movie.locations.utility;
 
 import java.util.Comparator;
 

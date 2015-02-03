@@ -1,8 +1,8 @@
-package com.movie.locations.dao;
+package com.movie.locations.database;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import com.movie.locations.domain.ConclusionCard;
+import com.movie.locations.domain.BagItem;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,36 +11,38 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
+public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 
 	private SQLiteDatabase database;
-	private static final String DATABASE_NAME = "conclusioncards.db";
+	private static final String DATABASE_NAME = "bagitems.db";
 	private static final int DATABASE_VERSION = 1;
-	private static final String TABLE_NAME = "conclusioncards"; // name of table
+	private final static String TABLE_NAME = "bagitems";
 	private static final String COLUMN_ID = "_id";
+	private static final String COLUMN_GROUP_TITLE = "_grouptitle";
 	private static final String COLUMN_TITLE = "_title";
-	private static final String COLUMN_COPY = "_copy";
+	private static final String COLUMN_DESCRIPTION = "_description";
 	private static final String COLUMN_IMAGE_URL = "_imageurl";
 	private static final String COLUMN_LEVEL = "_level";
-	private static Map<String, ConclusionCard> BAG_ITEM_MAP = new HashMap<String, ConclusionCard>();
-	private String[] allColumns = { COLUMN_ID,
-			COLUMN_TITLE, COLUMN_COPY, COLUMN_IMAGE_URL, COLUMN_LEVEL };
+
+	private String[] allColumns = { COLUMN_ID, COLUMN_GROUP_TITLE,
+			COLUMN_TITLE, COLUMN_DESCRIPTION, COLUMN_IMAGE_URL, COLUMN_LEVEL };
 
 	/**
 	 * 
 	 * @param context
 	 */
-	public ConclusionCardImpl(Context context) {
+	public BagItemImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//		database = dbHelper.getWritableDatabase();
 	}
+
 
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = "create table "
 			+ TABLE_NAME + "(" 
 			+ COLUMN_ID + " text, "
+			+ COLUMN_GROUP_TITLE + " text, " 
 			+ COLUMN_TITLE + " text, " 
-			+ COLUMN_COPY + " text, "
+			+ COLUMN_DESCRIPTION + " text, "
 			+ COLUMN_IMAGE_URL + " text, "
 			+ COLUMN_LEVEL + " text);";
 
@@ -56,7 +58,7 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 			int newVersion) {
 		Log.w("Database", "Upgrading database from version " + oldVersion
 				+ " to " + newVersion + ", which will destroy all old data");
-		database.execSQL("DROP TABLE IF EXISTS conclusioncards");
+		database.execSQL("DROP TABLE IF EXISTS bagitems");
 		onCreate(database);
 	}
 	
@@ -69,85 +71,89 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 	public void open() throws SQLException {
 		database = this.getWritableDatabase();
 	}
-
+	
 	@Override
 	public void close() {
 		database.close();
 	}
 
-	public ConclusionCard createRecord(ConclusionCard card) {
+	public BagItem createRecord(BagItem bagItem) {
 		ContentValues values = new ContentValues();
 
-		values.put(COLUMN_ID, card.getId());
-		values.put(COLUMN_TITLE, card.getTitle());
-		values.put(COLUMN_COPY, card.getCopy());
-		values.put(COLUMN_IMAGE_URL, card.getImageUrl());
-		values.put(COLUMN_LEVEL, card.getLevel());
+		values.put(COLUMN_ID, bagItem.getItemId());
+		values.put(COLUMN_GROUP_TITLE, bagItem.getBagGroupTitle());
+		values.put(COLUMN_TITLE, bagItem.getItemTitle());
+		values.put(COLUMN_DESCRIPTION, bagItem.getDescription());
+		values.put(COLUMN_IMAGE_URL, bagItem.getImageUrl());
+		values.put(COLUMN_LEVEL, bagItem.getLevel());
 
 		long insertId = database.insert(TABLE_NAME,
 				null, values);
 		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
-		ConclusionCard cardCursor = null;
+		BagItem bagItemCursor = null;
 
 		if (cursor != null) {
 			// lazy evaluation
 			if (cursor.moveToFirst()) {
-				cardCursor = cursorToComment(cursor);
+				bagItemCursor = cursorToComment(cursor);
 			}
 			cursor.close();
 		}
 
-		return cardCursor;
+		return bagItemCursor;
 	}
 	
 	@Override
 	public void deleteRecordByLevel(String level) {
 		
-		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
+		// DELETE ALL DATABASE RECORDS WITH MATCHING LOCATION TITLE
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
 	}
 	
-	public ConclusionCard selectRecordById(String string) throws SQLException {
+	public BagItem selectRecordById(String string) throws SQLException {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
 				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
-		ConclusionCard card = null;
+		BagItem bagItem = null;
 		if (cursor != null) {
 			// lazy evaluation
 			if (cursor.moveToFirst()) {
-				card = cursorToComment(cursor);
+				bagItem = cursorToComment(cursor);
 			}
 		}
-		return card;
+		return bagItem;
 	}
 
-	public ArrayList<ConclusionCard> selectRecords() {
-		ArrayList<ConclusionCard> cardList = new ArrayList<ConclusionCard>();
+	public ArrayList<BagItem> selectRecords() {
+		ArrayList<BagItem> bagItemList = new ArrayList<BagItem>();
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
 				null, null, null, null, null);
 
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
-				ConclusionCard card = cursorToComment(mCursor);
-				cardList.add(card);
+				BagItem bagItem = cursorToComment(mCursor);
+				bagItemList.add(bagItem);
 				mCursor.moveToNext();
 			}
 			mCursor.close();
 		}
-		return cardList;
+		return bagItemList;
 	}
 
-	private ConclusionCard cursorToComment(Cursor cursor) {
-		ConclusionCard card = new ConclusionCard();
-		card.setId(cursor.getString(0));
-		card.setTitle(cursor.getString(1));
-		card.setCopy(cursor.getString(2));
-		card.setImageUrl(cursor.getString(3));
-		card.setLevel(cursor.getString(4));
-		return card;
+	private BagItem cursorToComment(Cursor cursor) {
+
+		BagItem bagItem = new BagItem();
+		bagItem.setBagGroupTitle(cursor.getString(0));
+		bagItem.setItemId(cursor.getString(1));
+		bagItem.setItemTitle(cursor.getString(2));
+		bagItem.setDescription(cursor.getString(3));
+		bagItem.setImageUrl(cursor.getString(4));
+		bagItem.setLevel(cursor.getString(5));
+
+		return bagItem;
 	}
 
 	@Override

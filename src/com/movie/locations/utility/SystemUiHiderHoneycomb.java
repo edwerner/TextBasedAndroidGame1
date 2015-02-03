@@ -1,4 +1,4 @@
-package com.movie.locations.util;
+package com.movie.locations.utility;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

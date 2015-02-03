@@ -2,13 +2,15 @@ package com.movie.locations.application;
 import java.util.ArrayList;
 import java.util.Collections;
 import com.movie.locations.R;
-import com.movie.locations.dao.BagItemImpl;
-import com.movie.locations.dao.ConclusionCardImpl;
-import com.movie.locations.dao.GameTitleImpl;
-import com.movie.locations.dao.LocationsImpl;
-import com.movie.locations.dao.PointsItemImpl;
-import com.movie.locations.dao.QuizItemImpl;
-import com.movie.locations.dao.UserImpl;
+import com.movie.locations.adapter.GameTitleArrayAdapter;
+import com.movie.locations.adapter.NavMenuItemArrayAdapter;
+import com.movie.locations.database.BagItemImpl;
+import com.movie.locations.database.ConclusionCardImpl;
+import com.movie.locations.database.GameTitleImpl;
+import com.movie.locations.database.LocationsImpl;
+import com.movie.locations.database.PointsItemImpl;
+import com.movie.locations.database.QuizItemImpl;
+import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.ConclusionCard;
@@ -20,7 +22,7 @@ import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
-import com.movie.locations.util.StaticSortingUtilities;
+import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -724,7 +726,7 @@ public class NewsActivity extends ActionBarActivity {
 						// System.out.println("WORLD LOCATION LIST LENGTH: " + worldLocationList1.size());
 						
 						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
 						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
@@ -747,7 +749,7 @@ public class NewsActivity extends ActionBarActivity {
 						
 						
 						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
 //						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
@@ -770,7 +772,7 @@ public class NewsActivity extends ActionBarActivity {
 						
 						
 						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
 //						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
@@ -791,7 +793,7 @@ public class NewsActivity extends ActionBarActivity {
 						defaultLocationArrayList.setFilmList(worldLocationList4);
 						
 						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), FilmLocationPagerActivity.class);
+						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
 //							FilmArrayList finalList = getUpdatedNewsData();
 //						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
 						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);

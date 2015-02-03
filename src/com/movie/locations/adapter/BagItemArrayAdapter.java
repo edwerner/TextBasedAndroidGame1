@@ -1,10 +1,10 @@
-package com.movie.locations.application;
+package com.movie.locations.adapter;
 import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
-import com.movie.locations.domain.ConclusionCard;
+import com.movie.locations.domain.BagItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ConclusionCardArrayAdapter extends ArrayAdapter<ConclusionCard> {
-	private final Context context;
-	private final ArrayList<ConclusionCard> values;
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
+public class BagItemArrayAdapter extends ArrayAdapter<BagItem> {
+	private Context context;
+	private ArrayList<BagItem> values;
+	private ImageLoader imageLoader = ImageLoader.getInstance();
 	private Intent intent;
 
-	public ConclusionCardArrayAdapter(Context context, Intent intent,
-			ArrayList<ConclusionCard> values) {
+	public BagItemArrayAdapter(Context context, Intent intent,
+			ArrayList<BagItem> values) {
 		super(context, R.layout.bag_item_array_adapter, values);
 		this.context = context;
 		this.intent = intent;
@@ -37,19 +37,19 @@ public class ConclusionCardArrayAdapter extends ArrayAdapter<ConclusionCard> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View rowView = inflater.inflate(R.layout.conclusion_card_array_adapter,
+		View rowView = inflater.inflate(R.layout.bag_item_array_adapter,
 				parent, false);
 
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.conclusionCardImage1);
-		TextView titleView = (TextView) rowView.findViewById(R.id.conclusionCardTitle1);
-		TextView textCopyView = (TextView) rowView.findViewById(R.id.conclusionCardCopy1);
-		TextView cardLevelView = (TextView) rowView.findViewById(R.id.conclusionCardLevel1);
-		titleView.setText(values.get(position).getTitle());
-		cardLevelView.setText(values.get(position).getLevel());
-		textCopyView.setText(values.get(position).getCopy());
+		ImageView imageView = (ImageView) rowView.findViewById(R.id.bagItemImage1);
+		TextView bagItemTitle = (TextView) rowView.findViewById(R.id.bagItemTitle1);
+		TextView bagItemLevel = (TextView) rowView.findViewById(R.id.bagItemLevel1);
+		TextView bagItemDescription = (TextView) rowView.findViewById(R.id.bagItemDescription1);
+		bagItemTitle.setText(values.get(position).getItemTitle());
+		bagItemLevel.setText(values.get(position).getLevel());
+		bagItemDescription.setText(values.get(position).getDescription());
 		final String BAG_ITEM_IMAGE_URL = values.get(position).getImageUrl();
 		imageLoader.displayImage(BAG_ITEM_IMAGE_URL, imageView);
-
+		
 		return rowView;
 	}
 }

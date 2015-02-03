@@ -12,9 +12,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
-import com.movie.locations.dao.GameTitleImpl;
+
+import com.movie.locations.database.GameTitleImpl;
 import com.movie.locations.domain.GameTitle;
-import com.movie.locations.util.CSVFile;
+import com.movie.locations.utility.CSVFile;
 
 public class GameTitleService implements IService {
 

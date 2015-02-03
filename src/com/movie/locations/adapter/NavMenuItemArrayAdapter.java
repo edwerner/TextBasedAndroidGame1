@@ -1,4 +1,4 @@
-package com.movie.locations.application;
+package com.movie.locations.adapter;
 import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.Context;

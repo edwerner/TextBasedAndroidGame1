@@ -1,4 +1,4 @@
-package com.movie.locations.application;
+package com.movie.locations.adapter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,11 +20,6 @@ public class FilmLocationArrayAdapter extends ArrayAdapter<FilmLocation> {
 	private Context context;
 	private ArrayList<FilmLocation> values;
 	private ImageLoader imageLoader = ImageLoader.getInstance();
-	private String UNIQUE_MAP_IMAGE_URL = "";
-	private String DEFAULT_MAP_IMAGE_URL = "http://staticmap.openstreetmap.de/staticmap.php?center=48.854182,2.371105&zoom=13&size=500x500&maptype=mapnik";
-	private String PREFIX = "http://maps.googleapis.com/maps/api/staticmap?center=";
-	private String CENTER = "";
-	private String SETTINGS = "&zoom=16&size=1200x1200&sensor=true";
 	private Intent intent;
 
 	public FilmLocationArrayAdapter(Context context, Intent intent,
@@ -41,29 +36,37 @@ public class FilmLocationArrayAdapter extends ArrayAdapter<FilmLocation> {
 		return regex;
 	}
 
+	static class ViewHolder {
+		TextView worldText;
+		ImageView worldImage;
+	}		
+
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View rowView = inflater.inflate(R.layout.film_list_map_tile_array_adapter,
-				parent, false);
-
-		rowView.setOnClickListener(new View.OnClickListener() {
+		final ViewHolder viewHolder;
+		
+		if (convertView == null) {
+			convertView = inflater.inflate(R.layout.film_list_array_adapter, parent, false);
+			viewHolder = new ViewHolder();
+			viewHolder.worldText = (TextView) convertView.findViewById(R.id.label);
+			viewHolder.worldImage = (ImageView) convertView.findViewById(R.id.logo);
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		
+		convertView.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				context.startActivity(intent);
 			}
 		});	
 
-		TextView textView = (TextView) rowView.findViewById(R.id.label);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-//		ImageView imageView2 = (ImageView) rowView.findViewById(R.id.logo2);
-		UNIQUE_MAP_IMAGE_URL = values.get(position).getStaticMapImageUrl();
-//		imageView.setImageAlpha(25);
-		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView);
-//		imageView2.setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
-//		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView2);
-		textView.setText(values.get(position).getLocations());
-		return rowView;
+		imageLoader.displayImage(values.get(position).getStaticMapImageUrl(), viewHolder.worldImage);
+		viewHolder.worldText.setText(values.get(position).getLocations());
+		
+		return convertView;
 	}
 }

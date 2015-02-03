@@ -72,7 +72,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.movie.locations.application.FilmLocationPagerActivity"
+            android:name="com.movie.locations.application.LocationPagerActivity"
             android:label="@string/title_activity_film_sort"
             android:screenOrientation="portrait" >
         </activity>

@@ -12,9 +12,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
-import com.movie.locations.dao.ConclusionCardImpl;
+
+import com.movie.locations.database.ConclusionCardImpl;
 import com.movie.locations.domain.ConclusionCard;
-import com.movie.locations.util.CSVFile;
+import com.movie.locations.utility.CSVFile;
 
 public class ConclusionCardService implements IService {
 

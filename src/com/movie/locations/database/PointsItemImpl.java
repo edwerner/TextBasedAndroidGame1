@@ -1,4 +1,4 @@
-package com.movie.locations.dao;
+package com.movie.locations.database;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

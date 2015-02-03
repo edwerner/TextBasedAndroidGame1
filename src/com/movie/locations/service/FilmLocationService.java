@@ -10,9 +10,10 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 import android.content.Context;
-import com.movie.locations.dao.LocationsImpl;
+
+import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.util.CSVFile;
+import com.movie.locations.utility.CSVFile;
 
 public class FilmLocationService implements IService {
 	

@@ -1,9 +1,10 @@
-package com.movie.locations.application;
+package com.movie.locations.adapter;
 import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
+import com.movie.locations.application.QuizActivity;
 import com.movie.locations.domain.FilmLocation;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.view.LayoutInflater;

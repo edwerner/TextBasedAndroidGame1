@@ -4,9 +4,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import com.movie.locations.R;
-import com.movie.locations.dao.BagItemImpl;
-import com.movie.locations.dao.LocationsImpl;
-import com.movie.locations.dao.QuizItemImpl;
+import com.movie.locations.adapter.FilmLocationArrayAdapter;
+import com.movie.locations.database.BagItemImpl;
+import com.movie.locations.database.LocationsImpl;
+import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.FilmArrayList;
@@ -15,7 +16,7 @@ import com.movie.locations.domain.LocationMapParcel;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
-import com.movie.locations.util.StaticSortingUtilities;
+import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-public class FilmLocationPagerActivity extends FragmentActivity {
+public class LocationPagerActivity extends FragmentActivity {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide

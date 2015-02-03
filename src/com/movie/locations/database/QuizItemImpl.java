@@ -1,4 +1,4 @@
-package com.movie.locations.dao;
+package com.movie.locations.database;
 import java.util.ArrayList;
 import com.movie.locations.domain.QuizItem;
 import android.content.ContentValues;

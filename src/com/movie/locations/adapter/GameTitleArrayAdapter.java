@@ -1,4 +1,4 @@
-package com.movie.locations.application;
+package com.movie.locations.adapter;
 import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
+import com.movie.locations.application.ConclusionActivity;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.User;

@@ -12,11 +12,12 @@ import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
 import android.content.Intent;
-import com.movie.locations.dao.QuizItemImpl;
+
+import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
-import com.movie.locations.util.CSVFile;
+import com.movie.locations.utility.CSVFile;
 
 public class QuizItemService implements IService {
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.google.android.gms.plus.PlusShare;
 import com.movie.locations.R;
-import com.movie.locations.dao.UserImpl;
+import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;

@@ -1,4 +1,4 @@
-package com.movie.locations.application;
+package com.movie.locations.adapter;
 
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.ConclusionCard;
