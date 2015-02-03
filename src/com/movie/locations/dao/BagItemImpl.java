@@ -13,7 +13,6 @@ import android.util.Log;
 
 public class BagItemImpl extends SQLiteOpenHelper {
 
-	private BagItemSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "bagitems.db";
 	private static final int DATABASE_VERSION = 1;
@@ -34,8 +33,6 @@ public class BagItemImpl extends SQLiteOpenHelper {
 	 */
 	public BagItemImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new BagItemSqliteHelper(context);
-//		database = dbHelper.getWritableDatabase();
 	}
 
 
@@ -70,11 +67,11 @@ public class BagItemImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		database.close();
 	}
 
 	public BagItem createRecord(BagItem bagItem) {
@@ -90,9 +87,9 @@ public class BagItemImpl extends SQLiteOpenHelper {
 		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
 		// Integer.parseInt(id));
 
-		long insertId = database.insert(BagItemSqliteHelper.TABLE_BAG_ITEMS,
+		long insertId = database.insert(TABLE_NAME,
 				null, values);
-		Cursor cursor = database.query(BagItemSqliteHelper.TABLE_BAG_ITEMS,
+		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
 		BagItem bagItemCursor = null;

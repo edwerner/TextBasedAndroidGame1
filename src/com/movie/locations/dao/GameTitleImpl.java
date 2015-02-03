@@ -17,7 +17,6 @@ import android.util.Log;
 
 public class GameTitleImpl extends SQLiteOpenHelper {
 
-	private GameTitleSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "gametitles.db";	
 	private static final int DATABASE_VERSION = 1;
@@ -35,7 +34,6 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 	 */
 	public GameTitleImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new GameTitleSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
 
@@ -69,11 +67,11 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		database.close();
 	}
 
 	public GameTitle createRecord(GameTitle gameTitle) {
@@ -88,9 +86,9 @@ public class GameTitleImpl extends SQLiteOpenHelper {
 		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
 		// Integer.parseInt(id));
 
-		long insertId = database.insert(GameTitleSqliteHelper.TABLE_GAME_TITLES,
+		long insertId = database.insert(TABLE_NAME,
 				null, values);
-		Cursor cursor = database.query(GameTitleSqliteHelper.TABLE_GAME_TITLES,
+		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
 		GameTitle gameTitleCursor = null;

@@ -13,7 +13,6 @@ import android.util.Log;
 
 public class ConclusionCardImpl extends SQLiteOpenHelper {
 
-	private ConclusionCardSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "conclusioncards.db";
 	private static final int DATABASE_VERSION = 1;
@@ -33,7 +32,6 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 	 */
 	public ConclusionCardImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new ConclusionCardSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
 
@@ -67,11 +65,11 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		database.close();
 	}
 
 	public ConclusionCard createRecord(ConclusionCard card) {
@@ -86,9 +84,9 @@ public class ConclusionCardImpl extends SQLiteOpenHelper {
 		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
 		// Integer.parseInt(id));
 
-		long insertId = database.insert(ConclusionCardSqliteHelper.TABLE_CONCLUSION_CARDS,
+		long insertId = database.insert(TABLE_NAME,
 				null, values);
-		Cursor cursor = database.query(ConclusionCardSqliteHelper.TABLE_CONCLUSION_CARDS,
+		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
 		ConclusionCard cardCursor = null;

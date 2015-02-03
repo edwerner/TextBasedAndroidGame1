@@ -703,7 +703,7 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 //				AchievementActivity.setContext(context);
 				
 				
-				achievementIntent.putExtra("messageId", achievementId);
+				achievementIntent.putExtra("achievementId", achievementId);
 				achievementIntent.putExtra("achievementTitle", achievementTitle);
 				achievementIntent.putExtra("achievementCopy", achievementCopy);
 				achievementIntent.putExtra("levelUp", achievementLevel);

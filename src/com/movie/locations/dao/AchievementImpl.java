@@ -14,11 +14,9 @@ import android.util.Log;
 
 public class AchievementImpl extends SQLiteOpenHelper {
 
-	private AchievementSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "achievements.db";
 	private static final int DATABASE_VERSION = 1;
-	public final static String TABLE_ACHIEVEMENTS = "achievements"; // name of table
 	private static final String TABLE_NAME = "achievements"; // name of table
 	private static final String COLUMN_ID = "_id";
 	private static final String COLUMN_TITLE = "_title";
@@ -34,7 +32,7 @@ public class AchievementImpl extends SQLiteOpenHelper {
 
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_ACHIEVEMENTS + "(" 
+			+ TABLE_NAME + "(" 
 			+ COLUMN_ID + " text, "
 			+ COLUMN_TITLE + " text, " 
 			+ COLUMN_DESCRIPTION + " text, "
@@ -49,7 +47,6 @@ public class AchievementImpl extends SQLiteOpenHelper {
 	 */
 	public AchievementImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new AchievementSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
 
@@ -74,11 +71,11 @@ public class AchievementImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		database.close();
 	}
 
 	public Achievement createRecord(Achievement achievement) {
@@ -95,9 +92,9 @@ public class AchievementImpl extends SQLiteOpenHelper {
 		// values.put(MovieLocationsSqliteHelper.COLUMN_ID,
 		// Integer.parseInt(id));
 
-		long insertId = database.insert(AchievementSqliteHelper.TABLE_ACHIEVEMENTS,
+		long insertId = database.insert(TABLE_NAME,
 				null, values);
-		Cursor cursor = database.query(AchievementSqliteHelper.TABLE_ACHIEVEMENTS,
+		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
 		Achievement achievementCursor = null;

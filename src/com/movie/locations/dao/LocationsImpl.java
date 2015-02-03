@@ -11,7 +11,6 @@ import android.util.Log;
 
 public class LocationsImpl extends SQLiteOpenHelper {
 
-	private LocationsSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "locations.db";
 	private static final int DATABASE_VERSION = 5;
@@ -37,10 +36,8 @@ public class LocationsImpl extends SQLiteOpenHelper {
 	 */
 	public LocationsImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new LocationsSqliteHelper(context);
 //		database = dbHelper.getWritableDatabase();
 	}
-	
 
 	// Database creation sql statement
 	private static final String DATABASE_CREATE = "create table "
@@ -77,11 +74,12 @@ public class LocationsImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+//		this.close();
+		database.close();
 	}
 
 	public FilmLocation createRecord(FilmLocation location) {
@@ -98,9 +96,9 @@ public class LocationsImpl extends SQLiteOpenHelper {
 		values.put(COLUMN_FUN_FACTS_TITLE, location.getFunFactsTitle());
 
 		long insertId = database.insert(
-				LocationsSqliteHelper.TABLE_LOCATIONS, null, values);
+				TABLE_NAME, null, values);
 		Cursor cursor = database.query(
-				LocationsSqliteHelper.TABLE_LOCATIONS, allColumns,
+				TABLE_NAME, allColumns,
 				COLUMN_ID + " = " + insertId, null, null, null, null);
 
 		FilmLocation locationCursor = null;

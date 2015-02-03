@@ -13,7 +13,6 @@ import android.util.Log;
 import com.movie.locations.domain.PointsItem;
 
 public class PointsItemImpl extends SQLiteOpenHelper {
-	private PointsItemSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "pointsitems.db";
 	private static final int DATABASE_VERSION = 1;
@@ -32,8 +31,6 @@ public class PointsItemImpl extends SQLiteOpenHelper {
 	 */
 	public PointsItemImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new PointsItemSqliteHelper(context);
-//		database = dbHelper.getWritableDatabase();
 	}
 
 
@@ -66,11 +63,11 @@ public class PointsItemImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		database.close();
 	}
 
 	public PointsItem createRecord(PointsItem pointsItem) {
@@ -82,9 +79,9 @@ public class PointsItemImpl extends SQLiteOpenHelper {
 		values.put(COLUMN_BONUS_POINTS, pointsItem.getPoints());
 
 		long insertId = database.insert(
-				PointsItemSqliteHelper.TABLE_POINTS_ITEMS, null, values);
+				TABLE_NAME, null, values);
 		Cursor cursor = database.query(
-				PointsItemSqliteHelper.TABLE_POINTS_ITEMS, allColumns,
+				TABLE_NAME, allColumns,
 				COLUMN_USER_ID + " = " + insertId, null, null, null, null);
 		PointsItem pointsItemCursor = null;
 

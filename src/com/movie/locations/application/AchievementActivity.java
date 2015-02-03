@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 public class AchievementActivity extends ActionBarActivity {
 
-	private int messageId;
+	private String achievementId;
 	private String levelUp;
 	private String achievementTitle;
 	private String achievementCopy;
@@ -40,7 +40,7 @@ public class AchievementActivity extends ActionBarActivity {
 		if (savedInstanceState == null) {
 
 			Intent intent = getIntent();
-			messageId = intent.getIntExtra("messageId", 1);
+			achievementId = intent.getStringExtra("achievementId");
 			achievementTitle = intent.getStringExtra("achievementTitle");
 			achievementCopy = intent.getStringExtra("achievementCopy");
 			achievementImageUrl = intent.getStringExtra("achievementImageUrl");
@@ -48,7 +48,7 @@ public class AchievementActivity extends ActionBarActivity {
 			
 			Fragment achievementFragment = new AchievementFragment();
 			Bundle userBundle = new Bundle();
-			userBundle.putInt("messageId", messageId);
+			userBundle.putString("achievementId", achievementId);
 			userBundle.putString("achievementTitle", achievementTitle);
 			userBundle.putString("achievementCopy", achievementCopy);
 			userBundle.putString("achievementImageUrl", achievementImageUrl);
@@ -88,11 +88,11 @@ public class AchievementActivity extends ActionBarActivity {
 		System.out.println("CANCELED NOTIFICATION");
 	}
 	
-	@Override
-	public void onResume() {
-		super.onResume();
-		cancelNotification(messageId);
-	}
+//	@Override
+//	public void onResume() {
+//		super.onResume();
+//		cancelNotification(messageId);
+//	}
 
 	/**
 	 * A placeholder fragment containing a simple view.

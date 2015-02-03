@@ -11,7 +11,6 @@ import android.util.Log;
 
 public class UserImpl extends SQLiteOpenHelper {
 
-	private UserSqliteHelper dbHelper;
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "users.db";
 	private static final int DATABASE_VERSION = 1;
@@ -51,7 +50,6 @@ public class UserImpl extends SQLiteOpenHelper {
 
 	public UserImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		dbHelper = new UserSqliteHelper(context);
 	}
 
 	// Method is called during creation of the database
@@ -82,11 +80,11 @@ public class UserImpl extends SQLiteOpenHelper {
 	}
 
 	public void open() throws SQLException {
-		database = dbHelper.getWritableDatabase();
+		database = this.getWritableDatabase();
 	}
 
 	public void close() {
-		dbHelper.close();
+		database.close();
 	}
 
 	public User createRecord(User user) {
