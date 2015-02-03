@@ -96,16 +96,5 @@
         android:textSize="14sp" >
     </TextView>
 
-    <TextView
-        android:id="@+id/quiz_error_text"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/launch_quiz_button"
-        android:layout_marginTop="10dp"
-        android:text="Incorrect answer. Try again!"
-        android:textColor="#E64100"
-        android:textSize="24sp"
-        android:visibility="gone" />
 
 </LinearLayout>
