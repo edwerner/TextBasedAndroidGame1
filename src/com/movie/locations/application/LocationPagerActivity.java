@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import com.movie.locations.R;
-import com.movie.locations.adapter.FilmLocationArrayAdapter;
+import com.movie.locations.adapter.LocationArrayAdapter;
 import com.movie.locations.database.BagItemImpl;
 import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.database.QuizItemImpl;
@@ -255,7 +255,7 @@ public class LocationPagerActivity extends FragmentActivity {
 		private ArrayList<String> localWorldTitles;
 		private LocationMapParcel localMapParcel;
 		private String currentTitle;
-		private FilmLocationArrayAdapter commentAdapter;
+		private LocationArrayAdapter locationAdapter;
 		private ListView commentView;
 		private String fragmentTitle;
 		private FilmArrayList filmArrayList;
@@ -382,10 +382,10 @@ public class LocationPagerActivity extends FragmentActivity {
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);
 			intent.putExtra("localUser", localCurrentUser);
 			// System.out.println("PAGER ACTIVITY CURRENT USER POINTS: " + localCurrentUser.getCurrentPoints());
-			commentAdapter = new FilmLocationArrayAdapter(getActivity(), intent, finalList);
+			locationAdapter = new LocationArrayAdapter(getActivity(), intent, finalList);
 			commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
-			commentView.setAdapter(commentAdapter);
-			commentAdapter.notifyDataSetChanged();
+			commentView.setAdapter(locationAdapter);
+			locationAdapter.notifyDataSetChanged();
 			mViewPager.setOnPageChangeListener(this);
 			
 			return rootView;

@@ -133,7 +133,7 @@ public class NewsActivity extends ActionBarActivity {
 			String currentImageUrl = "drawable://";
 			switch(a) {
 			case 0:
-				currentImageUrl += R.drawable.breadboard_lg;
+				currentImageUrl += R.drawable.breadboard_menu;
 				break;
 			case 1:
 				currentImageUrl = userImageUrl;
@@ -457,9 +457,11 @@ public class NewsActivity extends ActionBarActivity {
 								// System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
 								// System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
 								if (currentTitleString.equals(currentCardTitle)) {
+									System.out.println("BAG ITEM TITLE: " + currentCardTitle);
 									// System.out.println("CARD EXISTS");
 									tempTitle.setPhase("EXISTS");
 									String tempImageUrl = existingBagItem.getImageUrl();
+									tempTitle.setTitle(currentCardTitle);
 									// System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
 									tempTitle.setImageUrl(tempImageUrl);
 									tempTitle.setLevel(existingBagItem.getLevel());

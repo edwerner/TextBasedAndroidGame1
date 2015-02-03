@@ -1,11 +1,8 @@
 package com.movie.locations.adapter;
-import java.util.ArrayList;
-import java.util.Random;
 
+import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
 import com.movie.locations.domain.FilmLocation;
@@ -16,15 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FilmLocationArrayAdapter extends ArrayAdapter<FilmLocation> {
+public class LocationArrayAdapter extends ArrayAdapter<FilmLocation> {
 	private Context context;
 	private ArrayList<FilmLocation> values;
 	private ImageLoader imageLoader = ImageLoader.getInstance();
 	private Intent intent;
 
-	public FilmLocationArrayAdapter(Context context, Intent intent,
+	public LocationArrayAdapter(Context context, Intent intent,
 			ArrayList<FilmLocation> values) {
-		super(context, R.layout.film_list_map_tile_array_adapter, values);
+		super(context, R.layout.film_list_array_adapter, values);
 		this.context = context;
 		this.intent = intent;
 		this.values = values;
@@ -39,7 +36,7 @@ public class FilmLocationArrayAdapter extends ArrayAdapter<FilmLocation> {
 	static class ViewHolder {
 		TextView worldText;
 		ImageView worldImage;
-	}		
+	}
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {

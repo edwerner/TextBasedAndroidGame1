@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
+import com.movie.locations.adapter.LocationArrayAdapter.ViewHolder;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.QuizItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,22 +21,16 @@ import android.widget.TextView;
 
 public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 	private final Context context;
-	private final ArrayList<QuizItem> values;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	public String UNIQUE_MAP_IMAGE_URL = "";
 	public final String DEFAULT_MAP_IMAGE_URL = "http://staticmap.openstreetmap.de/staticmap.php?center=48.854182,2.371105&zoom=13&size=500x500&maptype=mapnik";
-	private Intent intent;
 	private String[] listItemTitles;
 	private String[] listItemImageTiles;
 	private ArrayList<BagItem> bagItemList;
-	private Activity activity;
 
 	public LocationQuizArrayAdapter(Activity activity, Context context, Intent intent, ArrayList<QuizItem> values) {
 		super(context, R.layout.film_list_array_adapter, values);
 		this.context = context;
-		this.intent = intent;
-		this.values = values;
-		this.activity = activity;
 	}
 
 	public String removeParenthesis(String string) {
@@ -44,30 +39,39 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 		return regex;
 	}
 
+	static class ViewHolder {
+		TextView worldText;
+		ImageView worldImage;
+	}
+
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View rowView = inflater.inflate(R.layout.film_list_array_adapter,
-				parent, false);
+		final ViewHolder viewHolder;
 		
-		TextView textView = (TextView) rowView.findViewById(R.id.label);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
-		
-		// reveal completed indicator checkmark
-		// System.out.println("VALUES LENGTH: " + values.size());
-		if (values.get(position).getAnswered().equals("true")) {
-			ImageView checkmarkImageView = (ImageView) rowView.findViewById(R.id.green_checkmark_small);
-			checkmarkImageView.setVisibility(ImageView.VISIBLE);
-			// System.out.println("GREEN CHECKMARK");
-			final int HALFTONE = 50;
-			imageView.setImageAlpha(HALFTONE);
+		if (convertView == null) {
+			convertView = inflater.inflate(R.layout.film_list_array_adapter, parent, false);
+			viewHolder = new ViewHolder();
+			viewHolder.worldText = (TextView) convertView.findViewById(R.id.label);
+			viewHolder.worldImage = (ImageView) convertView.findViewById(R.id.logo);
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		String[] titles = getListItemTitles();
-		String[] imageTiles = getListItemImageTiles();
-		// System.out.println("IMAGE TILES LENGTH: " + imageTiles.length);
+//		// reveal completed indicator checkmark
+//		if (values.get(position).getAnswered().equals("true")) {
+//			ImageView checkmarkImageView = (ImageView) rowView.findViewById(R.id.green_checkmark_small);
+//			checkmarkImageView.setVisibility(ImageView.VISIBLE);
+//			final int HALFTONE = 50;
+//			imageView.setImageAlpha(HALFTONE);
+//		}
+		
+		final String[] titles = getListItemTitles();
+		final String[] imageTiles = getListItemImageTiles();
+		
 		if (imageTiles[position] != null) {
 			UNIQUE_MAP_IMAGE_URL = imageTiles[position];
 		} else {
@@ -75,16 +79,14 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 		}
 
 		// ImageView mapThumb = (ImageView) rowView.findViewById(R.id.mapView1);
-		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, imageView);
-		textView.setText(titles[position]);
+		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, viewHolder.worldImage);
+		viewHolder.worldText.setText(titles[position]);
 
 //		final int randomFilterColor = colors[getRandomColor()];
-		imageView.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-		imageView.setImageAlpha(50);
-		
-		// imageView.setImageResource(R.drawable.film_reel_sm);
+//		viewHolder.worldImage.setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+		viewHolder.worldImage.setImageAlpha(50);
 
-		return rowView;
+		return convertView;
 	}
 	
 
