@@ -374,7 +374,7 @@ public class LocationPagerActivity extends FragmentActivity {
 			}
 			
 			final Context context = getActivity().getApplicationContext();
-			final Intent intent = new Intent(context, WorldLocationDetailActivity.class);
+			final Intent intent = new Intent(context, LocationDetailActivity.class);
 			FilmLocation localCurrentLocation = finalList.get(0);
 			// pass only current location
 			intent.putExtra("locationArrayList", localLocationArrayList);

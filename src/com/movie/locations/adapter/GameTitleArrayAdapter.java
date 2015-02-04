@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
+import com.movie.locations.application.AchievementActivity;
 import com.movie.locations.application.ConclusionActivity;
+import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.GameTitle;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -66,29 +68,51 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 		if (tempPhase.equals("MISSING") || tempPhase.equals("null")) {
 			convertView.setAlpha((float) 0.5);
 			gameTitleText += missingWorldText;
-		} else {
-			
+		} else if (tempPhase.equals("EXISTS")) {
+			final String type = values.get(position).getType();
 			final String existingImageUrl = values.get(position).getImageUrl();
 			
 			if (existingImageUrl != null) {
 				BAG_ITEM_IMAGE_URL = existingImageUrl;
-			} 
+			}
 			
-			final Intent conclusionIntent = new Intent(context, ConclusionActivity.class);
-			final ConclusionCard tempCard = new ConclusionCard();
-			tempCard.setTitle(values.get(position).getTitle());
-			tempCard.setLevel(values.get(position).getLevel());
-			tempCard.setImageUrl(values.get(position).getId());
-			tempCard.setCopy(values.get(position).getDescription());
-			
-			conclusionIntent.putExtra("conclusionCard", tempCard);
-			
-			if (!values.get(position).getId().equals(null)) {
-				convertView.setOnClickListener(new View.OnClickListener() {
-	    		    public void onClick(View v) {
-	    		    	context.startActivity(conclusionIntent);
-	    		    }
-	    		});
+			if (type.equals("conclusion")) {
+				
+				final Intent conclusionIntent = new Intent(context, ConclusionActivity.class);
+				final ConclusionCard tempCard = new ConclusionCard();
+				tempCard.setTitle(values.get(position).getTitle());
+				tempCard.setLevel(values.get(position).getLevel());
+				tempCard.setImageUrl(values.get(position).getId());
+				tempCard.setCopy(values.get(position).getDescription());
+				
+				conclusionIntent.putExtra("conclusionCard", tempCard);
+				
+				if (!values.get(position).getId().equals(null)) {
+					convertView.setOnClickListener(new View.OnClickListener() {
+		    		    public void onClick(View v) {
+		    		    	context.startActivity(conclusionIntent);
+		    		    }
+		    		});
+				}
+			} else if (type.equals("achievement")) {
+				
+				final Intent achievementIntent = new Intent(context, AchievementActivity.class);
+				final Achievement tempAchievement = new Achievement();
+				tempAchievement.setAchievementId(values.get(position).getId());
+				tempAchievement.setTitle(values.get(position).getTitle());
+				tempAchievement.setLevel(values.get(position).getLevel());
+				tempAchievement.setImageUrl(values.get(position).getImageUrl());
+				tempAchievement.setDescription(values.get(position).getDescription());
+				
+				achievementIntent.putExtra("achievement", tempAchievement);
+				
+				if (!values.get(position).getId().equals(null)) {
+					convertView.setOnClickListener(new View.OnClickListener() {
+		    		    public void onClick(View v) {
+		    		    	context.startActivity(achievementIntent);
+		    		    }
+		    		});
+				}
 			}
 		}
 

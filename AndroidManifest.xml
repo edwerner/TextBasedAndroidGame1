@@ -77,7 +77,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.movie.locations.application.WorldLocationDetailActivity"
+            android:name="com.movie.locations.application.LocationDetailActivity"
             android:label="@string/title_activity_film_detail"
             android:screenOrientation="portrait" >
         </activity>
@@ -102,7 +102,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.movie.locations.application.WorldLocationDetailActivity" />
+                android:value="com.movie.locations.application.LocationDetailActivity" />
         </activity>
         <activity
             android:name="com.movie.locations.application.FriendDetailActivity"

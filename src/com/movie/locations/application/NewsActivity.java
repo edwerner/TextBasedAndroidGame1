@@ -476,6 +476,7 @@ public class NewsActivity extends ActionBarActivity {
 									tempTitle.setImageUrl(tempImageUrl);
 									tempTitle.setLevel(existingBagItem.getLevel());
 									tempTitle.setDescription(existingBagItem.getDescription());
+									tempTitle.setType("conclusion");
 								} else {
 									// System.out.println("CARD DOESN'T EXIST");
 									tempTitle.setPhase("MISSING");
@@ -560,6 +561,7 @@ public class NewsActivity extends ActionBarActivity {
 									tempTitle.setImageUrl(tempImageUrl);
 									tempTitle.setLevel(existingAchievement.getLevel());
 									tempTitle.setDescription(existingAchievement.getDescription());
+									tempTitle.setType("achievement");
 								} else {
 									// System.out.println("CARD DOESN'T EXIST");
 									tempTitle.setPhase("MISSING");
@@ -568,38 +570,6 @@ public class NewsActivity extends ActionBarActivity {
 							}	
 						}
 					}
-
-//					final int currentUserLevel = Integer.parseInt(localUser.getCurrentLevel());
-//					int currentAchievementLevel;
-//					
-//			        ListIterator<GameTitle> it = gameTitleList.listIterator();
-//			        GameTitle tempGameTitle;
-//			        if(it.hasNext()) {
-//			            tempGameTitle = it.next();
-//						System.out.println("gameTitleList size: " + gameTitleList.size());
-//						currentAchievementLevel = Integer.parseInt(tempGameTitle.getLevel());
-//
-//						System.out.println("gameTitleList level: " + tempGameTitle.getLevel());
-//						System.out.println("currentUserLevel: " + currentUserLevel);
-//						if (currentAchievementLevel > currentUserLevel) {
-////							finalGameTitleList.add(tempGameTitle);
-//							it.remove();
-//						}
-//			        }
-			        
-//					ArrayList<GameTitle> finalGameTitleList = new ArrayList<GameTitle>();
-//					for (GameTitle tempGameTitle : gameTitleList) {
-////						System.out.println("current game title level: " + title.getLevel());
-//						System.out.println("gameTitleList size: " + gameTitleList.size());
-//						currentAchievementLevel = Integer.parseInt(tempGameTitle.getLevel());
-//
-//						System.out.println("gameTitleList level: " + tempGameTitle.getLevel());
-//						System.out.println("currentUserLevel: " + currentUserLevel);
-//						if (currentAchievementLevel > currentUserLevel) {
-////							finalGameTitleList.add(tempGameTitle);
-//							gameTitleList.remove(tempGameTitle);
-//						}
-//					}
 					
 					final Intent intent = getActivity().getIntent();
 					final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);

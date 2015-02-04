@@ -41,13 +41,13 @@ public class Achievement implements Parcelable {
 		level = pc.readString();
 	}
 
-	public static final Parcelable.Creator<BagItem> CREATOR = new Parcelable.Creator<BagItem>() {
-		public BagItem createFromParcel(Parcel in) {
-			return new BagItem(in);
+	public static final Parcelable.Creator<Achievement> CREATOR = new Parcelable.Creator<Achievement>() {
+		public Achievement createFromParcel(Parcel in) {
+			return new Achievement(in);
 		}
 
-		public BagItem[] newArray(int size) {
-			return new BagItem[size];
+		public Achievement[] newArray(int size) {
+			return new Achievement[size];
 		}
 	};
 	

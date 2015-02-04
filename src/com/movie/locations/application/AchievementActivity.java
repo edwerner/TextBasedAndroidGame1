@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import com.google.android.gms.plus.PlusShare;
 import com.movie.locations.R;
+import com.movie.locations.domain.Achievement;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -26,11 +27,7 @@ import android.widget.TextView;
 
 public class AchievementActivity extends ActionBarActivity {
 
-	private String achievementId;
-	private String levelUp;
-	private String achievementTitle;
-	private String achievementCopy;
-	private String achievementImageUrl;
+	private Achievement achievement;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +37,13 @@ public class AchievementActivity extends ActionBarActivity {
 		if (savedInstanceState == null) {
 
 			Intent intent = getIntent();
-			achievementId = intent.getStringExtra("achievementId");
-			achievementTitle = intent.getStringExtra("achievementTitle");
-			achievementCopy = intent.getStringExtra("achievementCopy");
-			achievementImageUrl = intent.getStringExtra("achievementImageUrl");
-			levelUp = intent.getStringExtra("levelUp");
+			Bundle extras = intent.getExtras();
+			
+			achievement = extras.getParcelable("achievement");
 			
 			Fragment achievementFragment = new AchievementFragment();
 			Bundle userBundle = new Bundle();
-			userBundle.putString("achievementId", achievementId);
-			userBundle.putString("achievementTitle", achievementTitle);
-			userBundle.putString("achievementCopy", achievementCopy);
-			userBundle.putString("achievementImageUrl", achievementImageUrl);
-			userBundle.putString("levelUp", levelUp);
+			userBundle.putParcelable("achievement", achievement);
 			achievementFragment.setArguments(userBundle);
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, achievementFragment).commit();
@@ -102,15 +93,15 @@ public class AchievementActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_achievement,
 					container, false);
 
-			final String achievementTitle = getArguments().getString("achievementTitle");
-			final String achievementCopy = getArguments().getString("achievementCopy");
-			final String achievementImageUrl = getArguments().getString("achievementImageUrl");
+			final Achievement achievement = getArguments().getParcelable("achievement");
+			final String achievementTitle = achievement.getTitle();
+			final String achievementCopy = achievement.getDescription();
+			final String achievementImageUrl = achievement.getImageUrl();
 			final ImageLoader imageLoader = ImageLoader.getInstance();
 			final TextView achievementTitleText = (TextView) rootView.findViewById(R.id.achievementTitleText1);
 			final TextView achievementCopyText = (TextView) rootView.findViewById(R.id.achievementCopyText1);
 			final ImageView achievementPoster = (ImageView) rootView.findViewById(R.id.achievementPoster1);
-			final String imageUrl = "assets://" + achievementImageUrl + ".jpg";
-			imageLoader.displayImage(imageUrl, achievementPoster);
+			imageLoader.displayImage(achievementImageUrl, achievementPoster);
 			achievementTitleText.setText(achievementTitle);
 			achievementCopyText.setText(achievementCopy);
 			
