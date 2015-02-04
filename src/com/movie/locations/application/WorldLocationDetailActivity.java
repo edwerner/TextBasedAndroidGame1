@@ -836,11 +836,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 											// bottom);
 			// ListView locationsView = (ListView)
 			// rootView.findViewById(R.id.locationsView1);
-			ListView commentView = (ListView) rootView
-					.findViewById(R.id.commentView);
-
-			Button quizButton = (Button) rootView
-					.findViewById(R.id.launch_quiz_button);
 			//
 			locationsList = (ListView) rootView
 					.findViewById(R.id.locationsView1);
@@ -863,7 +858,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 				// defaultMapThumb.setVisibility(ImageView.GONE);
 				// mapThumb.setVisibility(ImageView.GONE);
 				// moviePosterThumb.setVisibility(ImageView.GONE);
-				quizButton.setVisibility(Button.GONE);
 				locationsList.setVisibility(ListView.GONE);
 
 				// final String movieTitleText = "Movie";
@@ -885,7 +879,6 @@ public class WorldLocationDetailActivity extends ActionBarActivity implements Ta
 
 				locationImage.setVisibility(ImageView.GONE);
 				
-				quizButton.setVisibility(Button.GONE);
 				locationsList.setVisibility(ListView.VISIBLE);
 
 				final String filmLocationsText = localCurrentLocation

@@ -608,13 +608,11 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			LinearLayout.LayoutParams llp = new LinearLayout.LayoutParams(
 					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			llp.setMargins(10, 0, 0, 0); // left, top, right, bottom;
-			Button quizButton = (Button) rootView.findViewById(R.id.launch_quiz_button);
 			locationsList = (ListView) rootView.findViewById(R.id.locationsView1);
 			prepareArrayAdapterData(rootView);
 			switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
 
 			case 1:
-				quizButton.setVisibility(Button.GONE);
 				locationsList.setVisibility(ListView.GONE);
 				titleTagText2.setText("Game Item");
 				titleText2.setText(localCurrentLocation.getFunFactsTitle());
@@ -624,7 +622,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 
 			case 2:
 				locationImage.setVisibility(ImageView.GONE);
-				quizButton.setVisibility(Button.GONE);
 				locationsList.setVisibility(ListView.VISIBLE);
 				if (localCurrentLocation.getLocations() != null) {
 					String formattedLocation = removeParenthesis(location);
