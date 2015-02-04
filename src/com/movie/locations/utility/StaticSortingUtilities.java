@@ -2,6 +2,7 @@ package com.movie.locations.utility;
 
 import java.util.Comparator;
 
+import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.FilmLocation;
@@ -10,6 +11,17 @@ import com.movie.locations.domain.NewsItem;
 import com.movie.locations.domain.QuizItem;
 
 public class StaticSortingUtilities {
+
+	public static Comparator<Achievement> ACHIEVEMENTS_ALPHABETICAL_ORDER = new Comparator<Achievement>() {
+		public int compare(Achievement str1, Achievement str2) {
+			int res = String.CASE_INSENSITIVE_ORDER.compare(
+					str1.getTitle(), str2.getTitle());
+			if (res == 0) {
+				res = str1.getTitle().compareTo(str2.getTitle());
+			}
+			return res;
+		}
+	};
 
 	public static Comparator<BagItem> BAG_ITEMS_ALPHABETICAL_ORDER = new Comparator<BagItem>() {
 		public int compare(BagItem str1, BagItem str2) {

@@ -1,4 +1,5 @@
+achievement_level_one,Level One,Welcome to Level 1!,null,null,assets://achievement_level_one.jpg,1
 achievement_level_two,Level Two,Welcome to Level 2!,null,null,assets://achievement_level_two.jpg,2
-Achievement_002,Achievement Two,Achievement description 002,null,null,assets://led_red.jpg,3
-Achievement_003,Achievement Three,Achievement description 003,null,null,assets://led_tricolor.jpg,4
-Achievement_004,Achievement Four,Achievement description 004,null,null,assets://motor_vib.jpg,5
+achievement_level_three,Level Three,Welcome to Level 3!,null,null,assets://achievement_level_three.jpg,3
+achievement_level_four,Level Four,Welcome to Level 4!,null,null,assets://achievement_level_four.jpg,4
+achievement_level_five,Level Five,Welcome to Level 5!,null,null,assets://achievement_level_five.jpg,5

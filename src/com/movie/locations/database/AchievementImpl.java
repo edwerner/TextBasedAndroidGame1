@@ -178,4 +178,25 @@ public class AchievementImpl extends SQLiteOpenHelper implements IDatabase {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public ArrayList<Achievement> selectRecordsByLevel(String currentUserLevel) {
+		ArrayList<Achievement> achievementList = new ArrayList<Achievement>();
+		// String[] cols = new String[] { COLUMN_ID };
+		Cursor mCursor = database.query(true, TABLE_NAME, allColumns, null,
+				null, null, null, null, null);
+
+		// String num;
+		if (mCursor != null && mCursor.moveToFirst()) {
+			while (!mCursor.isAfterLast()) {
+				Achievement achievement = cursorToComment(mCursor);
+				System.out.println("current achievement level: " + achievement.getLevel());
+				if (Integer.parseInt(achievement.getLevel()) <= Integer.parseInt(currentUserLevel)) {
+					achievementList.add(achievement);	
+				}
+				mCursor.moveToNext();
+			}
+			mCursor.close();
+		}
+		return achievementList;
+	}
 }

@@ -1,9 +1,12 @@
 package com.movie.locations.application;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ListIterator;
+
 import com.movie.locations.R;
 import com.movie.locations.adapter.GameTitleArrayAdapter;
 import com.movie.locations.adapter.NavMenuItemArrayAdapter;
+import com.movie.locations.database.AchievementImpl;
 import com.movie.locations.database.BagItemImpl;
 import com.movie.locations.database.ConclusionCardImpl;
 import com.movie.locations.database.GameTitleImpl;
@@ -101,7 +104,7 @@ public class NewsActivity extends ActionBarActivity {
 //		GcmIntentService.setCurrentUserId(localUser.getUserId());
 		
 		// setup navigation drawer
-		navArray = new String[5];
+		navArray = new String[6];
 //		navArray[0] = "News";
 		navArray[0] = "Worlds";
 		navArray[1] = "Player";
@@ -111,7 +114,7 @@ public class NewsActivity extends ActionBarActivity {
 		navArray[2] = "Items";
 		navArray[3] = "About";
 		navArray[4] = "Settings";
-//		navArray[6] = "Help";
+		navArray[5] = "Achievements";
 		
 		final String userImageUrl = localUser.getAvatarImageUrl();
 
@@ -145,6 +148,9 @@ public class NewsActivity extends ActionBarActivity {
 				currentImageUrl += R.drawable.help;
 				break;
 			case 4:
+				currentImageUrl += R.drawable.settings;
+				break;
+			case 5:
 				currentImageUrl += R.drawable.settings;
 				break;
 			}
@@ -348,7 +354,11 @@ public class NewsActivity extends ActionBarActivity {
 			ft.replace(R.id.content_frame, new SettingsFragment());
 			break;
 		case 5:
-			
+			Fragment achievementsFragment = new AchievementsFragment();
+			Bundle achievementBundle = new Bundle();
+			achievementBundle.putParcelable("localUser", localUser);
+			achievementsFragment.setArguments(achievementBundle);
+			ft.replace(R.id.content_frame, achievementsFragment);
 			break;
 		}
 		ft.commit();
@@ -484,86 +494,120 @@ public class NewsActivity extends ActionBarActivity {
 			return rootView;
 		}
 	}
-	public class ConclusionCardFragment extends Fragment {
+	public class AchievementsFragment extends Fragment {
 		
+//		private LinearLayout instructionsLayout;
 		protected boolean refreshed = false;
-		private ArrayList<ConclusionCard> cardList;
+		private ArrayList<Achievement> achievementList;
+		private AchievementImpl achievementImpl;
 
-		public ConclusionCardFragment() {
+		public AchievementsFragment() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_conclusion_card, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_bag_item_list, container, false);
 
-					final Context cardContext = getActivity().getApplicationContext();
-					
-					ConclusionCardImpl conclusionCardImpl = new ConclusionCardImpl(cardContext);
-					conclusionCardImpl.open();
-					cardList = conclusionCardImpl.selectRecords();
-					conclusionCardImpl.close();
-					
-					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreConclusionCardDataListView1);
+			final User localUser = getArguments().getParcelable("localUser");
+
+					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
 					final Context context = getActivity().getApplicationContext();
 					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-					String CARD_TITLE = "CARD_TITLE";
+//					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
+
+					String ACHIEVEMENT_TITLE = "ACHIEVEMENT_TITLE";
+					String currentUserLevel = localUser.getCurrentLevel();
 					
 					gameTitleImpl.open();
-					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(CARD_TITLE);
+					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByTypeAndLevel(ACHIEVEMENT_TITLE, currentUserLevel);
 					gameTitleImpl.close();
 					
-					for (GameTitle tempTitle : gameTitleList) {
-						// System.out.println("CARD DATABASE TITLE: " + tempTitle.getTitle());
-					}
-					// System.out.println("REFRESHED DATA");
-
-					final Context quizContext = getActivity().getApplicationContext();
-					QuizItemImpl quizItemImpl = new QuizItemImpl(quizContext);
-					// sort the list
-					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
-					Collections.sort(cardList, StaticSortingUtilities.CARD_TITLES_ALPHABETICAL_ORDER);
+					final Context achievementContext = getActivity().getApplicationContext();
+					
+					achievementImpl = new AchievementImpl(achievementContext);
+					achievementImpl.open();
+					achievementList = achievementImpl.selectRecordsByLevel(currentUserLevel);
+					achievementImpl.close();
 					
 
-					// System.out.println("CARD TITLES LENGTH: " + gameTitleList.size());
+					System.out.println("gameTitleList size: " + gameTitleList.size());
+					System.out.println("achievementList size: " + achievementList.size());
+					
+					// sort the list
+					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
+					Collections.sort(achievementList, StaticSortingUtilities.ACHIEVEMENTS_ALPHABETICAL_ORDER);
+					
 					if (gameTitleList.size() > 0) {
-						if (cardList.size() > 0) {
-							for (int i = 0; i < cardList.size(); i++) {
+						if (achievementList.size() > 0) {
+							for (int i = 0; i < achievementList.size(); i++) {
 								GameTitle tempTitle = gameTitleList.get(i);
 								String currentTitleString = tempTitle.getTitle();
 //								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-								// System.out.println("TEMP QUIZ ITEM: " + tempTitle.getId());
 //								// System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
 								// System.out.println("TEMP TITLE ID: " + tempTitle.getId());
-								ConclusionCard existingCard = cardList.get(i);
-								String currentCardTitle = existingCard.getTitle();
+								Achievement existingAchievement = achievementList.get(i);
+								String currentCardTitle = existingAchievement.getTitle();
 								// System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
 								// System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
 								if (currentTitleString.equals(currentCardTitle)) {
-									// SET THE IMAGE
+									System.out.println("BAG ITEM TITLE: " + currentCardTitle);
 									// System.out.println("CARD EXISTS");
 									tempTitle.setPhase("EXISTS");
-									String tempImageUrl = existingCard.getImageUrl();
-									// System.out.println("TEMP IMAGE URL*: " + tempImageUrl);
-									final String finalImageUrl = "assets://" + tempImageUrl + ".jpg";
-									tempTitle.setImageUrl(finalImageUrl);
-									tempTitle.setLevel(existingCard.getLevel());
-									tempTitle.setType("conclusion");
+									String tempImageUrl = existingAchievement.getImageUrl();
+									tempTitle.setTitle(currentCardTitle);
+									// System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
+									tempTitle.setImageUrl(tempImageUrl);
+									tempTitle.setLevel(existingAchievement.getLevel());
+									tempTitle.setDescription(existingAchievement.getDescription());
 								} else {
-									// CARD IS MISSING
+									// System.out.println("CARD DOESN'T EXIST");
 									tempTitle.setPhase("MISSING");
 								}
 								gameTitleList.set(i, tempTitle);
 							}	
 						}
 					}
+
+//					final int currentUserLevel = Integer.parseInt(localUser.getCurrentLevel());
+//					int currentAchievementLevel;
+//					
+//			        ListIterator<GameTitle> it = gameTitleList.listIterator();
+//			        GameTitle tempGameTitle;
+//			        if(it.hasNext()) {
+//			            tempGameTitle = it.next();
+//						System.out.println("gameTitleList size: " + gameTitleList.size());
+//						currentAchievementLevel = Integer.parseInt(tempGameTitle.getLevel());
+//
+//						System.out.println("gameTitleList level: " + tempGameTitle.getLevel());
+//						System.out.println("currentUserLevel: " + currentUserLevel);
+//						if (currentAchievementLevel > currentUserLevel) {
+////							finalGameTitleList.add(tempGameTitle);
+//							it.remove();
+//						}
+//			        }
+			        
+//					ArrayList<GameTitle> finalGameTitleList = new ArrayList<GameTitle>();
+//					for (GameTitle tempGameTitle : gameTitleList) {
+////						System.out.println("current game title level: " + title.getLevel());
+//						System.out.println("gameTitleList size: " + gameTitleList.size());
+//						currentAchievementLevel = Integer.parseInt(tempGameTitle.getLevel());
+//
+//						System.out.println("gameTitleList level: " + tempGameTitle.getLevel());
+//						System.out.println("currentUserLevel: " + currentUserLevel);
+//						if (currentAchievementLevel > currentUserLevel) {
+////							finalGameTitleList.add(tempGameTitle);
+//							gameTitleList.remove(tempGameTitle);
+//						}
+//					}
+					
 					final Intent intent = getActivity().getIntent();
 					final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
 					
 					if (gameTitleList.size() > 0) {
 						restoreListView.setAdapter(levelRestoreListAdapter);
 						levelRestoreListAdapter.notifyDataSetChanged();
-					}
+					}			
 			return rootView;
 		}
 	}

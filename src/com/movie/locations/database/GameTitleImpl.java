@@ -153,7 +153,7 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 	}
 
 
-	public ArrayList<GameTitle> selectRecordsByType(String type) throws SQLException {
+	public ArrayList<GameTitle> selectRecordsByType(String type) {
 		String[] recordTypeArray = { type };
 		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
@@ -180,5 +180,24 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 	public void deleteRecordByTitle(String recordTitle) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public ArrayList<GameTitle> selectRecordsByTypeAndLevel(String type, String currentLevel) {
+		String[] recordTypeArray = { type };
+		ArrayList<GameTitle> gameTitleList = new ArrayList<GameTitle>();
+		Cursor cursor = database.query(TABLE_NAME, allColumns,
+				COLUMN_TYPE + "=?", recordTypeArray, null, null, null, null);
+		
+		if (cursor != null && cursor.moveToFirst()) {
+			while (!cursor.isAfterLast()) {
+				GameTitle title = cursorToComment(cursor);
+				if (Integer.parseInt(title.getLevel()) <= Integer.parseInt(currentLevel)) {
+					gameTitleList.add(title);	
+				}
+				cursor.moveToNext();
+			}
+			cursor.close();
+		}
+		return gameTitleList;
 	}
 }

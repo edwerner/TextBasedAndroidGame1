@@ -46,3 +46,8 @@ pressure_sensor,Pressure Sensor,BAG_ITEM_TITLE,1,start,assets://pressure_sensor.
 potentiometer_rotary,Rotary Potentiometer,BAG_ITEM_TITLE,1,start,assets://potentiometer_rotary.jpg
 piezo_buzzer_001,Piezo Buzzer 001,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_001.jpg
 floppy_drive,"3.5"" Floppy Drive",BAG_ITEM_TITLE,1,start,assets://floppy_drive.jpg
+achievement_level_one,Level One,ACHIEVEMENT_TITLE,1,start,assets://achievement_level_one.jpg
+achievement_level_two,Level Two,ACHIEVEMENT_TITLE,2,start,assets://achievement_level_two.jpg
+achievement_level_three,Level Three,ACHIEVEMENT_TITLE,3,start,assets://achievement_level_three.jpg
+achievement_level_four,Level Four,ACHIEVEMENT_TITLE,4,start,assets://achievement_level_four.jpg
+achievement_level_five,Level Five,ACHIEVEMENT_TITLE,5,start,assets://achievement_level_five.jpg
