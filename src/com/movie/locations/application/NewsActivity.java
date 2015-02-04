@@ -474,7 +474,7 @@ public class NewsActivity extends ActionBarActivity {
 									tempTitle.setTitle(currentCardTitle);
 									// System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
 									tempTitle.setImageUrl(tempImageUrl);
-									tempTitle.setLevel(existingBagItem.getLevel());
+									tempTitle.setLevel(null);
 									tempTitle.setDescription(existingBagItem.getDescription());
 									tempTitle.setType("conclusion");
 								} else {
