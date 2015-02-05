@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Inventory One"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/gameWorldsImage2"
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Inventory Two"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/gameWorldsImage3"
@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Circuits Three"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/gameWorldsImage4"
@@ -98,6 +98,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Circuits Four"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
 </LinearLayout>

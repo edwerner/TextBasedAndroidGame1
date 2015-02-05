@@ -5,6 +5,15 @@
     android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$SettingsFragment" >
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="30dp"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:src="@drawable/settings" />
+
     <TextView
         android:id="@+id/settingsTitleTag1"
         style="@style/CodeFont"
@@ -40,27 +49,6 @@
         android:onClick="onCheckboxClicked"
         android:text="Mobile" />
 
-    <!--
-         <CheckBox
-        android:id="@+id/emailNotifications1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onCheckboxClicked"
-        android:checked="false"
-        android:text="Email" />
-    -->
-
-
-    <!--
-         <TextView
-        android:id="@+id/updateUserPreferencesButtonText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update Notification Preferences"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-    -->
-
     <Button
         android:id="@+id/updateUserPreferencesButton1"
         style="@style/CodeFont"
@@ -69,23 +57,5 @@
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/star"
         android:text="Update" />
-
-    <!--
-         <TextView
-        android:id="@+id/settingsTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete All User Data"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/deleteAllUserData1"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/star"
-        android:text="Delete" />
-    -->
 
 </LinearLayout>

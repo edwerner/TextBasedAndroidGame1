@@ -43,7 +43,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical|left"
             android:text="@+id/label"
-            android:textSize="20sp" >
+            android:textSize="18sp" >
         </TextView>
 
         <ImageView

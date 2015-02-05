@@ -1,4 +1,5 @@
 package com.movie.locations.application;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -31,16 +32,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.movie.locations.R;
-import com.movie.locations.database.AchievementImpl;
-import com.movie.locations.database.BagItemImpl;
-import com.movie.locations.database.ConclusionCardImpl;
-import com.movie.locations.database.GameTitleImpl;
-import com.movie.locations.database.LocationsImpl;
-import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.User;
 import com.movie.locations.service.AchievementService;
@@ -123,13 +117,7 @@ public class MainActivity extends FragmentActivity implements
 	private ArrayAdapter<String> mCirclesAdapter;
 	private ArrayList<String> mCirclesList;
 	private Context context;
-	private LocationsImpl datasource;
-	private QuizItemImpl quizitemsource;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	private BagItemImpl bagitemsource;
-	private ConclusionCardImpl conclusioncardsource;
-	private GameTitleImpl gametitlesource;
-	private AchievementImpl achievementsource;
 	private boolean mIntentInProgress;
 	private Intent userProfileIntent;
 	private User localUser;
@@ -141,7 +129,6 @@ public class MainActivity extends FragmentActivity implements
 	private String SENDER_ID = "543788746297";
 
 	private GoogleCloudMessaging gcm;
-//	private AtomicInteger msgId = new AtomicInteger();
 	private String regid;
 	private UserImpl usersource;
 	private static final String PROPERTY_APP_VERSION = "appVersion";
@@ -183,12 +170,6 @@ public class MainActivity extends FragmentActivity implements
 
 		// to re-initialize database uncomment async task here
 		usersource = new UserImpl(this);
-		datasource = new LocationsImpl(this);
-		quizitemsource = new QuizItemImpl(this);
-		bagitemsource = new BagItemImpl(this);
-		conclusioncardsource = new ConclusionCardImpl(this);
-		gametitlesource = new GameTitleImpl(this);
-		achievementsource = new AchievementImpl(this);
 		
 		switch (mSignInProgress) {
 		case STATE_DEFAULT:
@@ -452,14 +433,10 @@ public class MainActivity extends FragmentActivity implements
 //			} 
 			
 			else if (id == R.id.entry_button) {
-				// TODO: refactor this
-				//
-				// set current user in service
-//				GcmIntentService.setCurrentUserId(localUser.getUserId());
 				userProfileIntent = new Intent(MainActivity.this, NewsActivity.class);
 				userProfileIntent.putExtra("localUser", localUser);
-				//
-//				// start user profile intent
+				
+				// start user profile intent
 				startActivity(userProfileIntent);
 			}
 		}
@@ -502,13 +479,11 @@ public class MainActivity extends FragmentActivity implements
 		mSignInClicked = false;
 		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 		
-//		createDataServices();
-		
 		// open user database connection
 		usersource.open();
 		
 		String userImageUrl = "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50";
-		Image userImage = currentUser.getImage();
+		final Image userImage = currentUser.getImage();
 		User existingUser = null;
 
 		if (userImage.hasUrl()) {

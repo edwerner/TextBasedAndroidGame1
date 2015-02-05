@@ -65,4 +65,3 @@ public class BagItemArrayAdapter extends ArrayAdapter<BagItem> {
 		return convertView;
 	}
 }
-

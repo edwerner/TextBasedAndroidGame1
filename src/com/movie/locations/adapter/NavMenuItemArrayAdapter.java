@@ -1,12 +1,10 @@
 package com.movie.locations.adapter;
+
 import java.util.ArrayList;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
-import com.movie.locations.adapter.LocationArrayAdapter.ViewHolder;
 import com.movie.locations.domain.NavMenuItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.view.LayoutInflater;
@@ -16,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NavMenuItemArrayAdapter extends ArrayAdapter<NavMenuItem> {
+	
 	private final Context context;
 	private final ArrayList<NavMenuItem> values;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();

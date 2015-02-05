@@ -3,107 +3,117 @@
     android:id="@+id/fragment_welcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$AboutFragment" >
 
+    <ImageView
+        android:id="@+id/current_equipped_item_01"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="30dp"
+        android:contentDescription="@string/filmlist_icon_desc"
+        android:src="@drawable/help" />
+
     <TextView
+        style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How this app works"
-        style="@style/CodeFont"
-        android:textSize="32sp" />
+        android:text="How This Game Works"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/instructions1"
+        style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Levels"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        style="@style/CodeFont" />
+        android:text="Worlds/Levels"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/instructions2"
+        style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Each preceding level is downloaded upon completion. You choose the story order!"
-        android:textSize="14sp"
-        style="@style/CodeFont" />
+        android:text="4 worlds/20 levels - you choose play order!"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/instructionsItems1"
+        style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Items"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        style="@style/CodeFont" />
+        android:text="Inventory"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/instructionsItems2"
+        style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Equip quest items found in your bag. Your bag can be opened through your &apos;settings&apos; tray (lower right-hand corner of phone face)."
-        android:textSize="14sp"
-        style="@style/CodeFont" />
-
-    <TextView
-        android:id="@+id/instructionsFriends1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:text="Friends"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        style="@style/CodeFont" />
-
-    <TextView
-        android:id="@+id/instructionsFriends2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:text="These are your Google Plus contacts. They&apos;ll appear in your friends list after they download the app. Spread the word with (built-in) Google Plus sharing!"
-        android:textSize="14sp"
-        style="@style/CodeFont" />
+        android:text="Equip game items to solve puzzles."
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/instructionsUpdates1"
+        style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
         android:text="Notifications"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        style="@style/CodeFont" />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/instructionsUpdates2"
+        style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Leave notifications &apos;active&apos; to keep current with new level launches and app updates!"
-        android:textSize="14sp"
-        style="@style/CodeFont" />
+        android:text="Turn notifications on/off in the &apos;Settings&apos; tab."
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/instructionsAchievements1"
+        style="@style/CodeFont"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Achievements"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/instructionsAchievements2"
+        style="@style/CodeFont"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="4dp"
+        android:text="Level achievements awarded each level."
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/dismiss_instructions"
+        style="@style/CodeFont"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Got it!"
-        style="@style/CodeFont" />
+        android:text="Got it!" />
 
 </LinearLayout>

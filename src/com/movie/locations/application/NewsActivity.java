@@ -151,7 +151,7 @@ public class NewsActivity extends ActionBarActivity {
 				currentImageUrl += R.drawable.settings;
 				break;
 			case 5:
-				currentImageUrl += R.drawable.settings;
+				currentImageUrl += R.drawable.achievement_level_twenty;
 				break;
 			}
 			menuItem.setTitle(navArray[a]);
@@ -187,35 +187,22 @@ public class NewsActivity extends ActionBarActivity {
 											// onPrepareOptionsMenu()
 			}
 		};
+		
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-//		if (savedInstanceState == null) {
-//			selectItem(0);
-//		}
 		
 		if (localUser != null) {
-			// System.out.println("WORLD COUNT NEWS ACTIVITY" + localUser.getWorldCount());
-			// System.out.println("WORLD COUNT");
-			if (localUser.getWorldCount().equals("1")) {
+			if (localUser.getCurrentLevel().equals("1")) {
 				// display help fragment
-				selectItem(5);
-//				// System.out.println("CURRENT LEVEL: " + localUser.getCurrentLevel());
+				selectItem(3);
 			}
 		} else {
 			selectItem(0);
 		}
 	}
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        unregisterReceiver(mReceiver);
-    }
     
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
-//        CheckBox mobileCheckbox = (CheckBox) R.id.emailNotifications1;
         
         int id = view.getId();
 		if (id == R.id.checkboxNotifications1) {
@@ -250,7 +237,6 @@ public class NewsActivity extends ActionBarActivity {
 		if (id == R.id.action_settings) {
 			return true;
 		}
-		// return super.onOptionsItemSelected(item);
 
 		// The action bar home/up action should open or close the drawer.
 		// ActionBarDrawerToggle will take care of this.
@@ -275,7 +261,7 @@ public class NewsActivity extends ActionBarActivity {
 		}
 	}
 
-	/* The click listner for ListView in the navigation drawer */
+	/* The click listener for ListView in the navigation drawer */
 	private class DrawerItemClickListener implements
 			ListView.OnItemClickListener {
 		@Override
@@ -284,33 +270,8 @@ public class NewsActivity extends ActionBarActivity {
 			selectItem(position);
 		}
 	}
-
-//	@Override
-//	public void onResume() {
-//		// System.out.println("******* NEWS RESUME ********");
-//		super.onResume();
-//		
-////		// System.out.println("CONCLUSION CARD EMPTY:" + conclusionCardAdapter.isEmpty());
-//		if (conclusionCardAdapter != null) {
-//			cardList = conclusionCardImpl.selectRecords();
-//			// System.out.println("CONCLUSION CARD COUNT:" + cardList.size());
-//			conclusionCardAdapter.notifyDataSetChanged();	
-//		}
-//		
-//		if (localUser != null) {
-//			localUser = userSource.selectRecordById(localUser.getUserId());
-//		}
-//		
-////		quizItemList = quizItemImpl.selectRecords();
-//		cardList = conclusionCardImpl.selectRecords();
-//
-//		// BAG ITEM NEWS ITEM
-//		bagItemList = bagItemImpl.selectRecords();
-//	}
 	 
 	private void selectItem(int position) {
-
-		// TODO: write references to activities
 
 		// update selected item and title, then close the drawer
 		mDrawerList.setItemChecked(position, true);
@@ -318,13 +279,6 @@ public class NewsActivity extends ActionBarActivity {
 		mDrawerLayout.closeDrawer(mDrawerList);
         ft = getSupportFragmentManager().beginTransaction();
         
-//		navArray[0] = "Worlds";
-//		navArray[1] = "Profile";
-//		navArray[2] = "Items";
-//		navArray[3] = "About";
-//		navArray[4] = "Settings";
-		
-		
 		switch (position) {
 		case 0:
 			Fragment locationsFragment = new FilmLocationsFragment();

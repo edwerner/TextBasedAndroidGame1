@@ -3,7 +3,6 @@
     android:id="@+id/fragment_bag"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/listview_selected"
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:orientation="vertical"

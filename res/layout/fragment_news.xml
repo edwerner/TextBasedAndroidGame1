@@ -16,8 +16,7 @@
             android:layout_height="300dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/filmlist_icon_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/circuitboard_004_green" >
+            android:scaleType="centerCrop">
         </ImageView>
 
         <ImageView
@@ -26,8 +25,7 @@
             android:layout_height="300dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/filmlist_icon_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/circuitboard_004_green" >
+            android:scaleType="centerCrop">
         </ImageView>
     </LinearLayout>
 

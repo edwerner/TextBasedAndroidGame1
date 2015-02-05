@@ -1,12 +1,11 @@
 package com.movie.locations.application;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import com.movie.locations.R;
 import com.movie.locations.adapter.LocationArrayAdapter;
 import com.movie.locations.database.BagItemImpl;
-import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
@@ -16,7 +15,6 @@ import com.movie.locations.domain.LocationMapParcel;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
-import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.content.Context;
 import android.content.Intent;
@@ -49,7 +47,6 @@ public class LocationPagerActivity extends FragmentActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	private static ViewPager mViewPager;
-//	private LocationsImpl locationsImpl;
 	private HashMap<String, ArrayList<FilmLocation>> filmMap;
 	private User currentUser;
 	private Context context;
@@ -66,31 +63,24 @@ public class LocationPagerActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_film_location_pager);
-		
+		setContentView(R.layout.activity_film_location_pager);		
 		context = this;
-		Bundle bundle = getIntent().getExtras();
+		final Bundle bundle = getIntent().getExtras();
 		
 		// query database for records
-		BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
+		final BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
 		bagItemImpl.open();
-		ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
+		final ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
 		bagItemImpl.close();
 		
 		// set parcelable array list
 		bagItemArrayList = new BagItemArrayList(); 
 		bagItemArrayList.setBagItemArrayList(bagItemList);
-//		locationsImpl = new LocationsImpl(this);
 		locationArrayList = bundle.getParcelable("locationArrayList");
 		locationList = locationArrayList.getFilmList();
-		// System.out.println("STARTED INTENT LIST LENGTH: " + locationList.size());
 		filmMap = new LinkedHashMap<String, ArrayList<FilmLocation>>();
 		worldTitles = new ArrayList<String>();
 		localWorldImageUrls = new ArrayList<String>();
-		
-		// sort the list
-//		Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
-		// System.out.println("LOCATION LIST FROM PARCEL: " + locationList.size());
 		
 		for (FilmLocation loc : locationList) {
 			if (!worldTitles.contains(loc.getTitle())) {
@@ -99,81 +89,41 @@ public class LocationPagerActivity extends FragmentActivity {
 			}
 		}
 		
-		int arraylength = worldTitles.size();
-		// System.out.println("WORLD TITLES SIZE: " + arraylength);
-		ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
+		final int arraylength = worldTitles.size();
+		final ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
 		
-		for (int a = 0; a < arraylength; a++) {
-			// System.out.println("WORLD TITLES SIZE: " + worldTitles.get(a));
-		}
 		for (int i = 0; i < arraylength; i++) {
 			tempList.clear();
-//			// System.out.println("datasource: " + datasource);
 			final String CURRENT_TITLE = worldTitles.get(i);
-			// System.out.println("CURRENT_TITLE: " + CURRENT_TITLE);
-			// System.out.println("SELECT RECORDS BY TITLE COUNT: " + locationList.size());
 			
 			for (FilmLocation location : locationList) {
 				tempList.add(location);
-			}
-			
+			}	
 			filmMap.put(CURRENT_TITLE, tempList);
 		}
+		
 		locationMap = new LocationMapParcel();
 		locationMap.setLocationHashMap(filmMap);
-		// System.out.println("FILM MAP LENGTH:" + filmMap.size());
-		// System.out.println("LOCATION TITLE ARRAY LENGTH ****: " + arraylength);
-		// System.out.println("FILM MAP SIZE ****: " + filmMap.size());
 		currentUser = bundle.getParcelable("localUser");
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		
 		quizItemImpl = new QuizItemImpl(context);
 		quizItemImpl.open();
 		newQuizList = quizItemImpl.selectRecords();
 		quizItemImpl.close();
-		
-		// System.out.println("QUIZ LIST SIZE:" + newQuizList.size());
 	}
 
-//    @Override
-//    protected void onPause() {
-//        unregisterReceiver(mReceiver);
-//        super.onPause();
-//    }
-	
-    
 	public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
 		
 		public void onReceive(Context context, Intent intent) {
 			// update your list
 			mSectionsPagerAdapter.notifyDataSetChanged();
-		   // System.out.println("UPDATED DATA FROM RECEIVER");
 		   unregisterReceiver(mReceiver);
 	   }
 	};
-	
-	@Override
-	 public void onResume() {
-		// System.out.println("******* RESUME PAGER ACTIVITY ********");
-//		if (locationList != null) {
-//			locationList = datasource.selectRecords();
-//			locationArrayList.setFilmList(locationList);
-//			Collections.sort(locationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
-//			// System.out.println("ON RESUME LOCATION LIST LENGTH: " + locationList.size());
-//			for (FilmLocation loc : locationList) {
-//				if (!worldTitles.contains(loc.getTitle())) {
-//					worldTitles.add(loc.getTitle());
-//					localWorldImageUrls.add(loc.getStaticMapImageUrl());
-//				}
-//			}
-//			mSectionsPagerAdapter.notifyDataSetChanged();
-//		}
-		 super.onResume();
-	 }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -188,7 +138,6 @@ public class LocationPagerActivity extends FragmentActivity {
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-//		private int currentPositionIndex;
 		final ArrayList<String> titles = new ArrayList<String>();
 
 		public SectionsPagerAdapter(FragmentManager fragmentManager) {
@@ -204,7 +153,6 @@ public class LocationPagerActivity extends FragmentActivity {
 			args.putStringArrayList("localWorldImageUrls", localWorldImageUrls);
 			args.putParcelable("locationArrayList", locationArrayList);
 			args.putParcelable("locationMap", locationMap);
-//			args.putParcelable("locationArrayList", locationArrayList);
 			args.putParcelable("currentLocation", currentLocation);
 			args.putParcelable("bagItemArrayList", bagItemArrayList);
 			args.putParcelable("currentUser", currentUser);
@@ -216,21 +164,19 @@ public class LocationPagerActivity extends FragmentActivity {
 		public int getCount() {
 			// Show total pages.
 			int worldCount = worldTitles.size();
-			// System.out.println("WORLD COUNT: " + worldCount);
 			return worldCount;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			// System.out.println("WORLD TITLES SIZE: " + worldTitles.size());
 			String localTitle = worldTitles.get(position);
 			return localTitle;
 		}
-//		tempAdapterList
+		
 	    public int getItemPosition(Object item) {
-	    	MovieSectionFragment fragment = (MovieSectionFragment) item;
-	        String title = fragment.getFragmentTitle();
-	        int position = worldTitles.indexOf(title);
+	    	final MovieSectionFragment fragment = (MovieSectionFragment) item;
+	        final String title = fragment.getFragmentTitle();
+	        final int position = worldTitles.indexOf(title);
 
 	        if (position >= 0) {
 	            return position;
@@ -253,7 +199,6 @@ public class LocationPagerActivity extends FragmentActivity {
 		public static final String ARG_SECTION_NUMBER = "section_number";
 		protected ImageLoader imageLoader = ImageLoader.getInstance();
 		private ArrayList<String> localWorldTitles;
-		private LocationMapParcel localMapParcel;
 		private String currentTitle;
 		private LocationArrayAdapter locationAdapter;
 		private ListView commentView;
@@ -275,57 +220,34 @@ public class LocationPagerActivity extends FragmentActivity {
 
 		@Override
 		public void onPageScrollStateChanged(int arg0) {
-			// TODO Auto-generated method stub
 
 		}
 
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			// TODO Auto-generated method stub
 
 		}
 		
 		// ON PAGE CHANGED UPDATE
 		@Override
 		public void onPageSelected(int position) {
-			// System.out.println("PAGE INDEX CHANGED: " + position);
+		
 		}
-
-//		@Override
-//		  public void onRestoreInstanceState(Bundle savedInstanceState) {
-//		    super.onRestoreInstanceState(savedInstanceState);
-//		    // Restore UI state from the savedInstanceState.
-//		    // This bundle has also been passed to onCreate.
-//		    boolean myBoolean = savedInstanceState.getBoolean("MyBoolean");
-//		    double myDouble = savedInstanceState.getDouble("myDouble");
-//		    int myInt = savedInstanceState.getInt("MyInt");
-//		    String myString = savedInstanceState.getString("MyString");
-//		  }
 		
 		public void prepareArrayAdapterData(View rootView) {
-			ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
-//			boolean answered = true;
-//			QuizItem replayQuizItem = null;
-			QuizItem firstLocation = newQuizList.get(0);
+			final ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
+			final QuizItem firstLocation = newQuizList.get(0);
 			currentTitle = firstLocation.getWorldTitle();
 			
 			for (QuizItem quizItem : newQuizList) {
-				// System.out.println("LOCATION TITLE 1:" + currentTitle);
-				// System.out.println("LOCATION TITLE 2:" + quizItem.getWorldTitle());
-				// System.out.println("LOCAL CURRENT LOCATION CORRECT ANSWER INDEX: " + quizItem.getCorrectAnswerIndex());
 				if (quizItem.getWorldTitle().equals(currentTitle)) {
 					finalQuizList.add(quizItem);
-//					if (quizItem.getAnswered().equals("FALSE")) {
-//						answered = false;
-//					}
-//					replayQuizItem = quizItem;
 				}
 			}
 		}
 		
 		@Override
 		public void onResume() {
-			// System.out.println("Resume");
 			prepareArrayAdapterData(getRootView());
 			super.onResume();
 		}
@@ -341,32 +263,22 @@ public class LocationPagerActivity extends FragmentActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
+			final View rootView = inflater.inflate(
 					R.layout.fragment_film_panel, container, false);
-			
-//			ListView locationsList = (ListView) rootView
-//					.findViewById(R.id.locationsView1);
 			
 			setRootView(rootView);
 			prepareArrayAdapterData(rootView);
-			
-			// TO PASS THROUGH AS A PARCEL
-			localMapParcel = getArguments().getParcelable("locationMap");
-			FilmArrayList localLocationArrayList = getArguments().getParcelable("locationArrayList");
-//			FilmLocation localCurrentLocation = getArguments().getParcelable("currentLocation");
-			BagItemArrayList localBagItemArrayList = getArguments().getParcelable("bagItemArrayList");
-			User localCurrentUser = getArguments().getParcelable("currentUser");
+			final FilmArrayList localLocationArrayList = getArguments().getParcelable("locationArrayList");
+			final BagItemArrayList localBagItemArrayList = getArguments().getParcelable("bagItemArrayList");
+			final User localCurrentUser = getArguments().getParcelable("currentUser");
+			final ArrayList<FilmLocation> finalList = new ArrayList<FilmLocation>();
+			filmArrayList = getArguments().getParcelable("locationArrayList");
+			final ArrayList<FilmLocation> filmList = filmArrayList.getFilmList();
 			localWorldTitles = getArguments().getStringArrayList("worldTitles");
 			localWorldImageUrls = getArguments().getStringArrayList("localWorldImageUrls");
-			filmArrayList = getArguments().getParcelable("locationArrayList");
-			ArrayList<FilmLocation> filmList = filmArrayList.getFilmList();
 			currentTitle = localWorldTitles.get(getArguments().getInt(ARG_SECTION_NUMBER));
-//			currentImageUrl = localWorldImageUrls.get(getArguments().getInt(ARG_SECTION_NUMBER));
 			setFragmentTitle(currentTitle);
-			// System.out.println("CURRENT FRAGMENT TITLE: " + currentTitle);
-			// System.out.println("LOCAL MAP PARCEL: " + localMapParcel);
-			//currentTitle
-			ArrayList<FilmLocation> finalList = new ArrayList<FilmLocation>();
+			
 			for (FilmLocation loc : filmList) {
 				if (loc.getTitle().equals(currentTitle)) {
 					finalList.add(loc);
@@ -375,13 +287,11 @@ public class LocationPagerActivity extends FragmentActivity {
 			
 			final Context context = getActivity().getApplicationContext();
 			final Intent intent = new Intent(context, LocationDetailActivity.class);
-			FilmLocation localCurrentLocation = finalList.get(0);
-			// pass only current location
+			final FilmLocation localCurrentLocation = finalList.get(0);
 			intent.putExtra("locationArrayList", localLocationArrayList);
 			intent.putExtra("currentLocation", localCurrentLocation);
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);
 			intent.putExtra("localUser", localCurrentUser);
-			// System.out.println("PAGER ACTIVITY CURRENT USER POINTS: " + localCurrentUser.getCurrentPoints());
 			locationAdapter = new LocationArrayAdapter(getActivity(), intent, finalList);
 			commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
 			commentView.setAdapter(locationAdapter);

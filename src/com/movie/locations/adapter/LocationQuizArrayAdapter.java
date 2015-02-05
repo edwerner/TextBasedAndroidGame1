@@ -1,15 +1,13 @@
 package com.movie.locations.adapter;
+
 import java.util.ArrayList;
 import java.util.Random;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.widget.ArrayAdapter;
 import com.movie.locations.R;
-import com.movie.locations.adapter.LocationArrayAdapter.ViewHolder;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.QuizItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,11 +20,11 @@ import android.widget.TextView;
 public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 	private final Context context;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	public String UNIQUE_MAP_IMAGE_URL = "";
-	public final String DEFAULT_MAP_IMAGE_URL = "http://staticmap.openstreetmap.de/staticmap.php?center=48.854182,2.371105&zoom=13&size=500x500&maptype=mapnik";
 	private String[] listItemTitles;
 	private String[] listItemImageTiles;
 	private ArrayList<BagItem> bagItemList;
+	private String UNIQUE_MAP_IMAGE_URL = "";
+	private final String DEFAULT_MAP_IMAGE_URL = "drawable://x_button";
 
 	public LocationQuizArrayAdapter(Activity activity, Context context, Intent intent, ArrayList<QuizItem> values) {
 		super(context, R.layout.film_list_array_adapter, values);
@@ -78,7 +76,6 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 			UNIQUE_MAP_IMAGE_URL = DEFAULT_MAP_IMAGE_URL;
 		}
 
-		// ImageView mapThumb = (ImageView) rowView.findViewById(R.id.mapView1);
 		imageLoader.displayImage(UNIQUE_MAP_IMAGE_URL, viewHolder.worldImage);
 		viewHolder.worldText.setText(titles[position]);
 
@@ -89,7 +86,6 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 		return convertView;
 	}
 	
-
 	public int[] colors = {
 			Color.BLUE,
 			Color.CYAN,
@@ -98,11 +94,13 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 			Color.RED,
 			Color.YELLOW
 	};
+	
 	public int getRandomColor() {
 	    Random rand = new Random();
 	    int randomNum = rand.nextInt(colors.length);
 	    return randomNum;
 	}
+	
     @Override
     public int getCount() {
         int size = getListItemTitles().length;
@@ -133,5 +131,4 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 	public ArrayList<BagItem> getBagItemList() {
 		return bagItemList;
 	}
-
 }
