@@ -95,7 +95,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	private LocationQuizArrayAdapter locationQuizArrayAdapter;
 	private ListView locationsList;
 	private QuizItemService quizItemService;
-
+	private UserImpl userImpl;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -165,6 +166,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		levelAchievement = achievementImpl.selectRecordByLevel(NEXT_ACHIEVEMENT_LEVEL);
 		achievementImpl.close();
 
+		userImpl = new UserImpl(context);
+		
 		// set world title
 		setTitle(currentLocation.getTitle());
 		dialog = new Dialog(context,android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
@@ -190,6 +193,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 				 initializeReplayWorld(replayQuizItem);
 			 }
 		 }
+		 registerReceiver(mReceiver, filter);
 		 super.onResume();
 	 }
 
@@ -239,6 +243,16 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
 					updatedUserPointsString = Integer.toString(updatedUserPointsInt);
 					pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
+					
+					final String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
+					final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
+					final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
+					int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+					
+					if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+						final String currentLevelString = Integer.toString(currentLevel);
+						levelUpCurrentUser(currentUserId, currentLevelString);
+					}
 				} else {
 					updatedUserPointsString = currentUser.getPoints();
 				}
@@ -509,49 +523,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			}
 			getActivity().finish();
 		}
-
-
-		private void levelUpCurrentUser(String currentUserId, String currentLevelString) {
-			if (userImpl != null) {
-				userImpl.open();
-				userImpl.updateCurrentUserLevel(currentUserId, currentLevelString);
-				userImpl.close();
-			}
-			
-			// SEND LEVEL UP NOTIFICATION
-			if (levelAchievement != null && fragmentUser.getMobileNotifications().equals("true")) {
-				sendLevelUpNotification();
-			}
-		}
-		private void sendLevelUpNotification() {
-			int NOTIFICATION_ID = 1;
-			NotificationManager mNotificationManager;
-			String copy = "Keep going!";
-			String msg = "Welcome to level ";
-			
-			if (title != null) {
-				
-//				String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
-				msg += " " + levelAchievement.getLevel() + " !";
-				
-				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
-			            .setAutoCancel(true)
-			            .setDefaults(Notification.DEFAULT_VIBRATE)
-						.setContentTitle("CircuitQuest")
-						.setContentText(msg)
-						.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
-
-				// create and start achievement activity
-				mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-				
-				Intent achievementIntent = new Intent(context, AchievementActivity.class);
-				achievementIntent.putExtra("achievement", levelAchievement);
-				
-				PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
-				mBuilder.setContentIntent(contentIntent);
-				mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());	
-			}
-		}
 		
 		private void generateConclusionCard(QuizItem quizItem, String currentUserPoints) {
 			Intent achievementIntent = new Intent(context, ConclusionActivity.class);
@@ -713,6 +684,49 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	private void levelUpCurrentUser(String currentUserId, String currentLevelString) {
+		if (userImpl != null) {
+			userImpl.open();
+			userImpl.updateCurrentUserLevel(currentUserId, currentLevelString);
+			userImpl.close();
+		}
+		
+		// SEND LEVEL UP NOTIFICATION
+		if (levelAchievement != null && currentUser.getMobileNotifications().equals("true")) {
+			sendLevelUpNotification();
+		}
+	}
+
+	private void sendLevelUpNotification() {
+		int NOTIFICATION_ID = 1;
+		NotificationManager mNotificationManager;
+		String copy = "Keep going!";
+		String msg = "Welcome to level ";
+		
+		if (title != null) {
+			
+//			String FINAL_USER_LEVEL = fragmentUser.getCurrentLevel();
+			msg += " " + levelAchievement.getLevel() + " !";
+			
+			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
+		            .setAutoCancel(true)
+		            .setDefaults(Notification.DEFAULT_VIBRATE)
+					.setContentTitle("CircuitQuest")
+					.setContentText(msg)
+					.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
+
+			// create and start achievement activity
+			mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+			
+			Intent achievementIntent = new Intent(context, AchievementActivity.class);
+			achievementIntent.putExtra("achievement", levelAchievement);
+			
+			PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
+			mBuilder.setContentIntent(contentIntent);
+			mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());	
 		}
 	}
 }
