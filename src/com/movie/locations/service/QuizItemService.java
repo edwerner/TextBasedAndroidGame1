@@ -119,6 +119,21 @@ public class QuizItemService implements IService {
 		context.sendBroadcast(newsIntent);
 	}
 	
+	public void updateRecordAnswered(String recordId, String answered, String index, Context context) {
+
+		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+		
+		QuizItemImpl datasource = new QuizItemImpl(context);
+		datasource.open();
+		datasource.updateRecordAnswered(recordId, answered);
+		datasource.updateRecordCorrectAnswerIndex(recordId, index);
+		QuizItem tempQuizItem = datasource.selectRecordById(recordId);
+		datasource.close();
+		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
+		context.sendBroadcast(newsIntent);
+	}
+	
 	@Override
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
