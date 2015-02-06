@@ -67,8 +67,9 @@ public class NewsActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_news);
-		context = this;
-//		if (savedInstanceState == null) {
+
+		if (savedInstanceState == null) {
+			context = this;
 			intent = getIntent();
 			Bundle bundle = intent.getExtras();
 			localUser = bundle.getParcelable("localUser");
@@ -78,94 +79,94 @@ public class NewsActivity extends ActionBarActivity {
 			locationsFragment.setArguments(locationsBundle);
 			getSupportFragmentManager().beginTransaction().add(R.id.content_frame, locationsFragment).commit();
 			userImpl = new UserImpl(context);
-//		}
-		
-		navArray = new String[6];
-		navArray[0] = "Worlds";
-		navArray[1] = "Player";
-		navArray[2] = "Items";
-		navArray[3] = "About";
-		navArray[4] = "Settings";
-		navArray[5] = "Achievements";
-		
-		String userImageUrl = localUser.getAvatarImageUrl();
-		mTitle = mDrawerTitle = getTitle();
-		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-		// set a custom shadow that overlays the main content when the drawer opens
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-		
-		// set up the drawer's list view with items and click listener
-		ArrayList<NavMenuItem> navList = new ArrayList<NavMenuItem>();
-		
-		for (int a = 0; a < navArray.length; a++) {
-			NavMenuItem menuItem = new NavMenuItem();
-			String currentImageUrl = "drawable://";
 			
-			switch(a) {
-			case 0:
-				currentImageUrl += R.drawable.breadboard_menu;
-				break;
-			case 1:
-				currentImageUrl = userImageUrl;
-				break;
-			case 2:
-				currentImageUrl += R.drawable.backpack_blue;
-				break;
-			case 3:
-				currentImageUrl += R.drawable.help;
-				break;
-			case 4:
-				currentImageUrl += R.drawable.settings;
-				break;
-			case 5:
-				currentImageUrl += R.drawable.achievement_level_twenty;
-				break;
+			navArray = new String[6];
+			navArray[0] = "Worlds";
+			navArray[1] = "Player";
+			navArray[2] = "Items";
+			navArray[3] = "About";
+			navArray[4] = "Settings";
+			navArray[5] = "Achievements";
+			
+			String userImageUrl = localUser.getAvatarImageUrl();
+			mTitle = mDrawerTitle = getTitle();
+			mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+			mDrawerList = (ListView) findViewById(R.id.left_drawer);
+	
+			// set a custom shadow that overlays the main content when the drawer opens
+			mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+			
+			// set up the drawer's list view with items and click listener
+			ArrayList<NavMenuItem> navList = new ArrayList<NavMenuItem>();
+			
+			for (int a = 0; a < navArray.length; a++) {
+				NavMenuItem menuItem = new NavMenuItem();
+				String currentImageUrl = "drawable://";
+				
+				switch(a) {
+				case 0:
+					currentImageUrl += R.drawable.breadboard_menu;
+					break;
+				case 1:
+					currentImageUrl = userImageUrl;
+					break;
+				case 2:
+					currentImageUrl += R.drawable.backpack_blue;
+					break;
+				case 3:
+					currentImageUrl += R.drawable.help;
+					break;
+				case 4:
+					currentImageUrl += R.drawable.settings;
+					break;
+				case 5:
+					currentImageUrl += R.drawable.achievement_level_twenty;
+					break;
+				}
+				
+				menuItem.setTitle(navArray[a]);
+				menuItem.setImageUrl(currentImageUrl);
+				navList.add(menuItem);
 			}
 			
-			menuItem.setTitle(navArray[a]);
-			menuItem.setImageUrl(currentImageUrl);
-			navList.add(menuItem);
-		}
-		
-		NavMenuItemArrayAdapter menuAdapter = new NavMenuItemArrayAdapter(this, intent, navList);
-		mDrawerList.setAdapter(menuAdapter);
-		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
-		// enable ActionBar app icon to behave as action to toggle nav drawer
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setHomeButtonEnabled(true);
-
-		// ActionBarDrawerToggle ties together the the proper interactions
-		// between the sliding drawer and the action bar app icon
-		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
-		mDrawerLayout, /* DrawerLayout object */
-		R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
-		R.string.drawer_open, 0
-		) {
-			public void onDrawerClosed(View view) {
-				getSupportActionBar().setTitle(mTitle);
-				invalidateOptionsMenu(); // creates call to
-											// onPrepareOptionsMenu()
+			NavMenuItemArrayAdapter menuAdapter = new NavMenuItemArrayAdapter(this, intent, navList);
+			mDrawerList.setAdapter(menuAdapter);
+			mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+	
+			// enable ActionBar app icon to behave as action to toggle nav drawer
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setHomeButtonEnabled(true);
+	
+			// ActionBarDrawerToggle ties together the the proper interactions
+			// between the sliding drawer and the action bar app icon
+			mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+			mDrawerLayout, /* DrawerLayout object */
+			R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
+			R.string.drawer_open, 0
+			) {
+				public void onDrawerClosed(View view) {
+					getSupportActionBar().setTitle(mTitle);
+					invalidateOptionsMenu(); // creates call to
+												// onPrepareOptionsMenu()
+				}
+	
+				public void onDrawerOpened(View drawerView) {
+					getSupportActionBar().setTitle(mDrawerTitle);
+					invalidateOptionsMenu(); // creates call to
+												// onPrepareOptionsMenu()
+				}
+			};
+			
+			mDrawerLayout.setDrawerListener(mDrawerToggle);
+			
+			if (localUser != null) {
+				if (localUser.getCurrentLevel().equals("1")) {
+					// display help fragment
+					selectItem(3);
+				}
+			} else {
+				selectItem(0);
 			}
-
-			public void onDrawerOpened(View drawerView) {
-				getSupportActionBar().setTitle(mDrawerTitle);
-				invalidateOptionsMenu(); // creates call to
-											// onPrepareOptionsMenu()
-			}
-		};
-		
-		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		
-		if (localUser != null) {
-			if (localUser.getCurrentLevel().equals("1")) {
-				// display help fragment
-				selectItem(3);
-			}
-		} else {
-			selectItem(0);
 		}
 	}
     

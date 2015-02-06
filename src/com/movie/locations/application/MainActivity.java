@@ -137,6 +137,7 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 
 		// globalize context and pass reference to data service

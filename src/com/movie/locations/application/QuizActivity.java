@@ -77,6 +77,7 @@ public class QuizActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_quiz);
 		
 		if (savedInstanceState == null) {	
@@ -97,7 +98,7 @@ public class QuizActivity extends FragmentActivity {
 				if (currentPoints != null) {
 					currentTotalPoints = currentPointsItem.getPoints();
 				}
-			}else {
+			} else {
 				currentTotalPoints = "0";
 			}
 			
