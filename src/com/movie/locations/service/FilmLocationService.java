@@ -11,15 +11,21 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 import android.content.Context;
-
 import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.utility.CSVFile;
 
 public class FilmLocationService implements IService {
 	
-	public FilmLocationService() {
-		// empty constructor
+	private Context context;
+	private LocationsImpl locationsImpl;
+
+	public FilmLocationService(Context context) {
+		this.context = context;
+	}
+	
+	public void createLocationsImpl() {
+		locationsImpl = new LocationsImpl(context);
 	}
 	
 	@Override
@@ -32,7 +38,7 @@ public class FilmLocationService implements IService {
 	}
 
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		CSVFile csvFile = new CSVFile(stream);
 		String LOCATION_ID = null;
 		String LOCATION_WORLD_TITLE = null;
@@ -59,23 +65,23 @@ public class FilmLocationService implements IService {
 			locationArrayList.add(location);
 		}
 		
-		LocationsImpl datasource = new LocationsImpl(context); 
+		locationsImpl = new LocationsImpl(context); 
 			
 		// create database connection and store
 		// location objects in sqlite database
-		datasource.open();
+		locationsImpl.open();
 		
-		ArrayList<FilmLocation> currentTitleLocations = datasource.selectRecordsByTitle(LOCATION_WORLD_TITLE);
+		ArrayList<FilmLocation> currentTitleLocations = locationsImpl.selectRecordsByTitle(LOCATION_WORLD_TITLE);
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordByTitle(LOCATION_WORLD_TITLE);
+			locationsImpl.deleteRecordByTitle(LOCATION_WORLD_TITLE);
 		}
 		
 		for (FilmLocation loc : locationArrayList) {
-			datasource.createRecord(loc);
+			locationsImpl.createRecord(loc);
 		}
 		
-		datasource.close();
+		locationsImpl.close();
 	}
 	
 	@Override

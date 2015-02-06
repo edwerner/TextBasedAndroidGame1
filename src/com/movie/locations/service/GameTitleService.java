@@ -17,8 +17,15 @@ import com.movie.locations.utility.CSVFile;
 
 public class GameTitleService implements IService {
 
-	public GameTitleService() {
-		// empty constructor
+	private Context context;
+	private GameTitleImpl gameTitleImpl;
+
+	public GameTitleService(Context context) {
+		this.context = context;
+	}
+	
+	public void createGameTitleImpl() {
+		this.gameTitleImpl = new GameTitleImpl(context);
 	}
 
 	@Override
@@ -31,7 +38,7 @@ public class GameTitleService implements IService {
 	}
 	
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		CSVFile csvFile = new CSVFile(stream);
 		String GAME_TITLE_ID = null;
 		String GAME_TITLE = null;
@@ -54,23 +61,23 @@ public class GameTitleService implements IService {
 			gameTitleList.add(title);
 		}
 		
-		GameTitleImpl datasource = new GameTitleImpl(context);
+		gameTitleImpl = new GameTitleImpl(context);
 			
 		// create database connection and store
 		// location objects in sqlite database
-		datasource.open();
+		gameTitleImpl.open();
 		
-		GameTitle currentCard = datasource.selectRecordById(GAME_TITLE_ID);
+		GameTitle currentCard = gameTitleImpl.selectRecordById(GAME_TITLE_ID);
 		
 		if (currentCard != null) {
-			datasource.deleteRecordByLevel(GAME_TITLE);
+			gameTitleImpl.deleteRecordByLevel(GAME_TITLE);
 		}
 		
 		for (GameTitle title : gameTitleList) {
-			datasource.createRecord(title);
+			gameTitleImpl.createRecord(title);
 		}
 		
-		datasource.close();
+		gameTitleImpl.close();
 	}
 
 	@Override

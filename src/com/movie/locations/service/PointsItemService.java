@@ -7,12 +7,11 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.JsonFactory;
-import android.content.Context;
 
 public class PointsItemService implements IService {
 
 	public PointsItemService() {
-		// Empty constructor
+		// empty constructor
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class PointsItemService implements IService {
 	}
 
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		
 	}
 }

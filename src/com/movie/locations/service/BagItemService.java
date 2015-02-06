@@ -17,8 +17,15 @@ import com.movie.locations.utility.CSVFile;
 
 public class BagItemService implements IService {
 
-	public BagItemService() {
-		// empty constructor
+	private Context context;
+	private BagItemImpl bagItemImpl;
+
+	public BagItemService(Context context) {
+		this.context = context;
+	}
+	
+	public void createBagItemImpl() {
+		bagItemImpl = new BagItemImpl(context);
 	}
 
 	@Override
@@ -31,7 +38,7 @@ public class BagItemService implements IService {
 	}
 	
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		
 		CSVFile csvFile = new CSVFile(stream);
 		String BAG_ITEM_ID = null;
@@ -55,23 +62,23 @@ public class BagItemService implements IService {
 			bagItemArrayList.add(bagItem);
 		}
 		
-		BagItemImpl datasource = new BagItemImpl(context);
+		bagItemImpl = new BagItemImpl(context);
 			
 		// create database connection and store
 		// location objects in sqlite database
-		datasource.open();
+		bagItemImpl.open();
 		
-		BagItem currentTitleLocations = datasource.selectRecordById(BAG_ITEM_ID);
+		BagItem currentTitleLocations = bagItemImpl.selectRecordById(BAG_ITEM_ID);
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordByLevel(BAG_ITEM_LEVEL);
+			bagItemImpl.deleteRecordByLevel(BAG_ITEM_LEVEL);
 		}
 		
 		for (BagItem item : bagItemArrayList) {
-			datasource.createRecord(item);
+			bagItemImpl.createRecord(item);
 		}
 		
-		datasource.close();
+		bagItemImpl.close();
 	}
 
 	@Override

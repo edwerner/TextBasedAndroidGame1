@@ -12,7 +12,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
 import android.content.Intent;
-
 import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
@@ -21,8 +20,15 @@ import com.movie.locations.utility.CSVFile;
 
 public class QuizItemService implements IService {
 
-	public QuizItemService() {
-		// empty constructor
+	private QuizItemImpl quizItemImpl;
+	private Context context;
+	
+	public QuizItemService(Context context) {
+		this.context = context;
+	}
+	
+	public void createQuizItemImpl() {
+		quizItemImpl = new QuizItemImpl(context);
 	}
 
 	@Override
@@ -35,7 +41,7 @@ public class QuizItemService implements IService {
 	}
 	
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		
 		CSVFile csvFile = new CSVFile(stream);
 		String QUIZ_WORLD_ID = null;
@@ -74,24 +80,22 @@ public class QuizItemService implements IService {
 			
 			quizArrayList.add(quizItem);
 		}
-		
-		QuizItemImpl datasource = new QuizItemImpl(context);
 
 		// create database connection and store
 		// location objects in sqlite database
-		datasource.open();
+		quizItemImpl.open();
 		
-		ArrayList<QuizItem> currentTitleLocations = datasource.selectRecordsByTitle(QUIZ_WORLD_ID);
+		ArrayList<QuizItem> currentTitleLocations = quizItemImpl.selectRecordsByTitle(QUIZ_WORLD_ID);
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordByTitle(QUIZ_WORLD_ID);
+			quizItemImpl.deleteRecordByTitle(QUIZ_WORLD_ID);
 		}
 		
 		for (QuizItem temp : quizArrayList) {
-			datasource.createRecord(temp);
+			quizItemImpl.createRecord(temp);
 		}
 		
-		datasource.close();
+		quizItemImpl.close();
 		
 		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		QuizItemArrayList tempQuizItemArrayList = new QuizItemArrayList();
@@ -100,28 +104,27 @@ public class QuizItemService implements IService {
 		context.sendBroadcast(newsIntent);
 	}
 	
-	public void resetAnsweredQuestion(String result, Context context) {
+	public void resetAnsweredQuestion(String result) {
 		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-		QuizItemImpl datasource = new QuizItemImpl(context);
-		datasource.open();
-		datasource.updateRecordAnswered(result, "FALSE");
-		QuizItem tempQuizItem = datasource.selectRecordById(result);
-		datasource.close();
+		
+		quizItemImpl.open();
+		quizItemImpl.updateRecordAnswered(result, "FALSE");
+		QuizItem tempQuizItem = quizItemImpl.selectRecordById(result);
+		quizItemImpl.close();
 		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
 		context.sendBroadcast(newsIntent);
 	}
 	
-	public void updateRecordAnswered(String recordId, String answered, String index, Context context) {
+	public void updateRecordAnswered(String recordId, String answered, String index) {
 		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		
-		QuizItemImpl datasource = new QuizItemImpl(context);
-		datasource.open();
-		datasource.updateRecordAnswered(recordId, answered);
-		datasource.updateRecordCorrectAnswerIndex(recordId, index);
-		QuizItem tempQuizItem = datasource.selectRecordById(recordId);
-		datasource.close();
+		quizItemImpl.open();
+		quizItemImpl.updateRecordAnswered(recordId, answered);
+		quizItemImpl.updateRecordCorrectAnswerIndex(recordId, index);
+		QuizItem tempQuizItem = quizItemImpl.selectRecordById(recordId);
+		quizItemImpl.close();
 		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
 		context.sendBroadcast(newsIntent);
 	}

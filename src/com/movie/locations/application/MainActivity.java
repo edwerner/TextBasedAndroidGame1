@@ -547,29 +547,35 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void createDataServices() {
-		FilmLocationService locationService = new FilmLocationService();
+		FilmLocationService locationService = new FilmLocationService(context);
 		InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
-		locationService.createContentValues(locationStream, context);
+		locationService.createContentValues(locationStream);
+		locationService.createLocationsImpl();
 		
-		QuizItemService quizService = new QuizItemService();
+		QuizItemService quizService = new QuizItemService(context);
+		quizService.createQuizItemImpl();
 		InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
-		quizService.createContentValues(quizStream, context);
+		quizService.createContentValues(quizStream);
 		
-		BagItemService bagService = new BagItemService();
+		BagItemService bagService = new BagItemService(context);
 		InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
-		bagService.createContentValues(bagStream, context);
+		bagService.createContentValues(bagStream);
+		bagService.createBagItemImpl();
 		
-		ConclusionCardService cardService = new ConclusionCardService();
+		ConclusionCardService cardService = new ConclusionCardService(context);
 		InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
-		cardService.createContentValues(cardStream, context);
+		cardService.createContentValues(cardStream);
+		cardService.createConclusionCardImpl();
 		
-		GameTitleService titleService = new GameTitleService();
+		GameTitleService titleService = new GameTitleService(context);
 		InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
-		titleService.createContentValues(titleStream, context);
+		titleService.createContentValues(titleStream);
+		titleService.createGameTitleImpl();
 		
-		AchievementService achievementService = new AchievementService();
+		AchievementService achievementService = new AchievementService(context);
 		InputStream achievementStream = getResources().openRawResource(R.raw.achievement_copy);
-		achievementService.createContentValues(achievementStream, context);
+		achievementService.createContentValues(achievementStream);
+		achievementService.createAchievementImpl();
 	}
 
 	/*

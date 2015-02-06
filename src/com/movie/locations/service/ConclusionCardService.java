@@ -17,8 +17,15 @@ import com.movie.locations.utility.CSVFile;
 
 public class ConclusionCardService implements IService {
 
-	public ConclusionCardService() {
-		// empty constructor
+	private Context context;
+	private ConclusionCardImpl conclusionCardImpl;
+
+	public ConclusionCardService(Context context) {
+		this.context = context;
+	}
+	
+	public void createConclusionCardImpl() {
+		conclusionCardImpl = new ConclusionCardImpl(context);
 	}
 	
 	@Override
@@ -31,7 +38,7 @@ public class ConclusionCardService implements IService {
 	}
 	
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		CSVFile csvFile = new CSVFile(stream);
 		String CARD_ID = null;
 		String CARD_TITLE = null;
@@ -53,22 +60,22 @@ public class ConclusionCardService implements IService {
 			cardArrayList.add(card);
 		}
 		
-		ConclusionCardImpl datasource = new ConclusionCardImpl(context);
+		conclusionCardImpl = new ConclusionCardImpl(context);
 			
 		// create database connection and store
 		// location objects in sqlite database
-		datasource.open();
-		ConclusionCard currentCard = datasource.selectRecordById(CARD_ID);
+		conclusionCardImpl.open();
+		ConclusionCard currentCard = conclusionCardImpl.selectRecordById(CARD_ID);
 		
 		if (currentCard != null) {
-			datasource.deleteRecordByLevel(CARD_TITLE);
+			conclusionCardImpl.deleteRecordByLevel(CARD_TITLE);
 		}
 		
 		for (ConclusionCard card : cardArrayList) {
-			datasource.createRecord(card);
+			conclusionCardImpl.createRecord(card);
 		}
 		
-		datasource.close();
+		conclusionCardImpl.close();
 	}
 
 	@Override
