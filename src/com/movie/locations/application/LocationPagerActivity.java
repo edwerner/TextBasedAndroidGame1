@@ -11,11 +11,9 @@ import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.LocationMapParcel;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +24,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -46,13 +43,12 @@ public class LocationPagerActivity extends FragmentActivity {
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	private static ViewPager mViewPager;
+	private ViewPager mViewPager;
 	private HashMap<String, ArrayList<FilmLocation>> filmMap;
 	private User currentUser;
 	private Context context;
 	private ArrayList<String> worldTitles;
 	private ArrayList<FilmLocation> locationList;
-	private LocationMapParcel locationMap;
 	private ArrayList<String> localWorldImageUrls;
 	private FilmArrayList locationArrayList;
 	private BagItemArrayList bagItemArrayList;
@@ -65,12 +61,12 @@ public class LocationPagerActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_film_location_pager);		
 		context = this;
-		final Bundle bundle = getIntent().getExtras();
+		Bundle bundle = getIntent().getExtras();
 		
 		// query database for records
-		final BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
+		BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
 		bagItemImpl.open();
-		final ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
+		ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
 		bagItemImpl.close();
 		
 		// set parcelable array list
@@ -89,21 +85,21 @@ public class LocationPagerActivity extends FragmentActivity {
 			}
 		}
 		
-		final int arraylength = worldTitles.size();
-		final ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
+		int arraylength = worldTitles.size();
+		ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
+		String CURRENT_TITLE = "CURRENT_TITLE";
 		
 		for (int i = 0; i < arraylength; i++) {
 			tempList.clear();
-			final String CURRENT_TITLE = worldTitles.get(i);
+			CURRENT_TITLE = worldTitles.get(i);
 			
 			for (FilmLocation location : locationList) {
 				tempList.add(location);
-			}	
+			}
+			
 			filmMap.put(CURRENT_TITLE, tempList);
 		}
 		
-		locationMap = new LocationMapParcel();
-		locationMap.setLocationHashMap(filmMap);
 		currentUser = bundle.getParcelable("localUser");
 		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -121,24 +117,15 @@ public class LocationPagerActivity extends FragmentActivity {
 		public void onReceive(Context context, Intent intent) {
 			// update your list
 			mSectionsPagerAdapter.notifyDataSetChanged();
-		   unregisterReceiver(mReceiver);
+			unregisterReceiver(mReceiver);
 	   }
 	};
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.director_sort, menu);
-		return true;
-	}
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-		final ArrayList<String> titles = new ArrayList<String>();
+	private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fragmentManager) {
 			super(fragmentManager);
@@ -146,18 +133,19 @@ public class LocationPagerActivity extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			Fragment fragment = new MovieSectionFragment();
+			LocationSectionFragment movieSectionFragment = new LocationSectionFragment();
 			Bundle args = new Bundle();
-			args.putInt(MovieSectionFragment.ARG_SECTION_NUMBER, position);
+			String ARG_SECTION_NUMBER = movieSectionFragment.getArgSectionNumber();
+			args.putInt(ARG_SECTION_NUMBER, position);
 			args.putStringArrayList("worldTitles", worldTitles);
 			args.putStringArrayList("localWorldImageUrls", localWorldImageUrls);
 			args.putParcelable("locationArrayList", locationArrayList);
-			args.putParcelable("locationMap", locationMap);
 			args.putParcelable("currentLocation", currentLocation);
 			args.putParcelable("bagItemArrayList", bagItemArrayList);
 			args.putParcelable("currentUser", currentUser);
-			fragment.setArguments(args);
-			return fragment;
+			movieSectionFragment.setArguments(args);
+			
+			return movieSectionFragment;
 		}
 
 		@Override
@@ -174,9 +162,7 @@ public class LocationPagerActivity extends FragmentActivity {
 		}
 		
 	    public int getItemPosition(Object item) {
-	    	final MovieSectionFragment fragment = (MovieSectionFragment) item;
-	        final String title = fragment.getFragmentTitle();
-	        final int position = worldTitles.indexOf(title);
+	        int position = worldTitles.indexOf(getTitle());
 
 	        if (position >= 0) {
 	            return position;
@@ -190,32 +176,26 @@ public class LocationPagerActivity extends FragmentActivity {
 	 * Movie fragment
 	 * 
 	 */
-	public class MovieSectionFragment extends Fragment implements
+	private class LocationSectionFragment extends Fragment implements
 			OnPageChangeListener {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-		protected ImageLoader imageLoader = ImageLoader.getInstance();
+		private final String ARG_SECTION_NUMBER = "section_number";
 		private ArrayList<String> localWorldTitles;
 		private String currentTitle;
 		private LocationArrayAdapter locationAdapter;
 		private ListView commentView;
-		private String fragmentTitle;
 		private FilmArrayList filmArrayList;
 		private View rootView;
 
-		public MovieSectionFragment() {
+		public LocationSectionFragment() {
 			super();
 		}
 
-		public String getFragmentTitle() {
-			return fragmentTitle;
-		}
-		
-		public void setFragmentTitle(String fragmentTitle) {
-			this.fragmentTitle = fragmentTitle;
+		public String getArgSectionNumber() {
+			return ARG_SECTION_NUMBER;
 		}
 
 		@Override
@@ -235,8 +215,8 @@ public class LocationPagerActivity extends FragmentActivity {
 		}
 		
 		public void prepareArrayAdapterData(View rootView) {
-			final ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
-			final QuizItem firstLocation = newQuizList.get(0);
+			ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
+			QuizItem firstLocation = newQuizList.get(0);
 			currentTitle = firstLocation.getWorldTitle();
 			
 			for (QuizItem quizItem : newQuizList) {
@@ -263,21 +243,19 @@ public class LocationPagerActivity extends FragmentActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			final View rootView = inflater.inflate(
-					R.layout.fragment_film_panel, container, false);
 			
+			View rootView = inflater.inflate(R.layout.fragment_film_panel, container, false);
 			setRootView(rootView);
 			prepareArrayAdapterData(rootView);
-			final FilmArrayList localLocationArrayList = getArguments().getParcelable("locationArrayList");
-			final BagItemArrayList localBagItemArrayList = getArguments().getParcelable("bagItemArrayList");
-			final User localCurrentUser = getArguments().getParcelable("currentUser");
-			final ArrayList<FilmLocation> finalList = new ArrayList<FilmLocation>();
+			FilmArrayList localLocationArrayList = getArguments().getParcelable("locationArrayList");
+			BagItemArrayList localBagItemArrayList = getArguments().getParcelable("bagItemArrayList");
+			User localCurrentUser = getArguments().getParcelable("currentUser");
+			ArrayList<FilmLocation> finalList = new ArrayList<FilmLocation>();
 			filmArrayList = getArguments().getParcelable("locationArrayList");
-			final ArrayList<FilmLocation> filmList = filmArrayList.getFilmList();
+			ArrayList<FilmLocation> filmList = filmArrayList.getFilmList();
 			localWorldTitles = getArguments().getStringArrayList("worldTitles");
 			localWorldImageUrls = getArguments().getStringArrayList("localWorldImageUrls");
 			currentTitle = localWorldTitles.get(getArguments().getInt(ARG_SECTION_NUMBER));
-			setFragmentTitle(currentTitle);
 			
 			for (FilmLocation loc : filmList) {
 				if (loc.getTitle().equals(currentTitle)) {
@@ -285,9 +263,9 @@ public class LocationPagerActivity extends FragmentActivity {
 				}
 			}
 			
-			final Context context = getActivity().getApplicationContext();
-			final Intent intent = new Intent(context, LocationDetailActivity.class);
-			final FilmLocation localCurrentLocation = finalList.get(0);
+			Context context = getActivity().getApplicationContext();
+			Intent intent = new Intent(context, LocationDetailActivity.class);
+			FilmLocation localCurrentLocation = finalList.get(0);
 			intent.putExtra("locationArrayList", localLocationArrayList);
 			intent.putExtra("currentLocation", localCurrentLocation);
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);

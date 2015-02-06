@@ -1,17 +1,13 @@
 package com.movie.locations.service;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
-import com.movie.locations.domain.PointsItem;
-import com.movie.locations.domain.QuizItem;
 
 public class PointsItemService implements IService {
 
@@ -33,10 +29,8 @@ public class PointsItemService implements IService {
 		return string.replaceAll("(^\")|(\"$)", "");
 	}
 
-
 	@Override
 	public void createContentValues(InputStream stream, Context context) {
-		// TODO Auto-generated method stub
 		
 	}
 }

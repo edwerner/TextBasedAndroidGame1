@@ -1,4 +1,5 @@
 package com.movie.locations.domain;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 

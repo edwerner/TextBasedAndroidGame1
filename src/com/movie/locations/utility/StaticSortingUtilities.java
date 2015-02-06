@@ -109,19 +109,11 @@ public class StaticSortingUtilities {
 	public static int[] getLevelRange() {
 		return levelRange;
 	}
+	
 	public static int CHECK_LEVEL_RANGE(String currentLevelString,
 			int FINAL_UPDATED_TOTAL_USER_POINTS) {
 
 		int level;
-
-		// boolean isInRange = Math.min(num1,num2) <= inRange &&
-		// Math.max(num1,num2) >= inRange;
-		// int currentLevelMin =
-		// Integer.parseInt(currentUser.getCurrentLevel());
-		// int currentPoints = Integer.parseInt(currentUser.getCurrentPoints());
-		// int currentLevelMax = Integer.parseInt(currentUser.getCurrentLevel())
-		// + 1;
-
 		int currentLevel = Integer.parseInt(currentLevelString);
 
 		// ZERO INDEX - START AT INDEX ONE (1)
@@ -141,9 +133,6 @@ public class StaticSortingUtilities {
 		// WE NEED A NUMBER THAT IS GREATER THAN CURRENT INDEX
 		// AND LESS THAN NEXT INDEX TO BE WITHIN RANGE
 
-		// INCREMENT COUNTER
-		// final int UPCOMING_LEVEL = currentLevel + 1;
-
 		if (FINAL_UPDATED_TOTAL_USER_POINTS >= currentLevelPointsMin && FINAL_UPDATED_TOTAL_USER_POINTS < currentLevelPointsMax) {
 			// CURRENT LEVEL IS TRUE
 			level = CURRENT_LEVEL_INDEX;
@@ -157,52 +146,6 @@ public class StaticSortingUtilities {
 			level = NEXT_LEVEL_INDEX;
 		}
 
-		// String updatedLevel = Integer.toString(level);
-
 		return level;
 	}
-//	public static int CHECK_LEVEL_RANGE(String currentLevelString, int FINAL_UPDATED_TOTAL_USER_POINTS) {
-//
-//		int level;
-//
-//		// boolean isInRange = Math.min(num1,num2) <= inRange &&
-//		// Math.max(num1,num2) >= inRange;
-//		// int currentLevelMin =
-//		// Integer.parseInt(currentUser.getCurrentLevel());
-//		// int currentPoints = Integer.parseInt(currentUser.getCurrentPoints());
-//		// int currentLevelMax = Integer.parseInt(currentUser.getCurrentLevel())
-//		// + 1;
-//
-//		int currentLevel = Integer.parseInt(currentLevelString);
-//
-//		// ZERO INDEX - START AT INDEX ONE (1)
-//		final int CURRENT_LEVEL_INDEX = currentLevel;
-//
-//		// NEXT LEVEL - START AT CURRENT LEVEL MINUS ONE (1)
-//		final int NEXT_LEVEL_INDEX = currentLevel + 1;
-//
-//		// int currentPoints = Integer.parseInt(currentPointsString);
-//		int currentLevelPointsMin = levelRange[CURRENT_LEVEL_INDEX];
-//		int currentLevelPointsMax = levelRange[NEXT_LEVEL_INDEX];
-//
-//		// WE NEED A NUMBER THAT IS GREATER THAN CURRENT INDEX
-//		// AND LESS THAN NEXT INDEX TO BE WITHIN RANGE
-//
-//		// INCREMENT COUNTER
-//		// final int UPCOMING_LEVEL = currentLevel + 1;
-//
-//		if (FINAL_UPDATED_TOTAL_USER_POINTS >= currentLevelPointsMin && FINAL_UPDATED_TOTAL_USER_POINTS < currentLevelPointsMax) {
-//			// CURRENT LEVEL IS TRUE
-//			level = CURRENT_LEVEL_INDEX;
-//		} else {
-//			// TIME FOR USER TO LEVEL UP
-//			// CURRENT LEVEL MINUS ONE (1)
-//			level = NEXT_LEVEL_INDEX;
-//		}
-//
-//		// String updatedLevel = Integer.toString(level);
-//
-//		return level;
-//	}
 }
-

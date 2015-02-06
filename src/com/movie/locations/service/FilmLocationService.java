@@ -1,4 +1,5 @@
 package com.movie.locations.service;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -32,13 +33,11 @@ public class FilmLocationService implements IService {
 
 	@Override
 	public void createContentValues(InputStream stream, Context context) {
-		
 		CSVFile csvFile = new CSVFile(stream);
-
 		String LOCATION_ID = null;
 		String LOCATION_WORLD_TITLE = null;
 		
-		// compose world location objects
+		// compose location objects
 		List<?> locationList = csvFile.read();
 		ArrayList<FilmLocation> locationArrayList = new ArrayList<FilmLocation>();
 		Iterator<?> iter = locationList.iterator();
@@ -58,7 +57,6 @@ public class FilmLocationService implements IService {
 			location.setFunFactsTitle(removeDoubleQuotes(result[8].toString()));
 			location.setFunFactsImageUrl(removeDoubleQuotes(result[9].toString()));
 			locationArrayList.add(location);
-			System.out.println("OUTPUT LIST LOCATIONS: " + location.getId());
 		}
 		
 		LocationsImpl datasource = new LocationsImpl(context); 
@@ -68,19 +66,13 @@ public class FilmLocationService implements IService {
 		datasource.open();
 		
 		ArrayList<FilmLocation> currentTitleLocations = datasource.selectRecordsByTitle(LOCATION_WORLD_TITLE);
-		System.out.println("DELETED LOCATIONS BEFORE: " + locationList.size());
 		
 		if (currentTitleLocations != null) {
 			datasource.deleteRecordByTitle(LOCATION_WORLD_TITLE);
 		}
 		
-		ArrayList<FilmLocation> afterCurrentTitleLocations = datasource.selectRecordsByTitle(LOCATION_WORLD_TITLE);
-		System.out.println("DELETED LOCATIONS AFTER: " + afterCurrentTitleLocations.size());
-		
 		for (FilmLocation loc : locationArrayList) {
 			datasource.createRecord(loc);
-			System.out.println("DATABASE WORLD LOCATIONS BUILD OBJECTS LOCATIONS: " + loc.getLocations());
-			System.out.println("DATABASE WORLD LOCATIONS BUILD OBJECTS ID: " + loc.getId());
 		}
 		
 		datasource.close();

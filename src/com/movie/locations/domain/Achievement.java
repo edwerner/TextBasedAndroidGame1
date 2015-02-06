@@ -11,6 +11,7 @@ public class Achievement implements Parcelable {
 	String dateTime;
 	String imageUrl;
 	String level;
+	
 	public Achievement() {
 		// EMPTY CONSTRUCTOR
 	}

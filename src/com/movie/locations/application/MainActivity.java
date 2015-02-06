@@ -56,7 +56,6 @@ public class MainActivity extends FragmentActivity implements
 		ResultCallback<People.LoadPeopleResult>, View.OnClickListener {
 
 	private static final String TAG = "android-plus-quickstart";
-
 	private static final int STATE_DEFAULT = 0;
 	private static final int STATE_SIGN_IN = 1;
 //	private static final int STATE_IN_PROGRESS = 2;
@@ -483,7 +482,7 @@ public class MainActivity extends FragmentActivity implements
 		usersource.open();
 		
 		String userImageUrl = "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50";
-		final Image userImage = currentUser.getImage();
+		Image userImage = currentUser.getImage();
 		User existingUser = null;
 
 		if (userImage.hasUrl()) {
@@ -505,7 +504,7 @@ public class MainActivity extends FragmentActivity implements
 			localUser.setAvatarImageUrl(userImageUrl);
 			localUser.setCurrentLevel("1");
 			localUser.setCurrentPoints("0");
-			final String POINTS_USER_ID = "POINTS_USER_ID_" + currentUserSid;
+			String POINTS_USER_ID = "POINTS_USER_ID_" + currentUserSid;
 			localUser.setPointsUserId(POINTS_USER_ID);
 			localUser.setPoints("0");
 			localUser.setBonusPoints("0");
@@ -542,40 +541,34 @@ public class MainActivity extends FragmentActivity implements
 			System.out.println("JUST ADDED NEW USER - CLIENT SID: " + user.getUserSid());
 			System.out.println("JUST ADDED NEW USER - CURRENT POINTS: " + user.getCurrentPoints());
 		}
+		
 		usersource.close();
 	}
 
 	private void createDataServices() {
-//		if (datasource.selectRecords().isEmpty()) {
-			FilmLocationService locationService = new FilmLocationService();
-			InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
-			locationService.createContentValues(locationStream, context);
-//		}
-//		if (quizitemsource.selectRecords().isEmpty()) {
-			QuizItemService quizService = new QuizItemService();
-			InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
-			quizService.createContentValues(quizStream, context);
-//		}
-//		if (bagitemsource.selectRecords().isEmpty()) {
-			BagItemService bagService = new BagItemService();
-			InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
-			bagService.createContentValues(bagStream, context);
-//		}
-//		if (conclusioncardsource.selectRecords().isEmpty()) {
-			ConclusionCardService cardService = new ConclusionCardService();
-			InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
-			cardService.createContentValues(cardStream, context);
-//		}
-//		if (gametitlesource.selectRecords().isEmpty()) {
-			GameTitleService titleService = new GameTitleService();
-			InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
-			titleService.createContentValues(titleStream, context);
-//		}
-//		if (achievementsource.selectRecords().isEmpty()) {
-			AchievementService achievementService = new AchievementService();
-			InputStream achievementStream = getResources().openRawResource(R.raw.achievement_copy);
-			achievementService.createContentValues(achievementStream, context);
-//		}
+		FilmLocationService locationService = new FilmLocationService();
+		InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
+		locationService.createContentValues(locationStream, context);
+		
+		QuizItemService quizService = new QuizItemService();
+		InputStream quizStream = getResources().openRawResource(R.raw.quiz_item_copy);
+		quizService.createContentValues(quizStream, context);
+		
+		BagItemService bagService = new BagItemService();
+		InputStream bagStream = getResources().openRawResource(R.raw.bag_item_copy);
+		bagService.createContentValues(bagStream, context);
+		
+		ConclusionCardService cardService = new ConclusionCardService();
+		InputStream cardStream = getResources().openRawResource(R.raw.conclusion_card_copy);
+		cardService.createContentValues(cardStream, context);
+		
+		GameTitleService titleService = new GameTitleService();
+		InputStream titleStream = getResources().openRawResource(R.raw.game_title_copy);
+		titleService.createContentValues(titleStream, context);
+		
+		AchievementService achievementService = new AchievementService();
+		InputStream achievementStream = getResources().openRawResource(R.raw.achievement_copy);
+		achievementService.createContentValues(achievementStream, context);
 	}
 
 	/*
@@ -613,9 +606,7 @@ public class MainActivity extends FragmentActivity implements
 		if (mConnectionResult.hasResolution()) {
 			try {
 				mIntentInProgress = true;
-				mConnectionResult.startResolutionForResult(this, // your
-																	// activity
-						RC_SIGN_IN);
+				mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
 			} catch (SendIntentException e) {
 				// The intent was canceled before it was sent. Return to the
 				// default
@@ -630,6 +621,7 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	protected void onActivityResult(int requestCode, int responseCode,
 			Intent data) {
+		
 		switch (requestCode) {
 		case RC_SIGN_IN:
 			if (responseCode == RESULT_OK) {
@@ -693,9 +685,7 @@ public class MainActivity extends FragmentActivity implements
 		mSignOutButton.setEnabled(false);
 		entryButton.setEnabled(false);
 //		mRevokeButton.setEnabled(false);
-
 		mStatus.setText(R.string.status_signed_out);
-
 		mCirclesList.clear();
 		mCirclesAdapter.notifyDataSetChanged();
 	}
@@ -708,6 +698,7 @@ public class MainActivity extends FragmentActivity implements
 		mGoogleApiClient.connect();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {

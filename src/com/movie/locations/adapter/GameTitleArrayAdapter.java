@@ -18,9 +18,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
-	private Context context;
+	private final Context context;
 	private ArrayList<GameTitle> values;
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
+	protected final ImageLoader imageLoader = ImageLoader.getInstance();
 
 	public GameTitleArrayAdapter(Context context, Intent intent,
 			ArrayList<GameTitle> values) {
@@ -46,7 +46,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		final ViewHolder viewHolder;
+		ViewHolder viewHolder;
 		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.game_title_array_adapter, parent, false);
@@ -59,18 +59,17 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		final String tempPhase = values.get(position).getPhase();
+		String tempPhase = values.get(position).getPhase();
 		String gameTitleText = values.get(position).getTitle();
-		System.out.println("gameTitleText: " + gameTitleText);
-		final String missingWorldText = " (missing)";
+		String missingWorldText = " (missing)";
 		String BAG_ITEM_IMAGE_URL = "drawable://x_button";
 		
 		if (tempPhase.equals("MISSING") || tempPhase.equals("null")) {
 			convertView.setAlpha((float) 0.5);
 			gameTitleText += missingWorldText;
 		} else if (tempPhase.equals("EXISTS")) {
-			final String type = values.get(position).getType();
-			final String existingImageUrl = values.get(position).getImageUrl();
+			String type = values.get(position).getType();
+			String existingImageUrl = values.get(position).getImageUrl();
 			
 			if (existingImageUrl != null) {
 				BAG_ITEM_IMAGE_URL = existingImageUrl;
@@ -79,7 +78,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			if (type.equals("conclusion")) {
 				
 				final Intent conclusionIntent = new Intent(context, ConclusionActivity.class);
-				final ConclusionCard tempCard = new ConclusionCard();
+				ConclusionCard tempCard = new ConclusionCard();
 				tempCard.setTitle(values.get(position).getTitle());
 				tempCard.setLevel(values.get(position).getLevel());
 				tempCard.setImageUrl(values.get(position).getId());
@@ -97,7 +96,7 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			} else if (type.equals("achievement")) {
 				
 				final Intent achievementIntent = new Intent(context, AchievementActivity.class);
-				final Achievement tempAchievement = new Achievement();
+				Achievement tempAchievement = new Achievement();
 				tempAchievement.setAchievementId(values.get(position).getId());
 				tempAchievement.setTitle(values.get(position).getTitle());
 				tempAchievement.setLevel(values.get(position).getLevel());
@@ -116,8 +115,6 @@ public class GameTitleArrayAdapter extends ArrayAdapter<GameTitle> {
 			}
 		}
 
-		System.out.println("viewHolder: " + viewHolder.itemTitle);
-		System.out.println("viewHolder gameTitleText: " + gameTitleText);
 		viewHolder.itemTitle.setText(gameTitleText);
 		viewHolder.itemDesc.setText(values.get(position).getDescription());	
 		imageLoader.displayImage(BAG_ITEM_IMAGE_URL, viewHolder.itemImage);

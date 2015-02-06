@@ -1,4 +1,5 @@
 package com.movie.locations.service;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -7,12 +8,9 @@ import java.util.List;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
-
 import com.movie.locations.database.BagItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.utility.CSVFile;
@@ -46,7 +44,6 @@ public class BagItemService implements IService {
 		while (iter.hasNext()) {
 			Object[] result = (Object[]) iter.next();
 			BagItem bagItem = new BagItem();
-			
 			bagItem.setBagGroupTitle(removeDoubleQuotes(result[1].toString()));
 			BAG_ITEM_ID = result[0].toString();
 			bagItem.setItemId(removeDoubleQuotes(BAG_ITEM_ID));
@@ -56,7 +53,6 @@ public class BagItemService implements IService {
 			BAG_ITEM_LEVEL = removeDoubleQuotes(result[5].toString());
 			bagItem.setLevel(BAG_ITEM_LEVEL);
 			bagItemArrayList.add(bagItem);
-			System.out.println("OUTPUT LIST: " + bagItem.getItemTitle());
 		}
 		
 		BagItemImpl datasource = new BagItemImpl(context);
@@ -66,7 +62,6 @@ public class BagItemService implements IService {
 		datasource.open();
 		
 		BagItem currentTitleLocations = datasource.selectRecordById(BAG_ITEM_ID);
-		System.out.println("DELETED LOCATIONS BEFORE: " + locationList.size());
 		
 		if (currentTitleLocations != null) {
 			datasource.deleteRecordByLevel(BAG_ITEM_LEVEL);
@@ -74,8 +69,6 @@ public class BagItemService implements IService {
 		
 		for (BagItem item : bagItemArrayList) {
 			datasource.createRecord(item);
-			System.out.println("DATABASE BUILD BAG ITEM TITLE: " + item.getItemTitle());
-			System.out.println("DATABASE BAG ITEM ID: " + item.getItemId());
 		}
 		
 		datasource.close();

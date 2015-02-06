@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVFile {
-    InputStream inputStream;
+    private InputStream inputStream;
 
     public CSVFile(InputStream inputStream){
         this.inputStream = inputStream;

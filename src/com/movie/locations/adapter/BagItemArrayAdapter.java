@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BagItemArrayAdapter extends ArrayAdapter<BagItem> {
-	private Context context;
+	private final Context context;
 	private ArrayList<BagItem> values;
-	private ImageLoader imageLoader = ImageLoader.getInstance();
+	private final ImageLoader imageLoader = ImageLoader.getInstance();
 
 	public BagItemArrayAdapter(Context context, Intent intent,
 			ArrayList<BagItem> values) {
@@ -43,7 +43,7 @@ public class BagItemArrayAdapter extends ArrayAdapter<BagItem> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		final ViewHolder viewHolder;
+		ViewHolder viewHolder;
 		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.bag_item_array_adapter, parent, false);

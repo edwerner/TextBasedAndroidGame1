@@ -1,4 +1,5 @@
 package com.movie.locations.service;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -8,7 +9,6 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
 import android.content.Intent;
@@ -73,7 +73,6 @@ public class QuizItemService implements IService {
 			quizItem.setPointValue(removeDoubleQuotes(result[22].toString()));
 			
 			quizArrayList.add(quizItem);
-			System.out.println("OUTPUT LIST QUIZ ITEMS: " + quizItem.getWorldId());
 		}
 		
 		QuizItemImpl datasource = new QuizItemImpl(context);
@@ -83,19 +82,13 @@ public class QuizItemService implements IService {
 		datasource.open();
 		
 		ArrayList<QuizItem> currentTitleLocations = datasource.selectRecordsByTitle(QUIZ_WORLD_ID);
-		System.out.println("DELETED QUIZ ITEMS BEFORE: " + quizList.size());
 		
 		if (currentTitleLocations != null) {
 			datasource.deleteRecordByTitle(QUIZ_WORLD_ID);
 		}
 		
-		ArrayList<QuizItem> afterCurrentTitleLocations = datasource.selectRecordsByTitle(QUIZ_WORLD_ID);
-		System.out.println("DELETED LOCATIONS AFTER: " + afterCurrentTitleLocations.size());
-		
 		for (QuizItem temp : quizArrayList) {
 			datasource.createRecord(temp);
-			System.out.println("DATABASE QUIZ ITEMS BUILD OBJECTS LOCATIONS: " + temp.getWorldTitle());
-			System.out.println("DATABASE QUIZ ITEMS BUILD OBJECTS ID: " + temp.getWorldId());
 		}
 		
 		datasource.close();
@@ -120,7 +113,6 @@ public class QuizItemService implements IService {
 	}
 	
 	public void updateRecordAnswered(String recordId, String answered, String index, Context context) {
-
 		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		

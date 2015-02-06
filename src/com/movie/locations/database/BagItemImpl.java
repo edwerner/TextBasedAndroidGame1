@@ -1,7 +1,6 @@
 package com.movie.locations.database;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import com.movie.locations.domain.BagItem;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,16 +15,25 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "bagitems.db";
 	private static final int DATABASE_VERSION = 1;
-	private final static String TABLE_NAME = "bagitems";
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_GROUP_TITLE = "_grouptitle";
-	private static final String COLUMN_TITLE = "_title";
-	private static final String COLUMN_DESCRIPTION = "_description";
-	private static final String COLUMN_IMAGE_URL = "_imageurl";
-	private static final String COLUMN_LEVEL = "_level";
-
-	private String[] allColumns = { COLUMN_ID, COLUMN_GROUP_TITLE,
+	private static String TABLE_NAME = "bagitems";
+	private final String COLUMN_ID = "_id";
+	private final String COLUMN_GROUP_TITLE = "_grouptitle";
+	private final String COLUMN_TITLE = "_title";
+	private final String COLUMN_DESCRIPTION = "_description";
+	private final String COLUMN_IMAGE_URL = "_imageurl";
+	private final String COLUMN_LEVEL = "_level";
+	private final String[] allColumns = { COLUMN_ID, COLUMN_GROUP_TITLE,
 			COLUMN_TITLE, COLUMN_DESCRIPTION, COLUMN_IMAGE_URL, COLUMN_LEVEL };
+
+	// Database creation sql statement
+	private final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, "
+			+ COLUMN_GROUP_TITLE + " text, " 
+			+ COLUMN_TITLE + " text, " 
+			+ COLUMN_DESCRIPTION + " text, "
+			+ COLUMN_IMAGE_URL + " text, "
+			+ COLUMN_LEVEL + " text);";
 
 	/**
 	 * 
@@ -35,17 +43,6 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-
-	// Database creation sql statement
-	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_NAME + "(" 
-			+ COLUMN_ID + " text, "
-			+ COLUMN_GROUP_TITLE + " text, " 
-			+ COLUMN_TITLE + " text, " 
-			+ COLUMN_DESCRIPTION + " text, "
-			+ COLUMN_IMAGE_URL + " text, "
-			+ COLUMN_LEVEL + " text);";
-
 	// Method is called during creation of the database
 	@Override
 	public void onCreate(SQLiteDatabase database) {
@@ -54,8 +51,7 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 
 	// Method is called during an upgrade of the database,
 	@Override
-	public void onUpgrade(SQLiteDatabase database, int oldVersion,
-			int newVersion) {
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		Log.w("Database", "Upgrading database from version " + oldVersion
 				+ " to " + newVersion + ", which will destroy all old data");
 		database.execSQL("DROP TABLE IF EXISTS bagitems");
@@ -79,7 +75,6 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 
 	public BagItem createRecord(BagItem bagItem) {
 		ContentValues values = new ContentValues();
-
 		values.put(COLUMN_ID, bagItem.getItemId());
 		values.put(COLUMN_GROUP_TITLE, bagItem.getBagGroupTitle());
 		values.put(COLUMN_TITLE, bagItem.getItemTitle());
@@ -87,8 +82,7 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 		values.put(COLUMN_IMAGE_URL, bagItem.getImageUrl());
 		values.put(COLUMN_LEVEL, bagItem.getLevel());
 
-		long insertId = database.insert(TABLE_NAME,
-				null, values);
+		long insertId = database.insert(TABLE_NAME, null, values);
 		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
@@ -117,6 +111,7 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 		String[] recordIdArray = { string };
 		Cursor cursor = database.query(TABLE_NAME, allColumns,
 				COLUMN_ID + "=?", recordIdArray, null, null, null, null);
+		
 		BagItem bagItem = null;
 		if (cursor != null) {
 			// lazy evaluation
@@ -144,7 +139,6 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 	}
 
 	private BagItem cursorToComment(Cursor cursor) {
-
 		BagItem bagItem = new BagItem();
 		bagItem.setBagGroupTitle(cursor.getString(0));
 		bagItem.setItemId(cursor.getString(1));
@@ -158,13 +152,11 @@ public class BagItemImpl extends SQLiteOpenHelper implements IDatabase {
 
 	@Override
 	public void deleteRecordById(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByTitle(String recordTitle) {
-		// TODO Auto-generated method stub
 		
 	}
 }

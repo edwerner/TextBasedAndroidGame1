@@ -1,4 +1,5 @@
 package com.movie.locations.database;
+
 import android.database.sqlite.SQLiteDatabase;
 
 interface IDatabase {

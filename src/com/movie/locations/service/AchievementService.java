@@ -1,4 +1,5 @@
 package com.movie.locations.service;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -7,12 +8,9 @@ import java.util.List;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONException;
 import org.codehaus.jackson.JsonFactory;
 import android.content.Context;
-
 import com.movie.locations.database.AchievementImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.utility.CSVFile;
@@ -57,7 +55,6 @@ public class AchievementService implements IService {
 			ACHIEVEMENT_LEVEL = result[6].toString();
 			achievement.setLevel(removeDoubleQuotes(ACHIEVEMENT_LEVEL));
 			achievementArrayList.add(achievement);
-			System.out.println("OUTPUT LIST: " + achievement.getTitle());
 		}
 		
 		AchievementImpl datasource = new AchievementImpl(context);
@@ -67,7 +64,6 @@ public class AchievementService implements IService {
 		datasource.open();
 		
 		Achievement currentTitleLocations = datasource.selectRecordByLevel(ACHIEVEMENT_LEVEL);
-		System.out.println("DELETED LOCATIONS BEFORE: " + locationList.size());
 		
 		if (currentTitleLocations != null) {
 			datasource.deleteRecordById(ACHIEVEMENT_ID);
@@ -75,8 +71,6 @@ public class AchievementService implements IService {
 		
 		for (Achievement item : achievementArrayList) {
 			datasource.createRecord(item);
-			System.out.println("DATABASE ACHIEVEMENT TITLE: " + item.getTitle());
-			System.out.println("DATABASE ACHIEVEMENT ID: " + item.getAchievementId());
 		}
 		
 		datasource.close();

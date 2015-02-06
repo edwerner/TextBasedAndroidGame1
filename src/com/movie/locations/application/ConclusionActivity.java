@@ -19,8 +19,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore.Images;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -44,6 +42,7 @@ public class ConclusionActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_conclusion);
 		
 		Intent intent = getIntent();
@@ -72,7 +71,6 @@ public class ConclusionActivity extends ActionBarActivity {
 				.add(R.id.container, conclusionFragment).commit();
 	}
 	
-
 	public void updatePointsDatabase() {
 
 		updatedPoints = null;
@@ -99,53 +97,34 @@ public class ConclusionActivity extends ActionBarActivity {
 			userSource.close();
 		}
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.conclusion, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class ConclusionFragment extends Fragment {
+	private class ConclusionFragment extends Fragment {
 
 		public ConclusionFragment() {
+			// empty constructor
 		}
 
-		protected ImageLoader imageLoader = ImageLoader.getInstance();
+		protected final ImageLoader imageLoader = ImageLoader.getInstance();
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_conclusion,
-					container, false);
 			
-			final TextView conclusionTitleText = (TextView) rootView.findViewById(R.id.conclusionTitleText);
-			final TextView conclusionCopyText = (TextView) rootView.findViewById(R.id.conclusionCopyText);
-			final ImageView conclusionImage = (ImageView) rootView.findViewById(R.id.conclusionImage);
-			final ConclusionCard conclusionCard = getArguments().getParcelable("conclusionCard");
+			View rootView = inflater.inflate(R.layout.fragment_conclusion, container, false);
+			TextView conclusionTitleText = (TextView) rootView.findViewById(R.id.conclusionTitleText);
+			TextView conclusionCopyText = (TextView) rootView.findViewById(R.id.conclusionCopyText);
+			ImageView conclusionImage = (ImageView) rootView.findViewById(R.id.conclusionImage);
+			ConclusionCard conclusionCard = getArguments().getParcelable("conclusionCard");
 			final String conclusionTitle = conclusionCard.getTitle();
-			final String conclusionCopy = conclusionCard.getCopy();
-			final String conclusionImageUrl = conclusionCard.getImageUrl();
-			final String pointValue = getArguments().getString("pointValue");
+			String conclusionCopy = conclusionCard.getCopy();
+			String conclusionImageUrl = conclusionCard.getImageUrl();
+			String pointValue = getArguments().getString("pointValue");
 			final Context context = getActivity().getApplicationContext();
-			final String currentUserPoints = getArguments().getString("currentUserPoints");
-			final String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
+			String currentUserPoints = getArguments().getString("currentUserPoints");
+			String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
 			final String staticSiteUrl = " https://www.google.com/";
 			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);

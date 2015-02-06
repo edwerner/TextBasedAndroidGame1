@@ -29,6 +29,12 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 	private final String COLUMN_WORLD_COUNT = "_worldcount";
 	private final String COLUMN_EMAIL_NOTIFICATIONS = "_emailnotifications";
 	private final String COLUMN_MOBILE_NOTIFICATIONS = "_mobilenotifications";
+	private final String[] allColumns = { COLUMN_ID, COLUMN_USER_SID,
+			COLUMN_USER_CLIENT_ID, COLUMN_DISPLAY_NAME, COLUMN_EMAIL_ADDRESS,
+			COLUMN_AVATAR_IMAGE_URL, COLUMN_CURRENT_LEVEL,
+			COLUMN_ANSWER_CURRENT_POINTS, COLUMN_POINTS_USER_ID, COLUMN_POINTS,
+			COLUMN_BONUS_POINTS, COLUMN_WORLD_COUNT,
+			COLUMN_EMAIL_NOTIFICATIONS, COLUMN_MOBILE_NOTIFICATIONS };
 	
 	// Database creation sql statement
 	private final String DATABASE_CREATE = "create table "
@@ -67,13 +73,6 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 		database.execSQL("DROP TABLE IF EXISTS users");
 		onCreate(database);
 	}
-	
-	private String[] allColumns = { COLUMN_ID, COLUMN_USER_SID,
-			COLUMN_USER_CLIENT_ID, COLUMN_DISPLAY_NAME, COLUMN_EMAIL_ADDRESS,
-			COLUMN_AVATAR_IMAGE_URL, COLUMN_CURRENT_LEVEL,
-			COLUMN_ANSWER_CURRENT_POINTS, COLUMN_POINTS_USER_ID, COLUMN_POINTS,
-			COLUMN_BONUS_POINTS, COLUMN_WORLD_COUNT,
-			COLUMN_EMAIL_NOTIFICATIONS, COLUMN_MOBILE_NOTIFICATIONS };
 
 	@Override
 	public void delete() {
@@ -92,7 +91,6 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 
 	public User createRecord(User user) {
 		ContentValues values = new ContentValues();
-
 		values.put(COLUMN_ID, user.getUserId());
 		values.put(COLUMN_USER_SID, user.getUserSid());
 		values.put(COLUMN_USER_CLIENT_ID, user.getUserClientId());
@@ -108,8 +106,7 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 		values.put(COLUMN_EMAIL_NOTIFICATIONS, user.getEmailNotifications());
 		values.put(COLUMN_MOBILE_NOTIFICATIONS, user.getMobileNotifications());
 
-		long insertId = database.insert(TABLE_USERS, null,
-				values);
+		long insertId = database.insert(TABLE_USERS, null, values);
 		Cursor cursor = database.query(TABLE_USERS,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
@@ -144,6 +141,7 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 	public void updateUserNotificationPreferences(String recordId, 
 			String updatedEmailNotifications, 
 			String updatedMobileNotifications) {
+		
 		ContentValues pointsObject = new ContentValues();
 
 		if (updatedEmailNotifications != null) {
@@ -200,7 +198,6 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 	}
 
 	private User cursorToComment(Cursor cursor) {
-
 		User user = new User();
 		user.setUserId(cursor.getString(0));
 		user.setUserSid(cursor.getString(1));
@@ -221,7 +218,6 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 	}
 
 	public void updateCurrentUserLevel(String recordId, String currentLevelCheck) {
-
 		ContentValues pointsObject = new ContentValues();
 
 		if (currentLevelCheck != null) {
@@ -234,19 +230,16 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 
 	@Override
 	public void deleteRecordById(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByLevel(String level) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByTitle(String recordTitle) {
-		// TODO Auto-generated method stub
 		
 	}
 }

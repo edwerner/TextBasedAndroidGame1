@@ -1,12 +1,7 @@
 package com.movie.locations.database;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.GameTitle;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,13 +15,22 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "gametitles.db";	
 	private static final int DATABASE_VERSION = 1;
-	private final static String TABLE_NAME = "gametitles"; // name of table
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_TITLE = "_title";
-	private static final String COLUMN_TYPE = "_type";
-	private static final String COLUMN_LEVEL = "_level";
-	private static final String COLUMN_PHASE = "_phase";
-	private String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_PHASE };
+	private final String TABLE_NAME = "gametitles"; // name of table
+	private final String COLUMN_ID = "_id";
+	private final String COLUMN_TITLE = "_title";
+	private final String COLUMN_TYPE = "_type";
+	private final String COLUMN_LEVEL = "_level";
+	private final String COLUMN_PHASE = "_phase";
+	private final String[] allColumns = { COLUMN_ID, COLUMN_TITLE, COLUMN_TYPE, COLUMN_LEVEL, COLUMN_PHASE };
+
+	// Database creation sql statement
+	private final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, " 
+			+ COLUMN_TITLE + " text, " 
+			+ COLUMN_TYPE + " text, "
+			+ COLUMN_LEVEL + " text, "
+			+ COLUMN_PHASE + " text);";
 
 	/**
 	 * 
@@ -35,15 +39,6 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 	public GameTitleImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
-
-	// Database creation sql statement
-	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_NAME + "(" 
-			+ COLUMN_ID + " text, " 
-			+ COLUMN_TITLE + " text, " 
-			+ COLUMN_TYPE + " text, "
-			+ COLUMN_LEVEL + " text, "
-			+ COLUMN_PHASE + " text);";
 
 	// Method is called during creation of the database
 	@Override
@@ -55,6 +50,7 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion,
 			int newVersion) {
+		
 		Log.w("Database", "Upgrading database from version " + oldVersion
 				+ " to " + newVersion + ", which will destroy all old data");
 		database.execSQL("DROP TABLE IF EXISTS gametitles");
@@ -78,15 +74,13 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 
 	public GameTitle createRecord(GameTitle gameTitle) {
 		ContentValues values = new ContentValues();
-
 		values.put(COLUMN_ID, gameTitle.getId());
 		values.put(COLUMN_TITLE, gameTitle.getTitle());
 		values.put(COLUMN_TYPE, gameTitle.getType());
 		values.put(COLUMN_LEVEL, gameTitle.getLevel());
 		values.put(COLUMN_PHASE, gameTitle.getPhase());
 
-		long insertId = database.insert(TABLE_NAME,
-				null, values);
+		long insertId = database.insert(TABLE_NAME, null, values);
 		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
@@ -104,7 +98,6 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 
 	@Override
 	public void deleteRecordByLevel(String level) {
-		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
@@ -141,8 +134,7 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 	}
 
 	private GameTitle cursorToComment(Cursor cursor) {
-
-		GameTitle gameTitle = new GameTitle();
+		final GameTitle gameTitle = new GameTitle();
 		gameTitle.setId(cursor.getString(0));
 		gameTitle.setTitle(cursor.getString(1));
 		gameTitle.setType(cursor.getString(2));
@@ -172,13 +164,11 @@ public class GameTitleImpl extends SQLiteOpenHelper implements IDatabase {
 
 	@Override
 	public void deleteRecordById(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByTitle(String recordTitle) {
-		// TODO Auto-generated method stub
 		
 	}
 

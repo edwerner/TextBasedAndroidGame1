@@ -2,10 +2,8 @@ package com.movie.locations.domain;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.movie.locations.domain.StaticConstants;
 
 // user domain object
 /**

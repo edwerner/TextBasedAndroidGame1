@@ -16,9 +16,8 @@ import android.widget.TextView;
 public class NavMenuItemArrayAdapter extends ArrayAdapter<NavMenuItem> {
 	
 	private final Context context;
-	private final ArrayList<NavMenuItem> values;
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
-	private String NAV_IMAGE_URL = "drawable://x_button";
+	private ArrayList<NavMenuItem> values;
+	protected final ImageLoader imageLoader = ImageLoader.getInstance();
 
 	public NavMenuItemArrayAdapter(Context context, Intent intent,
 			ArrayList<NavMenuItem> values) {
@@ -43,7 +42,7 @@ public class NavMenuItemArrayAdapter extends ArrayAdapter<NavMenuItem> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		final ViewHolder viewHolder;
+		ViewHolder viewHolder;
 
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.nav_menu_item_array_adapter, parent, false);
@@ -56,6 +55,7 @@ public class NavMenuItemArrayAdapter extends ArrayAdapter<NavMenuItem> {
 		}
 		
 		viewHolder.navItemTitle.setText(values.get(position).getTitle());
+		String NAV_IMAGE_URL = "drawable://x_button";
 		
 		if (values.get(position).getImageUrl() != null) {
 			NAV_IMAGE_URL = values.get(position).getImageUrl();

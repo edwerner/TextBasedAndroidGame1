@@ -1,7 +1,6 @@
 package com.movie.locations.database;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import com.movie.locations.domain.ConclusionCard;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,15 +15,23 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "conclusioncards.db";
 	private static final int DATABASE_VERSION = 1;
-	private static final String TABLE_NAME = "conclusioncards"; // name of table
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_TITLE = "_title";
-	private static final String COLUMN_COPY = "_copy";
-	private static final String COLUMN_IMAGE_URL = "_imageurl";
-	private static final String COLUMN_LEVEL = "_level";
-	private static Map<String, ConclusionCard> BAG_ITEM_MAP = new HashMap<String, ConclusionCard>();
-	private String[] allColumns = { COLUMN_ID,
+	private final String TABLE_NAME = "conclusioncards"; // name of table
+	private final String COLUMN_ID = "_id";
+	private final String COLUMN_TITLE = "_title";
+	private final String COLUMN_COPY = "_copy";
+	private final String COLUMN_IMAGE_URL = "_imageurl";
+	private final String COLUMN_LEVEL = "_level";
+	private final String[] allColumns = { COLUMN_ID,
 			COLUMN_TITLE, COLUMN_COPY, COLUMN_IMAGE_URL, COLUMN_LEVEL };
+
+	// Database creation sql statement
+	private final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_ID + " text, "
+			+ COLUMN_TITLE + " text, " 
+			+ COLUMN_COPY + " text, "
+			+ COLUMN_IMAGE_URL + " text, "
+			+ COLUMN_LEVEL + " text);";
 
 	/**
 	 * 
@@ -32,17 +39,7 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 	 */
 	public ConclusionCardImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//		database = dbHelper.getWritableDatabase();
 	}
-
-	// Database creation sql statement
-	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_NAME + "(" 
-			+ COLUMN_ID + " text, "
-			+ COLUMN_TITLE + " text, " 
-			+ COLUMN_COPY + " text, "
-			+ COLUMN_IMAGE_URL + " text, "
-			+ COLUMN_LEVEL + " text);";
 
 	// Method is called during creation of the database
 	@Override
@@ -54,6 +51,7 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion,
 			int newVersion) {
+		
 		Log.w("Database", "Upgrading database from version " + oldVersion
 				+ " to " + newVersion + ", which will destroy all old data");
 		database.execSQL("DROP TABLE IF EXISTS conclusioncards");
@@ -77,15 +75,13 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 
 	public ConclusionCard createRecord(ConclusionCard card) {
 		ContentValues values = new ContentValues();
-
 		values.put(COLUMN_ID, card.getId());
 		values.put(COLUMN_TITLE, card.getTitle());
 		values.put(COLUMN_COPY, card.getCopy());
 		values.put(COLUMN_IMAGE_URL, card.getImageUrl());
 		values.put(COLUMN_LEVEL, card.getLevel());
 
-		long insertId = database.insert(TABLE_NAME,
-				null, values);
+		long insertId = database.insert(TABLE_NAME, null, values);
 		Cursor cursor = database.query(TABLE_NAME,
 				allColumns, COLUMN_ID + " = " + insertId, null, null, null,
 				null);
@@ -104,7 +100,6 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 	
 	@Override
 	public void deleteRecordByLevel(String level) {
-		
 		// DELETE ALL DATABASE RECORDS WITH MATCHING LEVEL
 		String[] levelArray = { level };
 		database.delete(TABLE_NAME, COLUMN_LEVEL + "=?", levelArray);
@@ -147,18 +142,17 @@ public class ConclusionCardImpl extends SQLiteOpenHelper implements IDatabase {
 		card.setCopy(cursor.getString(2));
 		card.setImageUrl(cursor.getString(3));
 		card.setLevel(cursor.getString(4));
+		
 		return card;
 	}
 
 	@Override
 	public void deleteRecordById(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByTitle(String recordTitle) {
-		// TODO Auto-generated method stub
 		
 	}
 }

@@ -44,7 +44,6 @@ import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -114,12 +113,12 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
 		mViewPager
-				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-					@Override
-					public void onPageSelected(int position) {
-						getSupportActionBar().setSelectedNavigationItem(position);
-					}
-				});
+			.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+				@Override
+				public void onPageSelected(int position) {
+					getSupportActionBar().setSelectedNavigationItem(position);
+				}
+			});
 
 		// For each of the sections in the app, add a tab to the action bar.
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -128,13 +127,13 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			// the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			getSupportActionBar().addTab(getSupportActionBar().newTab()
-					.setText(mSectionsPagerAdapter.getPageTitle(i))
-					.setTabListener(this));
+				.setText(mSectionsPagerAdapter.getPageTitle(i))
+				.setTabListener(this));
 		}
 
 		context = this;
-		final Intent intent = getIntent();
-		final Bundle bundle = intent.getExtras();
+		Intent intent = getIntent();
+		Bundle bundle = intent.getExtras();
 		locationArrayList = bundle.getParcelable("locationArrayList");
 		bagItemArrayList = bundle.getParcelable("bagItemArrayList");
 		currentUser = bundle.getParcelable("localUser");
@@ -154,10 +153,10 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		intent.putExtra("localQuizItemArrayList", localQuizItemArrayList);
 		pointsItemImpl = new PointsItemImpl(context);
 		achievementImpl = new AchievementImpl(context);
-		final String currentUserLevelString = currentUser.getCurrentLevel();
-		final int currentLevelInt = Integer.parseInt(currentUserLevelString);
-		final int nextLevelInt = currentLevelInt + 1;
-		final String nextLevel = Integer.toString(nextLevelInt);
+		String currentUserLevelString = currentUser.getCurrentLevel();
+		int currentLevelInt = Integer.parseInt(currentUserLevelString);
+		int nextLevelInt = currentLevelInt + 1;
+		String nextLevel = Integer.toString(nextLevelInt);
 		
 		achievementImpl.open();
 		levelAchievement = achievementImpl.selectRecordByLevel(nextLevel);
@@ -201,7 +200,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		 	@Override
 	 		public void onClick(View arg0) {
 			 		if (updatedQuizItem.getAnswered().equals("true")) {
-			 			final String updatedQuizItemId = updatedQuizItem.getQuestionId();
+			 			String updatedQuizItemId = updatedQuizItem.getQuestionId();
 			 			
 			 			// RESET AND PERSIST QUIZ STATE
 			 			RestoreLevelDataTaskRunner runner = new RestoreLevelDataTaskRunner();
@@ -212,132 +211,123 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	 			}
 	 		});
 	 		dialog.show();
-	 	}
+	 }
 
-		public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
+	 private DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
 			
-			public void onReceive(Context context, Intent intent) {
+		public void onReceive(Context context, Intent intent) {
 
-				final Bundle extras = intent.getExtras();
-				final QuizItem updatedQuizItem = extras.getParcelable("updatedQuizItem");
-				String currentUserId = currentUser.getUserId();
-				String updatedUserPointsString = null;
+			Bundle extras = intent.getExtras();
+			QuizItem updatedQuizItem = extras.getParcelable("updatedQuizItem");
+			String currentUserId = currentUser.getUserId();
+			String updatedUserPointsString = null;
 
-				pointsItemImpl.open();
-				locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
-				locationQuizArrayAdapter.insert(updatedQuizItem, 0);
-				
-				final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
-				
-				// UPDATE USER POINTS
-				String quizItemPointValue = updatedQuizItem.getPointValue();
-				int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
-				
-				if (updatedUserDatabasePointsItem != null) {
-					String databasePoints = updatedUserDatabasePointsItem.getPoints();
-					int databasePointsInt = Integer.parseInt(databasePoints);
-					
-					int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
-					updatedUserPointsString = Integer.toString(updatedUserPointsInt);
-					pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
-					
-					final String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
-					final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
-					final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
-					int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
-					
-					if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
-						final String currentLevelString = Integer.toString(currentLevel);
-						levelUpCurrentUser(currentUserId, currentLevelString);
-					}
-				} else {
-					updatedUserPointsString = currentUser.getPoints();
-				}
-				
-				pointsItemImpl.close();
-
-				// RE-DRAW VIEW WITH UPDATED COLLECTION
-				locationQuizArrayAdapter.notifyDataSetChanged();
-
-				unregisterReceiver(this);
-		   }
-		};
-
-		public class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
-
-			private String resp;
-			private ProgressDialog dialog;
+			pointsItemImpl.open();
+			locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
+			locationQuizArrayAdapter.insert(updatedQuizItem, 0);
 			
-			@Override
-			protected String doInBackground(String... params) {
-				publishProgress("Sleeping...");
-				try {
-					resp = params[0];
-				} catch (Exception e) {
-					e.printStackTrace();
-					resp = e.getMessage();
-				}
-				return resp;
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-			 */
-			@Override
-			protected void onPostExecute(String result) {
-				// execution of result of Long time consuming operation
-				if (dialog != null) {
-					dialog.dismiss();
-				}
-				String message = "Success!";
-				if (result != null) {
-					message = "Level data reset.";
-					quizItemService.resetAnsweredQuestion(result, context);
-				} else {
-					message = "Something went wrong!";
-				}
-				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+			PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+			
+			// UPDATE USER POINTS
+			String quizItemPointValue = updatedQuizItem.getPointValue();
+			int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
+			
+			if (updatedUserDatabasePointsItem != null) {
+				String databasePoints = updatedUserDatabasePointsItem.getPoints();
+				int databasePointsInt = Integer.parseInt(databasePoints);
 				
-//				mDrawerLayout.closeDrawers();
+				int updatedUserPointsInt = databasePointsInt - quizItemPointValueInt;
+				updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+				pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
+				
+				String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
+				int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
+				int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
+				int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+				
+				if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+					String currentLevelString = Integer.toString(currentLevel);
+					levelUpCurrentUser(currentUserId, currentLevelString);
+				}
+			} else {
+				updatedUserPointsString = currentUser.getPoints();
 			}
+			
+			pointsItemImpl.close();
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPreExecute()
-			 */
-			@Override
-			protected void onPreExecute() {
-				// Things to be done before execution of long running operation. For
-				// example showing ProgessDialog
-				dialog = new ProgressDialog(context);
-				dialog.setTitle("Restoring...");
-				dialog.setMessage("Replay available in a moment.");
-				dialog.setCancelable(false);
-				dialog.setIndeterminate(true);
-				dialog.show();
-			}
+			// RE-DRAW VIEW WITH UPDATED COLLECTION
+			locationQuizArrayAdapter.notifyDataSetChanged();
 
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-			 */
-			@Override
-			protected void onProgressUpdate(String... text) {
-				// finalResult.setText(text[0]);
-				// Things to be done while execution of long running operation is in
-				// progress. For example updating ProgessDialog
-			}
-		}
+			unregisterReceiver(this);
+	   }
+	};
+
+	private class RestoreLevelDataTaskRunner extends AsyncTask<String, String, String> {
+
+		private String resp;
+		private ProgressDialog dialog;
 		
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.film_detail, menu);
-		return true;
+		@Override
+		protected String doInBackground(String... params) {
+			publishProgress("Sleeping...");
+			try {
+				resp = params[0];
+			} catch (Exception e) {
+				e.printStackTrace();
+				resp = e.getMessage();
+			}
+			return resp;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+		 */
+		@Override
+		protected void onPostExecute(String result) {
+			// execution of result of Long time consuming operation
+			if (dialog != null) {
+				dialog.dismiss();
+			}
+			String message = "Success!";
+			if (result != null) {
+				message = "Level data reset.";
+				quizItemService.resetAnsweredQuestion(result, context);
+			} else {
+				message = "Something went wrong!";
+			}
+			Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see android.os.AsyncTask#onPreExecute()
+		 */
+		@Override
+		protected void onPreExecute() {
+			// Things to be done before execution of long running operation. For
+			// example showing ProgessDialog
+			dialog = new ProgressDialog(context);
+			dialog.setTitle("Restoring...");
+			dialog.setMessage("Replay available in a moment.");
+			dialog.setCancelable(false);
+			dialog.setIndeterminate(true);
+			dialog.show();
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
+		 */
+		@Override
+		protected void onProgressUpdate(String... text) {
+			// finalResult.setText(text[0]);
+			// Things to be done while execution of long running operation is in
+			// progress. For example updating ProgessDialog
+		}
 	}
 
 	@Override
@@ -360,7 +350,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		private int pagesLength = 2;
 
@@ -370,10 +360,11 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 
 		@Override
 		public Fragment getItem(int position) {
-			Fragment fragment = new FilmLocationFragment();
+			LocationFragment locationFragment = new LocationFragment();
 			Bundle args = new Bundle();
 			int fragmentIndex = position + 1;
-			args.putInt(FilmLocationFragment.ARG_SECTION_NUMBER, fragmentIndex);
+			String ARG_SECTION_NUMBER = locationFragment.getArgSectionNumber();
+			args.putInt(ARG_SECTION_NUMBER, fragmentIndex);
 			args.putParcelable("localQuizItemArrayList", localQuizItemArrayList);
 			args.putParcelable("localCurrentLocation", currentLocation);
 			args.putParcelable("fragmentUser", currentUser);
@@ -382,8 +373,9 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			args.putParcelable("quizItem", quizItem);
 			args.putParcelable("bagItemArrayList", bagItemArrayList);
 			args.putParcelable("locationArrayList", locationArrayList);
-			fragment.setArguments(args);
-			return fragment;
+			locationFragment.setArguments(args);
+			
+			return locationFragment;
 		}
 
 		@Override
@@ -405,15 +397,14 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	}
 
 	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
+	 * A Location fragment containing a simple view.
 	 */
-	public class FilmLocationFragment extends Fragment {
+	private class LocationFragment extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
-		private static final String ARG_SECTION_NUMBER = "section_number";
+		private final String ARG_SECTION_NUMBER = "section_number";
 		protected ImageLoader imageLoader = ImageLoader.getInstance();
 		private QuizItem currentQuizItem;
 		private FilmLocation localCurrentLocation;
@@ -424,8 +415,12 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		private FilmArrayList locationArrayList;
 		private ConclusionCardImpl conclusionCardImpl;
 		
-		public FilmLocationFragment() {
+		public LocationFragment() {
 			// Empty constructor
+		}
+		
+		public String getArgSectionNumber() {
+			return ARG_SECTION_NUMBER;
 		}
 		
 		@Override
@@ -442,8 +437,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					// UPDATE USER POINTS
 					String quizItemPointValue = currentQuizItem.getPointValue();
 					int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
-					final String currentUserId = fragmentUser.getUserId();					
-					final PointsItem newPointsItem = new PointsItem();
+					String currentUserId = fragmentUser.getUserId();					
+					PointsItem newPointsItem = new PointsItem();
 					newPointsItem.setUserId(currentUserId);
 					newPointsItem.setPointsUserId(currentUserId);
 					newPointsItem.setPoints(quizItemPointValue);
@@ -451,7 +446,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					pointsItemImpl.open();
 					quizItemImpl.open();
 					
-					final PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
+					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
 					
 					if (updatedUserDatabasePointsItem != null) {
 						String databasePoints = updatedUserDatabasePointsItem.getPoints();
@@ -459,13 +454,13 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 						int updatedUserPointsInt = quizItemPointValueInt + databasePointsInt;
 						updatedUserPointsString = Integer.toString(updatedUserPointsInt);
 						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);						
-						final String FINAL_CURRENT_USER_LEVEL = fragmentUser.getCurrentLevel();
-						final int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
-						final int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
+						String FINAL_CURRENT_USER_LEVEL = fragmentUser.getCurrentLevel();
+						int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
+						int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
 						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
 						
 						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
-							final String currentLevelString = Integer.toString(currentLevel);
+							String currentLevelString = Integer.toString(currentLevel);
 							levelUpCurrentUser(currentUserId, currentLevelString);
 						}
 						
@@ -489,9 +484,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					}
 
 					for (int i = 0; i < locationQuizArrayAdapter.getCount(); i++) {
-						QuizItem item = locationQuizArrayAdapter.getItem(i);
-						if (currentQuizItem.getWorldId().equals(
-								item.getWorldId())) {
+						final QuizItem item = locationQuizArrayAdapter.getItem(i);
+						if (currentQuizItem.getWorldId().equals(item.getWorldId())) {
 							locationQuizArrayAdapter.remove(item);
 							locationQuizArrayAdapter.insert(currentQuizItem, i);
 						}
@@ -513,7 +507,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		private void generateConclusionCard(QuizItem quizItem, String currentUserPoints) {
 			Intent achievementIntent = new Intent(context, ConclusionActivity.class);
 			achievementIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			final String questionId = quizItem.getQuestionId();
+			String questionId = quizItem.getQuestionId();
 			
 			conclusionCardImpl.open();
 			ConclusionCard conclusionCard = conclusionCardImpl.selectRecordById(questionId);
@@ -530,17 +524,11 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			startActivity(achievementIntent);
 		}
 
-		public String removeParenthesis(String string) {
-			String regex = string.replaceAll("\\(", "");
-			regex = regex.replaceAll("\\)", "");
-			return regex;
-		}
-
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_film_detail,
-					container, false);
+			
+			View rootView = inflater.inflate(R.layout.fragment_film_detail, container, false);
 
 			conclusionCardImpl = new ConclusionCardImpl(context);			
 			fragmentUser = getArguments().getParcelable("fragmentUser");
@@ -551,10 +539,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			pointsItemImpl = new PointsItemImpl(context);
 			quizItemImpl = new QuizItemImpl(context);
 			userImpl = new UserImpl(context);
-			localQuizItemArrayList = getArguments().getParcelable(
-					"localQuizItemArrayList");
-			localCurrentLocation = getArguments().getParcelable(
-					"localCurrentLocation");
+			localQuizItemArrayList = getArguments().getParcelable("localQuizItemArrayList");
+			localCurrentLocation = getArguments().getParcelable("localCurrentLocation");
 			TextView titleTagText2 = (TextView) rootView.findViewById(R.id.titleTag2);
 			TextView titleText2 = (TextView) rootView.findViewById(R.id.title2);
 			TextView locationsTagText2 = (TextView) rootView.findViewById(R.id.locationsTag2);
@@ -566,20 +552,20 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			llp.setMargins(10, 0, 0, 0); // left, top, right, bottom;
 			locationsList = (ListView) rootView.findViewById(R.id.locationsView1);
 			prepareArrayAdapterData(rootView);
+			
 			switch (getArguments().getInt(ARG_SECTION_NUMBER)) {
-
-			case 1:
-				locationsList.setVisibility(ListView.GONE);
-				titleTagText2.setText("Game Item");
-				titleText2.setText(localCurrentLocation.getFunFactsTitle());
-				locationsTagText2.setText("Random Fun Fact");
-				locationsText2.setText(localCurrentLocation.getFunFacts());
-				break;
-
-			case 2:
-				locationImage.setVisibility(ImageView.GONE);
-				locationsList.setVisibility(ListView.VISIBLE);
-				break;
+				case 1:
+					locationsList.setVisibility(ListView.GONE);
+					titleTagText2.setText("Game Item");
+					titleText2.setText(localCurrentLocation.getFunFactsTitle());
+					locationsTagText2.setText("Random Fun Fact");
+					locationsText2.setText(localCurrentLocation.getFunFacts());
+					break;
+	
+				case 2:
+					locationImage.setVisibility(ImageView.GONE);
+					locationsList.setVisibility(ListView.VISIBLE);
+					break;
 			}
 			return rootView;
 		}
@@ -587,8 +573,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		private void prepareArrayAdapterData(View rootView) {
 
 			try {
-				final ArrayList<FilmLocation> locationList = locationArrayList.getFilmList();
-				final ArrayList<FilmLocation> finalLocationList = new ArrayList<FilmLocation>();
+				ArrayList<FilmLocation> locationList = locationArrayList.getFilmList();
+				ArrayList<FilmLocation> finalLocationList = new ArrayList<FilmLocation>();
 
 				for (FilmLocation loc : locationList) {
 					if (loc.getTitle().equals(localCurrentLocation.getTitle())) {
@@ -599,8 +585,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 				// sort the list
 				Collections.sort(finalLocationList, StaticSortingUtilities.LOCATIONS_ALPHABETICAL_ORDER);
 
-				final String[] listItemTitles = new String[finalLocationList.size()];
-				final String[] listItemImageTiles = new String[finalLocationList.size()];
+				String[] listItemTitles = new String[finalLocationList.size()];
+				String[] listItemImageTiles = new String[finalLocationList.size()];
 
 				// populate arrays
 				int counter = 0;
@@ -610,7 +596,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					counter++;
 				}
 
-				final ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
+				ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
 				Collections.sort(newQuizList, StaticSortingUtilities.QUIZ_ITEMS_ALPHABETICAL_ORDER);
 				boolean answered = true;
 				QuizItem replayQuizItem = null;
@@ -623,11 +609,12 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 						replayQuizItem = quizItem;
 					}
 				}
+				
 				if (answered == true) {
 					initializeReplayWorld(replayQuizItem);
 				}
 
-				final Intent intent = getActivity().getIntent();
+				Intent intent = getActivity().getIntent();
 				
 				// create new location quiz array adapter
 				locationQuizArrayAdapter = new LocationQuizArrayAdapter(
@@ -646,9 +633,9 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 						public void onItemClick(AdapterView<?> parent,
 								final View view, int position, long id) {
 							
-							final QuizItem item = (QuizItem) parent.getItemAtPosition(position);
-							final Intent quizIntent = new Intent(context, QuizActivity.class);
-							final String quizItemSid = fragmentUser.getUserSid();
+							QuizItem item = (QuizItem) parent.getItemAtPosition(position);
+							Intent quizIntent = new Intent(context, QuizActivity.class);
+							String quizItemSid = fragmentUser.getUserSid();
 							quizIntent.putExtra("currentUser", fragmentUser);
 							quizIntent.putExtra("quizItemSid", quizItemSid);
 							quizIntent.putExtra("bagItemArrayList", bagItemArrayList);
@@ -676,8 +663,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	}
 
 	private void sendLevelUpNotification() {
-		final int NOTIFICATION_ID = 1;
-		final NotificationManager mNotificationManager;
+		int NOTIFICATION_ID = 1;
+		NotificationManager mNotificationManager;
 		String msg = "Welcome to level ";
 		
 		if (title != null) {
@@ -692,10 +679,9 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			// create and start achievement activity
 			mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 			
-			final Intent achievementIntent = new Intent(context, AchievementActivity.class);
+			Intent achievementIntent = new Intent(context, AchievementActivity.class);
 			achievementIntent.putExtra("achievement", levelAchievement);
-			
-			final PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
+			PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
 			mBuilder.setContentIntent(contentIntent);
 			mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());	
 		}

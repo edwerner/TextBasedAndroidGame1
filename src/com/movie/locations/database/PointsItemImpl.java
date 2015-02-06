@@ -1,7 +1,6 @@
 package com.movie.locations.database;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,21 +8,29 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import com.movie.locations.domain.PointsItem;
 
 public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
+	
 	private SQLiteDatabase database;
 	private static final String DATABASE_NAME = "pointsitems.db";
 	private static final int DATABASE_VERSION = 1;
-	private final static String TABLE_NAME = "pointsitems"; // name of table
-	private static final String COLUMN_USER_ID = "_userid";
-	private static final String COLUMN_POINTS_USER_ID = "_pointsuserid";
-	private static final String COLUMN_POINTS = "_points";
-	private static final String COLUMN_BONUS_POINTS = "_bonuspoints";
+	private final String TABLE_NAME = "pointsitems"; // name of table
+	private final String COLUMN_USER_ID = "_userid";
+	private final String COLUMN_POINTS_USER_ID = "_pointsuserid";
+	private final String COLUMN_POINTS = "_points";
+	private final String COLUMN_BONUS_POINTS = "_bonuspoints";
 	
-	private String[] allColumns = { COLUMN_USER_ID, COLUMN_POINTS_USER_ID,
+	private final String[] allColumns = { COLUMN_USER_ID, COLUMN_POINTS_USER_ID,
 			COLUMN_POINTS, COLUMN_BONUS_POINTS };
+
+	// Database creation sql statement
+	private final String DATABASE_CREATE = "create table "
+			+ TABLE_NAME + "(" 
+			+ COLUMN_USER_ID + " text, "
+			+ COLUMN_POINTS_USER_ID + " text, " 
+			+ COLUMN_POINTS + " text, "
+			+ COLUMN_BONUS_POINTS + " text);";
 
 	/**
 	 * 
@@ -32,15 +39,6 @@ public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 	public PointsItemImpl(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
-
-
-	// Database creation sql statement
-	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_NAME + "(" 
-			+ COLUMN_USER_ID + " text, "
-			+ COLUMN_POINTS_USER_ID + " text, " 
-			+ COLUMN_POINTS + " text, "
-			+ COLUMN_BONUS_POINTS + " text);";
 
 	// Method is called during creation of the database
 	@Override
@@ -75,14 +73,12 @@ public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 
 	public PointsItem createRecord(PointsItem pointsItem) {
 		ContentValues values = new ContentValues();
-
 		values.put(COLUMN_USER_ID, pointsItem.getUserId());
 		values.put(COLUMN_POINTS_USER_ID, pointsItem.getPointsUserId());
 		values.put(COLUMN_POINTS, pointsItem.getPoints());
 		values.put(COLUMN_BONUS_POINTS, pointsItem.getPoints());
 
-		long insertId = database.insert(
-				TABLE_NAME, null, values);
+		long insertId = database.insert(TABLE_NAME, null, values);
 		Cursor cursor = database.query(
 				TABLE_NAME, allColumns,
 				COLUMN_USER_ID + " = " + insertId, null, null, null, null);
@@ -119,7 +115,6 @@ public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 				+ "=" + "'" + recordId + "'", null);
 	}
 
-	// updatedPoints, updatedBonusPoints
 	public void updateRecordBonusPointsValue(String recordId, String updatedPoints, String updatedBonusPoints) {
 		ContentValues pointsObject = new ContentValues();
 		
@@ -135,21 +130,11 @@ public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 				+ "=" + "'" + recordId + "'", null);
 	}
 
-	// public void updateRecord(String recordId, String answered)
-	// throws SQLException {
-	// ContentValues quizObject = new ContentValues();
-	// quizObject.put(COLUMN_ANSWERED, answered);
-	// database.update(TABLE_NAME, quizObject, COLUMN_ID + "=" + "'"
-	// + recordId + "'", null);
-	// }
-
 	public ArrayList<PointsItem> selectRecords() {
 		ArrayList<PointsItem> pointsItemList = new ArrayList<PointsItem>();
-		// String[] cols = new String[] { COLUMN_ID };
 		Cursor mCursor = database.query(true, TABLE_NAME, allColumns,
 				null, null, null, null, null, null);
 
-		// String num;
 		if (mCursor != null && mCursor.moveToFirst()) {
 			while (!mCursor.isAfterLast()) {
 				PointsItem pointsItem = cursorToComment(mCursor);
@@ -158,34 +143,31 @@ public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 			}
 			mCursor.close();
 		}
-		return pointsItemList; // iterate to get each value.
+		return pointsItemList;
 	}
 
 	private PointsItem cursorToComment(Cursor cursor) {
-
 		PointsItem pointsItem = new PointsItem();
 		pointsItem.setUserId(cursor.getString(0));
 		pointsItem.setPointsUserId(cursor.getString(1));
 		pointsItem.setPoints(cursor.getString(2));
 		pointsItem.setBonusPoints(cursor.getString(3));
+		
 		return pointsItem;
 	}
 
 	@Override
 	public void deleteRecordById(String string) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByLevel(String level) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deleteRecordByTitle(String recordTitle) {
-		// TODO Auto-generated method stub
 		
 	}
 }

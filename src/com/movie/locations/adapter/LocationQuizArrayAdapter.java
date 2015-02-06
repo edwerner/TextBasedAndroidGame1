@@ -19,12 +19,11 @@ import android.widget.TextView;
 
 public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 	private final Context context;
-	protected ImageLoader imageLoader = ImageLoader.getInstance();
 	private String[] listItemTitles;
 	private String[] listItemImageTiles;
 	private ArrayList<BagItem> bagItemList;
-	private String UNIQUE_MAP_IMAGE_URL = "";
 	private final String DEFAULT_MAP_IMAGE_URL = "drawable://x_button";
+	protected final ImageLoader imageLoader = ImageLoader.getInstance();
 
 	public LocationQuizArrayAdapter(Activity activity, Context context, Intent intent, ArrayList<QuizItem> values) {
 		super(context, R.layout.film_list_array_adapter, values);
@@ -47,7 +46,7 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		final ViewHolder viewHolder;
+		ViewHolder viewHolder;
 		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.film_list_array_adapter, parent, false);
@@ -67,8 +66,9 @@ public class LocationQuizArrayAdapter extends ArrayAdapter<QuizItem> {
 //			imageView.setImageAlpha(HALFTONE);
 //		}
 		
-		final String[] titles = getListItemTitles();
-		final String[] imageTiles = getListItemImageTiles();
+		String[] titles = getListItemTitles();
+		String[] imageTiles = getListItemImageTiles();
+		String UNIQUE_MAP_IMAGE_URL = "UNIQUE_MAP_IMAGE_URL";
 		
 		if (imageTiles[position] != null) {
 			UNIQUE_MAP_IMAGE_URL = imageTiles[position];

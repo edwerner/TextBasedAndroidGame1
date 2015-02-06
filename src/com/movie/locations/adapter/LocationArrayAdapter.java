@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LocationArrayAdapter extends ArrayAdapter<FilmLocation> {
-	private Context context;
+	private final Context context;
 	private ArrayList<FilmLocation> values;
-	private ImageLoader imageLoader = ImageLoader.getInstance();
-	private Intent intent;
+	private final ImageLoader imageLoader = ImageLoader.getInstance();
+	private final Intent intent;
 
 	public LocationArrayAdapter(Context context, Intent intent,
 			ArrayList<FilmLocation> values) {
@@ -43,7 +43,7 @@ public class LocationArrayAdapter extends ArrayAdapter<FilmLocation> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		final ViewHolder viewHolder;
+		ViewHolder viewHolder;
 		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.film_list_array_adapter, parent, false);
