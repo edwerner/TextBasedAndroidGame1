@@ -59,57 +59,61 @@ public class LocationPagerActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_film_location_pager);		
-		context = this;
-		Bundle bundle = getIntent().getExtras();
 		
-		// query database for records
-		BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
-		bagItemImpl.open();
-		ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
-		bagItemImpl.close();
+		setContentView(R.layout.activity_film_location_pager);
 		
-		// set parcelable array list
-		bagItemArrayList = new BagItemArrayList(); 
-		bagItemArrayList.setBagItemArrayList(bagItemList);
-		locationArrayList = bundle.getParcelable("locationArrayList");
-		locationList = locationArrayList.getFilmList();
-		filmMap = new LinkedHashMap<String, ArrayList<FilmLocation>>();
-		worldTitles = new ArrayList<String>();
-		localWorldImageUrls = new ArrayList<String>();
-		
-		for (FilmLocation loc : locationList) {
-			if (!worldTitles.contains(loc.getTitle())) {
-				worldTitles.add(loc.getTitle());
-				localWorldImageUrls.add(loc.getStaticMapImageUrl());
-			}
-		}
-		
-		int arraylength = worldTitles.size();
-		ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
-		String CURRENT_TITLE = "CURRENT_TITLE";
-		
-		for (int i = 0; i < arraylength; i++) {
-			tempList.clear();
-			CURRENT_TITLE = worldTitles.get(i);
+		if (savedInstanceState == null) {
+			context = this;
+			Bundle bundle = getIntent().getExtras();
 			
-			for (FilmLocation location : locationList) {
-				tempList.add(location);
+			// query database for records
+			BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
+			bagItemImpl.open();
+			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
+			bagItemImpl.close();
+			
+			// set parcelable array list
+			bagItemArrayList = new BagItemArrayList(); 
+			bagItemArrayList.setBagItemArrayList(bagItemList);
+			locationArrayList = bundle.getParcelable("locationArrayList");
+			locationList = locationArrayList.getFilmList();
+			filmMap = new LinkedHashMap<String, ArrayList<FilmLocation>>();
+			worldTitles = new ArrayList<String>();
+			localWorldImageUrls = new ArrayList<String>();
+			
+			for (FilmLocation loc : locationList) {
+				if (!worldTitles.contains(loc.getTitle())) {
+					worldTitles.add(loc.getTitle());
+					localWorldImageUrls.add(loc.getStaticMapImageUrl());
+				}
 			}
 			
-			filmMap.put(CURRENT_TITLE, tempList);
-		}
-		
-		currentUser = bundle.getParcelable("localUser");
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+			int arraylength = worldTitles.size();
+			ArrayList<FilmLocation> tempList = new ArrayList<FilmLocation>();
+			String CURRENT_TITLE = "CURRENT_TITLE";
+			
+			for (int i = 0; i < arraylength; i++) {
+				tempList.clear();
+				CURRENT_TITLE = worldTitles.get(i);
+				
+				for (FilmLocation location : locationList) {
+					tempList.add(location);
+				}
+				
+				filmMap.put(CURRENT_TITLE, tempList);
+			}
+			
+			currentUser = bundle.getParcelable("localUser");
+			mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-		// Set up the ViewPager with the sections adapter.
-		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
-		quizItemImpl = new QuizItemImpl(context);
-		quizItemImpl.open();
-		newQuizList = quizItemImpl.selectRecords();
-		quizItemImpl.close();
+			// Set up the ViewPager with the sections adapter.
+			mViewPager = (ViewPager) findViewById(R.id.pager);
+			mViewPager.setAdapter(mSectionsPagerAdapter);
+			quizItemImpl = new QuizItemImpl(context);
+			quizItemImpl.open();
+			newQuizList = quizItemImpl.selectRecords();
+			quizItemImpl.close();		
+		}
 	}
 
 	public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {

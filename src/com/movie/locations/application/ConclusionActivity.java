@@ -45,30 +45,32 @@ public class ConclusionActivity extends ActionBarActivity {
 		
 		setContentView(R.layout.activity_conclusion);
 		
-		Intent intent = getIntent();
-		Bundle extras = intent.getExtras();
-		
-		bagItemArrayList = extras.getParcelable("bagItemArrayList");
-		currentUserId = extras.getString("currentUserId");
-		pointsItem = extras.getParcelable("pointsItem");
-		pointValue = extras.getString("pointValue");
-		worldCount = extras.getString("worldCount");
-		currentLevelString = extras.getString("currentLevel");
-		conclusionCard = extras.getParcelable("conclusionCard");
-		currentUserPoints = extras.getString("currentUserPoints");
-		userSource = new UserImpl(this);
+		if (savedInstanceState == null) {
+			Intent intent = getIntent();
+			Bundle extras = intent.getExtras();
+			
+			bagItemArrayList = extras.getParcelable("bagItemArrayList");
+			currentUserId = extras.getString("currentUserId");
+			pointsItem = extras.getParcelable("pointsItem");
+			pointValue = extras.getString("pointValue");
+			worldCount = extras.getString("worldCount");
+			currentLevelString = extras.getString("currentLevel");
+			conclusionCard = extras.getParcelable("conclusionCard");
+			currentUserPoints = extras.getString("currentUserPoints");
+			userSource = new UserImpl(this);
 
-		Fragment conclusionFragment = new ConclusionFragment(); 
-		Bundle bundle = new Bundle();
-		bundle.putParcelable("bagItemArrayList", bagItemArrayList);
-		bundle.putParcelable("conclusionCard", conclusionCard);
-		bundle.putString("pointValue", pointValue);
-		bundle.putString("updatedPoints", updatedPoints);
-		bundle.putString("currentUserPoints", currentUserPoints);
-		conclusionFragment.setArguments(bundle);
-		
-		getSupportFragmentManager().beginTransaction()
-				.add(R.id.container, conclusionFragment).commit();
+			Fragment conclusionFragment = new ConclusionFragment(); 
+			Bundle bundle = new Bundle();
+			bundle.putParcelable("bagItemArrayList", bagItemArrayList);
+			bundle.putParcelable("conclusionCard", conclusionCard);
+			bundle.putString("pointValue", pointValue);
+			bundle.putString("updatedPoints", updatedPoints);
+			bundle.putString("currentUserPoints", currentUserPoints);
+			conclusionFragment.setArguments(bundle);
+			
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.container, conclusionFragment).commit();	
+		}
 	}
 	
 	public void updatePointsDatabase() {
