@@ -17,8 +17,15 @@ import com.movie.locations.utility.CSVFile;
 
 public class AchievementService implements IService {
 
-	public AchievementService() {
-		// empty constructor
+	private Context context;
+	private AchievementImpl achievementImpl;
+
+	public AchievementService(Context context) {
+		this.context = context;
+	}
+	
+	public void createAchievementImpl() {
+		achievementImpl = new AchievementImpl(context);
 	}
 	
 	@Override
@@ -31,10 +38,9 @@ public class AchievementService implements IService {
 	}
 	
 	@Override
-	public void createContentValues(InputStream stream, Context context) {
+	public void createContentValues(InputStream stream) {
 		
 		CSVFile csvFile = new CSVFile(stream);
-
 		String ACHIEVEMENT_ID = null;
 		String ACHIEVEMENT_LEVEL = null;
 		
@@ -57,23 +63,23 @@ public class AchievementService implements IService {
 			achievementArrayList.add(achievement);
 		}
 		
-		AchievementImpl datasource = new AchievementImpl(context);
+		achievementImpl = new AchievementImpl(context);
 			
 		// create database connection and store
 		// location objects in sqlite database
-		datasource.open();
+		achievementImpl.open();
 		
-		Achievement currentTitleLocations = datasource.selectRecordByLevel(ACHIEVEMENT_LEVEL);
+		Achievement currentTitleLocations = achievementImpl.selectRecordByLevel(ACHIEVEMENT_LEVEL);
 		
 		if (currentTitleLocations != null) {
-			datasource.deleteRecordById(ACHIEVEMENT_ID);
+			achievementImpl.deleteRecordById(ACHIEVEMENT_ID);
 		}
 		
 		for (Achievement item : achievementArrayList) {
-			datasource.createRecord(item);
+			achievementImpl.createRecord(item);
 		}
 		
-		datasource.close();
+		achievementImpl.close();
 	}
 	
 	@Override

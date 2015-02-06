@@ -149,7 +149,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			newQuizList = quizItemImpl.selectRecords();
 			quizItemImpl.close();
 			
-			quizItemService = new QuizItemService();
+			quizItemService = new QuizItemService(context);
+			quizItemService.createQuizItemImpl();
 			localQuizItemArrayList = new QuizItemArrayList();
 			localQuizItemArrayList.setQuizList(newQuizList);
 			intent.putExtra("localQuizItemArrayList", localQuizItemArrayList);
@@ -296,7 +297,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			String message = "Success!";
 			if (result != null) {
 				message = "Level data reset.";
-				quizItemService.resetAnsweredQuestion(result, context);
+				quizItemService.resetAnsweredQuestion(result);
 			} else {
 				message = "Something went wrong!";
 			}
