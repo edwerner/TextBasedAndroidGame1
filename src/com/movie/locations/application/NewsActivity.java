@@ -1,49 +1,36 @@
 package com.movie.locations.application;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ListIterator;
-
 import com.movie.locations.R;
 import com.movie.locations.adapter.GameTitleArrayAdapter;
 import com.movie.locations.adapter.NavMenuItemArrayAdapter;
 import com.movie.locations.database.AchievementImpl;
 import com.movie.locations.database.BagItemImpl;
-import com.movie.locations.database.ConclusionCardImpl;
 import com.movie.locations.database.GameTitleImpl;
 import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.database.PointsItemImpl;
-import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItem;
-import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
-import com.movie.locations.domain.NewsItem;
 import com.movie.locations.domain.PointsItem;
-import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.ActionBarDrawerToggle;
-//import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-//import android.support.v4.widget.DrawerLayout;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -81,59 +68,41 @@ public class NewsActivity extends ActionBarActivity {
 		
 		setContentView(R.layout.activity_news);
 		context = this;
-
 //		if (savedInstanceState == null) {
 			intent = getIntent();
 			Bundle bundle = intent.getExtras();
 			localUser = bundle.getParcelable("localUser");
-			// System.out.println("NEWS ACTIVITY LOCAL USER PARCEL CURRENT POINTS: " + localUser.getCurrentPoints());
-
 			Fragment locationsFragment = new FilmLocationsFragment();
 			Bundle locationsBundle = new Bundle();
 			locationsBundle.putParcelable("localUser", localUser);
 			locationsFragment.setArguments(locationsBundle);
-//			ft.replace(R.id.content_frame, locationsFragment);
-			
 			getSupportFragmentManager().beginTransaction().add(R.id.content_frame, locationsFragment).commit();
-
-			
 			userImpl = new UserImpl(context);
 //		}
 		
-		
-//		GcmIntentService.setCurrentUserId(localUser.getUserId());
-		
-		// setup navigation drawer
 		navArray = new String[6];
-//		navArray[0] = "News";
 		navArray[0] = "Worlds";
 		navArray[1] = "Player";
-//		navArray[2] = "Friends";
-//		navArray[3] = "Restore";
-//		navArray[3] = "Cards";
 		navArray[2] = "Items";
 		navArray[3] = "About";
 		navArray[4] = "Settings";
 		navArray[5] = "Achievements";
 		
-		final String userImageUrl = localUser.getAvatarImageUrl();
-
+		String userImageUrl = localUser.getAvatarImageUrl();
 		mTitle = mDrawerTitle = getTitle();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-		// set a custom shadow that overlays the main content when the drawer
-		// opens
-		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
-				GravityCompat.START);
+		// set a custom shadow that overlays the main content when the drawer opens
+		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		
 		// set up the drawer's list view with items and click listener
 		ArrayList<NavMenuItem> navList = new ArrayList<NavMenuItem>();
 		
 		for (int a = 0; a < navArray.length; a++) {
-
 			NavMenuItem menuItem = new NavMenuItem();
 			String currentImageUrl = "drawable://";
+			
 			switch(a) {
 			case 0:
 				currentImageUrl += R.drawable.breadboard_menu;
@@ -154,13 +123,13 @@ public class NewsActivity extends ActionBarActivity {
 				currentImageUrl += R.drawable.achievement_level_twenty;
 				break;
 			}
+			
 			menuItem.setTitle(navArray[a]);
 			menuItem.setImageUrl(currentImageUrl);
 			navList.add(menuItem);
 		}
-		NavMenuItemArrayAdapter menuAdapter = new NavMenuItemArrayAdapter(this, intent, navList);
 		
-//		mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, navArray));
+		NavMenuItemArrayAdapter menuAdapter = new NavMenuItemArrayAdapter(this, intent, navList);
 		mDrawerList.setAdapter(menuAdapter);
 		mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -207,7 +176,6 @@ public class NewsActivity extends ActionBarActivity {
         int id = view.getId();
 		if (id == R.id.checkboxNotifications1) {
 			if (checked) {
-				// System.out.println("Mobile notifications checked");
 				localUser.setMobileNotifications("true");
 			} else {
 				localUser.setMobileNotifications("false");
@@ -217,14 +185,9 @@ public class NewsActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-//		getMenuInflater().inflate(R.menu.news, menu);
-//		getMenuInflater().inflate(R.menu.user_detail, menu);
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// If the nav drawer is open, hide action items related to the content
 //		// view
-//		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-//		menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -253,7 +216,6 @@ public class NewsActivity extends ActionBarActivity {
 	}
 	 
 	private void selectItem(int position) {
-
 		// update selected item and title, then close the drawer
 		mDrawerList.setItemChecked(position, true);
 		setTitle(navArray[position]);
@@ -276,12 +238,8 @@ public class NewsActivity extends ActionBarActivity {
 			ft.replace(R.id.content_frame, userFragment);
 			break;
 		case 2:
-//			ft.replace(R.id.content_frame, new NewsFragment());
 			ft.replace(R.id.content_frame, new BagItemListFragment());
 			break;
-//		case 3:
-//			ft.replace(R.id.content_frame, new ConclusionCardFragment());
-//			break;
 		case 3:
 			ft.replace(R.id.content_frame, new AboutFragment());
 			break;
@@ -297,8 +255,6 @@ public class NewsActivity extends ActionBarActivity {
 			break;
 		}
 		ft.commit();
-
-		// System.out.println("nav item " + position + " clicked");
 	}
 
 	@Override
@@ -326,193 +282,139 @@ public class NewsActivity extends ActionBarActivity {
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 	
-	public class BagItemListFragment extends Fragment {
+	private class BagItemListFragment extends Fragment {
 		
-//		private LinearLayout instructionsLayout;
-		protected boolean refreshed = false;
 		private ArrayList<BagItem> bagItemList;
 		private BagItemImpl bagItemImpl;
 
 		public BagItemListFragment() {
+			// empty constructor
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_bag_item_list, container, false);
-
-
-					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
-					final Context context = getActivity().getApplicationContext();
-					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-//					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
-
-					String WORLD_TITLE = "BAG_ITEM_TITLE";
-					
-					gameTitleImpl.open();
-					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
-					gameTitleImpl.close();
-					
-					int counter = 0;
-					for (GameTitle tempTitle : gameTitleList) {
-						counter++;
-						// System.out.println("CARD DATABASE TITLE COUNTER: " + counter);
-					}
-					final Context bagContext = getActivity().getApplicationContext();
-					
-					bagItemImpl = new BagItemImpl(bagContext);
-					bagItemImpl.open();
-					bagItemList = bagItemImpl.selectRecords();
-					bagItemImpl.close();
-					
-					// System.out.println("REFRESHED DATA");
-					
-					// sort the list
-					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
-					Collections.sort(bagItemList, StaticSortingUtilities.BAG_ITEMS_ALPHABETICAL_ORDER);
-					
-					// ITERATE THROUGH NODES AND UPDATE NON-MISSING STATES
-					// System.out.println("GAME TITLE LENGTH: " + gameTitleList.size());
-					// System.out.println("BAG ITEM LENGTH: " + bagItemList.size());
-					
-//					if (gameTitleList.size() > 0) {
-//						if (bagItemList.size() > 0) {
-//							for (int i = 0; i < bagItemList.size(); i++) {
-//								GameTitle tempTitle = gameTitleList.get(i);
-//								BagItem existingBagItem = bagItemList.get(i);
-//								tempTitle.setPhase("EXISTS");
-//								String tempImageUrl = existingBagItem.getItemId();
-//								// System.out.println("CURRENT BAG ITEM URL: " + tempImageUrl);
-//								tempTitle.setImageUrl(tempImageUrl);
-//								tempTitle.setLevel(existingBagItem.getLevel());
-//								gameTitleList.set(i, tempTitle);
-//							}	
-//						}
-//					}
-					if (gameTitleList.size() > 0) {
-						if (bagItemList.size() > 0) {
-							for (int i = 0; i < bagItemList.size(); i++) {
-								GameTitle tempTitle = gameTitleList.get(i);
-								String currentTitleString = tempTitle.getTitle();
-//								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-//								// System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
-								// System.out.println("TEMP TITLE ID: " + tempTitle.getId());
-								BagItem existingBagItem = bagItemList.get(i);
-								String currentCardTitle = existingBagItem.getItemTitle();
-								// System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
-								// System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
-								if (currentTitleString.equals(currentCardTitle)) {
-									System.out.println("BAG ITEM TITLE: " + currentCardTitle);
-									// System.out.println("CARD EXISTS");
-									tempTitle.setPhase("EXISTS");
-									String tempImageUrl = existingBagItem.getImageUrl();
-									tempTitle.setTitle(currentCardTitle);
-									// System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
-									tempTitle.setImageUrl(tempImageUrl);
-									tempTitle.setLevel(null);
-									tempTitle.setDescription(existingBagItem.getDescription());
-									tempTitle.setType("conclusion");
-								} else {
-									// System.out.println("CARD DOESN'T EXIST");
-									tempTitle.setPhase("MISSING");
-								}
-								gameTitleList.set(i, tempTitle);
-							}	
+			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
+			Context context = getActivity().getApplicationContext();
+			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
+			String WORLD_TITLE = "BAG_ITEM_TITLE";
+			
+			gameTitleImpl.open();
+			ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
+			gameTitleImpl.close();
+			
+			Context bagContext = getActivity().getApplicationContext();
+			
+			bagItemImpl = new BagItemImpl(bagContext);
+			bagItemImpl.open();
+			bagItemList = bagItemImpl.selectRecords();
+			bagItemImpl.close();
+			
+			// sort the list
+			Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
+			Collections.sort(bagItemList, StaticSortingUtilities.BAG_ITEMS_ALPHABETICAL_ORDER);
+			
+			// ITERATE THROUGH NODES AND UPDATE NON-MISSING STATES
+			if (gameTitleList.size() > 0) {
+				if (bagItemList.size() > 0) {
+					for (int i = 0; i < bagItemList.size(); i++) {
+						GameTitle tempTitle = gameTitleList.get(i);
+						String currentTitleString = tempTitle.getTitle();
+						BagItem existingBagItem = bagItemList.get(i);
+						String currentCardTitle = existingBagItem.getItemTitle();
+						if (currentTitleString.equals(currentCardTitle)) {
+							tempTitle.setPhase("EXISTS");
+							String tempImageUrl = existingBagItem.getImageUrl();
+							tempTitle.setTitle(currentCardTitle);
+							tempTitle.setImageUrl(tempImageUrl);
+							tempTitle.setLevel(null);
+							tempTitle.setDescription(existingBagItem.getDescription());
+							tempTitle.setType("conclusion");
+						} else {
+							tempTitle.setPhase("MISSING");
 						}
-					}
-					final Intent intent = getActivity().getIntent();
-					final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
-					
-					if (gameTitleList.size() > 0) {
-						restoreListView.setAdapter(levelRestoreListAdapter);
-						levelRestoreListAdapter.notifyDataSetChanged();
-					}			
+						gameTitleList.set(i, tempTitle);
+					}	
+				}
+			}
+			
+			Intent intent = getActivity().getIntent();
+			GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
+			
+			if (gameTitleList.size() > 0) {
+				restoreListView.setAdapter(levelRestoreListAdapter);
+				levelRestoreListAdapter.notifyDataSetChanged();
+			}			
 			return rootView;
 		}
 	}
-	public class AchievementsFragment extends Fragment {
-		
-//		private LinearLayout instructionsLayout;
-		protected boolean refreshed = false;
+	
+	private class AchievementsFragment extends Fragment {
 		private ArrayList<Achievement> achievementList;
 		private AchievementImpl achievementImpl;
 
 		public AchievementsFragment() {
+			// empty constructor
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_bag_item_list, container, false);
+			User localUser = getArguments().getParcelable("localUser");
 
-			final User localUser = getArguments().getParcelable("localUser");
+			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
+			Context context = getActivity().getApplicationContext();
+			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
+			String ACHIEVEMENT_TITLE = "ACHIEVEMENT_TITLE";
+			String currentUserLevel = localUser.getCurrentLevel();
+			
+			gameTitleImpl.open();
+			ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByTypeAndLevel(ACHIEVEMENT_TITLE, currentUserLevel);
+			gameTitleImpl.close();
+			
+			Context achievementContext = getActivity().getApplicationContext();
+			achievementImpl = new AchievementImpl(achievementContext);
+			achievementImpl.open();
+			achievementList = achievementImpl.selectRecordsByLevel(currentUserLevel);
+			achievementImpl.close();
 
-					final ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
-					final Context context = getActivity().getApplicationContext();
-					GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-//					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecords();
-
-					String ACHIEVEMENT_TITLE = "ACHIEVEMENT_TITLE";
-					String currentUserLevel = localUser.getCurrentLevel();
-					
-					gameTitleImpl.open();
-					final ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByTypeAndLevel(ACHIEVEMENT_TITLE, currentUserLevel);
-					gameTitleImpl.close();
-					
-					final Context achievementContext = getActivity().getApplicationContext();
-					
-					achievementImpl = new AchievementImpl(achievementContext);
-					achievementImpl.open();
-					achievementList = achievementImpl.selectRecordsByLevel(currentUserLevel);
-					achievementImpl.close();
-					
-
-					System.out.println("gameTitleList size: " + gameTitleList.size());
-					System.out.println("achievementList size: " + achievementList.size());
-					
-					// sort the list
-					Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
-					Collections.sort(achievementList, StaticSortingUtilities.ACHIEVEMENTS_ALPHABETICAL_ORDER);
-					
-					if (gameTitleList.size() > 0) {
-						if (achievementList.size() > 0) {
-							for (int i = 0; i < achievementList.size(); i++) {
-								GameTitle tempTitle = gameTitleList.get(i);
-								String currentTitleString = tempTitle.getTitle();
-//								QuizItem tempQuizItem = quizItemImpl.selectRecordById(tempTitle.getId());
-//								// System.out.println("TEMP QUIZ ITEM: " + tempQuizItem.getAnswered());
-								// System.out.println("TEMP TITLE ID: " + tempTitle.getId());
-								Achievement existingAchievement = achievementList.get(i);
-								String currentCardTitle = existingAchievement.getTitle();
-								// System.out.println("CURRENT GAME TITLE TITLE: " + currentTitleString);
-								// System.out.println("CURRENT CARD TITLE: " + currentCardTitle);
-								if (currentTitleString.equals(currentCardTitle)) {
-									System.out.println("BAG ITEM TITLE: " + currentCardTitle);
-									// System.out.println("CARD EXISTS");
-									tempTitle.setPhase("EXISTS");
-									String tempImageUrl = existingAchievement.getImageUrl();
-									tempTitle.setTitle(currentCardTitle);
-									// System.out.println("BAG ITEM IMAGE URL: " + existingBagItem.getImageUrl());
-									tempTitle.setImageUrl(tempImageUrl);
-									tempTitle.setLevel(existingAchievement.getLevel());
-									tempTitle.setDescription(existingAchievement.getDescription());
-									tempTitle.setType("achievement");
-								} else {
-									// System.out.println("CARD DOESN'T EXIST");
-									tempTitle.setPhase("MISSING");
-								}
-								gameTitleList.set(i, tempTitle);
-							}	
+			// sort the list
+			Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
+			Collections.sort(achievementList, StaticSortingUtilities.ACHIEVEMENTS_ALPHABETICAL_ORDER);
+			
+			if (gameTitleList.size() > 0) {
+				if (achievementList.size() > 0) {
+					for (int i = 0; i < achievementList.size(); i++) {
+						GameTitle tempTitle = gameTitleList.get(i);
+						String currentTitleString = tempTitle.getTitle();
+						Achievement existingAchievement = achievementList.get(i);
+						String currentCardTitle = existingAchievement.getTitle();
+						if (currentTitleString.equals(currentCardTitle)) {
+							tempTitle.setPhase("EXISTS");
+							String tempImageUrl = existingAchievement.getImageUrl();
+							tempTitle.setTitle(currentCardTitle);
+							tempTitle.setImageUrl(tempImageUrl);
+							tempTitle.setLevel(existingAchievement.getLevel());
+							tempTitle.setDescription(existingAchievement.getDescription());
+							tempTitle.setType("achievement");
+						} else {
+							tempTitle.setPhase("MISSING");
 						}
-					}
-					
-					final Intent intent = getActivity().getIntent();
-					final GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
-					
-					if (gameTitleList.size() > 0) {
-						restoreListView.setAdapter(levelRestoreListAdapter);
-						levelRestoreListAdapter.notifyDataSetChanged();
-					}			
+						gameTitleList.set(i, tempTitle);
+					}	
+				}
+			}
+			
+			Intent intent = getActivity().getIntent();
+			GameTitleArrayAdapter levelRestoreListAdapter = new GameTitleArrayAdapter(getActivity(), intent, gameTitleList);
+			
+			if (gameTitleList.size() > 0) {
+				restoreListView.setAdapter(levelRestoreListAdapter);
+				levelRestoreListAdapter.notifyDataSetChanged();
+			}
+			
 			return rootView;
 		}
 	}
@@ -520,9 +422,10 @@ public class NewsActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public class UserDetailFragment extends Fragment {
+	private class UserDetailFragment extends Fragment {
 		
 		public UserDetailFragment() {
+			// empty constructor
 		}
 
 		@Override
@@ -531,65 +434,37 @@ public class NewsActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_user_detail,
 					container, false);
 
-			ImageView userAvatar = (ImageView) rootView
-					.findViewById(R.id.userAvatar1);
-
-			final User localUser = getArguments().getParcelable("localUser");
+			ImageView userAvatar = (ImageView) rootView.findViewById(R.id.userAvatar1);
+			User localUser = getArguments().getParcelable("localUser");
 			imageLoader.displayImage(localUser.getAvatarImageUrl(), userAvatar);
-
-			// TextView userProfileTitleTag = (TextView)
-			// findViewById(R.id.userProfileTitleTag1);
-			// TextView userTextTag = (TextView)
-			// findViewById(R.id.userFullNameTag1);
-			TextView userText = (TextView) rootView
-					.findViewById(R.id.userFullName1);
-
-			// TextView achievementsTitleTag = (TextView)
-			// findViewById(R.id.achievementsTitleTag1);
-			// TextView achievementsTag = (TextView)
-			// findViewById(R.id.achievementsTag1);
+			TextView userText = (TextView) rootView.findViewById(R.id.userFullName1);
 			TextView currentLevelText = (TextView) rootView.findViewById(R.id.levelText1);
-
-			// TextView miscTitleTag = (TextView)
-			// findViewById(R.id.miscTitleTag1);
-			// TextView miscTag = (TextView) findViewById(R.id.miscTag1);
 			TextView pointsText = (TextView) rootView.findViewById(R.id.pointsText1);
-
-			// set text values
-			// System.out.println("localUser.getDisplayName(): " + localUser.getDisplayName());
-			// System.out.println("userText: " + userText);
 			userText.setText(localUser.getDisplayName());
-			
-//			currentLevelText.setText(localUser.getCurrentLevel());
-			
-			String currentPoints = localUser.getPoints();
-			// System.out.println("localUser.getPoints: " + currentPoints);			
-			final String FINAL_USER_ID = localUser.getUserId();
-			final String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
-			
-			final Context pointsContext = getActivity().getApplicationContext();
-			
-			final PointsItemImpl pointsItemImpl = new PointsItemImpl(pointsContext);
+			String FINAL_USER_ID = localUser.getUserId();
+			String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
+			Context pointsContext = getActivity().getApplicationContext();
+			PointsItemImpl pointsItemImpl = new PointsItemImpl(pointsContext);
 			pointsItemImpl.open();
-			final PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
+			PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
 			pointsItemImpl.close();
+			String FINAL_USER_POINTS;
 			
-			final String FINAL_USER_POINTS;
 			if (FINAL_USER_POINTS_ITEM != null) {
 				FINAL_USER_POINTS = FINAL_USER_POINTS_ITEM.getPoints();
-				// System.out.println("FINAL_USER_POINTS: " + FINAL_USER_POINTS);
 				localUser.setCurrentPoints(FINAL_USER_POINTS);
 			} else {
 				FINAL_USER_POINTS = "0";
 				localUser.setCurrentPoints(FINAL_USER_POINTS);
 			}
-			final int FINAL_USER_POINTS_INT = Integer.parseInt(FINAL_USER_POINTS);
+			
+			int FINAL_USER_POINTS_INT = Integer.parseInt(FINAL_USER_POINTS);
 			int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
-			final String CURRENT_LEVEL_STRING = Integer.toString(currentLevel); 
+			String CURRENT_LEVEL_STRING = Integer.toString(currentLevel); 
 			currentLevelText.setText(CURRENT_LEVEL_STRING);
 			int[] levelRange = StaticSortingUtilities.getLevelRange();
 			int nextLevelIndex = Integer.parseInt(localUser.getCurrentLevel()) + 1;
-			final int finalLevelCap = levelRange[nextLevelIndex];
+			int finalLevelCap = levelRange[nextLevelIndex];
 			String currentPointsString = FINAL_USER_POINTS + "/" + Integer.toString(finalLevelCap);
 			pointsText.setText(currentPointsString);
 			return rootView;
@@ -600,11 +475,10 @@ public class NewsActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public class FilmLocationsFragment extends Fragment {
-
-		protected boolean refreshed = false;
+	private class FilmLocationsFragment extends Fragment {
 
 		public FilmLocationsFragment() {
+			// empty constructor
 		}
 
 		@Override
@@ -612,29 +486,19 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_film_locations,
 					container, false);
-			final User localUser = getArguments().getParcelable("localUser");
-//			TextView locationsTitle = (TextView) rootView.findViewById(R.id.locationsTag1);
-//			TextView locationsText = (TextView) rootView.findViewById(R.id.locationsText);
-
-//			locationsTitle.setText("Film Locations");
-//			locationsText.setText("Get started!");
 			
-//			Button getStartedButton = (Button) rootView.findViewById(R.id.get_started_button);
+			final User localUser = getArguments().getParcelable("localUser");
 			ImageView gameWorldsImage1 = (ImageView) rootView.findViewById(R.id.gameWorldsImage1);
 			ImageView gameWorldsImage2 = (ImageView) rootView.findViewById(R.id.gameWorldsImage2);
 			ImageView gameWorldsImage3 = (ImageView) rootView.findViewById(R.id.gameWorldsImage3);
 			ImageView gameWorldsImage4 = (ImageView) rootView.findViewById(R.id.gameWorldsImage4);
-			final Context context = getActivity().getApplicationContext();
-			
-			final LocationsImpl locationsImpl = new LocationsImpl(context);
+			Context context = getActivity().getApplicationContext();
+			LocationsImpl locationsImpl = new LocationsImpl(context);
 			locationsImpl.open();
-			final ArrayList<FilmLocation> defaultLocationList = locationsImpl.selectRecords();
+			ArrayList<FilmLocation> defaultLocationList = locationsImpl.selectRecords();
 			locationsImpl.close();
 			
-			// System.out.println("DEFAULT LOCATION LIST :" +  defaultLocationList);
 			final FilmArrayList defaultLocationArrayList = new FilmArrayList();
-//			defaultLocationArrayList.setFilmList(defaultLocationList);
-			
 			final ArrayList<FilmLocation> worldLocationList1 = new ArrayList<FilmLocation>();
 			final ArrayList<FilmLocation> worldLocationList2 = new ArrayList<FilmLocation>();
 			final ArrayList<FilmLocation> worldLocationList3 = new ArrayList<FilmLocation>();
@@ -659,102 +523,53 @@ public class NewsActivity extends ActionBarActivity {
 			worldLocationArrayList.add(worldLocationList3);
 			worldLocationArrayList.add(worldLocationList4);
 			
-//			ImageView[] worldImageArray = {
-//					gameWorldsImage1,
-//					gameWorldsImage2,
-//					gameWorldsImage3,
-//					gameWorldsImage4
-//			};
+			gameWorldsImage1.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					defaultLocationArrayList.setFilmList(worldLocationList1);
+					
+					// start new intent
+					Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
+					pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+					pagerActivityIntent.putExtra("localUser", localUser);
+					startActivity(pagerActivityIntent);
+				}
+			});
 			
-//			for (int i = 0; i < worldImageArray.length; i++) {
-//				final ArrayList<FilmLocation> currentArrayList = worldLocationArrayList.get(i);
-				
-//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
-				gameWorldsImage1.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						
-						defaultLocationArrayList.setFilmList(worldLocationList1);
-						// System.out.println("WORLD LOCATION LIST LENGTH: " + worldLocationList1.size());
-						
-						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
-//							FilmArrayList finalList = getUpdatedNewsData();
-						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
-						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
-						pagerActivityIntent.putExtra("localUser", localUser);
-						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
-						startActivity(pagerActivityIntent);
-//							// System.out.println("clicked button");
-					}
-				});
-//			}
+			gameWorldsImage2.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					defaultLocationArrayList.setFilmList(worldLocationList2);
+									
+					// start new intent
+					Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
+					pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+					pagerActivityIntent.putExtra("localUser", localUser);
+					startActivity(pagerActivityIntent);
+				}
+			});
 			
-				
-				
-//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
-				gameWorldsImage2.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						
-						defaultLocationArrayList.setFilmList(worldLocationList2);
-						
-						
-						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
-//							FilmArrayList finalList = getUpdatedNewsData();
-//						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
-						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
-						pagerActivityIntent.putExtra("localUser", localUser);
-						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
-						startActivity(pagerActivityIntent);
-//							// System.out.println("clicked button");
-					}
-				});
-				
-				
-				
-//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
-				gameWorldsImage3.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						
-						
-						defaultLocationArrayList.setFilmList(worldLocationList3);
-						
-						
-						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
-//							FilmArrayList finalList = getUpdatedNewsData();
-//						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
-						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
-						pagerActivityIntent.putExtra("localUser", localUser);
-						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
-						startActivity(pagerActivityIntent);
-//							// System.out.println("clicked button");
-					}
-				});
-				
-				
-				
-//				// System.out.println("CURRENT ARRAY LIST: " + currentArrayList.size());
-				gameWorldsImage4.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						
-						defaultLocationArrayList.setFilmList(worldLocationList4);
-						
-						// start new intent
-						Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
-//							FilmArrayList finalList = getUpdatedNewsData();
-//						// System.out.println("LIST LENGTH: " + defaultLocationArrayList.getFilmList().size());
-						pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
-						pagerActivityIntent.putExtra("localUser", localUser);
-						// System.out.println("LOCAL USER POINTS PARCEL: " + localUser.getCurrentPoints());
-						// System.out.println("LOCAL USER NOTIFICATIONS PARCEL: " + localUser.getMobileNotifications());
-						startActivity(pagerActivityIntent);
-//							// System.out.println("clicked button");
-					}
-				});
+			gameWorldsImage3.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {		
+					defaultLocationArrayList.setFilmList(worldLocationList3);
+					
+					// start new intent
+					Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
+					pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+					pagerActivityIntent.putExtra("localUser", localUser);
+					startActivity(pagerActivityIntent);
+				}
+			});
+			
+			gameWorldsImage4.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					defaultLocationArrayList.setFilmList(worldLocationList4);
+					
+					// start new intent
+					Intent pagerActivityIntent = new Intent(getActivity(), LocationPagerActivity.class);
+					pagerActivityIntent.putExtra("locationArrayList", defaultLocationArrayList);
+					pagerActivityIntent.putExtra("localUser", localUser);
+					startActivity(pagerActivityIntent);
+				}
+			});
 
 			return rootView;
 		}
@@ -763,27 +578,23 @@ public class NewsActivity extends ActionBarActivity {
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public class AboutFragment extends Fragment {
+	private class AboutFragment extends Fragment {
 
 		public AboutFragment() {
+			// empty constructor
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_about,
-					container, false);
+			
+			View rootView = inflater.inflate(R.layout.fragment_about, container, false);
 			Button instructionsButton = (Button) rootView.findViewById(R.id.dismiss_instructions);
 			
 			// bind check-in button click event
 			instructionsButton.setOnClickListener(new Button.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-//					instructionsLayout.setVisibility(LinearLayout.GONE);
-					
-					// close activity
-//					getActivity().finish();
-					
 					// change fragments
 					selectItem(0);
 				}
@@ -792,11 +603,10 @@ public class NewsActivity extends ActionBarActivity {
 		}
 	}
 
-
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public class SettingsFragment extends Fragment {
+	private class SettingsFragment extends Fragment {
 
 		public SettingsFragment() {
 		}
@@ -804,35 +614,22 @@ public class NewsActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_settings,
-					container, false);
+			View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
 	        String mobileNotifications = localUser.getMobileNotifications();
-//	        String emailNotifications = localUser.getEmailNotifications();
 	        
 	        String[] preferenceSettings = {
 	        		mobileNotifications
-//	        		, emailNotifications
 	        };
 	        
 	        int[] preferenceCheckboxes = { 
 	        		R.id.checkboxNotifications1
-//	        		, R.id.emailNotifications1
 	        };
-	        
-//	        if (mobileNotifications.equals("true")) {
-//	        	
-//	        }
-//	        if (emailNotifications.equals("true")) {
-//	        	 
-//	        }
-//	        preferenceCheckboxes[0] =  mobile:
-//	        preferenceCheckboxes[1] =  R.id.checkboxNotifications1:
 	  
 	        for (int i = 0; i < preferenceCheckboxes.length; i++) {
-	        	final int tempCheckBoxId = preferenceCheckboxes[i];
-	        	final CheckBox tempCheckBox = (CheckBox) rootView.findViewById(tempCheckBoxId);
-	        	final String tempPreferenceSetting = preferenceSettings[i];
+	        	int tempCheckBoxId = preferenceCheckboxes[i];
+	        	CheckBox tempCheckBox = (CheckBox) rootView.findViewById(tempCheckBoxId);
+	        	String tempPreferenceSetting = preferenceSettings[i];
 	        	
 	        	if (tempPreferenceSetting.equals("true")) {
 	        		tempCheckBox.setChecked(true);
@@ -847,34 +644,31 @@ public class NewsActivity extends ActionBarActivity {
 			updateUserPreferencesButton.setOnClickListener(new Button.OnClickListener() {
 				@Override
 				public void onClick(View view) {
-					final String FINAL_MOBILE_NOTIFICATIONS = localUser.getMobileNotifications();
-//					localUser.setEmailNotifications(FINAL_MOBILE_NOTIFICATIONS);
-					final UpdateUserPreferencesTaskRunner runner = new UpdateUserPreferencesTaskRunner();
+					String FINAL_MOBILE_NOTIFICATIONS = localUser.getMobileNotifications();
+					UpdateUserPreferencesTaskRunner runner = new UpdateUserPreferencesTaskRunner();
 					runner.execute(FINAL_MOBILE_NOTIFICATIONS);
-					// System.out.println("MOBILE NOTIFICTIONS BEFORE: " + FINAL_MOBILE_NOTIFICATIONS);
 				}
 			});
+			
 			return rootView;
 		}
 		
-		class UpdateUserPreferencesTaskRunner extends AsyncTask<String, String, String> {
+		private class UpdateUserPreferencesTaskRunner extends AsyncTask<String, String, String> {
 
 			private String resp;
 			private ProgressDialog dialog;
-			private ArrayList<FilmLocation> filmLocationList;
 			
 			@Override
 			protected String doInBackground(String... params) {
-				publishProgress("Sleeping..."); // Calls onProgressUpdate()
+				publishProgress("Sleeping...");
 				try {
 						String url = params[0];
 						resp = url;
-						// System.out.println("NEW USER REGISTERED: " + resp);
 				} catch (Exception e) {
 					e.printStackTrace();
-					// System.out.println("ERROR STACK TRACE");
 					resp = e.getMessage();
 				}
+				
 				return resp;
 			}
 
@@ -891,8 +685,9 @@ public class NewsActivity extends ActionBarActivity {
 				}
 				
 				userImpl.open();
-				final String FINAL_USER_ID = localUser.getUserId();
+				String FINAL_USER_ID = localUser.getUserId();
 				String message = "Something went wrong";
+				
 				if (result.equals("true")) {
 					userImpl.updateUserNotificationPreferences(FINAL_USER_ID, "false", result);
 					message = "Notifications on";
@@ -902,8 +697,6 @@ public class NewsActivity extends ActionBarActivity {
 				}
 				userImpl.close();
 				
-//				settingsUser = userSource.selectRecordById(FINAL_USER_ID);
-				// System.out.println("MOBILE NOTIFICATIONS POST EXECUTE: " + localUser.getMobileNotifications());
 				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 			}
 
@@ -916,7 +709,6 @@ public class NewsActivity extends ActionBarActivity {
 			protected void onPreExecute() {
 				// Things to be done before execution of long running operation. For
 				// example showing ProgessDialog
-
 				dialog = new ProgressDialog(context);
 				dialog.setTitle("Updating...");
 				dialog.setMessage("Saving your preferences on the server");
