@@ -10,10 +10,8 @@ import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
-import com.movie.locations.receiver.DatabaseChangedReceiver;
-import com.movie.locations.service.QuizItemService;
+import com.movie.locations.service.UserService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,7 +51,8 @@ public class LocationPagerActivity extends FragmentActivity {
 	private FilmArrayList locationArrayList;
 	private BagItemArrayList bagItemArrayList;
 	private FilmLocation currentLocation;
-	private ArrayList<QuizItem> quizItemList;
+	private UserService userService;
+	private String userId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class LocationPagerActivity extends FragmentActivity {
 			Bundle bundle = getIntent().getExtras();
 			
 			// query database for records
-			BagItemImpl bagItemImpl = new BagItemImpl(this); // bagItemArrayList
+			BagItemImpl bagItemImpl = new BagItemImpl(this);
 			bagItemImpl.open();
 			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
 			bagItemImpl.close();
@@ -103,26 +102,18 @@ public class LocationPagerActivity extends FragmentActivity {
 			}
 			
 			currentUser = bundle.getParcelable("localUser");
+			userId = currentUser.getUserId();
 			mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
 			// Set up the ViewPager with the sections adapter.
 			mViewPager = (ViewPager) findViewById(R.id.pager);
 			mViewPager.setAdapter(mSectionsPagerAdapter);
-			QuizItemService quizItemService = new QuizItemService(context);
-			quizItemService.createQuizItemImpl();
-			quizItemList = quizItemService.selectRecords();
+			
+			userService = new UserService(context);
+			userService.createUserImpl();
 		}
 	}
-
-	public DatabaseChangedReceiver mReceiver = new DatabaseChangedReceiver() {
-		
-		public void onReceive(Context context, Intent intent) {
-			// update your list
-			mSectionsPagerAdapter.notifyDataSetChanged();
-			unregisterReceiver(mReceiver);
-	   }
-	};
-
+	
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
@@ -140,11 +131,10 @@ public class LocationPagerActivity extends FragmentActivity {
 			String ARG_SECTION_NUMBER = movieSectionFragment.getArgSectionNumber();
 			args.putInt(ARG_SECTION_NUMBER, position);
 			args.putStringArrayList("worldTitles", worldTitles);
-			args.putStringArrayList("localWorldImageUrls", localWorldImageUrls);
 			args.putParcelable("locationArrayList", locationArrayList);
 			args.putParcelable("currentLocation", currentLocation);
 			args.putParcelable("bagItemArrayList", bagItemArrayList);
-			args.putParcelable("currentUser", currentUser);
+			args.putString("userId", userId);
 			movieSectionFragment.setArguments(args);
 			
 			return movieSectionFragment;
@@ -185,12 +175,6 @@ public class LocationPagerActivity extends FragmentActivity {
 		 * fragment.
 		 */
 		private final String ARG_SECTION_NUMBER = "section_number";
-		private ArrayList<String> localWorldTitles;
-		private String currentTitle;
-		private LocationArrayAdapter locationAdapter;
-		private ListView commentView;
-		private FilmArrayList filmArrayList;
-		private View rootView;
 
 		public LocationSectionFragment() {
 			super();
@@ -216,48 +200,19 @@ public class LocationPagerActivity extends FragmentActivity {
 		
 		}
 		
-		public void prepareArrayAdapterData(View rootView) {
-			ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
-			QuizItem firstLocation = quizItemList.get(0);
-			currentTitle = firstLocation.getWorldTitle();
-			
-			for (QuizItem quizItem : quizItemList) {
-				if (quizItem.getWorldTitle().equals(currentTitle)) {
-					finalQuizList.add(quizItem);
-				}
-			}
-		}
-		
-		@Override
-		public void onResume() {
-			prepareArrayAdapterData(getRootView());
-			super.onResume();
-		}
-		
-		public void setRootView(View rootView) {
-			this.rootView = rootView;
-		}
-		
-		public View getRootView() {
-			return rootView;
-		}
-		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			
 			View rootView = inflater.inflate(R.layout.fragment_film_panel, container, false);
-			setRootView(rootView);
-			prepareArrayAdapterData(rootView);
 			FilmArrayList localLocationArrayList = getArguments().getParcelable("locationArrayList");
 			BagItemArrayList localBagItemArrayList = getArguments().getParcelable("bagItemArrayList");
-			User localCurrentUser = getArguments().getParcelable("currentUser");
 			ArrayList<FilmLocation> finalList = new ArrayList<FilmLocation>();
-			filmArrayList = getArguments().getParcelable("locationArrayList");
+			FilmArrayList filmArrayList = getArguments().getParcelable("locationArrayList");
 			ArrayList<FilmLocation> filmList = filmArrayList.getFilmList();
-			localWorldTitles = getArguments().getStringArrayList("worldTitles");
-			localWorldImageUrls = getArguments().getStringArrayList("localWorldImageUrls");
-			currentTitle = localWorldTitles.get(getArguments().getInt(ARG_SECTION_NUMBER));
+			ArrayList<String> localWorldTitles = getArguments().getStringArrayList("worldTitles");
+			String currentTitle = localWorldTitles.get(getArguments().getInt(ARG_SECTION_NUMBER));
+			String userId = getArguments().getString("userId");
 			
 			for (FilmLocation loc : filmList) {
 				if (loc.getTitle().equals(currentTitle)) {
@@ -265,15 +220,14 @@ public class LocationPagerActivity extends FragmentActivity {
 				}
 			}
 			
-			Context context = getActivity().getApplicationContext();
 			Intent intent = new Intent(context, LocationDetailActivity.class);
 			FilmLocation localCurrentLocation = finalList.get(0);
 			intent.putExtra("locationArrayList", localLocationArrayList);
 			intent.putExtra("currentLocation", localCurrentLocation);
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);
-			intent.putExtra("localUser", localCurrentUser);
-			locationAdapter = new LocationArrayAdapter(getActivity(), intent, finalList);
-			commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
+			intent.putExtra("userId", userId);
+			LocationArrayAdapter locationAdapter = new LocationArrayAdapter(getActivity(), intent, finalList);
+			ListView commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
 			commentView.setAdapter(locationAdapter);
 			locationAdapter.notifyDataSetChanged();
 			mViewPager.setOnPageChangeListener(this);

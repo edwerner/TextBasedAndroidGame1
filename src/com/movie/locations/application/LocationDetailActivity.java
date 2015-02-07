@@ -7,7 +7,6 @@ import com.movie.locations.application.QuizActivity;
 import com.movie.locations.R;
 import com.movie.locations.database.AchievementImpl;
 import com.movie.locations.database.ConclusionCardImpl;
-import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;
@@ -72,13 +71,12 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	private String title;
 	private QuizItem quizItem;
 	private User currentUser;
+	private String userId;
 	private BagItemArrayList bagItemArrayList;
 	private FilmArrayList locationArrayList;
 	private FilmLocation currentLocation;
-	private UserImpl userImpl;
 	private QuizItemArrayList localQuizItemArrayList;
 	private IntentFilter filter;
-//	private PointsItemImpl pointsItemImpl;
 	private AchievementImpl achievementImpl;
 	private Achievement levelAchievement;
 	private Context context;
@@ -136,11 +134,9 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			Bundle bundle = intent.getExtras();
 			locationArrayList = bundle.getParcelable("locationArrayList");
 			bagItemArrayList = bundle.getParcelable("bagItemArrayList");
-			currentUser = bundle.getParcelable("localUser");
-//			System.out.println("CURRENT USER LEVEL DETAIL ACTIVITY: " + currentUser.getCurrentLevel());
+			
 			currentLocation = bundle.getParcelable("currentLocation");
 			title = currentLocation.getTitle();
-			intent.putExtra("quizItemSid", currentUser.getUserSid());
 			
 			quizItemService = new QuizItemService(context);
 			quizItemService.createQuizItemImpl();
@@ -148,22 +144,23 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			
 			userService = new UserService(context);
 			userService.createUserImpl();
+
+			userId = bundle.getString("userId");
+			currentUser = userService.selectRecordById(userId);
 			
+			System.out.println("LOCAL USER POINTS: " + currentUser.getCurrentPoints());
 			localQuizItemArrayList = new QuizItemArrayList();
 			localQuizItemArrayList.setQuizList(newQuizList);
 			intent.putExtra("localQuizItemArrayList", localQuizItemArrayList);
-//			pointsItemImpl = new PointsItemImpl(context);
-			achievementImpl = new AchievementImpl(context);
 			String currentUserLevelString = currentUser.getCurrentLevel();
 			int currentLevelInt = Integer.parseInt(currentUserLevelString);
 			int nextLevelInt = currentLevelInt + 1;
 			String nextLevel = Integer.toString(nextLevelInt);
-			
+
+			achievementImpl = new AchievementImpl(context);
 			achievementImpl.open();
 			levelAchievement = achievementImpl.selectRecordByLevel(nextLevel);
 			achievementImpl.close();
-
-			userImpl = new UserImpl(context);
 			
 			// set world title
 			setTitle(currentLocation.getTitle());
@@ -191,11 +188,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 				 initializeReplayWorld(replayQuizItem);
 			 }
 		 }
-
-//		 userImpl.open();
-//		 String userId = currentUser.getUserId();
-//		 currentUser = userImpl.selectRecordById(userId);
-//		 userImpl.close();
 		
 		 registerReceiver(mReceiver, filter);
 		 super.onResume();
@@ -379,7 +371,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			args.putParcelable("bagItemArrayList", bagItemArrayList);
 			args.putParcelable("locationArrayList", locationArrayList);
 			locationFragment.setArguments(args);
-			
 			return locationFragment;
 		}
 
@@ -414,8 +405,10 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		private QuizItem currentQuizItem;
 		private FilmLocation localCurrentLocation;
 		private BagItemArrayList bagItemArrayList;
+		private User fragmentUser;
 		private FilmArrayList locationArrayList;
 		private ConclusionCardImpl conclusionCardImpl;
+		private UserService userService;
 		
 		public LocationFragment() {
 			// Empty constructor
@@ -439,7 +432,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					// UPDATE USER POINTS
 					String quizItemPointValue = currentQuizItem.getPointValue();
 					int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
-					String userId = currentUser.getUserId();
+					String userId = fragmentUser.getUserId();
 
 					User tempUser = userService.selectRecordById(userId);
 					String databasePoints = tempUser.getCurrentPoints();
@@ -448,7 +441,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					final int FINAL_USER_POINTS_INT = quizItemPointValueInt + databasePointsInt;
 					updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);
 					userService.setCurrentPoints(userId, updatedUserPointsString);						
-					String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
+					String FINAL_CURRENT_USER_LEVEL = fragmentUser.getCurrentLevel();
 					int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
 					int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
 					if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
@@ -516,8 +509,10 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			quizItem = getArguments().getParcelable("quizItem");
 			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
 			locationArrayList = getArguments().getParcelable("locationArrayList");
-//			pointsItemImpl = new PointsItemImpl(context);
-			userImpl = new UserImpl(context);
+			fragmentUser = getArguments().getParcelable("fragmentUser");
+			userService = new UserService(context);
+			userService.createUserImpl();
+			
 			localQuizItemArrayList = getArguments().getParcelable("localQuizItemArrayList");
 			localCurrentLocation = getArguments().getParcelable("localCurrentLocation");
 			TextView titleTagText2 = (TextView) rootView.findViewById(R.id.titleTag2);
@@ -614,9 +609,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 							
 							QuizItem item = (QuizItem) parent.getItemAtPosition(position);
 							Intent quizIntent = new Intent(context, QuizActivity.class);
-							String quizItemSid = currentUser.getUserSid();
-							quizIntent.putExtra("currentUser", currentUser);
-							quizIntent.putExtra("quizItemSid", quizItemSid);
+							quizIntent.putExtra("currentUser", fragmentUser);
 							quizIntent.putExtra("bagItemArrayList", bagItemArrayList);
 							quizIntent.putExtra("quizItem", item);
 							startActivityForResult(quizIntent, 1);
@@ -629,13 +622,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	}
 
 	private void levelUpCurrentUser(String currentUserId, String currentLevelString) {
-		if (userImpl != null) {
-			userImpl.open();
-			userImpl.updateCurrentUserLevel(currentUserId, currentLevelString);
-			userImpl.close();
-//			currentUser.setCurrentLevel(currentLevelString);
-//			currentUser.setCurrentLevel(currentLevelString);
-		}
+		userService.setCurrentLevel(currentUserId, currentLevelString);
 		
 		// SEND LEVEL UP NOTIFICATION
 		if (levelAchievement != null && currentUser.getMobileNotifications().equals("true")) {

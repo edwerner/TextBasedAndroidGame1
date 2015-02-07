@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.movie.locations.R;
-import com.movie.locations.database.PointsItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
-import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.utility.StaticSortingUtilities;
@@ -52,10 +50,7 @@ public class QuizActivity extends FragmentActivity {
 	private BagItemArrayList bagItemArrayList;
 	private String[] reactions;
 	private String[] requiredItems;
-	private String currentUserId;
 	private User currentUser;
-	private String currentTotalPoints;
-	private PointsItemImpl pointsItemImpl;
 
     /**
      * The number of pages to show.
@@ -87,22 +82,6 @@ public class QuizActivity extends FragmentActivity {
 			quizItem = extras.getParcelable("quizItem");
 			bagItemArrayList = extras.getParcelable("bagItemArrayList");
 			currentUser = extras.getParcelable("currentUser");
-			currentUserId = currentUser.getUserId();
-			pointsItemImpl = new PointsItemImpl(context);
-			pointsItemImpl.open();
-			PointsItem currentPointsItem = pointsItemImpl.selectRecordById(currentUserId);
-			pointsItemImpl.close();
-			
-			if (currentPointsItem != null) {
-				String currentPoints = currentPointsItem.getPoints();
-				if (currentPoints != null) {
-					currentTotalPoints = currentPointsItem.getPoints();
-				}
-			} else {
-				currentTotalPoints = "0";
-			}
-			
-			currentUser.setCurrentPoints(currentTotalPoints);
 			setTitle(quizItem.getWorldTitle());
 			
 			requiredItems = new String[4];

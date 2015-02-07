@@ -9,13 +9,11 @@ import com.movie.locations.database.AchievementImpl;
 import com.movie.locations.database.BagItemImpl;
 import com.movie.locations.database.GameTitleImpl;
 import com.movie.locations.database.LocationsImpl;
-import com.movie.locations.database.PointsItemImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
-import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.service.UserService;
@@ -58,6 +56,7 @@ public class NewsActivity extends ActionBarActivity {
 	private FragmentTransaction ft;
 	private Intent intent;
 	private Context context;
+	public UserService userService;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +74,9 @@ public class NewsActivity extends ActionBarActivity {
 			locationsBundle.putParcelable("localUser", localUser);
 			locationsFragment.setArguments(locationsBundle);
 			getSupportFragmentManager().beginTransaction().add(R.id.content_frame, locationsFragment).commit();
+
+			userService = new UserService(context);
+			userService.createUserImpl();
 			
 			navArray = new String[6];
 			navArray[0] = "Worlds";
@@ -438,31 +440,19 @@ public class NewsActivity extends ActionBarActivity {
 			TextView currentLevelText = (TextView) rootView.findViewById(R.id.levelText1);
 			TextView pointsText = (TextView) rootView.findViewById(R.id.pointsText1);
 			userText.setText(localUser.getDisplayName());
-			String FINAL_USER_ID = localUser.getUserId();
+			String userId = localUser.getUserId();
 			String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
-			Context pointsContext = getActivity().getApplicationContext();
-			PointsItemImpl pointsItemImpl = new PointsItemImpl(pointsContext);
-			pointsItemImpl.open();
-			PointsItem FINAL_USER_POINTS_ITEM = pointsItemImpl.selectRecordById(FINAL_USER_ID);
-			pointsItemImpl.close();
-			String FINAL_USER_POINTS;
-			
-			if (FINAL_USER_POINTS_ITEM != null) {
-				FINAL_USER_POINTS = FINAL_USER_POINTS_ITEM.getPoints();
-				localUser.setCurrentPoints(FINAL_USER_POINTS);
-			} else {
-				FINAL_USER_POINTS = "0";
-				localUser.setCurrentPoints(FINAL_USER_POINTS);
-			}
-			
-			int FINAL_USER_POINTS_INT = Integer.parseInt(FINAL_USER_POINTS);
+			User tempUser = userService.selectRecordById(userId);
+			String USER_POINTS = tempUser.getCurrentPoints();
+			localUser.setCurrentPoints(USER_POINTS);
+			int FINAL_USER_POINTS_INT = Integer.parseInt(USER_POINTS);
 			int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
 			String CURRENT_LEVEL_STRING = Integer.toString(currentLevel); 
 			currentLevelText.setText(CURRENT_LEVEL_STRING);
 			int[] levelRange = StaticSortingUtilities.getLevelRange();
 			int nextLevelIndex = Integer.parseInt(localUser.getCurrentLevel()) + 1;
 			int finalLevelCap = levelRange[nextLevelIndex];
-			String currentPointsString = FINAL_USER_POINTS + "/" + Integer.toString(finalLevelCap);
+			String currentPointsString = USER_POINTS + "/" + Integer.toString(finalLevelCap);
 			pointsText.setText(currentPointsString);
 			return rootView;
 		}
@@ -613,7 +603,6 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
-			final UserService userService = new UserService(context);
 			userService.createUserImpl();
 			
 	        String mobileNotifications = localUser.getMobileNotifications();
