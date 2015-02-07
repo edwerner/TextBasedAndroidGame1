@@ -233,17 +233,15 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			// UPDATE USER POINTS
 			String quizItemPointValue = updatedQuizItem.getPointValue();
 			int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
+			String currentPoints = currentUser.getCurrentPoints();
 			
-			User tempUser = userService.selectRecordById(userId);
-			String databasePoints = tempUser.getCurrentPoints();
-			
-			int databasePointsInt = Integer.parseInt(databasePoints);
-			int FINAL_USER_POINTS_INT = databasePointsInt - quizItemPointValueInt;
+			int currentPointsInt = Integer.parseInt(currentPoints);
+			int FINAL_USER_POINTS_INT = currentPointsInt - quizItemPointValueInt;
 			String updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);					
-			String CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
-			int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(CURRENT_USER_LEVEL);
-			int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
-			if (currentLevel < FINAL_CURRENT_USER_LEVEL_INT) {
+			String currentLevel = currentUser.getCurrentLevel();
+			int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(currentLevel);
+			int recommendedLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(currentLevel, FINAL_USER_POINTS_INT);
+			if (recommendedLevel < FINAL_CURRENT_USER_LEVEL_INT) {
 				int previousLevel = FINAL_CURRENT_USER_LEVEL_INT - 1;
 				String currentLevelString = Integer.toString(previousLevel);
 				userService.setCurrentLevel(userId, currentLevelString);
@@ -251,7 +249,8 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			}
 			
 			userService.setCurrentPoints(userId, updatedUserPointsString);
-
+			currentUser.setCurrentPoints(updatedUserPointsString);
+			
 			// RE-DRAW VIEW WITH UPDATED COLLECTION
 			locationQuizArrayAdapter.notifyDataSetChanged();
 

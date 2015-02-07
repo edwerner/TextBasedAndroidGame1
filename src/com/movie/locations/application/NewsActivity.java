@@ -14,6 +14,7 @@ import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
+import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.service.UserService;
@@ -167,7 +168,14 @@ public class NewsActivity extends ActionBarActivity {
 			}
 		}
 	}
-    
+
+	 @Override
+	 public void onResume() {
+		 String userId = localUser.getUserId();
+		 localUser = userService.selectRecordById(userId);
+		 super.onResume();
+	 }
+
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
@@ -440,10 +448,8 @@ public class NewsActivity extends ActionBarActivity {
 			TextView currentLevelText = (TextView) rootView.findViewById(R.id.levelText1);
 			TextView pointsText = (TextView) rootView.findViewById(R.id.pointsText1);
 			userText.setText(localUser.getDisplayName());
-			String userId = localUser.getUserId();
 			String FINAL_CURRENT_USER_LEVEL = localUser.getCurrentLevel();
-			User tempUser = userService.selectRecordById(userId);
-			String USER_POINTS = tempUser.getCurrentPoints();
+			String USER_POINTS = localUser.getCurrentPoints();
 			localUser.setCurrentPoints(USER_POINTS);
 			int FINAL_USER_POINTS_INT = Integer.parseInt(USER_POINTS);
 			int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
