@@ -481,12 +481,12 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					if (updatedUserDatabasePointsItem != null) {
 						String databasePoints = updatedUserDatabasePointsItem.getPoints();
 						int databasePointsInt = Integer.parseInt(databasePoints);
-						int updatedUserPointsInt = quizItemPointValueInt + databasePointsInt;
-						updatedUserPointsString = Integer.toString(updatedUserPointsInt);
+						final int FINAL_USER_POINTS_INT = quizItemPointValueInt + databasePointsInt;
+						updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);
 						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);						
 						String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
 						int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
-						int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
+//						int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
 						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
 
 						System.out.println("SHOULD BE CURRENT LEVEL: " + currentLevel);
