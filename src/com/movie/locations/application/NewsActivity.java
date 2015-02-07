@@ -6,7 +6,6 @@ import com.movie.locations.R;
 import com.movie.locations.adapter.GameTitleArrayAdapter;
 import com.movie.locations.adapter.NavMenuItemArrayAdapter;
 import com.movie.locations.database.AchievementImpl;
-import com.movie.locations.database.BagItemImpl;
 import com.movie.locations.database.GameTitleImpl;
 import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.domain.Achievement;
@@ -14,9 +13,9 @@ import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
-import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
+import com.movie.locations.service.BagItemService;
 import com.movie.locations.service.UserService;
 import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -292,7 +291,7 @@ public class NewsActivity extends ActionBarActivity {
 	private class BagItemListFragment extends Fragment {
 		
 		private ArrayList<BagItem> bagItemList;
-		private BagItemImpl bagItemImpl;
+		private BagItemService bagItemService;
 
 		public BagItemListFragment() {
 			// empty constructor
@@ -313,10 +312,9 @@ public class NewsActivity extends ActionBarActivity {
 			
 			Context bagContext = getActivity().getApplicationContext();
 			
-			bagItemImpl = new BagItemImpl(bagContext);
-			bagItemImpl.open();
-			bagItemList = bagItemImpl.selectRecords();
-			bagItemImpl.close();
+			bagItemService = new BagItemService(bagContext);
+			bagItemService.createBagItemImpl();
+			bagItemList = bagItemService.selectRecords();
 			
 			// sort the list
 			Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);

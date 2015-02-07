@@ -85,4 +85,11 @@ public class BagItemService implements IService {
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
 	}
+
+	public ArrayList<BagItem> selectRecords() {
+		bagItemImpl.open();
+		ArrayList<BagItem> bagItemArrayList = bagItemImpl.selectRecords();
+		bagItemImpl.close();
+		return bagItemArrayList;
+	}
 }
