@@ -22,6 +22,7 @@ public class QuizItemService implements IService {
 
 	private QuizItemImpl quizItemImpl;
 	private Context context;
+	private ArrayList<QuizItem> quizItemList;
 	
 	public QuizItemService(Context context) {
 		this.context = context;
@@ -113,24 +114,38 @@ public class QuizItemService implements IService {
 		QuizItem tempQuizItem = quizItemImpl.selectRecordById(result);
 		quizItemImpl.close();
 		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
+//		newsIntent.putExtra("scoreMod", "subtractPoints");
 		context.sendBroadcast(newsIntent);
 	}
 	
-	public void updateRecordAnswered(String recordId, String answered, String index) {
-		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
-		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+	public void updateRecordAnswered(String recordId, String answered) {
+//		Intent newsIntent = new Intent(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
+//		newsIntent.setAction(DatabaseChangedReceiver.ACTION_DATABASE_CHANGED);
 		
 		quizItemImpl.open();
 		quizItemImpl.updateRecordAnswered(recordId, answered);
-		quizItemImpl.updateRecordCorrectAnswerIndex(recordId, index);
-		QuizItem tempQuizItem = quizItemImpl.selectRecordById(recordId);
+//		QuizItem tempQuizItem = quizItemImpl.selectRecordById(recordId);
 		quizItemImpl.close();
-		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
-		context.sendBroadcast(newsIntent);
+//		newsIntent.putExtra("updatedQuizItem", tempQuizItem);
+//		newsIntent.putExtra("scoreMod", "addPoints");
+//		context.sendBroadcast(newsIntent);
 	}
 	
 	@Override
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
+	}
+
+	public ArrayList<QuizItem> selectRecords() {
+		quizItemImpl.open();
+		quizItemList = quizItemImpl.selectRecords();
+		quizItemImpl.close();
+		return quizItemList;
+	}
+
+	public void updateRecordCorrectAnswerIndex(String recordId, String correctAnswerIndex) {
+		quizItemImpl.open();
+		quizItemImpl.updateRecordCorrectAnswerIndex(recordId, correctAnswerIndex);
+		quizItemImpl.close();
 	}
 }
