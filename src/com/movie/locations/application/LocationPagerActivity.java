@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import com.movie.locations.R;
 import com.movie.locations.adapter.LocationArrayAdapter;
-import com.movie.locations.database.BagItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.User;
+import com.movie.locations.service.BagItemService;
 import com.movie.locations.service.UserService;
 import android.content.Context;
 import android.content.Intent;
@@ -65,10 +65,9 @@ public class LocationPagerActivity extends FragmentActivity {
 			Bundle bundle = getIntent().getExtras();
 			
 			// query database for records
-			BagItemImpl bagItemImpl = new BagItemImpl(this);
-			bagItemImpl.open();
-			ArrayList<BagItem> bagItemList = bagItemImpl.selectRecords();
-			bagItemImpl.close();
+			BagItemService bagItemService = new BagItemService(this);
+			bagItemService.createBagItemImpl();
+			ArrayList<BagItem> bagItemList = bagItemService.selectRecords();
 			
 			// set parcelable array list
 			bagItemArrayList = new BagItemArrayList(); 

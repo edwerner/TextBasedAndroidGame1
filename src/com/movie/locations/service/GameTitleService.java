@@ -84,4 +84,19 @@ public class GameTitleService implements IService {
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
 	}
+
+	public ArrayList<GameTitle> selectRecordsByType(String gameTitleType) {
+		gameTitleImpl.open();
+		ArrayList<GameTitle> gameTitleArrayList = gameTitleImpl.selectRecordsByType(gameTitleType);
+		gameTitleImpl.close();
+		return gameTitleArrayList;
+	}
+
+	public ArrayList<GameTitle> selectRecordsByTypeAndLevel(String gameTitleType,
+			String currentUserLevel) {
+		gameTitleImpl.open();
+		ArrayList<GameTitle> gameTitleArrayList = gameTitleImpl.selectRecordsByTypeAndLevel(gameTitleType, currentUserLevel);
+		gameTitleImpl.close();
+		return gameTitleArrayList;
+	}
 }

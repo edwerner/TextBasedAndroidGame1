@@ -39,7 +39,7 @@ import com.movie.locations.domain.User;
 import com.movie.locations.service.AchievementService;
 import com.movie.locations.service.BagItemService;
 import com.movie.locations.service.ConclusionCardService;
-import com.movie.locations.service.FilmLocationService;
+import com.movie.locations.service.LocationService;
 import com.movie.locations.service.GameTitleService;
 import com.movie.locations.service.QuizItemService;
 import com.movie.locations.service.UserService;
@@ -534,7 +534,7 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	private void createDataServices() {
-		FilmLocationService locationService = new FilmLocationService(context);
+		LocationService locationService = new LocationService(context);
 		InputStream locationStream = getResources().openRawResource(R.raw.locations_copy);
 		locationService.createContentValues(locationStream);
 		locationService.createLocationsImpl();

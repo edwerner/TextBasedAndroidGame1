@@ -15,12 +15,12 @@ import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.utility.CSVFile;
 
-public class FilmLocationService implements IService {
+public class LocationService implements IService {
 	
 	private Context context;
 	private LocationsImpl locationsImpl;
 
-	public FilmLocationService(Context context) {
+	public LocationService(Context context) {
 		this.context = context;
 	}
 	
@@ -87,5 +87,12 @@ public class FilmLocationService implements IService {
 	@Override
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)","");
+	}
+
+	public ArrayList<FilmLocation> selectRecords() {
+		locationsImpl.open();
+		ArrayList<FilmLocation> locationArrayList = locationsImpl.selectRecords();
+		locationsImpl.close();
+		return locationArrayList;
 	}
 }

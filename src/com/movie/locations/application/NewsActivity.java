@@ -5,9 +5,6 @@ import java.util.Collections;
 import com.movie.locations.R;
 import com.movie.locations.adapter.GameTitleArrayAdapter;
 import com.movie.locations.adapter.NavMenuItemArrayAdapter;
-import com.movie.locations.database.AchievementImpl;
-import com.movie.locations.database.GameTitleImpl;
-import com.movie.locations.database.LocationsImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.FilmLocation;
@@ -15,7 +12,10 @@ import com.movie.locations.domain.GameTitle;
 import com.movie.locations.domain.NavMenuItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
+import com.movie.locations.service.AchievementService;
 import com.movie.locations.service.BagItemService;
+import com.movie.locations.service.GameTitleService;
+import com.movie.locations.service.LocationService;
 import com.movie.locations.service.UserService;
 import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -57,6 +57,7 @@ public class NewsActivity extends ActionBarActivity {
 	private Intent intent;
 	private Context context;
 	public UserService userService;
+	public GameTitleService gameTitleService;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,9 @@ public class NewsActivity extends ActionBarActivity {
 
 			userService = new UserService(context);
 			userService.createUserImpl();
+			
+			gameTitleService = new GameTitleService(context);
+			gameTitleService.createGameTitleImpl();
 			
 			navArray = new String[6];
 			navArray[0] = "Worlds";
@@ -289,9 +293,6 @@ public class NewsActivity extends ActionBarActivity {
 	}
 	
 	private class BagItemListFragment extends Fragment {
-		
-		private ArrayList<BagItem> bagItemList;
-		private BagItemService bagItemService;
 
 		public BagItemListFragment() {
 			// empty constructor
@@ -302,19 +303,14 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_bag_item_list, container, false);
 			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
-			Context context = getActivity().getApplicationContext();
-			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-			String WORLD_TITLE = "BAG_ITEM_TITLE";
-			
-			gameTitleImpl.open();
-			ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByType(WORLD_TITLE);
-			gameTitleImpl.close();
-			
+
 			Context bagContext = getActivity().getApplicationContext();
 			
-			bagItemService = new BagItemService(bagContext);
+			ArrayList<GameTitle> gameTitleList = gameTitleService.selectRecordsByType("BAG_ITEM_TITLE");
+			
+			BagItemService bagItemService = new BagItemService(bagContext);
 			bagItemService.createBagItemImpl();
-			bagItemList = bagItemService.selectRecords();
+			ArrayList<BagItem> bagItemList = bagItemService.selectRecords();
 			
 			// sort the list
 			Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
@@ -356,8 +352,6 @@ public class NewsActivity extends ActionBarActivity {
 	}
 	
 	private class AchievementsFragment extends Fragment {
-		private ArrayList<Achievement> achievementList;
-		private AchievementImpl achievementImpl;
 
 		public AchievementsFragment() {
 			// empty constructor
@@ -366,24 +360,18 @@ public class NewsActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_bag_item_list, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_achievement, container, false);
 			User localUser = getArguments().getParcelable("localUser");
 
 			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
-			Context context = getActivity().getApplicationContext();
-			GameTitleImpl gameTitleImpl = new GameTitleImpl(context); 
-			String ACHIEVEMENT_TITLE = "ACHIEVEMENT_TITLE";
-			String currentUserLevel = localUser.getCurrentLevel();
-			
-			gameTitleImpl.open();
-			ArrayList<GameTitle> gameTitleList = gameTitleImpl.selectRecordsByTypeAndLevel(ACHIEVEMENT_TITLE, currentUserLevel);
-			gameTitleImpl.close();
-			
 			Context achievementContext = getActivity().getApplicationContext();
-			achievementImpl = new AchievementImpl(achievementContext);
-			achievementImpl.open();
-			achievementList = achievementImpl.selectRecordsByLevel(currentUserLevel);
-			achievementImpl.close();
+			
+			String currentUserLevel = localUser.getCurrentLevel();
+			ArrayList<GameTitle> gameTitleList = gameTitleService.selectRecordsByTypeAndLevel("ACHIEVEMENT_TITLE", currentUserLevel);
+
+			AchievementService achievementService = new AchievementService(achievementContext);
+			achievementService.createAchievementImpl();
+			ArrayList<Achievement> achievementList = achievementService.selectRecordsByLevel(currentUserLevel);
 
 			// sort the list
 			Collections.sort(gameTitleList, StaticSortingUtilities.GAME_TITLES_ALPHABETICAL_ORDER);
@@ -483,11 +471,12 @@ public class NewsActivity extends ActionBarActivity {
 			ImageView gameWorldsImage2 = (ImageView) rootView.findViewById(R.id.gameWorldsImage2);
 			ImageView gameWorldsImage3 = (ImageView) rootView.findViewById(R.id.gameWorldsImage3);
 			ImageView gameWorldsImage4 = (ImageView) rootView.findViewById(R.id.gameWorldsImage4);
-			Context context = getActivity().getApplicationContext();
-			LocationsImpl locationsImpl = new LocationsImpl(context);
-			locationsImpl.open();
-			ArrayList<FilmLocation> defaultLocationList = locationsImpl.selectRecords();
-			locationsImpl.close();
+			
+			Context locationsContext = getActivity().getApplicationContext();
+			
+			LocationService locationService = new LocationService(locationsContext);
+			locationService.createLocationsImpl();
+			ArrayList<FilmLocation> locationsArrayList = locationService.selectRecords();
 			
 			final FilmArrayList defaultLocationArrayList = new FilmArrayList();
 			final ArrayList<FilmLocation> worldLocationList1 = new ArrayList<FilmLocation>();
@@ -495,8 +484,8 @@ public class NewsActivity extends ActionBarActivity {
 			final ArrayList<FilmLocation> worldLocationList3 = new ArrayList<FilmLocation>();
 			final ArrayList<FilmLocation> worldLocationList4 = new ArrayList<FilmLocation>();
 			
-			for (int i = 0; i < defaultLocationList.size(); i++) {
-				FilmLocation tempLocation = defaultLocationList.get(i);
+			for (int i = 0; i < locationsArrayList.size(); i++) {
+				FilmLocation tempLocation = locationsArrayList.get(i);
 				if (i <= 24) {
 					worldLocationList1.add(tempLocation);
 				} else if (i > 24 && i <= 49) {
@@ -606,15 +595,10 @@ public class NewsActivity extends ActionBarActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-
-			userService.createUserImpl();
-			
 	        String mobileNotifications = localUser.getMobileNotifications();
-	        
 	        String[] preferenceSettings = {
 	        		mobileNotifications
 	        };
-	        
 	        int[] preferenceCheckboxes = { 
 	        		R.id.checkboxNotifications1
 	        };

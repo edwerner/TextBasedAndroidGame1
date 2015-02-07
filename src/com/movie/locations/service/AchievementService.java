@@ -86,4 +86,11 @@ public class AchievementService implements IService {
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
 	}
+
+	public ArrayList<Achievement> selectRecordsByLevel(String currentUserLevel) {
+		achievementImpl.open();
+		ArrayList<Achievement> achievementArrayList = achievementImpl.selectRecordsByLevel(currentUserLevel);
+		achievementImpl.close();
+		return achievementArrayList;
+	}
 }
