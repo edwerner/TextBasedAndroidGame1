@@ -43,6 +43,8 @@ import com.movie.locations.service.ConclusionCardService;
 import com.movie.locations.service.FilmLocationService;
 import com.movie.locations.service.GameTitleService;
 import com.movie.locations.service.QuizItemService;
+import com.movie.locations.service.UserService;
+
 import android.os.AsyncTask;
 import android.content.Context;
 import android.view.Menu;
@@ -130,6 +132,7 @@ public class MainActivity extends FragmentActivity implements
 	private GoogleCloudMessaging gcm;
 	private String regid;
 	private UserImpl usersource;
+	private UserService userService;
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 	public static final String PROPERTY_REG_ID = "registration_id";
 	private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -479,8 +482,8 @@ public class MainActivity extends FragmentActivity implements
 		mSignInClicked = false;
 		Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
 		
-		// open user database connection
-		usersource.open();
+		UserService userService = new UserService(context);
+		userService.createUserImpl();
 		
 		String userImageUrl = "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50";
 		Image userImage = currentUser.getImage();
@@ -490,7 +493,7 @@ public class MainActivity extends FragmentActivity implements
 			userImageUrl = userImage.getUrl();
 		}
 		
-		existingUser = usersource.selectRecordById(currentUser.getId().toString());
+		existingUser = userService.selectRecordById(currentUser.getId().toString());
 		String currentUserSid = currentUser.getId();
 		
 		if (existingUser == null) {
@@ -514,7 +517,7 @@ public class MainActivity extends FragmentActivity implements
 			localUser.setMobileNotifications("true");
 			
 			// persist new user
-			usersource.createRecord(localUser);
+			userService.createRecord(localUser);
 		} else {
 
 			// create new user with attributes
@@ -533,17 +536,7 @@ public class MainActivity extends FragmentActivity implements
 			localUser.setWorldCount(existingUser.getWorldCount());
 			localUser.setEmailNotifications(existingUser.getEmailNotifications());
 			localUser.setMobileNotifications(existingUser.getMobileNotifications());
-			System.out.println("EXISTING USER LOGIN - CURRENT POINTS: " + existingUser.getCurrentPoints());
 		}
-		
-		ArrayList<User> userList = usersource.selectRecords();
-		
-		for (User user : userList) {
-			System.out.println("JUST ADDED NEW USER - CLIENT SID: " + user.getUserSid());
-			System.out.println("JUST ADDED NEW USER - CURRENT POINTS: " + user.getCurrentPoints());
-		}
-		
-		usersource.close();
 	}
 
 	private void createDataServices() {
