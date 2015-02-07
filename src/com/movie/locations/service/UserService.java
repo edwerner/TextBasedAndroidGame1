@@ -53,4 +53,11 @@ public class UserService implements IService {
 		return null;
 	}
 
+	public void updateUserNotificationPreferences(String userId,
+			String email, String notifications) {
+		userImpl.open();
+		userImpl.updateUserNotificationPreferences(userId, email, notifications);
+		userImpl.close();	
+	}
+
 }

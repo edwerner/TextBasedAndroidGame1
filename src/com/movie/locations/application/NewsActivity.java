@@ -19,6 +19,7 @@ import com.movie.locations.domain.NavMenuItem;
 import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.domain.FilmArrayList;
+import com.movie.locations.service.UserService;
 import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
@@ -60,7 +61,6 @@ public class NewsActivity extends ActionBarActivity {
 	private FragmentTransaction ft;
 	private Intent intent;
 	private Context context;
-	private UserImpl userImpl;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,6 @@ public class NewsActivity extends ActionBarActivity {
 			locationsBundle.putParcelable("localUser", localUser);
 			locationsFragment.setArguments(locationsBundle);
 			getSupportFragmentManager().beginTransaction().add(R.id.content_frame, locationsFragment).commit();
-			userImpl = new UserImpl(context);
 			
 			navArray = new String[6];
 			navArray[0] = "Worlds";
@@ -617,6 +616,9 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 
+			final UserService userService = new UserService(context);
+			userService.createUserImpl();
+			
 	        String mobileNotifications = localUser.getMobileNotifications();
 	        
 	        String[] preferenceSettings = {
@@ -646,89 +648,23 @@ public class NewsActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View view) {
 					String FINAL_MOBILE_NOTIFICATIONS = localUser.getMobileNotifications();
-					UpdateUserPreferencesTaskRunner runner = new UpdateUserPreferencesTaskRunner();
-					runner.execute(FINAL_MOBILE_NOTIFICATIONS);
+					
+					String FINAL_USER_ID = localUser.getUserId();
+					String message = "Something went wrong";
+					
+					if (FINAL_MOBILE_NOTIFICATIONS.equals("true")) {
+						message = "Notifications on";
+					} else {
+						message = "Notifications off";
+					}
+
+					userService.updateUserNotificationPreferences(FINAL_USER_ID, "false", FINAL_MOBILE_NOTIFICATIONS);
+					
+					Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 				}
 			});
 			
 			return rootView;
-		}
-		
-		private class UpdateUserPreferencesTaskRunner extends AsyncTask<String, String, String> {
-
-			private String resp;
-			private ProgressDialog dialog;
-			
-			@Override
-			protected String doInBackground(String... params) {
-				publishProgress("Sleeping...");
-				try {
-						String url = params[0];
-						resp = url;
-				} catch (Exception e) {
-					e.printStackTrace();
-					resp = e.getMessage();
-				}
-				
-				return resp;
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-			 */
-			@Override
-			protected void onPostExecute(String result) {
-				// execution of result of Long time consuming operation
-				if (dialog != null) {
-					dialog.dismiss();
-				}
-				
-				userImpl.open();
-				String FINAL_USER_ID = localUser.getUserId();
-				String message = "Something went wrong";
-				
-				if (result.equals("true")) {
-					userImpl.updateUserNotificationPreferences(FINAL_USER_ID, "false", result);
-					message = "Notifications on";
-				} else {
-					userImpl.updateUserNotificationPreferences(FINAL_USER_ID, "false", "false");
-					message = "Notifications off";
-				}
-				userImpl.close();
-				
-				Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onPreExecute()
-			 */
-			@Override
-			protected void onPreExecute() {
-				// Things to be done before execution of long running operation. For
-				// example showing ProgessDialog
-				dialog = new ProgressDialog(context);
-				dialog.setTitle("Updating...");
-				dialog.setMessage("Saving your preferences on the server");
-				dialog.setCancelable(false);
-				dialog.setIndeterminate(true);
-				dialog.show();
-			}
-
-			/*
-			 * (non-Javadoc)
-			 * 
-			 * @see android.os.AsyncTask#onProgressUpdate(Progress[])
-			 */
-			@Override
-			protected void onProgressUpdate(String... text) {
-				// finalResult.setText(text[0]);
-				// Things to be done while execution of long running operation is in
-				// progress. For example updating ProgessDialog
-			}
 		}
 	}
 }
