@@ -35,7 +35,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.movie.locations.R;
-import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.User;
 import com.movie.locations.service.AchievementService;
 import com.movie.locations.service.BagItemService;
@@ -131,8 +130,6 @@ public class MainActivity extends FragmentActivity implements
 
 	private GoogleCloudMessaging gcm;
 	private String regid;
-	private UserImpl usersource;
-	private UserService userService;
 	private static final String PROPERTY_APP_VERSION = "appVersion";
 	public static final String PROPERTY_REG_ID = "registration_id";
 	private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -170,9 +167,6 @@ public class MainActivity extends FragmentActivity implements
 		}
 
 		mGoogleApiClient = buildGoogleApiClient();
-
-		// to re-initialize database uncomment async task here
-		usersource = new UserImpl(this);
 		
 		switch (mSignInProgress) {
 		case STATE_DEFAULT:

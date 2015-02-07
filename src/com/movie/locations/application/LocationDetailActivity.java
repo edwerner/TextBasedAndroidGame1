@@ -7,20 +7,18 @@ import com.movie.locations.application.QuizActivity;
 import com.movie.locations.R;
 import com.movie.locations.database.AchievementImpl;
 import com.movie.locations.database.ConclusionCardImpl;
-import com.movie.locations.database.PointsItemImpl;
-import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;
 import com.movie.locations.domain.FilmArrayList;
 import com.movie.locations.domain.FilmLocation;
-import com.movie.locations.domain.PointsItem;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
 import com.movie.locations.service.QuizItemService;
+import com.movie.locations.service.UserService;
 import com.movie.locations.utility.StaticSortingUtilities;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.app.ActionBar;
@@ -77,11 +75,10 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	private BagItemArrayList bagItemArrayList;
 	private FilmArrayList locationArrayList;
 	private FilmLocation currentLocation;
-//	private QuizItemImpl quizItemImpl;
 	private UserImpl userImpl;
 	private QuizItemArrayList localQuizItemArrayList;
 	private IntentFilter filter;
-	private PointsItemImpl pointsItemImpl;
+//	private PointsItemImpl pointsItemImpl;
 	private AchievementImpl achievementImpl;
 	private Achievement levelAchievement;
 	private Context context;
@@ -90,6 +87,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	private LocationQuizArrayAdapter locationQuizArrayAdapter;
 	private ListView locationsList;
 	private QuizItemService quizItemService;
+	private UserService userService;
 	
 	@SuppressWarnings("deprecation")
 	@Override
@@ -148,10 +146,13 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			quizItemService.createQuizItemImpl();
 			newQuizList = quizItemService.selectRecords();
 			
+			userService = new UserService(context);
+			userService.createUserImpl();
+			
 			localQuizItemArrayList = new QuizItemArrayList();
 			localQuizItemArrayList.setQuizList(newQuizList);
 			intent.putExtra("localQuizItemArrayList", localQuizItemArrayList);
-			pointsItemImpl = new PointsItemImpl(context);
+//			pointsItemImpl = new PointsItemImpl(context);
 			achievementImpl = new AchievementImpl(context);
 			String currentUserLevelString = currentUser.getCurrentLevel();
 			int currentLevelInt = Integer.parseInt(currentUserLevelString);
@@ -224,15 +225,10 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			
 		public void onReceive(Context context, Intent intent) {
 
-			String currentUserId = currentUser.getUserId();
+			String userId = currentUser.getUserId();
 			
 			Bundle extras = intent.getExtras();
 			QuizItem updatedQuizItem = extras.getParcelable("updatedQuizItem");
-			String updatedUserPointsString = null;
-
-			pointsItemImpl.open();
-//			locationQuizArrayAdapter.remove(locationQuizArrayAdapter.getItem(0));
-//			locationQuizArrayAdapter.insert(updatedQuizItem, 0);
 			
 			for (int i = 0; i < locationQuizArrayAdapter.getCount(); i++) {
 				final QuizItem item = locationQuizArrayAdapter.getItem(i);
@@ -242,52 +238,27 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 				}
 			}
 			
-			PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
-
-			System.out.println("QUIZ ITEM DATABASE CHANGED: " + updatedUserDatabasePointsItem);
 			// UPDATE USER POINTS
 			String quizItemPointValue = updatedQuizItem.getPointValue();
 			int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
 			
-			if (updatedUserDatabasePointsItem != null) {
-//				System.out.println("updatedUserDatabasePointsItem not null: "  + quizItemPointValue);
-				String databasePoints = updatedUserDatabasePointsItem.getPoints();
-				int databasePointsInt = Integer.parseInt(databasePoints);
-				int updatedUserPointsInt = 0;
-//				String scoreMod = extras.getString("scoreMod");
-
-//				if (scoreMod.equals("addPoints")) {
-//					updatedUserPointsInt = databasePointsInt + quizItemPointValueInt;
-//				} else if (scoreMod.equals("subtractPoints")) {
-					int FINAL_USER_POINTS_INT = databasePointsInt - quizItemPointValueInt;
-//				}
-				updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);
-//				pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);						
-				String CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
-				int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(CURRENT_USER_LEVEL);
-//				int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
-				int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
-				
-//				System.out.println("FINAL_CURRENT_USER_LEVEL HANDLER: " + FINAL_CURRENT_USER_LEVEL);
-				if (currentLevel < FINAL_CURRENT_USER_LEVEL_INT) {
-					int previousLevel = FINAL_CURRENT_USER_LEVEL_INT - 1;
-					String currentLevelString = Integer.toString(previousLevel);
-//					levelUpCurrentUser(currentUserId, currentLevelString);
-					currentUser.setCurrentLevel(currentLevelString);
-					System.out.println("FINAL_CURRENT_USER_LEVEL HANDLER: " + currentLevelString);
-				}
-				
-			} else {
-				PointsItem newPointsItem = new PointsItem();
-				newPointsItem.setUserId(currentUserId);
-				newPointsItem.setPointsUserId(currentUserId);
-				newPointsItem.setPoints(quizItemPointValue);
-				updatedUserPointsString = newPointsItem.getPoints();
-				pointsItemImpl.createRecord(newPointsItem);
+			User tempUser = userService.selectRecordById(userId);
+			String databasePoints = tempUser.getCurrentPoints();
+			
+			int databasePointsInt = Integer.parseInt(databasePoints);
+			int FINAL_USER_POINTS_INT = databasePointsInt - quizItemPointValueInt;
+			String updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);					
+			String CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
+			int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(CURRENT_USER_LEVEL);
+			int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+			if (currentLevel < FINAL_CURRENT_USER_LEVEL_INT) {
+				int previousLevel = FINAL_CURRENT_USER_LEVEL_INT - 1;
+				String currentLevelString = Integer.toString(previousLevel);
+				userService.setCurrentLevel(userId, currentLevelString);
+				currentUser.setCurrentLevel(currentLevelString);
 			}
-
-			pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);
-			pointsItemImpl.close();
+			
+			userService.setCurrentPoints(userId, updatedUserPointsString);
 
 			// RE-DRAW VIEW WITH UPDATED COLLECTION
 			locationQuizArrayAdapter.notifyDataSetChanged();
@@ -442,10 +413,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		protected ImageLoader imageLoader = ImageLoader.getInstance();
 		private QuizItem currentQuizItem;
 		private FilmLocation localCurrentLocation;
-		private PointsItemImpl pointsItemImpl;
-		private User fragmentUser;
 		private BagItemArrayList bagItemArrayList;
-		private QuizItemImpl quizItemImpl;
 		private FilmArrayList locationArrayList;
 		private ConclusionCardImpl conclusionCardImpl;
 		
@@ -471,39 +439,21 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 					// UPDATE USER POINTS
 					String quizItemPointValue = currentQuizItem.getPointValue();
 					int quizItemPointValueInt = Integer.parseInt(quizItemPointValue);
-					String currentUserId = currentUser.getUserId();
-					
-					pointsItemImpl.open();
-//					quizItemImpl.open();
-					
-					PointsItem updatedUserDatabasePointsItem = pointsItemImpl.selectRecordById(currentUserId);
-					
-					if (updatedUserDatabasePointsItem != null) {
-						String databasePoints = updatedUserDatabasePointsItem.getPoints();
-						int databasePointsInt = Integer.parseInt(databasePoints);
-						final int FINAL_USER_POINTS_INT = quizItemPointValueInt + databasePointsInt;
-						updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);
-						pointsItemImpl.updateRecordPointsValue(currentUserId, updatedUserPointsString);						
-						String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
-						int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
-//						int FINAL_USER_POINTS_INT = Integer.parseInt(updatedUserPointsString);
-						int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+					String userId = currentUser.getUserId();
 
-						System.out.println("SHOULD BE CURRENT LEVEL: " + currentLevel);
-						System.out.println("CURRENT LEVEL - FINAL_CURRENT_USER_LEVEL_INT: " + FINAL_CURRENT_USER_LEVEL_INT);
-						if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
-							String currentLevelString = Integer.toString(currentLevel);
-							levelUpCurrentUser(currentUserId, currentLevelString);
-//							currentUser.setCurrentLevel(currentLevelString);
-						}
-						
-					} else {					
-						PointsItem newPointsItem = new PointsItem();
-						newPointsItem.setUserId(currentUserId);
-						newPointsItem.setPointsUserId(currentUserId);
-						newPointsItem.setPoints(quizItemPointValue);
-						pointsItemImpl.createRecord(newPointsItem);
-						updatedUserPointsString = newPointsItem.getPoints();
+					User tempUser = userService.selectRecordById(userId);
+					String databasePoints = tempUser.getCurrentPoints();
+					
+					int databasePointsInt = Integer.parseInt(databasePoints);
+					final int FINAL_USER_POINTS_INT = quizItemPointValueInt + databasePointsInt;
+					updatedUserPointsString = Integer.toString(FINAL_USER_POINTS_INT);
+					userService.setCurrentPoints(userId, updatedUserPointsString);						
+					String FINAL_CURRENT_USER_LEVEL = currentUser.getCurrentLevel();
+					int FINAL_CURRENT_USER_LEVEL_INT = Integer.parseInt(FINAL_CURRENT_USER_LEVEL);
+					int currentLevel = StaticSortingUtilities.CHECK_LEVEL_RANGE(FINAL_CURRENT_USER_LEVEL, FINAL_USER_POINTS_INT);
+					if (currentLevel > FINAL_CURRENT_USER_LEVEL_INT) {
+						String currentLevelString = Integer.toString(currentLevel);
+						levelUpCurrentUser(userId, currentLevelString);
 					}
 
 					for (int i = 0; i < newQuizList.size(); i++) {
@@ -519,11 +469,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 							locationQuizArrayAdapter.insert(currentQuizItem, i);
 						}
 					}
-					
-					pointsItemImpl.close();
-//					quizItemImpl.close();
- 
-					
+	
 					quizItemService.updateRecordAnswered(currentQuizItem.getQuestionId(),
 							currentQuizItem.getAnswered());
 					quizItemService.updateRecordCorrectAnswerIndex(currentQuizItem.getQuestionId(), 
@@ -565,14 +511,12 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			
 			View rootView = inflater.inflate(R.layout.fragment_film_detail, container, false);
 
-			conclusionCardImpl = new ConclusionCardImpl(context);			
-			fragmentUser = getArguments().getParcelable("fragmentUser");
+			conclusionCardImpl = new ConclusionCardImpl(context);
 			levelAchievement = getArguments().getParcelable("levelAchievement");
 			quizItem = getArguments().getParcelable("quizItem");
 			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");
 			locationArrayList = getArguments().getParcelable("locationArrayList");
-			pointsItemImpl = new PointsItemImpl(context);
-			quizItemImpl = new QuizItemImpl(context);
+//			pointsItemImpl = new PointsItemImpl(context);
 			userImpl = new UserImpl(context);
 			localQuizItemArrayList = getArguments().getParcelable("localQuizItemArrayList");
 			localCurrentLocation = getArguments().getParcelable("localCurrentLocation");

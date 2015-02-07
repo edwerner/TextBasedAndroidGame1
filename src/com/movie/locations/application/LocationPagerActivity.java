@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import com.movie.locations.R;
 import com.movie.locations.adapter.LocationArrayAdapter;
 import com.movie.locations.database.BagItemImpl;
-import com.movie.locations.database.QuizItemImpl;
 import com.movie.locations.domain.BagItem;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.FilmArrayList;
@@ -14,6 +13,7 @@ import com.movie.locations.domain.FilmLocation;
 import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.User;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
+import com.movie.locations.service.QuizItemService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,8 +53,7 @@ public class LocationPagerActivity extends FragmentActivity {
 	private FilmArrayList locationArrayList;
 	private BagItemArrayList bagItemArrayList;
 	private FilmLocation currentLocation;
-	private QuizItemImpl quizItemImpl;
-	private ArrayList<QuizItem> newQuizList;
+	private ArrayList<QuizItem> quizItemList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -109,10 +108,9 @@ public class LocationPagerActivity extends FragmentActivity {
 			// Set up the ViewPager with the sections adapter.
 			mViewPager = (ViewPager) findViewById(R.id.pager);
 			mViewPager.setAdapter(mSectionsPagerAdapter);
-			quizItemImpl = new QuizItemImpl(context);
-			quizItemImpl.open();
-			newQuizList = quizItemImpl.selectRecords();
-			quizItemImpl.close();		
+			QuizItemService quizItemService = new QuizItemService(context);
+			quizItemService.createQuizItemImpl();
+			quizItemList = quizItemService.selectRecords();
 		}
 	}
 
@@ -220,10 +218,10 @@ public class LocationPagerActivity extends FragmentActivity {
 		
 		public void prepareArrayAdapterData(View rootView) {
 			ArrayList<QuizItem> finalQuizList = new ArrayList<QuizItem>();
-			QuizItem firstLocation = newQuizList.get(0);
+			QuizItem firstLocation = quizItemList.get(0);
 			currentTitle = firstLocation.getWorldTitle();
 			
-			for (QuizItem quizItem : newQuizList) {
+			for (QuizItem quizItem : quizItemList) {
 				if (quizItem.getWorldTitle().equals(currentTitle)) {
 					finalQuizList.add(quizItem);
 				}

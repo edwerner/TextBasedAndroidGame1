@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import com.google.android.gms.plus.PlusShare;
 import com.movie.locations.R;
-import com.movie.locations.database.UserImpl;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;
-import com.movie.locations.domain.PointsItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
@@ -27,14 +25,8 @@ import android.widget.TextView;
 
 public class ConclusionActivity extends ActionBarActivity {
 
-	private String pointsData;
-	private String currentUserId;
-	private PointsItem pointsItem;
-	private String worldCount;
 	private BagItemArrayList bagItemArrayList;
 	private ConclusionCard conclusionCard;
-	private UserImpl userSource;
-	private String currentLevelString;
 	private String currentUserPoints;
 	private String pointValue;
 	private String updatedPoints;
@@ -50,14 +42,9 @@ public class ConclusionActivity extends ActionBarActivity {
 			Bundle extras = intent.getExtras();
 			
 			bagItemArrayList = extras.getParcelable("bagItemArrayList");
-			currentUserId = extras.getString("currentUserId");
-			pointsItem = extras.getParcelable("pointsItem");
 			pointValue = extras.getString("pointValue");
-			worldCount = extras.getString("worldCount");
-			currentLevelString = extras.getString("currentLevel");
 			conclusionCard = extras.getParcelable("conclusionCard");
 			currentUserPoints = extras.getString("currentUserPoints");
-			userSource = new UserImpl(this);
 
 			Fragment conclusionFragment = new ConclusionFragment(); 
 			Bundle bundle = new Bundle();
@@ -70,33 +57,6 @@ public class ConclusionActivity extends ActionBarActivity {
 			
 			getSupportFragmentManager().beginTransaction()
 					.add(R.id.container, conclusionFragment).commit();	
-		}
-	}
-	
-	public void updatePointsDatabase() {
-
-		updatedPoints = null;
-		pointsData = pointsItem.getPoints();
-
-		if (pointsData != null) {
-			// compose updated point sums
-			int pointsSum = Integer.parseInt(pointsData);
-			updatedPoints = Integer.toString(pointsSum);
-			userSource.open();
-			
-			// update record with all current data
-			userSource.updateRecordBonusPointsValue(currentUserId, updatedPoints, null);
-			
-			// UPDATE WORLD COUNT
-			if (worldCount != null) {
-				userSource.updateWorldCount(currentUserId, worldCount);
-			}
-			
-			if (currentLevelString != null) {
-				userSource.updateCurrentUserLevel(currentUserId, currentLevelString);
-			}
-			
-			userSource.close();
 		}
 	}
 

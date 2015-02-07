@@ -119,11 +119,11 @@ public class PointsItemImpl extends SQLiteOpenHelper implements IDatabase {
 		ContentValues pointsObject = new ContentValues();
 		
 		if (updatedPoints != null) {
-			pointsObject.put(COLUMN_POINTS, updatedPoints);	
+			pointsObject.put(COLUMN_POINTS, updatedPoints);
 		}
 		
 		if (updatedBonusPoints != null) {
-			pointsObject.put(COLUMN_BONUS_POINTS, updatedBonusPoints);	
+			pointsObject.put(COLUMN_BONUS_POINTS, updatedBonusPoints);
 		}
 		
 		database.update(TABLE_NAME, pointsObject, COLUMN_USER_ID

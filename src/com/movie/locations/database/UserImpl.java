@@ -122,19 +122,27 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 		return userCursor;
 	}
 
-	public void updateRecordBonusPointsValue(String recordId,
-			String updatedPoints, String updatedBonusPoints) {
+	public void setCurrentPoints(String recordId,
+			String updatedPoints) {
 		ContentValues pointsObject = new ContentValues();
 
 		if (updatedPoints != null) {
 			pointsObject.put(COLUMN_ANSWER_CURRENT_POINTS, updatedPoints);
 		}
 
-		if (updatedBonusPoints != null) {
-			pointsObject.put(COLUMN_BONUS_POINTS, updatedBonusPoints);
+		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
+				+ recordId + "'", null);
+	}
+
+	public void setCurrentLevel(String recordId,
+			String updatedPoints) {
+		ContentValues levelObject = new ContentValues();
+
+		if (updatedPoints != null) {
+			levelObject.put(COLUMN_CURRENT_LEVEL, updatedPoints);
 		}
 
-		database.update(TABLE_USERS, pointsObject, COLUMN_ID + "=" + "'"
+		database.update(TABLE_USERS, levelObject, COLUMN_ID + "=" + "'"
 				+ recordId + "'", null);
 	}
 	
@@ -156,7 +164,7 @@ public class UserImpl extends SQLiteOpenHelper implements IDatabase {
 				+ recordId + "'", null);
 	}
 
-	public void updateWorldCount(String recordId, String updatedWorldCount) {
+	public void setWorldCount(String recordId, String updatedWorldCount) {
 		ContentValues pointsObject = new ContentValues();
 
 		if (updatedWorldCount != null) {

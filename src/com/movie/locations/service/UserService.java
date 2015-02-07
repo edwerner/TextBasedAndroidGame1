@@ -34,6 +34,30 @@ public class UserService implements IService {
 		userImpl.close();
 	}
 	
+	public void setCurrentPoints(String userId, String updatedPoints) {
+		userImpl.open();
+		userImpl.setCurrentPoints(userId, updatedPoints);
+		userImpl.close();
+	}
+	
+	public void setCurrentLevel(String userId, String updatedLevel) {
+		userImpl.open();
+		userImpl.close();
+	}
+
+	public void setWorldCount(String currentUserId, String updatedWorldCount) {
+		userImpl.open();
+		userImpl.setWorldCount(currentUserId, updatedWorldCount);
+		userImpl.close();
+	}
+
+	public void updateUserNotificationPreferences(String userId,
+			String email, String notifications) {
+		userImpl.open();
+		userImpl.updateUserNotificationPreferences(userId, email, notifications);
+		userImpl.close();
+	}
+	
 	@Override
 	public JsonNode createJsonNode(String msg) throws JsonParseException,
 			IOException {
@@ -52,12 +76,4 @@ public class UserService implements IService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public void updateUserNotificationPreferences(String userId,
-			String email, String notifications) {
-		userImpl.open();
-		userImpl.updateUserNotificationPreferences(userId, email, notifications);
-		userImpl.close();	
-	}
-
 }
