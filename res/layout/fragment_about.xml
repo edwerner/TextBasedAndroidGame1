@@ -20,7 +20,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How This Game Works"
+        android:text="About"
         android:textSize="30sp"
         android:textStyle="bold" />
 

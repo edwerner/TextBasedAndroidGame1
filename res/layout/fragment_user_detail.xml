@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/user_profile_title_tag"
+        android:text="Player"
         android:textSize="30sp"
         android:textStyle="bold" />
 

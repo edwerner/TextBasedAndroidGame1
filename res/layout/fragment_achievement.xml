@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_news"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,17 +13,6 @@
         android:background="@color/white_overlay"
         android:contentDescription="@string/filmlist_icon_desc"
         android:scaleType="fitCenter" />
-
-    <!--
-         <TextView
-        android:id="@+id/currentLevelText1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="30sp"
-        android:text="Achievement" />
-    -->
 
     <TextView
         android:id="@+id/achievementTitleText1"

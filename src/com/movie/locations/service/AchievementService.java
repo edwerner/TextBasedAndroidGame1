@@ -93,4 +93,11 @@ public class AchievementService implements IService {
 		achievementImpl.close();
 		return achievementArrayList;
 	}
+
+	public Achievement selectRecordByLevel(String nextLevel) {
+		achievementImpl.open();
+		Achievement nextLevelAchievement = achievementImpl.selectRecordByLevel(nextLevel);
+		achievementImpl.close();
+		return nextLevelAchievement;
+	}
 }

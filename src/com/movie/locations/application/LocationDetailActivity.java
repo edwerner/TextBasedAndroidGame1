@@ -5,8 +5,6 @@ import java.util.Collections;
 import com.movie.locations.adapter.LocationQuizArrayAdapter;
 import com.movie.locations.application.QuizActivity;
 import com.movie.locations.R;
-import com.movie.locations.database.AchievementImpl;
-import com.movie.locations.database.ConclusionCardImpl;
 import com.movie.locations.domain.Achievement;
 import com.movie.locations.domain.BagItemArrayList;
 import com.movie.locations.domain.ConclusionCard;
@@ -16,6 +14,8 @@ import com.movie.locations.domain.QuizItem;
 import com.movie.locations.domain.QuizItemArrayList;
 import com.movie.locations.domain.User;
 import com.movie.locations.receiver.DatabaseChangedReceiver;
+import com.movie.locations.service.AchievementService;
+import com.movie.locations.service.ConclusionCardService;
 import com.movie.locations.service.QuizItemService;
 import com.movie.locations.service.UserService;
 import com.movie.locations.utility.StaticSortingUtilities;
@@ -77,7 +77,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 	private FilmLocation currentLocation;
 	private QuizItemArrayList localQuizItemArrayList;
 	private IntentFilter filter;
-	private AchievementImpl achievementImpl;
 	private Achievement levelAchievement;
 	private Context context;
 	private ArrayList<QuizItem> newQuizList;
@@ -157,10 +156,9 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			int nextLevelInt = currentLevelInt + 1;
 			String nextLevel = Integer.toString(nextLevelInt);
 
-			achievementImpl = new AchievementImpl(context);
-			achievementImpl.open();
-			levelAchievement = achievementImpl.selectRecordByLevel(nextLevel);
-			achievementImpl.close();
+			AchievementService achievementService = new AchievementService(context);
+			achievementService.createAchievementImpl();
+			levelAchievement = achievementService.selectRecordByLevel(nextLevel);
 			
 			// set world title
 			setTitle(currentLocation.getTitle());
@@ -406,7 +404,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		private BagItemArrayList bagItemArrayList;
 		private User fragmentUser;
 		private FilmArrayList locationArrayList;
-		private ConclusionCardImpl conclusionCardImpl;
 		private UserService userService;
 		
 		public LocationFragment() {
@@ -480,13 +477,13 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		private void generateConclusionCard(QuizItem quizItem, String currentUserPoints) {
 			Intent achievementIntent = new Intent(context, ConclusionActivity.class);
 			achievementIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			String questionId = quizItem.getQuestionId();
+			String conclusionCardId = quizItem.getQuestionId();
 			
-			conclusionCardImpl.open();
-			ConclusionCard conclusionCard = conclusionCardImpl.selectRecordById(questionId);
-			conclusionCardImpl.close();
+			ConclusionCardService conclusionCardService = new ConclusionCardService(context);
+			conclusionCardService.createConclusionCardImpl();
+			ConclusionCard conclusionCard = conclusionCardService.selectRecordById(conclusionCardId);
 			
-			conclusionCard.setId(questionId);
+			conclusionCard.setId(conclusionCardId);
 			conclusionCard.setTitle(conclusionCard.getTitle());
 			conclusionCard.setCopy(conclusionCard.getCopy());
 			conclusionCard.setImageUrl(conclusionCard.getImageUrl());
@@ -503,7 +500,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			
 			View rootView = inflater.inflate(R.layout.fragment_film_detail, container, false);
 
-			conclusionCardImpl = new ConclusionCardImpl(context);
 			levelAchievement = getArguments().getParcelable("levelAchievement");
 			quizItem = getArguments().getParcelable("quizItem");
 			bagItemArrayList = getArguments().getParcelable("bagItemArrayList");

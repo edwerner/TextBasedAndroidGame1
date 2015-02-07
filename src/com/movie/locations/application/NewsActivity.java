@@ -84,11 +84,11 @@ public class NewsActivity extends ActionBarActivity {
 			
 			navArray = new String[6];
 			navArray[0] = "Worlds";
-			navArray[1] = "Player";
-			navArray[2] = "Items";
-			navArray[3] = "About";
-			navArray[4] = "Settings";
-			navArray[5] = "Achievements";
+			navArray[1] = "Inventory";
+			navArray[2] = "Achievements";
+			navArray[3] = "Player";
+			navArray[4] = "About";
+			navArray[5] = "Settings";
 			
 			String userImageUrl = localUser.getAvatarImageUrl();
 			mTitle = mDrawerTitle = getTitle();
@@ -110,19 +110,19 @@ public class NewsActivity extends ActionBarActivity {
 					currentImageUrl += R.drawable.breadboard_menu;
 					break;
 				case 1:
-					currentImageUrl = userImageUrl;
-					break;
-				case 2:
 					currentImageUrl += R.drawable.backpack_blue;
 					break;
+				case 2:
+					currentImageUrl += R.drawable.icon_checkmark_green_small;
+					break;
 				case 3:
-					currentImageUrl += R.drawable.help;
+					currentImageUrl = userImageUrl;
 					break;
 				case 4:
-					currentImageUrl += R.drawable.settings;
+					currentImageUrl += R.drawable.help;
 					break;
 				case 5:
-					currentImageUrl += R.drawable.achievement_level_twenty;
+					currentImageUrl += R.drawable.settings;
 					break;
 				}
 				
@@ -164,7 +164,7 @@ public class NewsActivity extends ActionBarActivity {
 			if (localUser != null) {
 				if (localUser.getCurrentLevel().equals("1")) {
 					// display help fragment
-					selectItem(3);
+					selectItem(4);
 				}
 			} else {
 				selectItem(0);
@@ -231,7 +231,7 @@ public class NewsActivity extends ActionBarActivity {
 		setTitle(navArray[position]);
 		mDrawerLayout.closeDrawer(mDrawerList);
         ft = getSupportFragmentManager().beginTransaction();
-        
+
 		switch (position) {
 		case 0:
 			Fragment locationsFragment = new FilmLocationsFragment();
@@ -241,27 +241,27 @@ public class NewsActivity extends ActionBarActivity {
 			ft.replace(R.id.content_frame, locationsFragment);
 			break;
 		case 1:
+			ft.replace(R.id.content_frame, new BagItemListFragment());
+			break;
+		case 2:
+			Fragment achievementsFragment = new AchievementsFragment();
+			Bundle achievementBundle = new Bundle();
+			achievementBundle.putParcelable("localUser", localUser);
+			achievementsFragment.setArguments(achievementBundle);
+			ft.replace(R.id.content_frame, achievementsFragment);
+			break;
+		case 3:
 			Fragment userFragment = new UserDetailFragment();
 			Bundle userBundle = new Bundle();
 			userBundle.putParcelable("localUser", localUser);
 			userFragment.setArguments(userBundle);
 			ft.replace(R.id.content_frame, userFragment);
 			break;
-		case 2:
-			ft.replace(R.id.content_frame, new BagItemListFragment());
-			break;
-		case 3:
+		case 4:
 			ft.replace(R.id.content_frame, new AboutFragment());
 			break;
-		case 4:
-			ft.replace(R.id.content_frame, new SettingsFragment());
-			break;
 		case 5:
-			Fragment achievementsFragment = new AchievementsFragment();
-			Bundle achievementBundle = new Bundle();
-			achievementBundle.putParcelable("localUser", localUser);
-			achievementsFragment.setArguments(achievementBundle);
-			ft.replace(R.id.content_frame, achievementsFragment);
+			ft.replace(R.id.content_frame, new SettingsFragment());
 			break;
 		}
 		ft.commit();
@@ -360,7 +360,7 @@ public class NewsActivity extends ActionBarActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_achievement, container, false);
+			View rootView = inflater.inflate(R.layout.fragment_achievement_item_list, container, false);
 			User localUser = getArguments().getParcelable("localUser");
 
 			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);

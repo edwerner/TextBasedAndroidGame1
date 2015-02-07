@@ -82,4 +82,11 @@ public class ConclusionCardService implements IService {
 	public String removeDoubleQuotes(String string) {
 		return string.replaceAll("(^\")|(\"$)", "");
 	}
+
+	public ConclusionCard selectRecordById(String conclusionCardId) {
+		conclusionCardImpl.open();
+		ConclusionCard conclusionCard = conclusionCardImpl.selectRecordById(conclusionCardId);
+		conclusionCardImpl.close();
+		return conclusionCard;
+	}
 }
