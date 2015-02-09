@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_overlay"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/breadboard_lg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/CodeFont"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            	android:text="@string/title_activity_main"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/CodeFont"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            	android:text="@string/desc_activity_main"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/sign_in_status"
+                style="@style/CodeFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            	android:text="@string/status_signed_out" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false" >
+                </com.google.android.gms.common.SignInButton>
+
+                <Button
+                    android:id="@+id/sign_out_button"
+                    style="@style/CodeFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/sign_out_button_name" />
+
+                <Button
+                    android:id="@+id/entry_button"
+                    style="@style/CodeFont"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/entry" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
