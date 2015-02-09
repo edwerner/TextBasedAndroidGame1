@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bag_item_array_adapter"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -14,7 +13,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/filmlist_icon_desc" >
+        android:contentDescription="@string/image_desc" >
     </ImageView>
 
     <LinearLayout
@@ -28,19 +27,9 @@
             android:id="@+id/navMenuItemTitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Menu Item"
-            android:textSize="20sp" >
-        </TextView>
+            android:text="@string/menu_item"
+            android:textSize="20sp" />
 
-        <!--
-             <Button
-            android:id="@+id/restoreLevelData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|right"
-            android:text="Restore"
-            android:visibility="gone" />
-        -->
     </LinearLayout>
 
 </LinearLayout>

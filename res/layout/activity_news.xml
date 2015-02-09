@@ -5,12 +5,6 @@
     tools:context="com.movie.locations.application.NewsActivity"
     tools:ignore="MergeRootFrame" >
 
-    <!-- <RelativeLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </RelativeLayout> -->
-
     <!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
 
     <android.support.v4.widget.DrawerLayout

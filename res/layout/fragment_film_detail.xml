@@ -4,7 +4,15 @@
     android:layout_height="fill_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".LocationPagerActivity.MovieSectionFragment" >
+    tools:context=".LocationPagerActivity.LocationSectionFragment" >
+
+    <ListView
+        android:id="@+id/locationsView1"
+        style="@style/listViewDivider"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -12,16 +20,8 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <ListView
-                android:id="@+id/locationsView1"
-                style="@style/listViewDivider"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:clickable="true"
-                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/locationImage1"
@@ -29,7 +29,7 @@
                 android:layout_height="250dp"
                 android:adjustViewBounds="true"
                 android:background="@color/white_overlay"
-                android:contentDescription="@string/filmlist_icon_desc"
+                android:contentDescription="@string/image_desc"
                 android:scaleType="fitCenter" />
 
             <TextView

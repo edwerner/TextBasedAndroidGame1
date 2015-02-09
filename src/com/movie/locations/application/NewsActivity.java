@@ -302,7 +302,7 @@ public class NewsActivity extends ActionBarActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_bag_item_list, container, false);
-			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
+			ListView restoreListView = (ListView) rootView.findViewById(R.id.gameTitleListView);
 
 			Context bagContext = getActivity().getApplicationContext();
 			
@@ -363,7 +363,7 @@ public class NewsActivity extends ActionBarActivity {
 			View rootView = inflater.inflate(R.layout.fragment_achievement_item_list, container, false);
 			User localUser = getArguments().getParcelable("localUser");
 
-			ListView restoreListView = (ListView) rootView.findViewById(R.id.restoreBagItemDataListView1);
+			ListView restoreListView = (ListView) rootView.findViewById(R.id.gameTitleListView);
 			Context achievementContext = getActivity().getApplicationContext();
 			
 			String currentUserLevel = localUser.getCurrentLevel();

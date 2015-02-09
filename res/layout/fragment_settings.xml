@@ -11,7 +11,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="30dp"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:src="@drawable/settings" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Settings"
+        android:text="@string/settings"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Turn on/off mobile notifications each time you level up."
+        android:text="@string/notifications_text_001"
         android:textSize="18sp" />
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Notifications"
+        android:text="@string/notifications_text_002"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:checked="false"
         android:onClick="onCheckboxClicked"
-        android:text="Mobile" />
+        android:text="@string/mobile" />
 
     <Button
         android:id="@+id/updateUserPreferencesButton1"
@@ -56,6 +56,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/star"
-        android:text="Update" />
+        android:text="@string/update" />
 
 </LinearLayout>

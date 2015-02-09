@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_user_detail"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Player"
+        android:text="@string/user_tag_1"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -21,7 +20,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:contentDescription="@string/imageview_1_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="fitXY" />
 
     <TextView
@@ -30,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/user_full_name_tag_1"
+        android:text="@string/user_name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -46,7 +45,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Level"
+        android:text="@string/user_current_level"
         android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:textStyle="bold" />
@@ -59,12 +58,12 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/miscTitleTag1"
+        android:id="@+id/pointsTitleTag1"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Current Points"
+        android:text="@string/user_current_points"
         android:textSize="18sp"
         android:textStyle="bold" />
 

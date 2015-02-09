@@ -77,9 +77,9 @@ public class AchievementActivity extends ActionBarActivity {
 			imageLoader.displayImage(achievementImageUrl, achievementPoster);
 			achievementTitleText.setText(achievementTitle);
 			achievementCopyText.setText(achievementCopy);
-			Button dismissConclusionButton = (Button) rootView.findViewById(R.id.dismissConclusionButton1);
+			Button dismissAchievementButton = (Button) rootView.findViewById(R.id.dismissAchievement1);
 			
-			dismissConclusionButton.setOnClickListener(new Button.OnClickListener() {
+			dismissAchievementButton.setOnClickListener(new Button.OnClickListener() {
 				public void onClick(View v) {
 					getActivity().finish();
 				}

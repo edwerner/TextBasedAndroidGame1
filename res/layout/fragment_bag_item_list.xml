@@ -1,29 +1,24 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$BagItemListFragment" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <TextView
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:text="@string/inventory"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-        <TextView
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inventory"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+    <ListView
+        android:id="@+id/gameTitleListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp"
+        android:clickable="true" />
 
-        <ListView
-            android:id="@+id/restoreBagItemDataListView1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="20dp"
-            android:clickable="true" />
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

@@ -15,18 +15,16 @@
             android:layout_width="fill_parent"
             android:layout_height="300dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/filmlist_icon_desc"
-            android:scaleType="centerCrop">
-        </ImageView>
+            android:contentDescription="@string/image_desc"
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/gameWorldsImage2"
             android:layout_width="fill_parent"
             android:layout_height="300dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/filmlist_icon_desc"
-            android:scaleType="centerCrop">
-        </ImageView>
+            android:contentDescription="@string/image_desc"
+            android:scaleType="centerCrop" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,14 +39,14 @@
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MakerQuest"
+            android:text="@string/title_activity_main"
             android:textSize="24sp" />
 
         <TextView
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Visit &apos;Worlds&apos; tab to get started"
+            android:text="@string/begin"
             android:textSize="20sp" />
     </LinearLayout>
 

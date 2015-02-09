@@ -1,10 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_quiz"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp"
     tools:context="com.movie.locations.QuizActivity$QuizFragment" >
 
     <ImageView
@@ -14,26 +12,23 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="30dp"
-        android:contentDescription="@string/filmlist_icon_desc" >
-    </ImageView>
+        android:contentDescription="@string/image_desc" />
+
+    <TextView
+        android:id="@+id/levelText1"
+        style="@style/ItalicCodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/currentEqupppedItemText_01"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/levelText1"
-        style="@style/ItalicCodeFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="16sp"
-        android:textStyle="italic" >
-    </TextView>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/quizQuestionText1"
@@ -47,7 +42,6 @@
         android:id="@+id/quiz_answer_radio_group_01"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/quizQuestionText1"
         android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
@@ -81,9 +75,8 @@
         style="@style/CodeFont"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/quiz_answer_radio_group_01"
         android:layout_marginTop="20dp"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
     <TextView
         android:id="@+id/equipItemMessage1"
@@ -91,10 +84,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Equip an item"
         android:layout_marginTop="0dp"
-        android:textSize="14sp" >
-    </TextView>
-
+        android:text="@string/equip_item"
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -11,8 +11,18 @@
         android:layout_height="250dp"
         android:adjustViewBounds="true"
         android:background="@color/white_overlay"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/achievementTitle"
+        style="@style/CodeFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="@string/achievement"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/achievementTitleText1"
@@ -38,19 +48,18 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/dismissConclusionButton1"
+            android:id="@+id/dismissAchievement1"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Dismiss" />
+            android:text="@string/dismiss" />
 
         <Button
             android:id="@+id/share_button"
+            style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Share on Google+" />
+            android:text="@string/google_share_button" />
     </LinearLayout>
 
 </LinearLayout>

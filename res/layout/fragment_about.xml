@@ -1,26 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_welcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$AboutFragment" >
 
     <ImageView
-        android:id="@+id/current_equipped_item_01"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="30dp"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:src="@drawable/help" />
 
     <TextView
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About"
+        android:text="@string/about"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -31,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Worlds/Levels"
+        android:text="@string/about_level_desc_001"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -42,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="4 worlds/20 levels - you choose play order!"
+        android:text="@string/about_level_desc_002"
         android:textSize="18sp" />
 
     <TextView
@@ -52,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Inventory"
+        android:text="@string/inventory_desc_001"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -63,28 +61,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Equip game items to solve puzzles."
+        android:text="@string/inventory_desc_002"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/instructionsUpdates1"
+        android:id="@+id/instructionsNotifications1"
         style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Notifications"
+        android:text="@string/notifications_desc_001"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/instructionsUpdates2"
+        android:id="@+id/instructionsNotifications2"
         style="@style/CodeFont"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Turn notifications on/off in the &apos;Settings&apos; tab."
+        android:text="@string/notifications_desc_002"
         android:textSize="18sp" />
 
     <TextView
@@ -94,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Achievements"
+        android:text="@string/achievements_desc_001"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -105,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="4dp"
-        android:text="Level achievements awarded each level."
+        android:text="@string/achievements_desc_002"
         android:textSize="18sp" />
 
     <Button
@@ -114,6 +112,6 @@
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Got it!" />
+        android:text="@string/dismiss" />
 
 </LinearLayout>

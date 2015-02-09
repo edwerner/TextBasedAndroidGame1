@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bag_item_array_adapter"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -14,8 +13,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/filmlist_icon_desc" >
-    </ImageView>
+        android:contentDescription="@string/image_desc" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,24 +27,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp" >
-        </TextView>
-
-        <!-- <TextView
-            android:id="@+id/bagItemLevel1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp" >
-        </TextView> -->
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/gameTitleDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="12sp" >
-        </TextView>
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>

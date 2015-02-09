@@ -21,17 +21,17 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"
-            android:contentDescription="@string/filmlist_icon_desc"
+            android:contentDescription="@string/image_desc"
             android:src="@drawable/replay" />
 
         <TextView
             android:id="@+id/replayText"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center|left"
             android:layout_weight="1"
-            android:text="Replay level"
+            android:text="@string/replay_level"
             android:textSize="20sp" >
         </TextView>
     </LinearLayout>

@@ -164,7 +164,7 @@ public class LocationPagerActivity extends FragmentActivity {
 	}
 
 	/**
-	 * Movie fragment
+	 * Location quiz list adapter
 	 * 
 	 */
 	private class LocationSectionFragment extends Fragment implements
@@ -226,7 +226,7 @@ public class LocationPagerActivity extends FragmentActivity {
 			intent.putExtra("bagItemArrayList", localBagItemArrayList);
 			intent.putExtra("userId", userId);
 			LocationArrayAdapter locationAdapter = new LocationArrayAdapter(getActivity(), intent, finalList);
-			ListView commentView = (ListView) rootView.findViewById(R.id.listviewMapTiles);
+			ListView commentView = (ListView) rootView.findViewById(R.id.listviewLocationQuizTiles);
 			commentView.setAdapter(locationAdapter);
 			locationAdapter.notifyDataSetChanged();
 			mViewPager.setOnPageChangeListener(this);

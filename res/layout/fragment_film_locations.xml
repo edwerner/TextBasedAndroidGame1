@@ -6,47 +6,37 @@
     android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$FilmLocationsFragment" >
 
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:background="@color/white_overlay"
         android:orientation="vertical" >
-
-       <!-- <TextView
-            android:id="@+id/locationsTag1"
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Game Worlds"
-            android:textSize="30sp" /> -->
 
         <TextView
             android:id="@+id/locationsText"
             style="@style/CodeFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tap image to begin"
-            android:textSize="12sp"
+            android:text="@string/begin"
+            android:textSize="18sp"
             android:textStyle="italic" />
     </LinearLayout>
+
     <ImageView
         android:id="@+id/gameWorldsImage1"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="centerCrop"
-        android:src="@drawable/capacitor_lg_001"/>
+        android:src="@drawable/capacitor_lg_001" />
 
     <TextView
         android:id="@+id/worldText1"
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inventory One"
+        android:text="@string/world_one"
         android:textSize="18sp" />
 
     <ImageView
@@ -54,7 +44,7 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="centerCrop"
         android:src="@drawable/photoresistor" />
 
@@ -63,7 +53,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inventory Two"
+        android:text="@string/world_two"
         android:textSize="18sp" />
 
     <ImageView
@@ -71,7 +61,7 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="centerCrop"
         android:src="@drawable/speaker" />
 
@@ -80,7 +70,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Circuits Three"
+        android:text="@string/world_three"
         android:textSize="18sp" />
 
     <ImageView
@@ -88,7 +78,7 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="centerCrop"
         android:src="@drawable/breadboard_lg" />
 
@@ -97,7 +87,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Circuits Four"
+        android:text="@string/world_four"
         android:textSize="18sp" />
 
 </LinearLayout>

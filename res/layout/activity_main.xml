@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:contentDescription="@string/filmlist_icon_desc"
+        android:contentDescription="@string/image_desc"
         android:scaleType="fitCenter"
         android:src="@drawable/breadboard_lg" />
 
@@ -24,7 +24,7 @@
             style="@style/CodeFont"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Circuitquest"
+            android:text="@string/title_activity_main"
             android:textSize="34sp" />
 
         <TextView
@@ -32,7 +32,7 @@
             style="@style/CodeFont"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="A puzzle game about circuits"
+            android:text="@string/desc_activity_main"
             android:textSize="20sp" />
 
         <TextView
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:text="Enter" />
+                android:text="@string/entry" />
         </LinearLayout>
     </LinearLayout>
 
