@@ -42,6 +42,7 @@ public class UserService implements IService {
 	
 	public void setCurrentLevel(String userId, String updatedLevel) {
 		userImpl.open();
+		userImpl.setCurrentLevel(userId, updatedLevel);
 		userImpl.close();
 	}
 
