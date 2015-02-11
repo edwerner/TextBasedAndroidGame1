@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context="com.movie.locations.NewsActivity$BagItemListFragment" >
+    tools:context="com.movie.locations.application.NewsActivity$BagItemListFragment" >
 
     <TextView
         style="@style/CodeFont"

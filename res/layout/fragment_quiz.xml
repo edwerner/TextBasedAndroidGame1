@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.movie.locations.QuizActivity$QuizFragment" >
+    tools:context="com.movie.locations.application.QuizActivity$QuizFragment" >
 
     <ImageView
         android:id="@+id/current_equipped_item_01"

@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context="com.movie.locations.UserDetailActivity$PlaceholderFragment" >
+    tools:context="com.movie.locations.application.UserDetailActivity$UserDetailFragment" >
 
     <TextView
         android:id="@+id/userProfileTitleTag1"

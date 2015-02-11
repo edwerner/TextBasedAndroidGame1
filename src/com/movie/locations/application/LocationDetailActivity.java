@@ -286,10 +286,10 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			}
 			String message = "Success!";
 			if (result != null) {
-				message = "Level data reset.";
+				message = "Level data reset";
 				quizItemService.resetAnsweredQuestion(result);
 			} else {
-				message = "Something went wrong!";
+				message = "Something went wrong";
 			}
 			Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 		}
@@ -644,7 +644,7 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 			
 			Intent achievementIntent = new Intent(context, AchievementActivity.class);
 			achievementIntent.putExtra("achievement", levelAchievement);
-			PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_ONE_SHOT);
+			PendingIntent contentIntent = PendingIntent.getActivity(context, 0, achievementIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 			mBuilder.setContentIntent(contentIntent);
 			mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());	
 		}

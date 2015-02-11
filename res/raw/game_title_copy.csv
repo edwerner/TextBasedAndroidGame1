@@ -2,13 +2,13 @@ led_green,Green LED,BAG_ITEM_TITLE,1,start,assets://led_green.jpg
 power_switch,Power Switch,BAG_ITEM_TITLE,1,start,assets://power_switch.jpg
 led_red,Red LED,BAG_ITEM_TITLE,1,start,assets://led_red.jpg
 led_tricolor,Tricolor LED,BAG_ITEM_TITLE,1,start,assets://led_tricolor.jpg
-capacitor_lg_001,Capacitor Lg 001,BAG_ITEM_TITLE,1,start,assets://capacitor_lg_001.jpg
+capacitor_electrolytic,Capacitor (electrolytic),BAG_ITEM_TITLE,1,start,assets://capacitor_electrolytic.jpg
 servomotor_micro,Servomotor,BAG_ITEM_TITLE,1,start,assets://servomotor_micro.jpg
 transformer,Transformer,BAG_ITEM_TITLE,1,start,assets://transformer.jpg
 pci_slots,PCI Slots,BAG_ITEM_TITLE,1,start,assets://pci_slots.jpg
 ps_2_ports,PS/2 Ports,BAG_ITEM_TITLE,1,start,assets://ps_2_ports.jpg
 memory_stick,RAM,BAG_ITEM_TITLE,1,start,assets://memory_stick.jpg
-vga_connector,VGA Connector,BAG_ITEM_TITLE,1,start,assets://vga_connector.jpg
+vga_connector,VGA Port,BAG_ITEM_TITLE,1,start,assets://vga_connector.jpg
 sleep_switch_display,Sleep Switch Display,BAG_ITEM_TITLE,1,start,assets://sleep_switch_display.jpg
 switch_dpdt,Switch (DPDT),BAG_ITEM_TITLE,1,start,assets://switch_dpdt.jpg
 switch_spst,Switch (SPST),BAG_ITEM_TITLE,1,start,assets://switch_spst.jpg
@@ -18,11 +18,11 @@ ethernet,Ethernet Connector,BAG_ITEM_TITLE,1,start,assets://ethernet.jpg
 micro_usb,USB Connector (Mini B),BAG_ITEM_TITLE,1,start,assets://micro_usb.jpg
 usb_connector_type_a,USB Connector (Type A),BAG_ITEM_TITLE,1,start,assets://usb_connector_type_a.jpg
 usb_connector_type_b,USB Connector (Type B),BAG_ITEM_TITLE,1,start,assets://usb_connector_type_b.jpg
-capacitor_electrolytic,Capacitor (electrolytic),BAG_ITEM_TITLE,1,start,assets://capacitor_electrolytic.jpg
+capacitor_ceramic,Capacitor (ceramic),BAG_ITEM_TITLE,1,start,assets://capacitor_ceramic.jpg
 photoresistor,Photoresistor,BAG_ITEM_TITLE,1,start,assets://photoresistor.jpg
 resistor,Resistor,BAG_ITEM_TITLE,1,start,assets://resistor.jpg
 9_v_battery_001,9V Battery,BAG_ITEM_TITLE,1,start,assets://9_v_battery_001.jpg
-oscillator_001,Oscillator 001,BAG_ITEM_TITLE,1,start,assets://oscillator_001.jpg
+oscillator_001,Oscillator,BAG_ITEM_TITLE,1,start,assets://oscillator_001.jpg
 protoboard,Protoboard,BAG_ITEM_TITLE,1,start,assets://protoboard.jpg
 jumper_wire_bundle,Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://jumper_wire_bundle.jpg
 diode,Diode,BAG_ITEM_TITLE,1,start,assets://diode.jpg
@@ -31,20 +31,18 @@ thermistor,Thermistor,BAG_ITEM_TITLE,1,start,assets://thermistor.jpg
 motor_vibr,Buzz Motor,BAG_ITEM_TITLE,1,start,assets://motor_vibr.jpg
 speaker,Audio Speaker,BAG_ITEM_TITLE,1,start,assets://speaker.jpg
 hard_disk_drive_headers,Hard Disk Drive Headers,BAG_ITEM_TITLE,1,start,assets://hard_disk_drive_headers.jpg
-9v_battery_case,9V Battery Case,BAG_ITEM_TITLE,1,start,assets://9v_battery_case.jpg
 power_supply_unit,Power Supply Unit,BAG_ITEM_TITLE,1,start,assets://power_supply_unit.jpg
 ribbon_cable,Ribbon Cable,BAG_ITEM_TITLE,1,start,assets://ribbon_cable.jpg
 jumper_cable_lg,Jumper Wire Lg,BAG_ITEM_TITLE,1,start,assets://jumper_cable_lg.jpg
-printer_connector_002,Printer Connector 001,BAG_ITEM_TITLE,1,start,assets://printer_connector_002.jpg
-breadboard_sm,Breadboard Sm,BAG_ITEM_TITLE,1,start,assets://breadboard_sm.jpg
-breadboard_lg,Breadboard Lg,BAG_ITEM_TITLE,1,start,assets://breadboard_lg.jpg
+printer_connector_002,Printer Connector,BAG_ITEM_TITLE,1,start,assets://printer_connector_002.jpg
+breadboard,Breadboard,BAG_ITEM_TITLE,1,start,assets://breadboard.jpg
 jumper_cable_sm,Jumper Wire Sm,BAG_ITEM_TITLE,1,start,assets://jumper_cable_sm.jpg
 tilt_sensor,Tilt Sensor,BAG_ITEM_TITLE,1,start,assets://tilt_sensor.jpg
-breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://breadboard_lg_jumper_wire_bundle.jpg
+breadboard_jumper_wire_bundle,Breadboard/Jumper Wire Bundle,BAG_ITEM_TITLE,1,start,assets://breadboard_jumper_wire_bundle.jpg
 psu_plug,Power Supply Unit (PSU) Plug,BAG_ITEM_TITLE,1,start,assets://psu_plug.jpg
 pressure_sensor,Pressure Sensor,BAG_ITEM_TITLE,1,start,assets://pressure_sensor.jpg
 potentiometer_rotary,Rotary Potentiometer,BAG_ITEM_TITLE,1,start,assets://potentiometer_rotary.jpg
-piezo_buzzer_001,Piezo Buzzer 001,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_001.jpg
+piezo_buzzer_001,Piezo Buzzer,BAG_ITEM_TITLE,1,start,assets://piezo_buzzer_001.jpg
 floppy_drive,"3.5"" Floppy Drive",BAG_ITEM_TITLE,1,start,assets://floppy_drive.jpg
 achievement_level_one,Level One,ACHIEVEMENT_TITLE,1,start,assets://achievement_level_one.jpg
 achievement_level_two,Level Two,ACHIEVEMENT_TITLE,2,start,assets://achievement_level_two.jpg

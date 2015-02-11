@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.movie.locations.NewsActivity$FilmLocationsFragment" >
+    tools:context="com.movie.locations.application.NewsActivity$FilmLocationsFragment" >
 
     <LinearLayout
         android:layout_width="fill_parent"

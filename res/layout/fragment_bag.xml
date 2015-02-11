@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/white_overlay"
-    tools:context="com.movie.locations.QuizActivity$BagFragment" >
+    tools:context="com.movie.locations.application.QuizActivity$BagFragment" >
 
     <ImageView
         android:id="@+id/bag_icon"

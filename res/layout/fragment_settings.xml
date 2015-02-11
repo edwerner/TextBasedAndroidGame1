@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.movie.locations.NewsActivity$SettingsFragment" >
+    tools:context="com.movie.locations.application.NewsActivity$SettingsFragment" >
 
     <ImageView
         android:layout_width="50dp"

@@ -1,5 +1,10 @@
-achievement_level_one,Level One,Welcome to Level 1!,null,null,assets://achievement_level_one.jpg,1
-achievement_level_two,Level Two,Welcome to Level 2!,null,null,assets://achievement_level_two.jpg,2
-achievement_level_three,Level Three,Welcome to Level 3!,null,null,assets://achievement_level_three.jpg,3
-achievement_level_four,Level Four,Welcome to Level 4!,null,null,assets://achievement_level_four.jpg,4
-achievement_level_five,Level Five,Welcome to Level 5!,null,null,assets://achievement_level_five.jpg,5
+achievement_level_one,Level One,Welcome to Level 1,null,null,assets://achievement_level_one.jpg,1
+achievement_level_two,Level Two,Welcome to Level 2,null,null,assets://achievement_level_two.jpg,2
+achievement_level_three,Level Three,Welcome to Level 3,null,null,assets://achievement_level_three.jpg,3
+achievement_level_four,Level Four,Welcome to Level 4,null,null,assets://achievement_level_four.jpg,4
+achievement_level_five,Level Five,Welcome to Level 5,null,null,assets://achievement_level_five.jpg,5
+achievement_level_six,Level Six,Welcome to Level 6,null,null,assets://achievement_level_six.jpg,6
+achievement_level_seven,Level Seven,Welcome to Level 7,null,null,assets://achievement_level_seven.jpg,7
+achievement_level_eight,Level Eight,Welcome to Level 8,null,null,assets://achievement_level_eight.jpg,8
+achievement_level_nine,Level Nine,Welcome to Level 9,null,null,assets://achievement_level_nine.jpg,9
+achievement_level_ten,Level Ten,Welcome to Level 10,null,null,assets://achievement_level_ten.jpg,10

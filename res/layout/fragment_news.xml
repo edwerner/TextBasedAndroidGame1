@@ -3,7 +3,7 @@
     android:id="@+id/fragment_news"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.movie.locations.NewsActivity$UserDetailFragment" >
+    tools:context="com.movie.locations.application.NewsActivity$UserDetailFragment" >
 
     <LinearLayout
         android:layout_width="fill_parent"

@@ -2,13 +2,13 @@ BAG_ITEM_TITLE,led_green,Green LED,Has lowest typical efficiency (W/W).,assets:/
 BAG_ITEM_TITLE,power_switch,Power Switch,Controls flow of voltage to the power supply.,assets://power_switch.jpg,1
 BAG_ITEM_TITLE,led_red,Red LED,Red LED first commercially used for mechanical indicators.,assets://led_red.jpg,1
 BAG_ITEM_TITLE,led_tricolor,Tricolor LED,Requires electronic circuits to render different colors.,assets://led_tricolor.jpg,1
-BAG_ITEM_TITLE,capacitor_lg_001,Capacitor Lg 001,Also known as a condenser.,assets://capacitor_lg_001.jpg,1
+BAG_ITEM_TITLE,capacitor_electrolytic,Capacitor (electrolytic),Also known as a condenser.,assets://capacitor_electrolytic.jpg,1
 BAG_ITEM_TITLE,servomotor_micro,Servomotor,Rotary actuator controlling angular position as well as velocity and acceleration.,assets://servomotor_micro.jpg,1
 BAG_ITEM_TITLE,transformer,Transformer,Transforms energy between circuits through electromagnetic induction.,assets://transformer.jpg,1
 BAG_ITEM_TITLE,pci_slots,PCI Slots,Local parallel computer bus for attaching hardware devices.,assets://pci_slots.jpg,1
 BAG_ITEM_TITLE,ps_2_ports,PS/2 Ports,Keyboard and mouse data connectors.,assets://ps_2_ports.jpg,1
 BAG_ITEM_TITLE,memory_stick,RAM,RAM is volatile memory; stored information lost if power removed.,assets://memory_stick.jpg,1
-BAG_ITEM_TITLE,vga_connector,VGA Connector,D-subminiature connector.,assets://vga_connector.jpg,1
+BAG_ITEM_TITLE,vga_connector,VGA Port,D-subminiature connector.,assets://vga_connector.jpg,1
 BAG_ITEM_TITLE,sleep_switch_display,Sleep Switch Display,Has a SPST switch on its circuit board.,assets://sleep_switch_display.jpg,1
 BAG_ITEM_TITLE,switch_dpdt,Switch (DPDT),Double pole/double throw switch.,assets://switch_dpdt.jpg,1
 BAG_ITEM_TITLE,switch_spst,Switch (SPST),Single pole/single throw switch.,assets://switch_spst.jpg,1
@@ -18,11 +18,11 @@ BAG_ITEM_TITLE,ethernet,Ethernet Connector,Connects to network interface card (N
 BAG_ITEM_TITLE,micro_usb,USB Connector (Mini B),Commonly used to connect external hard drives and smart phones.,assets://micro_usb.jpg,1
 BAG_ITEM_TITLE,usb_connector_type_a,USB Connector (Type A),The most common type of USB plug.,assets://usb_connector_type_a.jpg,1
 BAG_ITEM_TITLE,usb_connector_type_b,USB Connector (Type B),Two-connector scheme prevents accidental electrical loop.,assets://usb_connector_type_b.jpg,1
-BAG_ITEM_TITLE,capacitor_electrolytic,Capacitor (electrolytic),Blocks direct current (DC) while allowing alternate current (AC) to pass.,assets://capacitor_electrolytic.jpg,1
+BAG_ITEM_TITLE,capacitor_ceramic,Capacitor (ceramic),Blocks direct current (DC) while allowing alternate current (AC) to pass.,assets://capacitor_ceramic.jpg,1
 BAG_ITEM_TITLE,photoresistor,Photoresistor,Less sensitive to light than photodiodes or photo transistors.,assets://photoresistor.jpg,1
 BAG_ITEM_TITLE,resistor,Resistor,Relationship specified by Ohm's law dictates behavior.,assets://resistor.jpg,1
 BAG_ITEM_TITLE,9_v_battery_001,9V Battery,Powered early transistor radios.,assets://9_v_battery_001.jpg,1
-BAG_ITEM_TITLE,oscillator_001,Oscillator 001,Produces a periodic signal; often a square or sine wave.,assets://oscillator_001.jpg,1
+BAG_ITEM_TITLE,oscillator_001,Oscillator,Produces a periodic signal; often a square or sine wave.,assets://oscillator_001.jpg,1
 BAG_ITEM_TITLE,protoboard,Protoboard,Surface accepts solder for connecting pins to copper pour.,assets://protoboard.jpg,1
 BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Connects multiple components on solderless breadboards.,assets://jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,diode,Diode,Low resistance in one direction and high resistance in the other.,assets://diode.jpg,1
@@ -31,18 +31,16 @@ BAG_ITEM_TITLE,thermistor,Thermistor,Usually more precise within a limited tempe
 BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Found in cell phones.,assets://motor_vibr.jpg,1
 BAG_ITEM_TITLE,speaker,Audio Speaker,Signal converted from analogous electrical signal to sound.,assets://speaker.jpg,1
 BAG_ITEM_TITLE,hard_disk_drive_headers,Hard Disk Drive Headers,Connects to hard drive.,assets://hard_disk_drive_headers.jpg,1
-BAG_ITEM_TITLE,9v_battery_case,9V Battery Case,Has DPDT switch to control power supply.,assets://9v_battery_case.jpg,1
 BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Converts mains AC to DC power.,assets://power_supply_unit.jpg,1
 BAG_ITEM_TITLE,ribbon_cable,Ribbon Cable,Connects to forked contacts on IDC connectors.,assets://ribbon_cable.jpg,1
 BAG_ITEM_TITLE,jumper_cable_lg,Jumper Wire Lg,Connects components on solderless breadboards.,assets://jumper_cable_lg.jpg,1
-BAG_ITEM_TITLE,breadboard_sm,Breadboard Sm,Breakout breadboard to connect extra circuit components.,assets://breadboard_sm.jpg,1
-BAG_ITEM_TITLE,printer_connector_002,Printer Connector 001,Parallel computer printer port.,assets://printer_connector_002.jpg,1
-BAG_ITEM_TITLE,breadboard_lg,Breadboard Lg,Power rails found along edges of solderless breadboard.,assets://breadboard_lg.jpg,1
+BAG_ITEM_TITLE,printer_connector_002,Printer Connector,Breakout breadboard to connect extra circuit components.,assets://printer_connector_002.jpg,1
+BAG_ITEM_TITLE,breadboard_lg,Breadboard,Power rails found along edges of solderless breadboard.,assets://breadboard.jpg,1
 BAG_ITEM_TITLE,jumper_cable_sm,Jumper Wire Sm,Connects components on solderless breadboards.,assets://jumper_cable_sm.jpg,1
 BAG_ITEM_TITLE,tilt_sensor,Tilt Sensor,Commonly found in game controllers for indicating pitch and roll.,assets://tilt_sensor.jpg,1
-BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard Lg/Jumper Wire Bundle,Connect multiple circuit components.,assets://breadboard_lg_jumper_wire_bundle.jpg,1
+BAG_ITEM_TITLE,breadboard_lg_jumper_wire_bundle,Breadboard/Jumper Wire Bundle,Connect multiple circuit components.,assets://breadboard_jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,psu_plug,Power Supply Unit (PSU) Plug,Connects to mains electricity supply.,assets://psu_plug.jpg,1
 BAG_ITEM_TITLE,pressure_sensor,Pressure Sensor,Found in game controllers for measuring pad input.,assets://pressure_sensor.jpg,1
 BAG_ITEM_TITLE,potentiometer_rotary,Rotary Potentiometer,Rotating contact creates adjustable voltage divider.,assets://potentiometer_rotary.jpg,1
-BAG_ITEM_TITLE,piezo_buzzer_001,Piezo Buzzer 001,Pushing and pulling of conductors create sound when voltage applied.,assets://piezo_buzzer_001.jpg,1
+BAG_ITEM_TITLE,piezo_buzzer_001,Piezo Buzzer,Pushing and pulling of conductors create sound when voltage applied.,assets://piezo_buzzer_001.jpg,1
 BAG_ITEM_TITLE,floppy_drive,"3.5"" Floppy Drive",Accepts high-capacity disk media.,assets://floppy_drive.jpg,1

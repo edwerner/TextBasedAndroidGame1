@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.movie.locations.AchievementActivity$AchievementFragment" >
+    tools:context="com.movie.locations.application.AchievementActivity$AchievementFragment" >
 
     <ImageView
         android:id="@+id/achievementPoster1"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:text="@string/achievement"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
