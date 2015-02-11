@@ -12,7 +12,7 @@ test,1,11,Motherboard_11,Motherboard 11,Motherboard 11,Connects to hard drive.,a
 test,1,12,Motherboard_12,Motherboard 12,Motherboard 12,Power rating of 0.5 W.,assets://8_bit_green/ps_2_ports_landing.jpg,Audio Speaker,assets://speaker.jpg
 test,1,13,Motherboard_13,Motherboard 13,Motherboard 13,Controls flow of voltage to the power supply.,assets://8_bit_green/memory_stick_landing.jpg,Power Supply Unit,assets://power_supply_unit.jpg
 test,1,14,Motherboard_14,Motherboard 14,Motherboard 14,Also called multi-wire planar cable.,assets://8_bit_green/vga_connector_landing.jpg,Ribbon Cable,assets://ribbon_cable.jpg
-test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Two inputs and four outputs.,assets://8_bit_green/9_v_battery_001_landing.jpg,Switch (DPDT),assets://switch_dpdt.jpg
+test,1,15,Motherboard_15,Motherboard 15,Motherboard 15,Two inputs and four outputs.,assets://8_bit_green/memory_stick_landing.jpg,Switch (DPDT),assets://switch_dpdt.jpg
 test,1,16,Switches_16,Switches 16,Switches 16,Connects components on solderless breadboards.,assets://8_bit_green/power_switch_landing.jpg,Jumper Wire Lg,assets://jumper_cable_lg.jpg
 test,1,17,Switches_17,Switches 17,Switches 17,Commonly found in game controllers for indicating pitch and roll.,assets://8_bit_green/sleep_switch_display_landing.jpg,Tilt Sensor,assets://tilt_sensor.jpg
 test,1,18,Switches_18,Switches 18,Switches 18,Drives current to power LED.,assets://8_bit_green/switch_dpdt_landing.jpg,Resistor,assets://resistor.jpg
@@ -58,7 +58,7 @@ test,1,57,Buzzer_Circuit_57,Buzzer Circuit 57,Buzzer Circuit 57,D-subminiature c
 test,1,58,Buzzer_Circuit_58,Buzzer Circuit 58,Buzzer Circuit 58,Power rating of 0.5 W.,assets://8_bit_green/breadboard_landing.jpg,Audio Speaker,assets://speaker.jpg
 test,1,59,Buzzer_Circuit_59,Buzzer Circuit 59,Buzzer Circuit 59,Surface accepts solder for connecting pins to copper pour.,assets://8_bit_green/breadboard_landing.jpg,Protoboard,assets://protoboard.jpg
 test,1,60,Buzzer_Circuit_60,Buzzer Circuit 60,Buzzer Circuit 60,Produces a periodic signal; often a square or sine wave.,assets://8_bit_green/breadboard_landing.jpg,Oscillator,assets://oscillator_001.jpg
-test,1,61,Mini_Motor_Circuit_61,Mini Motor Circuit 61,Mini Motor Circuit 61,Headphone and microphone connectors.,assets://8_bit_green/breadboard_jumper_wire_bundle_landing.jpg,Audio Ports,assets://audio_ports.jpg
+test,1,61,Mini_Motor_Circuit_61,Mini Motor Circuit 61,Mini Motor Circuit 61,Ideally lossless (no energy losses) and perfectly coupled.,assets://8_bit_green/breadboard_jumper_wire_bundle_landing.jpg,Transformer,assets://transformer.jpg
 test,1,62,Mini_Motor_Circuit_62,Mini Motor Circuit 62,Mini Motor Circuit 62,Low resistance in one direction and high resistance in the other.,assets://8_bit_green/breadboard_jumper_wire_bundle_landing.jpg,Diode,assets://diode.jpg
 test,1,63,Mini_Motor_Circuit_63,Mini Motor Circuit 63,Mini Motor Circuit 63,Switches and amplifies electronic signals and power.,assets://8_bit_green/breadboard_jumper_wire_bundle_landing.jpg,Transistor (NPN),assets://transistor_npn.jpg
 test,1,64,Mini_Motor_Circuit_64,Mini Motor Circuit 64,Mini Motor Circuit 64,Pushing and pulling of conductors create sound when voltage applied.,assets://8_bit_green/breadboard_jumper_wire_bundle_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
