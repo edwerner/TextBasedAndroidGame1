@@ -113,7 +113,7 @@ public class ConclusionActivity extends ActionBarActivity {
 				}
 			});
 
-			Button shareButton = (Button) rootView.findViewById(R.id.share_button);
+			ImageView shareButton = (ImageView) rootView.findViewById(R.id.share_button);
 			InputStream imageStream = null;
 			
 			try {

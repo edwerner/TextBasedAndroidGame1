@@ -95,33 +95,16 @@
         <Button
             android:id="@+id/dismissConclusionButton1"
             style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="71dp"
             android:text="@string/dismiss" />
 
         <ImageView
             android:id="@+id/share_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+        	android:background="@drawable/gplus_share"
             android:contentDescription="@string/image_desc" />
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/cardListView"
-        style="@style/listViewDivider"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:visibility="gone" />
-
-    <ListView
-        android:id="@+id/bagListView"
-        style="@style/listViewDivider"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:visibility="gone" />
 
 </LinearLayout>

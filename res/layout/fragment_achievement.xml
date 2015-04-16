@@ -50,16 +50,16 @@
         <Button
             android:id="@+id/dismissAchievement1"
             style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="71dp"
             android:text="@string/dismiss" />
 
-        <Button
+        <ImageView
             android:id="@+id/share_button"
-            style="@style/CodeFont"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/google_share_button" />
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/gplus_share"
+            android:contentDescription="@string/image_desc" />
     </LinearLayout>
 
 </LinearLayout>

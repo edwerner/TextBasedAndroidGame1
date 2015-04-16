@@ -111,8 +111,8 @@
     <Button
         android:id="@+id/dismiss_instructions"
         style="@style/CodeFont"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="71dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:text="@string/dismiss" />
