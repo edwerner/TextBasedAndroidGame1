@@ -9,8 +9,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/image_desc"
         android:src="@drawable/settings" />
 
@@ -29,7 +30,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="14dp"
         android:text="@string/notifications_text_001"
         android:textSize="18sp" />
 
@@ -38,7 +39,7 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="14dp"
         android:text="@string/notifications_text_002"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -58,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/star"
         android:text="@string/update" />
 

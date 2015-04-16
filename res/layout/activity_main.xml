@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="250dp"
         android:orientation="vertical" >
@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_activity_main"
-            android:textSize="34sp" />
+            android:textSize="51sp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -38,6 +38,7 @@
         <TextView
             android:id="@+id/sign_in_status"
             style="@style/CodeFont"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status_signed_out" />

@@ -67,6 +67,7 @@ public class AchievementActivity extends ActionBarActivity {
 			
 			View rootView = inflater.inflate(R.layout.fragment_achievement, container, false);
 			Achievement achievement = getArguments().getParcelable("achievement");
+			String achievementId = achievement.getAchievementId();
 			String achievementTitle = achievement.getTitle();
 			final String achievementCopy = achievement.getDescription();
 			String achievementImageUrl = achievement.getImageUrl();
@@ -89,13 +90,13 @@ public class AchievementActivity extends ActionBarActivity {
 			InputStream imageStream = null;
 			
 			try {
-				imageStream = getActivity().getAssets().open(achievementImageUrl + ".jpg");
+				imageStream = getActivity().getAssets().open(achievementId + ".jpg");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			
 			final Context context = getActivity().getApplicationContext();
-			final String staticSiteUrl = " https://www.google.com/";
+			final String staticSiteUrl = " http://low-tech-ridge.appspot.com";
 	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
 	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
 	    	

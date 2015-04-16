@@ -19,6 +19,7 @@
         android:id="@+id/userAvatar1"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/image_desc"
         android:scaleType="fitXY" />
@@ -45,9 +46,9 @@
         style="@style/CodeFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/user_current_level"
         android:textSize="18sp"
-        android:layout_marginTop="10dp"
         android:textStyle="bold" />
 
     <TextView

@@ -87,7 +87,7 @@ public class ConclusionActivity extends ActionBarActivity {
 			final Context context = getActivity().getApplicationContext();
 			String currentUserPoints = getArguments().getString("currentUserPoints");
 			String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
-			final String staticSiteUrl = " https://www.google.com/";
+			final String staticSiteUrl = " http://low-tech-ridge.appspot.com";
 			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);
