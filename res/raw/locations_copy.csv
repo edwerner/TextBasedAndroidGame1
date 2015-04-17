@@ -34,7 +34,7 @@ test,1,33,Resistors_34,Resistors 33,Resistors 33,Connect multiple circuit compon
 test,1,34,Resistors_35,Resistors 34,Resistors 34,The most common type of USB plug.,assets://8_bit_green/potentiometer_rotary_landing.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
 test,1,35,Resistors_36,Resistors 35,Resistors 35,Provides services up to and including the data link layer.,assets://8_bit_green/photoresistor_landing.jpg,Ethernet Connector,assets://ethernet.jpg
 test,1,36,Breadboard_36,Breadboard 36,Breadboard 36,Red LED first commercially used for mechanical indicators.,assets://8_bit_green/jumper_cable_sm_landing.jpg,Red LED,assets://led_red.jpg
-test,1,37,Breadboard_37,Breadboard 37,Breadboard 37,Accepts high-capacity disk media.,assets://8_bit_green/piezo_buzzer_001_landing.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
+test,1,37,Breadboard_37,Breadboard 37,Breadboard 37,Accepts high-capacity disk media.,assets://8_bit_green/piezo_buzzer_001_landing.jpg,3.5-Inch Floppy Drive,assets://floppy_drive.jpg
 test,1,38,Breadboard_38,Breadboard 38,Breadboard 38,Characterized by single constant value: capacitance.,assets://8_bit_green/pressure_sensor_landing.jpg,Capacitor (ceramic),assets://capacitor_ceramic.jpg
 test,1,39,Breadboard_39,Breadboard 39,Breadboard 39,Connects to hard drive.,assets://8_bit_green/tilt_sensor_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
 test,1,40,Breadboard_40,Breadboard 40,Breadboard 40,Has low resistance in one direction and high resistance in the other.,assets://8_bit_green/jumper_cable_sm_landing.jpg,Diode,assets://diode.jpg
@@ -94,7 +94,7 @@ test,1,93,Servomotor Circuit 93,Servomotor Circuit 93,Servomotor Circuit 93,Conn
 test,1,94,Servomotor Circuit 94,Servomotor Circuit 94,Servomotor Circuit 94,The most common type of USB plug.,assets://8_bit_green/breadboard_landing.jpg,USB Connector (Type A),assets://usb_connector_type_a.jpg
 test,1,95,Servomotor Circuit 95,Servomotor Circuit 95,Servomotor Circuit 95,Connects to network interface card (NIC).,assets://8_bit_green/breadboard_landing.jpg,Ethernet Connector,assets://ethernet.jpg
 test,1,96,Buzz_Motor_Circuit_96,Buzz Motor Circuit 96,Buzz Motor Circuit 96,Blocks direct current (DC) while allowing alternate current (AC) to pass.,assets://8_bit_green/breadboard_landing.jpg,Capacitor (ceramic),assets://capacitor_ceramic.jpg
-test,1,97,Buzz_Motor_Circuit_97,Buzz Motor Circuit 97,Buzz Motor Circuit 97,Reads high-capacity disk media.,assets://8_bit_green/breadboard_landing.jpg,"3.5"" Floppy Drive",assets://floppy_drive.jpg
+test,1,97,Buzz_Motor_Circuit_97,Buzz Motor Circuit 97,Buzz Motor Circuit 97,Reads high-capacity disk media.,assets://8_bit_green/breadboard_landing.jpg,3.5-Inch Floppy Drive,assets://floppy_drive.jpg
 test,1,98,Buzz_Motor_Circuit_98,Buzz Motor Circuit 98,Buzz Motor Circuit 98,Headphone and microphone connectors.,assets://8_bit_green/breadboard_landing.jpg,Audio Ports,assets://audio_ports.jpg
 test,1,99,Buzz_Motor_Circuit_99,Buzz Motor Circuit 99,Buzz Motor Circuit 99,Connects to hard drive.,assets://8_bit_green/breadboard_landing.jpg,Hard Disk Drive Headers,assets://hard_disk_drive_headers.jpg
 test,1,100,Buzz_Motor_Circuit_100,Buzz Motor Circuit 100,Buzz Motor Circuit 100,Low resistance in one direction and high resistance in the other.,assets://8_bit_green/breadboard_landing.jpg,Diode,assets://diode.jpg

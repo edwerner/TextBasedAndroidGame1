@@ -629,13 +629,14 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 		int NOTIFICATION_ID = 1;
 		NotificationManager mNotificationManager;
 		String msg = "Welcome to level ";
+		String appName = "Arduino Quiz";
 		
 		if (title != null) {
 			msg += " " + levelAchievement.getLevel() + " !";
-			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher)
+			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.breadboard_lg)
 	            .setAutoCancel(true)
 	            .setDefaults(Notification.DEFAULT_VIBRATE)
-				.setContentTitle("CircuitQuest")
+				.setContentTitle(appName)
 				.setContentText(msg)
 				.setStyle(new NotificationCompat.BigTextStyle().bigText(msg));
 
