@@ -58,19 +58,6 @@ public class NewsActivity extends ActionBarActivity {
 	private Context context;
 	private UserService userService;
 	private GameTitleService gameTitleService;
-	private int[] achievementImages = {
-			R.drawable.green_checkmark_lg,
-			R.drawable.achievement_level_one,
-			R.drawable.achievement_level_two,
-			R.drawable.achievement_level_three,
-			R.drawable.achievement_level_four,
-			R.drawable.achievement_level_five,
-			R.drawable.achievement_level_six,
-			R.drawable.achievement_level_seven,
-			R.drawable.achievement_level_eight,
-			R.drawable.achievement_level_nine,
-			R.drawable.achievement_level_ten,
-	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +110,7 @@ public class NewsActivity extends ActionBarActivity {
 					currentImageUrl = userImageUrl;
 					break;
 				case 1:					
-					currentImageUrl += achievementImages[Integer.parseInt(localUser.getCurrentLevel())];
+					currentImageUrl += R.drawable.green_checkmark_lg;
 					break;
 				case 2:
 					currentImageUrl += R.drawable.backpack_blue;
@@ -245,12 +232,6 @@ public class NewsActivity extends ActionBarActivity {
 		mDrawerLayout.closeDrawer(mDrawerList);
         ft = getSupportFragmentManager().beginTransaction();
 
-		navArray[0] = "Player";
-		navArray[1] = "Achievements";
-		navArray[2] = "Inventory";
-		navArray[3] = "Worlds";
-		navArray[4] = "About";
-		navArray[5] = "Settings";
 		switch (position) {
 		case 0:
 			Fragment userFragment = new UserDetailFragment();
@@ -383,7 +364,7 @@ public class NewsActivity extends ActionBarActivity {
 			User localUser = getArguments().getParcelable("localUser");
 			
 			ImageView achievementImage = (ImageView) rootView.findViewById(R.id.achievementImage);
-			achievementImage.setBackgroundResource(achievementImages[Integer.parseInt(localUser.getCurrentLevel())]);
+			achievementImage.setBackgroundResource(R.drawable.green_checkmark_lg);
 
 			ListView restoreListView = (ListView) rootView.findViewById(R.id.gameTitleListView);
 			Context achievementContext = getActivity().getApplicationContext();

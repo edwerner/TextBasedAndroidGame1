@@ -124,14 +124,15 @@ public class ConclusionActivity extends ActionBarActivity {
 				
 	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
 	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
-	    	
+	    	final String gameItemShareMessage = conclusionTitle + " - Arduino Quiz Puzzle Game - " + staticSiteUrl;
+
 			shareButton.setOnClickListener(new Button.OnClickListener() {
 			    @Override
 			    public void onClick(View v) {
 			    	// Launch the Google+ share dialog with attribution to your app.
 			    	Intent shareIntent = new PlusShare.Builder(context)
 			    	.setType("text/plain")
-			    	.setText(conclusionTitle + " " + staticSiteUrl)
+			    	.setText(gameItemShareMessage)
 			    	.setStream(Uri.parse(postImage))
 			    	.getIntent();
 			    	
