@@ -7,14 +7,14 @@
     tools:context="com.movie.locations.NewsActivity$AchievementsFragment" >
 
     <ImageView
+        android:id="@+id/achievementImage"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
-        android:contentDescription="@string/image_desc"
-        android:src="@drawable/icon_checkmark_green_small" />
+        android:contentDescription="@string/image_desc" />
 
     <TextView
         style="@style/CodeFont"

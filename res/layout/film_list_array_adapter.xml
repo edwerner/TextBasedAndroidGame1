@@ -53,7 +53,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/image_desc"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_checkmark_green_small"
+            android:src="@drawable/green_checkmark_sm"
             android:visibility="gone" >
         </ImageView>
     </LinearLayout>

@@ -43,4 +43,4 @@ BAG_ITEM_TITLE,psu_plug,Power Supply Unit (PSU) Plug,Connects to mains electrici
 BAG_ITEM_TITLE,pressure_sensor,Pressure Sensor,Found in game controllers for measuring pad input.,assets://pressure_sensor.jpg,1
 BAG_ITEM_TITLE,potentiometer_rotary,Rotary Potentiometer,Rotating contact creates adjustable voltage divider.,assets://potentiometer_rotary.jpg,1
 BAG_ITEM_TITLE,piezo_buzzer_001,Piezo Buzzer,Pushing and pulling of conductors create sound when voltage applied.,assets://piezo_buzzer_001.jpg,1
-BAG_ITEM_TITLE,floppy_drive,"3.5"" Floppy Drive",Accepts high-capacity disk media.,assets://floppy_drive.jpg,1
+BAG_ITEM_TITLE,floppy_drive,3.5-Inch Floppy Drive,Accepts high-capacity disk media.,assets://floppy_drive.jpg,1

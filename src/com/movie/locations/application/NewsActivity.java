@@ -56,8 +56,21 @@ public class NewsActivity extends ActionBarActivity {
 	private FragmentTransaction ft;
 	private Intent intent;
 	private Context context;
-	public UserService userService;
-	public GameTitleService gameTitleService;
+	private UserService userService;
+	private GameTitleService gameTitleService;
+	private int[] achievementImages = {
+			R.drawable.green_checkmark_lg,
+			R.drawable.achievement_level_one,
+			R.drawable.achievement_level_two,
+			R.drawable.achievement_level_three,
+			R.drawable.achievement_level_four,
+			R.drawable.achievement_level_five,
+			R.drawable.achievement_level_six,
+			R.drawable.achievement_level_seven,
+			R.drawable.achievement_level_eight,
+			R.drawable.achievement_level_nine,
+			R.drawable.achievement_level_ten,
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +96,10 @@ public class NewsActivity extends ActionBarActivity {
 			gameTitleService.createGameTitleImpl();
 			
 			navArray = new String[6];
-			navArray[0] = "Worlds";
-			navArray[1] = "Inventory";
-			navArray[2] = "Achievements";
-			navArray[3] = "Player";
+			navArray[0] = "Player";
+			navArray[1] = "Achievements";
+			navArray[2] = "Inventory";
+			navArray[3] = "Worlds";
 			navArray[4] = "About";
 			navArray[5] = "Settings";
 			
@@ -107,16 +120,16 @@ public class NewsActivity extends ActionBarActivity {
 				
 				switch(a) {
 				case 0:
-					currentImageUrl += R.drawable.breadboard_menu;
+					currentImageUrl = userImageUrl;
 					break;
-				case 1:
-					currentImageUrl += R.drawable.backpack_blue;
+				case 1:					
+					currentImageUrl += achievementImages[Integer.parseInt(localUser.getCurrentLevel())];
 					break;
 				case 2:
-					currentImageUrl += R.drawable.icon_checkmark_green_small;
+					currentImageUrl += R.drawable.backpack_blue;
 					break;
 				case 3:
-					currentImageUrl = userImageUrl;
+					currentImageUrl += R.drawable.breadboard_menu;
 					break;
 				case 4:
 					currentImageUrl += R.drawable.help;
@@ -167,7 +180,7 @@ public class NewsActivity extends ActionBarActivity {
 					selectItem(4);
 				}
 			} else {
-				selectItem(0);
+				selectItem(3);
 			}
 		}
 	}
@@ -232,30 +245,36 @@ public class NewsActivity extends ActionBarActivity {
 		mDrawerLayout.closeDrawer(mDrawerList);
         ft = getSupportFragmentManager().beginTransaction();
 
+		navArray[0] = "Player";
+		navArray[1] = "Achievements";
+		navArray[2] = "Inventory";
+		navArray[3] = "Worlds";
+		navArray[4] = "About";
+		navArray[5] = "Settings";
 		switch (position) {
 		case 0:
-			Fragment locationsFragment = new FilmLocationsFragment();
-			Bundle locationsBundle = new Bundle();
-			locationsBundle.putParcelable("localUser", localUser);
-			locationsFragment.setArguments(locationsBundle);
-			ft.replace(R.id.content_frame, locationsFragment);
+			Fragment userFragment = new UserDetailFragment();
+			Bundle userBundle = new Bundle();
+			userBundle.putParcelable("localUser", localUser);
+			userFragment.setArguments(userBundle);
+			ft.replace(R.id.content_frame, userFragment);
 			break;
 		case 1:
-			ft.replace(R.id.content_frame, new BagItemListFragment());
-			break;
-		case 2:
 			Fragment achievementsFragment = new AchievementsFragment();
 			Bundle achievementBundle = new Bundle();
 			achievementBundle.putParcelable("localUser", localUser);
 			achievementsFragment.setArguments(achievementBundle);
 			ft.replace(R.id.content_frame, achievementsFragment);
 			break;
+		case 2:
+			ft.replace(R.id.content_frame, new BagItemListFragment());
+			break;
 		case 3:
-			Fragment userFragment = new UserDetailFragment();
-			Bundle userBundle = new Bundle();
-			userBundle.putParcelable("localUser", localUser);
-			userFragment.setArguments(userBundle);
-			ft.replace(R.id.content_frame, userFragment);
+			Fragment locationsFragment = new FilmLocationsFragment();
+			Bundle locationsBundle = new Bundle();
+			locationsBundle.putParcelable("localUser", localUser);
+			locationsFragment.setArguments(locationsBundle);
+			ft.replace(R.id.content_frame, locationsFragment);
 			break;
 		case 4:
 			ft.replace(R.id.content_frame, new AboutFragment());
@@ -362,6 +381,9 @@ public class NewsActivity extends ActionBarActivity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_achievement_item_list, container, false);
 			User localUser = getArguments().getParcelable("localUser");
+			
+			ImageView achievementImage = (ImageView) rootView.findViewById(R.id.achievementImage);
+			achievementImage.setBackgroundResource(achievementImages[Integer.parseInt(localUser.getCurrentLevel())]);
 
 			ListView restoreListView = (ListView) rootView.findViewById(R.id.gameTitleListView);
 			Context achievementContext = getActivity().getApplicationContext();
@@ -576,7 +598,8 @@ public class NewsActivity extends ActionBarActivity {
 				@Override
 				public void onClick(View view) {
 					// change fragments
-					selectItem(0);
+					selectItem(3);
+					mDrawerLayout.openDrawer(mDrawerList);
 				}
 			});
 			return rootView;
