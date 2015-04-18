@@ -322,7 +322,7 @@ public class QuizActivity extends FragmentActivity {
 				private void showAnswerSelectedIcon(int index) {
 					RadioButton currentRadioButton = (RadioButton) rootView.findViewById(checkmarkIds[index]);
 					Drawable checkmarkImage = rootView.getContext().getResources().getDrawable(R.drawable.green_checkmark_sm);
-					checkmarkImage.setBounds(20, -10, 80, 60);
+					checkmarkImage.setBounds(10, -10, 80, 60);
 					currentRadioButton.setCompoundDrawables(null, null, checkmarkImage, null);
 				};
 			});

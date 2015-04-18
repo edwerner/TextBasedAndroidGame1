@@ -25,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_activity_main"
-            android:textSize="51sp" />
+            android:textSize="62sp" />
 
         <TextView
             android:id="@+id/textView2"
