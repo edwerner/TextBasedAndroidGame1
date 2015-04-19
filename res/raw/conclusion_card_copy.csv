@@ -68,23 +68,23 @@ QuestionId_67,9V Battery,Commonly used to power radios and electronic devices.,9
 QuestionId_68,Thermistor,Material used is usually ceramic or polymer.,thermistor,1
 QuestionId_69,Transistor (NPN),Sometimes embedded within integrated circuits.,transistor_npn,1
 QuestionId_70,Resistor,Apparent value of resistance falls within a manufacturing tolerance.,resistor,1
-QuestionId_71,9V Battery,Often utilized as backup power within electronic devices.,9_v_battery_001,1
+QuestionId_71,Tilt Sensor,Used in the measurement of angles.,tilt_sensor,1
 QuestionId_72,Jumper Wire Bundle,Each one has a molded barrel and stripped end.,jumper_wire_bundle,1
 QuestionId_73,Resistor,Lowers voltage levels within circuit.,resistor,1
-QuestionId_74,Tilt Sensor,Used in the measurement of angles.,tilt_sensor,1
+QuestionId_74,9V Battery,Often utilized as backup power within electronic devices.,9_v_battery_001,1
 QuestionId_75,Tilt Sensor,Measures within two axes of a reference plane.,tilt_sensor,1
 QuestionId_76,9V Battery,Some manufacturers use welded tabs or foil strips to connects cells.,9_v_battery_001,1
 QuestionId_77,Transistor (NPN),Can produce a stronger output signal proportional to a weaker input signal.,transistor_npn,1
 QuestionId_78,Audio Speaker,Signal converted from analogous electrical signal to sound.,speaker,1
-QuestionId_79,Audio Speaker,Power rating of 0.5 W.,speaker,1
-QuestionId_80,Resistor,High-powered components of this type can dissipate watts of electrical power as heat.,resistor,1
+QuestionId_79,Resistor,High-powered components of this type can dissipate watts of electrical power as heat.,resistor,1
+QuestionId_80,Audio Speaker,Power rating of 0.5 W.,speaker,1
 QuestionId_81,Resistor,Surface mounted components of this type are printed with a numerical code.,resistor,1
 QuestionId_82,Photoresistor,Less sensitive to light than photodiodes or photo transistors.,photoresistor,1
 QuestionId_83,9V Battery,Electrochemical cells convert stored chemical energy into electrical energy.,9_v_battery_001,1
 QuestionId_84,Photoresistor,Greater latency occurs when transitioning from lighter to darker conditions.,photoresistor,1
 QuestionId_85,Jumper Wire Bundle,Connects circuit components to ground.,jumper_wire_bundle,1
-QuestionId_86,Jumper Wire Bundle,Leads make contact with terminal strips to connect components on breadboard.,jumper_wire_bundle,1
-QuestionId_87,Pressure Sensor,Variable resistors decrease in resistance with force applied.,pressure_sensor,1
+QuestionId_86,Pressure Sensor,Variable resistors decrease in resistance with force applied.,pressure_sensor,1
+QuestionId_87,Jumper Wire Bundle,Leads make contact with terminal strips to connect components on breadboard.,jumper_wire_bundle,1
 QuestionId_88,Resistor,Total resistance connected in series equals sum of individual resistance values.,resistor,1
 QuestionId_89,9V Battery,Rectangular prism.,9_v_battery_001,1
 QuestionId_90,Pressure Sensor,Comprised of conductive polymer that changes resistance.,pressure_sensor,1
@@ -93,8 +93,8 @@ QuestionId_92,Potentiometer,Rotating contact creates adjustable voltage divider.
 QuestionId_93,Servomotor,Consumes power while rotating to specified position then stops.,servomotor_micro,1
 QuestionId_94,Potentiometer,Linear version of component; also known as a 'fader'.,potentiometer_rotary,1
 QuestionId_95,Jumper Wire Bundle,Connects voltage and ground directly to servomotor.,jumper_wire_bundle,1
-QuestionId_96,Jumper Wire Bundle,Connects components to power rails on breadboard.,jumper_wire_bundle,1
-QuestionId_97,9V Battery,Alkaline commonly found within this circuit component.,9_v_battery_001,1
-QuestionId_98,Buzz Motor,Found in mobile phones.,motor_vibr,1
+QuestionId_96,Buzz Motor,Found in mobile phones.,motor_vibr,1
+QuestionId_97,Jumper Wire Bundle,Connects components to power rails on breadboard.,jumper_wire_bundle,1
+QuestionId_98,9V Battery,Alkaline commonly found within this circuit component.,9_v_battery_001,1
 QuestionId_99,Buzz Motor,Component connected to both switch and power rail.,motor_vibr,1
 QuestionId_100,Victory Cake,Thanks for playing - now go build something!,victory_cake,1
