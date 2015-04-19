@@ -45,10 +45,10 @@
     <string name="begin">Tap image to begin</string>
     <string name="submit">Submit</string>
     <string name="equip_item">Equip an Item</string>
-    <string name="world_one">World One: Inventory</string>
-    <string name="world_two">World Two: Inventory</string>
-    <string name="world_three">World Three: Circuits</string>
-    <string name="world_four">World Four: Circuits</string>
+    <string name="world_one">Inventory: One</string>
+    <string name="world_two">Inventory: Two</string>
+    <string name="world_three">Circuits: Three</string>
+    <string name="world_four">Circuits: Four</string>
     <string name="google_share_button">Share on Google+</string>
     
     <!-- google plus login string messages -->

@@ -28,7 +28,7 @@ BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Connects multiple component
 BAG_ITEM_TITLE,diode,Diode,Low resistance in one direction and high resistance in the other.,assets://diode.jpg,1
 BAG_ITEM_TITLE,motor_mini,Mini Motor,Draws no more than 250 mA of current.,assets://motor_mini.jpg,1
 BAG_ITEM_TITLE,thermistor,Thermistor,Usually more precise within a limited temperature range.,assets://thermistor.jpg,1
-BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Found in cell phones.,assets://motor_vibr.jpg,1
+BAG_ITEM_TITLE,motor_vibr,Buzz Motor,Found in mobile phones.,assets://motor_vibr.jpg,1
 BAG_ITEM_TITLE,speaker,Audio Speaker,Signal converted from analogous electrical signal to sound.,assets://speaker.jpg,1
 BAG_ITEM_TITLE,hard_disk_drive_headers,Hard Disk Drive Headers,Connects to hard drive.,assets://hard_disk_drive_headers.jpg,1
 BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Converts mains AC to DC power.,assets://power_supply_unit.jpg,1

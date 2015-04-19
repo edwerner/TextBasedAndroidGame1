@@ -52,7 +52,7 @@ test,1,51,LED_Circuit_51,LED Circuit 51,LED Circuit 51,Headphone and microphone 
 test,1,52,LED_Circuit_52,LED Circuit 52,LED Circuit 52,First commercially used for mechanical indicators.,assets://monochromatic/breadboard_jumper_wire_bundle_landing.jpg,Red LED,assets://led_red.jpg
 test,1,53,LED_Circuit_53,LED Circuit 53,LED Circuit 53,Volatile memory; stored information lost if power removed.,assets://monochromatic/breadboard_jumper_wire_bundle_landing.jpg,Memory Stick,assets://memory_stick.jpg
 test,1,54,LED_Circuit_54,LED Circuit 54,LED Circuit 54,Most product sound within a range of 2-4 kHz.,assets://monochromatic/breadboard_jumper_wire_bundle_landing.jpg,Piezo Buzzer,assets://piezo_buzzer_001.jpg
-test,1,55,LED_Circuit_55,LED Circuit 55,LED Circuit 55,Found in cell phones.,assets://monochromatic/breadboard_jumper_wire_bundle_landing.jpg,Buzz Motor,assets://motor_vibr.jpg
+test,1,55,LED_Circuit_55,LED Circuit 55,LED Circuit 55,Found in mobile phones.,assets://monochromatic/breadboard_jumper_wire_bundle_landing.jpg,Buzz Motor,assets://motor_vibr.jpg
 test,1,56,Buzzer_Circuit_56,Buzzer Circuit 56,Buzzer Circuit 56,Controls flow of voltage to the power supply.,assets://monochromatic/breadboard_landing.jpg,Power Switch,assets://power_switch.jpg
 test,1,57,Buzzer_Circuit_57,Buzzer Circuit 57,Buzzer Circuit 57,D-subminiature connector.,assets://monochromatic/breadboard_landing.jpg,VGA Port,assets://vga_connector.jpg
 test,1,58,Buzzer_Circuit_58,Buzzer Circuit 58,Buzzer Circuit 58,Power rating of 0.5 W.,assets://monochromatic/breadboard_landing.jpg,Audio Speaker,assets://speaker.jpg
