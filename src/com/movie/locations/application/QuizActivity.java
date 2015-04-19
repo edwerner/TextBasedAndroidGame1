@@ -376,8 +376,6 @@ public class QuizActivity extends FragmentActivity {
 			@Override
 			protected void onPostExecute(String result) {
 				// execution of result of Long time consuming operation
-				// finalResult.setText(result);
-				// set json data here to serialize
 		
 				updateUserInterface(result);
 		
@@ -396,32 +394,14 @@ public class QuizActivity extends FragmentActivity {
 				// Things to be done before execution of long running operation.
 				// For example showing ProgessDialog
 		
-				int randomPhraseIndex = generateRandomNumber(0, 6);
 				dialog = new ProgressDialog(context);
 				dialog.setTitle("Submitting answer...");
-				String message = "<i>" + randomPhrases[randomPhraseIndex] + "</i>";
+				String message = "<i>One moment please</i>";
 				dialog.setMessage(Html.fromHtml(message));
 				dialog.setCancelable(false);
 				dialog.setIndeterminate(true);
 				dialog.show();
 			}
-		
-			private int generateRandomNumber(int min, int max) {
-				int randomNumber = min + (int)(Math.random() * ((max - min) + 1));
-				return randomNumber;
-			}
-			
-			// multi-lingual message prompts 
-			public String[] randomPhrases = {
-					"One moment please",
-					"Un instant s'il vous plait",
-					"Un momento por favor",
-					"Einen Moment bitte",
-					"Un momento per favore",
-					"Ett ogonblick",
-					"Een ogenblik geduld aub",
-					"Odota hetki"
-			};
 		
 			/*
 			 * (non-Javadoc)

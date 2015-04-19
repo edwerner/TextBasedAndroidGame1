@@ -9,7 +9,7 @@ pci_slots,PCI Slots,BAG_ITEM_TITLE,1,start,assets://pci_slots.jpg
 ps_2_ports,PS/2 Ports,BAG_ITEM_TITLE,1,start,assets://ps_2_ports.jpg
 memory_stick,RAM,BAG_ITEM_TITLE,1,start,assets://memory_stick.jpg
 vga_connector,VGA Port,BAG_ITEM_TITLE,1,start,assets://vga_connector.jpg
-sleep_switch_display,Sleep Switch Display,BAG_ITEM_TITLE,1,start,assets://sleep_switch_display.jpg
+sleep_switch_display,Sleep Switch,BAG_ITEM_TITLE,1,start,assets://sleep_switch_display.jpg
 switch_dpdt,Switch (DPDT),BAG_ITEM_TITLE,1,start,assets://switch_dpdt.jpg
 switch_spst,Switch (SPST),BAG_ITEM_TITLE,1,start,assets://switch_spst.jpg
 audio_ports,Audio Ports,BAG_ITEM_TITLE,1,start,assets://audio_ports.jpg

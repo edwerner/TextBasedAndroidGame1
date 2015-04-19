@@ -95,7 +95,6 @@ public class LocationDetailActivity extends ActionBarActivity implements TabList
 
 		if (savedInstanceState == null) {
 			// Set up the action bar.
-//			final ActionBar actionBar = getActionBar();
 			getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 			// Create the adapter that will return a fragment for each of the three

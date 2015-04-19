@@ -59,7 +59,6 @@ public class MainActivity extends FragmentActivity implements
 	private static final String TAG = "android-plus-quickstart";
 	private static final int STATE_DEFAULT = 0;
 	private static final int STATE_SIGN_IN = 1;
-//	private static final int STATE_IN_PROGRESS = 2;
 	private static final int RC_SIGN_IN = 0;
 	private static final int DIALOG_PLAY_SERVICES_ERROR = 0;
 	private static final String SAVED_PROGRESS = "sign_in_progress";
@@ -110,10 +109,8 @@ public class MainActivity extends FragmentActivity implements
 
 	private SignInButton mSignInButton;
 	private Button mSignOutButton;
-//	private Button mRevokeButton;
 	private Button entryButton;
 	private TextView mStatus;
-//	private ListView mCirclesListView;
 	private ArrayAdapter<String> mCirclesAdapter;
 	private ArrayList<String> mCirclesList;
 	private Context context;
@@ -147,19 +144,15 @@ public class MainActivity extends FragmentActivity implements
 		entryButton = (Button) findViewById(R.id.entry_button);
 		mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
 		mSignOutButton = (Button) findViewById(R.id.sign_out_button);
-//		mRevokeButton = (Button) findViewById(R.id.revoke_access_button);
 		mStatus = (TextView) findViewById(R.id.sign_in_status);
-//		mCirclesListView = (ListView) findViewById(R.id.circles_list);
 
 		mSignInButton.setOnClickListener(this);
 		mSignOutButton.setOnClickListener(this);
-//		mRevokeButton.setOnClickListener(this);
 		entryButton.setOnClickListener(this);
 
 		mCirclesList = new ArrayList<String>();
 		mCirclesAdapter = new ArrayAdapter<String>(this,
 				R.layout.circle_member, mCirclesList);
-//		mCirclesListView.setAdapter(mCirclesAdapter);
 
 		if (savedInstanceState != null) {
 			mSignInProgress = savedInstanceState.getInt(SAVED_PROGRESS,
@@ -189,7 +182,6 @@ public class MainActivity extends FragmentActivity implements
 
 			if (regid.isEmpty()) {
 				registerInBackground();
-				System.out.println("registerInBackground");
 			}
 		} else {
 			Log.i(TAG, "No valid Google Play Services APK found.");
@@ -284,7 +276,6 @@ public class MainActivity extends FragmentActivity implements
 					}
 					regid = gcm.register(SENDER_ID);
 					msg = "Device registered, registration ID=" + regid;
-					System.out.println("regid: " + regid);
 
 					// Persist the regID - no need to register again.
 					storeRegistrationId(context, regid);
@@ -299,7 +290,6 @@ public class MainActivity extends FragmentActivity implements
 
 			@Override
 			protected void onPostExecute(String msg) {
-//				mDisplay.append(msg + "\n");
 				System.out.println("************ Successfully connected. ************");
 			}
 		}.execute(null, null, null);
@@ -322,7 +312,6 @@ public class MainActivity extends FragmentActivity implements
 		editor.putString(PROPERTY_REG_ID, regId);
 		editor.putInt(PROPERTY_APP_VERSION, appVersion);
 		editor.commit();
-		// System.out.println("appVersion: " + appVersion);
 	}
 
 	/**
@@ -412,22 +401,7 @@ public class MainActivity extends FragmentActivity implements
 				mGoogleApiClient.disconnect();
 				mGoogleApiClient.connect();
 				onSignedOut();
-			} 
-			
-//			else if (id == R.id.revoke_access_button) {
-//				// After we revoke permissions for the user with a
-//				// GoogleApiClient
-//				// instance, we must discard it and create a new one.
-//				Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-//				// Our sample has caches no user data from Google+, however we
-//				// would normally register a callback on
-//				// revokeAccessAndDisconnect
-//				// to delete user data so that we comply with Google developer
-//				// policies.
-//				Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
-//				mGoogleApiClient = buildGoogleApiClient();
-//				mGoogleApiClient.connect();
-//			} 
+			}
 			
 			else if (id == R.id.entry_button) {
 				userProfileIntent = new Intent(MainActivity.this, NewsActivity.class);
@@ -454,7 +428,6 @@ public class MainActivity extends FragmentActivity implements
 		// Update the user interface to reflect that the user is signed in.
 		mSignInButton.setEnabled(false);
 		mSignOutButton.setEnabled(true);
-//		mRevokeButton.setEnabled(true);
 		entryButton.setEnabled(true);
 
 		// Retrieve some profile information to personalize our app for the
@@ -514,7 +487,7 @@ public class MainActivity extends FragmentActivity implements
 			userService.createRecord(localUser);
 		} else {
 
-			// create new user with attributes
+			// create new user and set attributes
 			localUser = new User();
 			localUser.setUserId(currentUserSid);
 			localUser.setUserSid(currentUserSid);
@@ -678,7 +651,6 @@ public class MainActivity extends FragmentActivity implements
 		mSignInButton.setEnabled(true);
 		mSignOutButton.setEnabled(false);
 		entryButton.setEnabled(false);
-//		mRevokeButton.setEnabled(false);
 		mStatus.setText(R.string.status_signed_out);
 		mCirclesList.clear();
 		mCirclesAdapter.notifyDataSetChanged();

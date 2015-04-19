@@ -43,23 +43,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/dismissAchievement1"
             style="@style/CodeFont"
-            android:layout_width="100dp"
-            android:layout_height="71dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/dismiss" />
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/share_button"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/gplus_share"
-            android:contentDescription="@string/image_desc" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gplus_share"
+                android:contentDescription="@string/image_desc" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="7dp"
+                android:text="@string/google_share_text" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

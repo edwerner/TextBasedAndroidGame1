@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AchievementActivity extends ActionBarActivity {
@@ -44,7 +45,7 @@ public class AchievementActivity extends ActionBarActivity {
 		}
 	}
 
-	// kill notification thread
+	// cancel notification thread
 	public void cancelNotification(int notifyId) {
 		String service = Context.NOTIFICATION_SERVICE;
 		NotificationManager manager = (NotificationManager) getBaseContext()
@@ -86,7 +87,7 @@ public class AchievementActivity extends ActionBarActivity {
 				}
 			});
 
-			ImageView shareButton = (ImageView) rootView.findViewById(R.id.share_button);
+			LinearLayout shareButton = (LinearLayout) rootView.findViewById(R.id.share_button);
 			InputStream imageStream = null;
 			
 			try {
@@ -96,7 +97,7 @@ public class AchievementActivity extends ActionBarActivity {
 			}
 			
 			final Context context = getActivity().getApplicationContext();
-			final String staticSiteUrl = " http://low-tech-ridge.appspot.com";
+			final String staticSiteUrl = " http://make-quiz.appspot.com";
 	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
 	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
 	    	final String achievementShareMessage = achievementCopy + " - Arduino Quiz Puzzle Game - " + staticSiteUrl;
@@ -106,7 +107,7 @@ public class AchievementActivity extends ActionBarActivity {
 					// Launch the Google+ share dialog with attribution to your app.
 					  Intent shareIntent = new PlusShare.Builder(context)
 					      .setType("text/plain")
-					      .setText(achievementShareMessage) // APPEND STATIC HTML LINK HERE
+					      .setText(achievementShareMessage) // APPEND STATIC HTML LINK
 					      .setStream(Uri.parse(postImage))
 					      .getIntent();
 					  

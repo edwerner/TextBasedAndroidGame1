@@ -180,7 +180,7 @@ public class NewsActivity extends ActionBarActivity {
 	 }
 
     public void onCheckboxClicked(View view) {
-        // Is the view now checked?
+        // Check for selected checkbox
         boolean checked = ((CheckBox) view).isChecked();
         
         int id = view.getId();
@@ -197,7 +197,7 @@ public class NewsActivity extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// If the nav drawer is open, hide action items related to the content
-//		// view
+		// view
 		return super.onPrepareOptionsMenu(menu);
 	}
 

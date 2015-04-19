@@ -9,7 +9,7 @@ BAG_ITEM_TITLE,pci_slots,PCI Slots,Local parallel computer bus for attaching har
 BAG_ITEM_TITLE,ps_2_ports,PS/2 Ports,Keyboard and mouse data connectors.,assets://ps_2_ports.jpg,1
 BAG_ITEM_TITLE,memory_stick,RAM,RAM is volatile memory; stored information lost if power removed.,assets://memory_stick.jpg,1
 BAG_ITEM_TITLE,vga_connector,VGA Port,D-subminiature connector.,assets://vga_connector.jpg,1
-BAG_ITEM_TITLE,sleep_switch_display,Sleep Switch Display,Has a SPST switch on its circuit board.,assets://sleep_switch_display.jpg,1
+BAG_ITEM_TITLE,sleep_switch_display,Sleep Switch,Has a SPST switch on its circuit board.,assets://sleep_switch_display.jpg,1
 BAG_ITEM_TITLE,switch_dpdt,Switch (DPDT),Double pole/double throw switch.,assets://switch_dpdt.jpg,1
 BAG_ITEM_TITLE,switch_spst,Switch (SPST),Single pole/single throw switch.,assets://switch_spst.jpg,1
 BAG_ITEM_TITLE,audio_ports,Audio Ports,Headphone and microphone connectors.,assets://audio_ports.jpg,1

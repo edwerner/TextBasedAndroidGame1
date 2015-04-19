@@ -50,6 +50,7 @@
     <string name="world_three">Circuits: Three</string>
     <string name="world_four">Circuits: Four</string>
     <string name="google_share_button">Share on Google+</string>
+    <string name="google_share_text">Share</string>
     
     <!-- google plus login string messages -->
     <string name="circles_title">Visible circles:</string>
