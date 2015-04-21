@@ -119,7 +119,7 @@ public class NewsActivity extends ActionBarActivity {
 					currentImageUrl += R.drawable.breadboard_menu;
 					break;
 				case 4:
-					currentImageUrl += R.drawable.help;
+					currentImageUrl += R.drawable.about;
 					break;
 				case 5:
 					currentImageUrl += R.drawable.settings;

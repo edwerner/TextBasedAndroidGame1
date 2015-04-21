@@ -1,120 +1,132 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.movie.locations.NewsActivity$AboutFragment" >
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/image_desc"
-        android:src="@drawable/help" />
-
-    <TextView
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/about"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/instructions1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/image_desc"
+            android:src="@drawable/about" />
+
+        <TextView
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/about"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/instructions1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/about_level_desc_001"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/instructions2"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/about_level_desc_002"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/instructionsItems1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/inventory_desc_001"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/instructionsItems2"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/inventory_desc_002"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/instructionsNotifications1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/notifications_desc_001"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/instructionsNotifications2"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/notifications_desc_002"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/instructionsAchievements1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/achievements_desc_001"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/instructionsAchievements2"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/achievements_desc_002"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/about_level_desc_001"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/instructions2"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/about_level_desc_002"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/dismiss_instructions"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dismiss" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/instructionsItems1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/inventory_desc_001"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/instructionsItems2"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/inventory_desc_002"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/instructionsNotifications1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/notifications_desc_001"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/instructionsNotifications2"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/notifications_desc_002"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/instructionsAchievements1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/achievements_desc_001"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/instructionsAchievements2"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:lineSpacingExtra="4dp"
-        android:text="@string/achievements_desc_002"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/dismiss_instructions"
-        style="@style/CodeFont"
-        android:layout_width="100dp"
-        android:layout_height="71dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/dismiss" />
-
-</LinearLayout>
+</RelativeLayout>

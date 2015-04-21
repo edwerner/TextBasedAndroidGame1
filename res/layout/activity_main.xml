@@ -15,14 +15,14 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="250dp"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView1"
             style="@style/CodeFont"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_activity_main"
             android:textSize="62sp" />
@@ -30,23 +30,32 @@
         <TextView
             android:id="@+id/textView2"
             style="@style/CodeFont"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/desc_activity_main"
             android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/sign_in_status"
             style="@style/CodeFont"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:text="@string/status_signed_out" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:gravity="center"
             android:orientation="horizontal" >
 
             <com.google.android.gms.common.SignInButton

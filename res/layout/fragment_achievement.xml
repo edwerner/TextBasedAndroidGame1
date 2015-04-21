@@ -1,50 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.movie.locations.application.AchievementActivity$AchievementFragment" >
 
-    <ImageView
-        android:id="@+id/achievementPoster1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:adjustViewBounds="true"
-        android:background="@color/white_overlay"
-        android:contentDescription="@string/image_desc"
-        android:scaleType="fitCenter" />
-
-    <TextView
-        android:id="@+id/achievementTitle"
-        style="@style/CodeFont"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="@string/achievement"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/achievementTitleText1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/achievementPoster1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:adjustViewBounds="true"
+            android:background="@color/white_overlay"
+            android:contentDescription="@string/image_desc"
+            android:scaleType="fitCenter" />
 
-    <TextView
-        android:id="@+id/achievementCopyText1"
-        style="@style/CodeFont"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/achievementTitle"
+            style="@style/CodeFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/achievement"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/achievementTitleText1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/achievementCopyText1"
+            style="@style/CodeFont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="horizontal" >
 
@@ -77,4 +83,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
