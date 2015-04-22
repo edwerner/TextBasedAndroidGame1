@@ -69,8 +69,8 @@ public class ConclusionActivity extends ActionBarActivity {
 		public ConclusionFragment() {
 			// empty constructor
 		}
-
-		protected final ImageLoader imageLoader = ImageLoader.getInstance();
+		
+		final String WEBSITE_URL = " http://make-quiz-puzzle-game.appspot.com";
 		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,7 +88,7 @@ public class ConclusionActivity extends ActionBarActivity {
 			final Context context = getActivity().getApplicationContext();
 			String currentUserPoints = getArguments().getString("currentUserPoints");
 			String imageUrl = "assets://" + conclusionImageUrl + ".jpg";
-			final String staticSiteUrl = " http://make-quiz.appspot.com";
+			ImageLoader imageLoader = ImageLoader.getInstance();
 			imageLoader.displayImage(imageUrl, conclusionImage);
 			conclusionTitleText.setText(conclusionTitle);
 			conclusionCopyText.setText(conclusionCopy);
@@ -104,7 +104,7 @@ public class ConclusionActivity extends ActionBarActivity {
 				pointsDataTitle.setVisibility(TextView.VISIBLE);
 				bonusPointsDataTextTitle.setVisibility(TextView.VISIBLE);
 				pointsDataText.setText(pointValue);
-				bonusPointsDataText.setText(currentUserPoints);	
+				bonusPointsDataText.setText(currentUserPoints);
 			}
 			
 			Button dismissConclusionButton = (Button) rootView.findViewById(R.id.dismissConclusionButton1);
@@ -125,7 +125,7 @@ public class ConclusionActivity extends ActionBarActivity {
 				
 	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
 	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
-	    	final String gameItemShareMessage = conclusionTitle + " - Arduino Quiz Puzzle Game - " + staticSiteUrl;
+	    	final String gameItemShareMessage = conclusionTitle + " - Arduino Quiz Puzzle Game - " + WEBSITE_URL;
 
 			shareButton.setOnClickListener(new Button.OnClickListener() {
 			    @Override

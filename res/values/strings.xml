@@ -3,10 +3,10 @@
 
     <string name="app_name">Make Quiz</string>
     <string name="title_activity_main">Make Quiz</string>
-    <string name="title_activity_location_pager">World</string>
+    <string name="title_activity_location_pager">Quiz Section</string>
     <string name="title_activity_location_detail">Detail</string>
     <string name="title_activity_user_detail">Player</string>
-    <string name="title_activity_news">Worlds</string>
+    <string name="title_activity_news">Make Quiz</string>
     <string name="title_activity_quiz">Quiz</string>
     <string name="title_activity_achievement">Achievement</string>
     <string name="title_activity_conclusion">Item</string>
@@ -32,17 +32,16 @@
     <string name="total_points">Total Points</string>
     <string name="achievement">Achievement</string>
     <string name="about_level_desc_001">Worlds/Levels</string>
-    <string name="about_level_desc_002">4 worlds/10 levels - you choose order!</string>
+    <string name="about_level_desc_002">4 units/100 questions/10 levels</string>
     <string name="inventory_desc_001">Inventory</string>
-    <string name="inventory_desc_002">Equip game items to solve puzzles.</string>
+    <string name="inventory_desc_002">Equip game items to solve puzzles</string>
     <string name="notifications_desc_001">Notifications</string>
-    <string name="notifications_desc_002">Turn notifications on/off in Settings tab.</string>
+    <string name="notifications_desc_002">Turn notifications on/off in Settings tab</string>
     <string name="mobile">Mobile</string>
     <string name="update">Update</string>
     <string name="achievements_desc_001">Achievements</string>
-    <string name="achievements_desc_002">Level achievements awarded each level.</string>
+    <string name="achievements_desc_002">Level achievements awarded each level</string>
     <string name="dismiss">Dismiss</string>
-    <string name="begin">Tap image to begin</string>
     <string name="submit">Submit</string>
     <string name="equip_item">Equip an Item</string>
     <string name="world_one">Inventory: One</string>

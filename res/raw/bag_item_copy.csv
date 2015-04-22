@@ -7,12 +7,12 @@ BAG_ITEM_TITLE,servomotor_micro,Servomotor,Rotary actuator controlling angular p
 BAG_ITEM_TITLE,transformer,Transformer,Transforms energy between circuits through electromagnetic induction.,assets://transformer.jpg,1
 BAG_ITEM_TITLE,pci_slots,PCI Slots,Local parallel computer bus for attaching hardware devices.,assets://pci_slots.jpg,1
 BAG_ITEM_TITLE,ps_2_ports,PS/2 Ports,Keyboard and mouse data connectors.,assets://ps_2_ports.jpg,1
-BAG_ITEM_TITLE,memory_stick,RAM,RAM is volatile memory; stored information lost if power removed.,assets://memory_stick.jpg,1
+BAG_ITEM_TITLE,memory_stick,RAM,Volatile memory - stored information lost if power removed.,assets://memory_stick.jpg,1
 BAG_ITEM_TITLE,vga_connector,VGA Port,D-subminiature connector.,assets://vga_connector.jpg,1
 BAG_ITEM_TITLE,sleep_switch_display,Sleep Switch,Has a SPST switch on its circuit board.,assets://sleep_switch_display.jpg,1
 BAG_ITEM_TITLE,switch_dpdt,Switch (DPDT),Double pole/double throw switch.,assets://switch_dpdt.jpg,1
 BAG_ITEM_TITLE,switch_spst,Switch (SPST),Single pole/single throw switch.,assets://switch_spst.jpg,1
-BAG_ITEM_TITLE,audio_ports,Audio Ports,Headphone and microphone connectors.,assets://audio_ports.jpg,1
+BAG_ITEM_TITLE,audio_ports,Headphone/Microphone Ports,Headphone and microphone ports.,assets://audio_ports.jpg,1
 BAG_ITEM_TITLE,transistor_npn,Transistor (NPN),Switches and amplifies electronic signals and power.,assets://transistor_npn.jpg,1
 BAG_ITEM_TITLE,ethernet,Ethernet Connector,Connects to network interface card (NIC).,assets://ethernet.jpg,1
 BAG_ITEM_TITLE,micro_usb,USB Connector (Mini B),Commonly used to connect external hard drives and smart phones.,assets://micro_usb.jpg,1
@@ -22,7 +22,7 @@ BAG_ITEM_TITLE,capacitor_ceramic,Capacitor (ceramic),Blocks direct current (DC) 
 BAG_ITEM_TITLE,photoresistor,Photoresistor,Less sensitive to light than photodiodes or photo transistors.,assets://photoresistor.jpg,1
 BAG_ITEM_TITLE,resistor,Resistor,Implements electrical resistance within the circuit.,assets://resistor.jpg,1
 BAG_ITEM_TITLE,9_v_battery_001,9V Battery,Powered early transistor radios.,assets://9_v_battery_001.jpg,1
-BAG_ITEM_TITLE,oscillator_001,Oscillator,Produces a periodic signal; often a square or sine wave.,assets://oscillator_001.jpg,1
+BAG_ITEM_TITLE,oscillator_001,Oscillator,Produces a periodic signal - often a square or sine wave.,assets://oscillator_001.jpg,1
 BAG_ITEM_TITLE,protoboard,Protoboard,Surface accepts solder for connecting pins to copper pour.,assets://protoboard.jpg,1
 BAG_ITEM_TITLE,jumper_wire_bundle,Jumper Wire Bundle,Connects multiple components on solderless breadboards.,assets://jumper_wire_bundle.jpg,1
 BAG_ITEM_TITLE,diode,Diode,Low resistance in one direction and high resistance in the other.,assets://diode.jpg,1
@@ -34,7 +34,7 @@ BAG_ITEM_TITLE,hard_disk_drive_headers,Hard Disk Drive Headers,Connects to hard 
 BAG_ITEM_TITLE,power_supply_unit,Power Supply Unit,Converts mains AC to DC power.,assets://power_supply_unit.jpg,1
 BAG_ITEM_TITLE,ribbon_cable,Ribbon Cable,Connects to forked contacts on IDC connectors.,assets://ribbon_cable.jpg,1
 BAG_ITEM_TITLE,jumper_cable_lg,Jumper Wire Lg,Connects components on solderless breadboards.,assets://jumper_cable_lg.jpg,1
-BAG_ITEM_TITLE,printer_connector_002,Printer Connector,Send data to and from printer.,assets://printer_connector_002.jpg,1
+BAG_ITEM_TITLE,printer_connector_002,Printer Port,Send data to and from printer.,assets://printer_connector_002.jpg,1
 BAG_ITEM_TITLE,breadboard_lg,Breadboard,Power rails found along edges of solderless breadboard.,assets://breadboard.jpg,1
 BAG_ITEM_TITLE,jumper_cable_sm,Jumper Wire Sm,Connects components on solderless breadboards.,assets://jumper_cable_sm.jpg,1
 BAG_ITEM_TITLE,tilt_sensor,Tilt Sensor,Commonly found in game controllers for indicating pitch and roll.,assets://tilt_sensor.jpg,1

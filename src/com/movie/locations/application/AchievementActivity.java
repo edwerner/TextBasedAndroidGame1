@@ -57,6 +57,8 @@ public class AchievementActivity extends ActionBarActivity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	private class AchievementFragment extends Fragment {
+		
+		final String WEBSITE_URL = " http://make-quiz-puzzle-game.appspot.com";
 
 		public AchievementFragment() {
 			// empty constructor
@@ -72,10 +74,10 @@ public class AchievementActivity extends ActionBarActivity {
 			String achievementTitle = achievement.getTitle();
 			final String achievementCopy = achievement.getDescription();
 			String achievementImageUrl = achievement.getImageUrl();
-			ImageLoader imageLoader = ImageLoader.getInstance();
 			TextView achievementTitleText = (TextView) rootView.findViewById(R.id.achievementTitleText1);
 			TextView achievementCopyText = (TextView) rootView.findViewById(R.id.achievementCopyText1);
 			ImageView achievementPoster = (ImageView) rootView.findViewById(R.id.achievementPoster1);
+			ImageLoader imageLoader = ImageLoader.getInstance();
 			imageLoader.displayImage(achievementImageUrl, achievementPoster);
 			achievementTitleText.setText(achievementTitle);
 			achievementCopyText.setText(achievementCopy);
@@ -97,10 +99,9 @@ public class AchievementActivity extends ActionBarActivity {
 			}
 			
 			final Context context = getActivity().getApplicationContext();
-			final String staticSiteUrl = " http://make-quiz.appspot.com";
 	    	Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
 	    	final String postImage = Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
-	    	final String achievementShareMessage = achievementCopy + " - Arduino Quiz Puzzle Game - " + staticSiteUrl;
+	    	final String achievementShareMessage = achievementCopy + " - Arduino Quiz Puzzle Game - " + WEBSITE_URL;
 			shareButton.setOnClickListener(new Button.OnClickListener() {
 			    @Override
 			    public void onClick(View v) {

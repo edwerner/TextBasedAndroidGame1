@@ -1,26 +1,26 @@
 QuestionId_01,Power Switch,Not a LED.,power_switch,1
-QuestionId_02,Tricolor LED,Requires electronic circuits to render different colors.,led_tricolor,1
-QuestionId_03,Red LED,First commercially used for mechanical indicators.,led_red,1
-QuestionId_04,Green LED,Has lowest typical efficiency (W/W).,led_green,1
-QuestionId_05,Tricolor LED,Uses a four-wire connection.,led_tricolor,1
+QuestionId_02,Tricolor LED,This LED Requires electronic circuits to render different colors.,led_tricolor,1
+QuestionId_03,Red LED,This LED first commercially used for mechanical indicators.,led_red,1
+QuestionId_04,Green LED,This LED has the lowest typical efficiency (W/W).,led_green,1
+QuestionId_05,Tricolor LED,This LED uses a four-wire connection.,led_tricolor,1
 QuestionId_06,Capacitor (electrolytic),Also known as a condenser.,capacitor_electrolytic,1
-QuestionId_07,Rotary Potentiometer,Used for tuning and circuit calibration.,potentiometer_rotary,1
+QuestionId_07,Rotary Potentiometer,Resistive element of component often made of graphite.,potentiometer_rotary,1
 QuestionId_08,Transformer,Transforms energy between circuits through electromagnetic induction.,transformer,1
 QuestionId_09,Servomotor,Rotary actuator controlling angular position as well as velocity and acceleration.,servomotor_micro,1
 QuestionId_10,Transformer,Flux confined within its magnetic core.,transformer,1
-QuestionId_11,PCI Slots,Compatible with ethernet cards.,pci_slots,1
-QuestionId_12,PS/2 Ports,Keyboard and mouse data connectors.,ps_2_ports,1
+QuestionId_11,PCI Slots,Local parallel computer bus for attaching hardware devices.,pci_slots,1
+QuestionId_12,PS/2 Ports,Keyboard and mouse data ports.,ps_2_ports,1
 QuestionId_13,VGA Port,D-subminiature connector.,vga_connector,1
-QuestionId_14,PCI Slots,Local parallel computer bus for attaching hardware devices.,pci_slots,1
+QuestionId_14,PCI Slots,Compatible with ethernet cards.,pci_slots,1
 QuestionId_15,RAM,Volatile memory; stored information lost if power removed.,memory_stick,1
 QuestionId_16,Switch (DPDT),Double pole/double throw switch.,switch_dpdt,1
-QuestionId_17,Power Switch,Controls flow of voltage to the power supply.,power_switch,1
+QuestionId_17,3.5-Inch Floppy Drive,Not a switch.,power_switch,1
 QuestionId_18,Switch (SPST),Single pole/single throw switch.,switch_spst,1
 QuestionId_19,Sleep Switch Display,Has a SPST Switch on its circuit board.,sleep_switch_display,1
 QuestionId_20,Switch (SPST),Simple on-off switch.,switch_spst,1
 QuestionId_21,Audio Speaker,An electroacoustic transducer.,speaker,1
 QuestionId_22,Transistor (NPN),Switches and amplifies electronic signals and power.,transistor_npn,1
-QuestionId_23,Capacitor (electrolytic),Characterized by single constant value - capacitance.,capacitor_electrolytic,1
+QuestionId_23,Capacitor (electrolytic),Characterized by a single constant value - capacitance.,capacitor_electrolytic,1
 QuestionId_24,Switch (DPDT),Has two inputs and four outputs.,switch_dpdt,1
 QuestionId_25,Capacitor (electrolytic),Stores energy electrostatically in an electric field.,capacitor_electrolytic,1
 QuestionId_26,USB Connector (Mini B),Commonly used to connect external hard drives and smart phones.,micro_usb,1
@@ -46,7 +46,7 @@ QuestionId_45,Transformer,Ideally lossless (no energy losses) and perfectly coup
 QuestionId_46,9V Battery,Powered early transistor radios.,9_v_battery_001,1
 QuestionId_47,RAM,Its two main forms are static and dynamic.,memory_stick,1
 QuestionId_48,Protoboard,Surface accepts solder for connecting pins to copper pour.,protoboard,1
-QuestionId_49,Oscillator,Produces a periodic signal; often a square or sine wave.,oscillator_001,1
+QuestionId_49,Oscillator,Produces a periodic signal - often a square or sine wave.,oscillator_001,1
 QuestionId_50,9V Battery,Most consist of six individual cells within a wrapper.,9_v_battery_001,1
 QuestionId_51,Resistor,Drives current to power LED.,resistor,1
 QuestionId_52,9V Battery,Supplies voltage to power LED.,9_v_battery_001,1
@@ -91,7 +91,7 @@ QuestionId_90,Pressure Sensor,Comprised of conductive polymer that changes resis
 QuestionId_91,9V Battery,Not manufactured with mercury oxide anymore.,9_v_battery_001,1
 QuestionId_92,Potentiometer,Rotating contact creates adjustable voltage divider.,potentiometer_rotary,1
 QuestionId_93,Servomotor,Consumes power while rotating to specified position then stops.,servomotor_micro,1
-QuestionId_94,Potentiometer,Linear version of component; also known as a 'fader'.,potentiometer_rotary,1
+QuestionId_94,Potentiometer,Linear version of component; also known as a fader.,potentiometer_rotary,1
 QuestionId_95,Jumper Wire Bundle,Connects voltage and ground directly to servomotor.,jumper_wire_bundle,1
 QuestionId_96,Buzz Motor,Found in mobile phones.,motor_vibr,1
 QuestionId_97,Jumper Wire Bundle,Connects components to power rails on breadboard.,jumper_wire_bundle,1

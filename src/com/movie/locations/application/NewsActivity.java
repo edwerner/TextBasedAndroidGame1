@@ -86,7 +86,7 @@ public class NewsActivity extends ActionBarActivity {
 			navArray[0] = "Player";
 			navArray[1] = "Achievements";
 			navArray[2] = "Inventory";
-			navArray[3] = "Worlds";
+			navArray[3] = "Quiz Sections";
 			navArray[4] = "About";
 			navArray[5] = "Settings";
 			

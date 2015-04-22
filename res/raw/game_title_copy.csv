@@ -12,7 +12,7 @@ vga_connector,VGA Port,BAG_ITEM_TITLE,1,start,assets://vga_connector.jpg
 sleep_switch_display,Sleep Switch,BAG_ITEM_TITLE,1,start,assets://sleep_switch_display.jpg
 switch_dpdt,Switch (DPDT),BAG_ITEM_TITLE,1,start,assets://switch_dpdt.jpg
 switch_spst,Switch (SPST),BAG_ITEM_TITLE,1,start,assets://switch_spst.jpg
-audio_ports,Audio Ports,BAG_ITEM_TITLE,1,start,assets://audio_ports.jpg
+audio_ports,Headphone/Microphone Ports,BAG_ITEM_TITLE,1,start,assets://audio_ports.jpg
 transistor_npn,Transistor (NPN),BAG_ITEM_TITLE,1,start,assets://transistor_npn.jpg
 ethernet,Ethernet Connector,BAG_ITEM_TITLE,1,start,assets://ethernet.jpg
 micro_usb,USB Connector (Mini B),BAG_ITEM_TITLE,1,start,assets://micro_usb.jpg
@@ -34,7 +34,7 @@ hard_disk_drive_headers,Hard Disk Drive Headers,BAG_ITEM_TITLE,1,start,assets://
 power_supply_unit,Power Supply Unit,BAG_ITEM_TITLE,1,start,assets://power_supply_unit.jpg
 ribbon_cable,Ribbon Cable,BAG_ITEM_TITLE,1,start,assets://ribbon_cable.jpg
 jumper_cable_lg,Jumper Wire Lg,BAG_ITEM_TITLE,1,start,assets://jumper_cable_lg.jpg
-printer_connector_002,Printer Connector,BAG_ITEM_TITLE,1,start,assets://printer_connector_002.jpg
+printer_connector_002,Printer Port,BAG_ITEM_TITLE,1,start,assets://printer_connector_002.jpg
 breadboard,Breadboard,BAG_ITEM_TITLE,1,start,assets://breadboard.jpg
 jumper_cable_sm,Jumper Wire Sm,BAG_ITEM_TITLE,1,start,assets://jumper_cable_sm.jpg
 tilt_sensor,Tilt Sensor,BAG_ITEM_TITLE,1,start,assets://tilt_sensor.jpg
